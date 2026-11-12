@@ -4,7 +4,7 @@
     "name": "__MSG_name__",
     "version": "0.1.0",
     "description": "__MSG_description__",
-    "homepage_url": "https://tufan-download-manager.com/",
+    "homepage_url": "https://sakimlabs.github.io/tufan-download-manager/",
     "browser_specific_settings": {
         "gecko": {
             "id": "integration@tufan-download-manager.com",
