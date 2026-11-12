@@ -8573,17 +8573,17 @@ impl App {
         {
             self.shown_existing = None;
         }
-        // [REMOVED] Browser extension popup (disabled for clean install)
-        // Previously: if self.lang_picker.is_none()
-        //             && self.helpers.is_none()
-        //             && self.settings.language_asked
-        //             && !self.extension_weighed
-        //         {
-        //             self.extension_weighed = true;
-        //             if crate::extension::worth_asking(&self.settings) {
-        //                 self.extension = Some(crate::extension::Extension::new());
-        //             }
-        //         }
+        // Browser extension popup: show after first start if extension isn't installed
+        if self.lang_picker.is_none()
+            && self.helpers.is_none()
+            && self.settings.language_asked
+            && !self.extension_weighed
+        {
+            self.extension_weighed = true;
+            if crate::extension::worth_asking(&self.settings) {
+                self.extension = Some(crate::extension::Extension::new());
+            }
+        }
         if let Some(d) = &mut self.extension {
             match d.show(ctx) {
                 Outcome::Open => {}

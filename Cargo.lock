@@ -7742,7 +7742,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-app"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "arboard",
  "base64 0.23.1",
@@ -7804,7 +7804,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-cli"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "anyhow",
  "clap",
@@ -7823,7 +7823,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-crash"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "breakpad-symbols",
  "chrono",
@@ -7848,7 +7848,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-debrid"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "bytes",
  "chrono",
@@ -7868,7 +7868,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-engine"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "base64 0.23.1",
  "bytes",
@@ -7912,7 +7912,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-extract"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "flate2",
  "lzma-rust2",
@@ -7925,7 +7925,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-geo"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "lzma-rust2",
  "png 0.18.1",
@@ -7934,7 +7934,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-ipc"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "craft-atomic",
  "dirs 7.0.0",
@@ -7946,7 +7946,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-labserver"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "anyhow",
  "axum",
@@ -7971,7 +7971,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-mcp"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "rmcp",
  "schemars 1.2.3",
@@ -7985,7 +7985,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-nmhost"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "chrono",
  "serde",
@@ -7996,7 +7996,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-remote"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "aws-lc-rs",
  "axum",
@@ -8017,7 +8017,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-tools"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "aws-lc-rs",
  "base64 0.23.1",
@@ -8041,7 +8041,7 @@ dependencies = [
 
 [[package]]
 name = "tdm-torrent"
-version = "4.0.0"
+version = "4.6.0"
 dependencies = [
  "flate2",
  "librqbit",

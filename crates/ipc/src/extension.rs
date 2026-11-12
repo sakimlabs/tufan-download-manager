@@ -15,7 +15,7 @@ pub const OTHER_STORE_IDS: [&str; 2] = ["EDGE_ADDONS_ID_PENDING", "OPERA_ADDONS_
 /// there).
 pub const FIREFOX_PAGE: &str = "https://addons.mozilla.org/firefox/addon/mister-download-manager/";
 /// The Firefox add-on's ID (extension/manifest.firefox.json).
-pub const FIREFOX_ID: &str = "integration@tufan-download-manager.com";
+pub const FIREFOX_ID: &str = "integration@misterdownloadmanager.com";
 /// Chrome's update service: an external-install entry naming it makes Chrome offer the store's
 /// extension at its next start (developer.chrome.com, "Alternative extension distribution
 /// options").
@@ -47,7 +47,7 @@ pub fn chromium_ids() -> Vec<&'static str> {
 /// install from it), once it is listed: the listing's own address, its name then its ID.
 pub fn store_page() -> Option<String> {
     store_id()
-        .map(|id| format!("https://chromewebstore.google.com/detail/mister-download-manager/{id}"))
+        .map(|id| format!("https://chromewebstore.google.com/detail/tufan-download-manager/{id}"))
 }
 
 /// The tutorial that adds the extension: from the stores, and by hand (a build of its own, or
@@ -139,7 +139,7 @@ mod tests {
         assert_eq!(
             store_page().as_deref(),
             Some(
-                "https://chromewebstore.google.com/detail/mister-download-manager/ejoleppdfgjdndddcjoehopknmlglojp"
+                "https://chromewebstore.google.com/detail/tufan-download-manager/ejoleppdfgjdndddcjoehopknmlglojp"
             )
         );
     }

@@ -2,12 +2,12 @@
     "manifest_version": 3,
     "default_locale": "en",
     "name": "__MSG_name__",
-    "version": "0.1.0",
+    "version": "4.6.0",
     "description": "__MSG_description__",
     "homepage_url": "https://sakimlabs.github.io/tufan-download-manager/",
     "browser_specific_settings": {
         "gecko": {
-            "id": "integration@tufan-download-manager.com",
+            "id": "integration@misterdownloadmanager.com",
             "strict_min_version": "140.0",
             "data_collection_permissions": {
                 "required": [

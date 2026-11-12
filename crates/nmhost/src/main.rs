@@ -36,6 +36,8 @@ use serde::{Deserialize, Serialize};
 mod win32;
 
 const HOST_NAME: &str = "com.tufan-download-manager.host";
+/// Legacy host name so the original "Mister Download Manager" extension (v0.5.2) still connects.
+const OLD_HOST_NAME: &str = "com.misterdownloadmanager.host";
 use tdm_ipc::extension::{FIREFOX_ID, STORE_ID, chromium_ids, store_id};
 /// Where each Chromium browser looks for native messaging hosts on Windows, under HKCU (one
 /// user) or HKLM (everyone). Chromium-branded builds (Chromium, Helium, Thorium, and Brave and
@@ -790,33 +792,12 @@ fn our_caller(args: &[String]) -> bool {
 fn register(all_users: bool) -> Result<(), String> {
     portable_refused()?;
     let root = if all_users { "HKLM" } else { "HKCU" };
-    let path = exe_dir()?.join(format!("{HOST_NAME}.json"));
-    write_json(&path, &chromium_manifest(&this_program()?))?;
-    for key in REGISTRY_KEYS {
-        reg(&[
-            "add",
-            &format!(r"{root}\{key}\{HOST_NAME}"),
-            "/ve",
-            "/t",
-            "REG_SZ",
-            "/d",
-            &path.display().to_string(),
-            "/f",
-        ])?;
-    }
-    let ff_path = exe_dir()?.join(format!("{HOST_NAME}.firefox.json"));
-    write_json(&ff_path, &firefox_manifest(&this_program()?))?;
-    reg(&[
-        "add",
-        &format!(r"{root}\{FIREFOX_KEY}\{HOST_NAME}"),
-        "/ve",
-        "/t",
-        "REG_SZ",
-        "/d",
-        &ff_path.display().to_string(),
-        "/f",
-    ])?;
-    // Chrome offers the store's extension once it is listed (never a placeholder ID).
+
+    // Register primary (new) host name: com.tufan-download-manager.host
+    register_host_name(root, HOST_NAME)?;
+    // Register legacy host name: com.misterdownloadmanager.host (for original extension compatibility)
+    register_host_name(root, OLD_HOST_NAME)?;
+
     if let Some(id) = store_id() {
         reg(&[
             "add",
@@ -831,20 +812,57 @@ fn register(all_users: bool) -> Result<(), String> {
             "/reg:32",
         ])?;
     }
-    println!(
-        "registered {HOST_NAME} for Chrome, Edge, Brave, Helium and the other Chromium browsers \
-         ({}), and for Firefox, Zen and its other forks ({})",
-        path.display(),
-        ff_path.display()
-    );
+    println!("registered {HOST_NAME} and {OLD_HOST_NAME}");
+    Ok(())
+}
+
+#[cfg(windows)]
+fn register_host_name(root: &str, host_name: &str) -> Result<(), String> {
+    let path = exe_dir()?.join(format!("{host_name}.json"));
+    let mut manifest = chromium_manifest(&this_program()?);
+    manifest["name"] = serde_json::Value::String(host_name.to_string());
+    write_json(&path, &manifest)?;
+
+    for key in REGISTRY_KEYS {
+        reg(&[
+            "add",
+            &format!(r"{root}\{key}\{host_name}"),
+            "/ve",
+            "/t",
+            "REG_SZ",
+            "/d",
+            &path.display().to_string(),
+            "/f",
+        ])?;
+    }
+
+    let ff_path = exe_dir()?.join(format!("{host_name}.firefox.json"));
+    let mut ff_manifest = firefox_manifest(&this_program()?);
+    ff_manifest["name"] = serde_json::Value::String(host_name.to_string());
+    write_json(&ff_path, &ff_manifest)?;
+
+    reg(&[
+        "add",
+        &format!(r"{root}\{FIREFOX_KEY}\{host_name}"),
+        "/ve",
+        "/t",
+        "REG_SZ",
+        "/d",
+        &ff_path.display().to_string(),
+        "/f",
+    ])?;
     Ok(())
 }
 
 #[cfg(windows)]
 fn unregister(all_users: bool) -> Result<(), String> {
     let root = if all_users { "HKLM" } else { "HKCU" };
-    for key in REGISTRY_KEYS.into_iter().chain([FIREFOX_KEY]) {
-        let _ = reg(&["delete", &format!(r"{root}\{key}\{HOST_NAME}"), "/f"]);
+    for host_name in [HOST_NAME, OLD_HOST_NAME] {
+        for key in REGISTRY_KEYS.into_iter().chain([FIREFOX_KEY]) {
+            let _ = reg(&["delete", &format!(r"{root}\{key}\{host_name}"), "/f"]);
+        }
+        let _ = std::fs::remove_file(exe_dir()?.join(format!("{host_name}.json")));
+        let _ = std::fs::remove_file(exe_dir()?.join(format!("{host_name}.firefox.json")));
     }
     let _ = reg(&[
         "delete",
@@ -852,9 +870,7 @@ fn unregister(all_users: bool) -> Result<(), String> {
         "/f",
         "/reg:32",
     ]);
-    let _ = std::fs::remove_file(exe_dir()?.join(format!("{HOST_NAME}.json")));
-    let _ = std::fs::remove_file(exe_dir()?.join(format!("{HOST_NAME}.firefox.json")));
-    println!("unregistered {HOST_NAME}");
+    println!("unregistered {HOST_NAME} and {OLD_HOST_NAME}");
     Ok(())
 }
 

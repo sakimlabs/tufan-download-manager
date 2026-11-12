@@ -1,6 +1,6 @@
 {
   "name": {
-      "message": "Tufan Download Manager By Sakim"
+      "message": "Mister Download Manager"
   },
   "description": {
     "message": "ব্রাউজার থেকে Tufan Download Manager-এ ডাউনলোড হস্তান্তর করে।"
@@ -47,10 +47,10 @@
   "status_connected": {
     "message": "Tufan Download Manager-এর সাথে সংযুক্ত"
   },
-  "status_connected_2.0.0": {
+  "status_connected_2_0_0": {
     "message": "Tufan Download Manager $2.0.0$-এর সাথে সংযুক্ত",
     "placeholders": {
-      "2.0.0": {
+      "2_0_0": {
         "content": "$1",
         "example": "0.2.5"
       }

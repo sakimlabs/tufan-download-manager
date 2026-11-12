@@ -9,7 +9,7 @@
 ; Windows Credential Manager (tufan-download-manager --forget-sign-ins).
 
 #ifndef AppVersion
-  #define AppVersion "4.0.0"
+  #define AppVersion "4.6.0"
 #endif
 #define AppName "Tufan Download Manager"
 #define AppExe "tufan-download-manager.exe"
@@ -132,6 +132,7 @@ Filename: "{app}\{#HostExe}"; Parameters: "--unregister --all-users"; Flags: run
 
 [UninstallDelete]
 Type: files; Name: "{app}\com.tufan-download-manager.host*.json"
+Type: files; Name: "{app}\com.misterdownloadmanager.host*.json"
 
 [Code]
 const

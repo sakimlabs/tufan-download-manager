@@ -11,9 +11,9 @@
 // (the rules, the status, the pause) is kept in storage, not in memory.
 
 const ext = globalThis.browser ?? globalThis.chrome;
-const HOST = "com.tufan-download-manager.host";
+const HOST = "com.misterdownloadmanager.host"; // Try legacy first, then new host
 const VERSION = ext.runtime.getManifest().version;
-const HELP = "https://tufan-download-manager.com/help/browser-help.html";
+const HELP = "https://misterdownloadmanager.com/help/browser-help.html";
 const action = ext.action ?? ext.browserAction;
 // Safari has no downloads API at all (nor proxy): it can't take a download from the browser, so
 // the links clicked in a page are handed over instead (`link`, below; page.js).

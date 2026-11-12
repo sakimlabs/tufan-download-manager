@@ -1,6 +1,6 @@
 {
   "name": {
-      "message": "Tufan Download Manager By Sakim",
+      "message": "Mister Download Manager",
       "description": "the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager By Sakim as it is"
   },
   "description": {
@@ -61,11 +61,11 @@
     "message": "Connected to Tufan Download Manager",
     "description": "the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is"
   },
-  "status_connected_2.0.0": {
+  "status_connected_2_0_0": {
     "message": "Connected to Tufan Download Manager $2.0.0$",
     "description": "the toolbar button's status when the browser reaches the app, with the app's 2.0.0 number; keep the name Tufan Download Manager as it is",
     "placeholders": {
-      "2.0.0": {
+      "2_0_0": {
         "content": "$1",
         "example": "0.2.5"
       }
