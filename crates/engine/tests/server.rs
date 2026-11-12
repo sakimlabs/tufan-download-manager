@@ -5,9 +5,9 @@
 use std::net::{IpAddr, Ipv4Addr};
 use std::time::Duration;
 
-use mdm_engine::download::probe;
-use mdm_engine::{Destination, Download, Options, Proxy, Request};
-use mdm_labserver::{Config, LabServer};
+use tdm_engine::download::probe;
+use tdm_engine::{Destination, Download, Options, Proxy, Request};
+use tdm_labserver::{Config, LabServer};
 
 fn opts() -> Options {
     Options {

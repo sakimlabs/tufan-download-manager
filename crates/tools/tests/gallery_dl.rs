@@ -1,54 +1,54 @@
-//! Real gallery-dl releases against the lab server, as MDM starts them (#236: a distribution's
-//! gallery-dl may be older than MDM's own copy). Each release MDM can drive is chosen, reads an
-//! address (and says when it can't), and saves a picture with MDM's User-Agent; one older than
+//! Real gallery-dl releases against the lab server, as TDM starts them (#236: a distribution's
+//! gallery-dl may be older than TDM's own copy). Each release TDM can drive is chosen, reads an
+//! address (and says when it can't), and saves a picture with TDM's User-Agent; one older than
 //! `gallery::OLDEST` is refused when chosen.
 //!
-//! Ignored: it needs `MDM_TEST_GALLERYDLS`, the programs separated as in PATH (`:` or `;`):
+//! Ignored: it needs `TDM_TEST_GALLERYDLS`, the programs separated as in PATH (`:` or `;`):
 //!
-//!   MDM_TEST_GALLERYDLS=$HOME/gdl/1.20.0/bin/gallery-dl:/usr/bin/gallery-dl \
-//!     cargo test -p mdm-tools --test gallery_dl -- --ignored --nocapture
+//!   TDM_TEST_GALLERYDLS=$HOME/gdl/1.20.0/bin/gallery-dl:/usr/bin/gallery-dl \
+//!     cargo test -p tdm-tools --test gallery_dl -- --ignored --nocapture
 
 use std::time::{Duration, Instant};
 
-use mdm_labserver::{Config, LabServer};
-use mdm_tools::chosen::Helper;
-use mdm_tools::gallery::{Ask, GalleryJob, USER_AGENT};
-use mdm_tools::video::State;
+use tdm_labserver::{Config, LabServer};
+use tdm_tools::chosen::Helper;
+use tdm_tools::gallery::{Ask, GalleryJob, USER_AGENT};
+use tdm_tools::video::State;
 
 #[test]
 #[ignore]
-fn every_release_mdm_can_drive_saves_a_gallery() {
-    let list = std::env::var_os("MDM_TEST_GALLERYDLS").expect("set MDM_TEST_GALLERYDLS");
+fn every_release_tdm_can_drive_saves_a_gallery() {
+    let list = std::env::var_os("TDM_TEST_GALLERYDLS").expect("set TDM_TEST_GALLERYDLS");
     let rt = tokio::runtime::Runtime::new().unwrap();
     let lab = rt.block_on(LabServer::start(Config::default())).unwrap();
     let mut rows = Vec::new();
     for exe in std::env::split_paths(&list) {
-        let asked = mdm_tools::chosen::ask(Helper::GalleryDl, &exe)
+        let asked = tdm_tools::chosen::ask(Helper::GalleryDl, &exe)
             .unwrap_or_else(|e| panic!("{}: {e}", exe.display()));
         let v = asked.version.clone();
         let data = tempfile::tempdir().unwrap();
-        let chosen = mdm_tools::chosen::choose(data.path(), Helper::GalleryDl, &exe);
-        if mdm_tools::gallery::too_old(&v) {
+        let chosen = tdm_tools::chosen::choose(data.path(), Helper::GalleryDl, &exe);
+        if tdm_tools::gallery::too_old(&v) {
             assert!(
-                matches!(chosen, Err(mdm_tools::Error::TooOld { .. })),
+                matches!(chosen, Err(tdm_tools::Error::TooOld { .. })),
                 "{v}: {chosen:?}"
             );
-            assert_eq!(mdm_tools::gallery::installed(data.path()), None);
+            assert_eq!(tdm_tools::gallery::installed(data.path()), None);
             rows.push(format!("{v}: too old, refused when chosen"));
             continue;
         }
         let tool = chosen.unwrap_or_else(|e| panic!("{v}: {e}"));
         assert_eq!(
-            mdm_tools::gallery::installed(data.path()),
+            tdm_tools::gallery::installed(data.path()),
             Some(tool.clone())
         );
         let picture = lab.url(&format!("/gen/64K/picture-{}.jpg", v.replace('.', "-")));
         assert!(
-            mdm_tools::gallery::handles(&tool, &picture).unwrap_or_else(|e| panic!("{v}: {e}")),
+            tdm_tools::gallery::handles(&tool, &picture).unwrap_or_else(|e| panic!("{v}: {e}")),
             "{v} reads a picture's address"
         );
         assert!(
-            !mdm_tools::gallery::handles(&tool, &lab.url("/page"))
+            !tdm_tools::gallery::handles(&tool, &lab.url("/page"))
                 .unwrap_or_else(|e| panic!("{v}: {e}")),
             "{v} says a page isn't one of its"
         );
@@ -90,7 +90,7 @@ fn every_release_mdm_can_drive_saves_a_gallery() {
             .unwrap_or_else(|| panic!("{v}: no request"));
         assert_eq!(get.user_agent.as_deref(), Some(USER_AGENT), "{v}");
         rows.push(format!(
-            "{v}: chosen, reads and refuses addresses, saved {} with MDM's User-Agent",
+            "{v}: chosen, reads and refuses addresses, saved {} with TDM's User-Agent",
             saved[0].file_name().to_string_lossy()
         ));
     }

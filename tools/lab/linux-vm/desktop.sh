@@ -1,8 +1,8 @@
 #!/bin/bash
 # Another desktop beside GNOME in a lab clone (vm.ps1 clone), GDM kept as the login manager and the
-# auto-login session switched to the new desktop, for MDM's checks on KDE Plasma, Cinnamon, XFCE.
-# Reboot the clone afterwards. The sudo password comes on stdin (vm.ps1 run passes MDM_SUDO_PASSWORD):
-#   echo "$MDM_SUDO_PASSWORD" | bash desktop.sh "<packages>" <session>
+# auto-login session switched to the new desktop, for TDM's checks on KDE Plasma, Cinnamon, XFCE.
+# Reboot the clone afterwards. The sudo password comes on stdin (vm.ps1 run passes TDM_SUDO_PASSWORD):
+#   echo "$TDM_SUDO_PASSWORD" | bash desktop.sh "<packages>" <session>
 #   e.g. "kde-plasma-desktop xdg-desktop-portal-kde" plasma · cinnamon-core cinnamon ·
 #        "xfce4 xfce4-goodies xdg-desktop-portal-gtk" xfce
 # Plasma: its screen locker is turned off afterwards (kwriteconfig5 --file kscreenlockerrc --group

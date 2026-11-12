@@ -6,7 +6,7 @@ use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
 use egui::{Pos2, Ui, ViewportBuilder, ViewportId, vec2};
-use mdm_engine::ProbeInfo;
+use tdm_engine::ProbeInfo;
 use url::Url;
 
 use crate::model::{self, Category};
@@ -18,7 +18,7 @@ pub enum Outcome<T> {
     Closed,
 }
 
-const MAIN_RECT: &str = "mdm-main-rect";
+const MAIN_RECT: &str = "tdm-main-rect";
 
 /// The main window publishes its outer rect each frame so dialogs can centre on it, with the
 /// zoom it is measured at (not in the frame the interface size changes: its rect is still
@@ -217,7 +217,7 @@ const QUEUE_GATES: [&str; 2] = ["file-info", "duplicate"];
 
 /// A window that must be on the screen and isn't (hidden, not minimized): shown again after a
 /// moment, however it got that way, directly: winit believes it is still visible and ignores
-/// `Visible(true)`. The other platforms have nothing to ask: MDM's windows have no owner there,
+/// `Visible(true)`. The other platforms have nothing to ask: TDM's windows have no owner there,
 /// and the window manager doesn't say whether it shows a window.
 #[cfg(windows)]
 fn keep_on_screen(ctx: &egui::Context, key: egui::Id, title: &str) {
@@ -632,7 +632,7 @@ impl AddUrl {
         }
     }
 
-    /// The clipboard's text in the box, when it is an address MDM downloads and the box is
+    /// The clipboard's text in the box, when it is an address TDM downloads and the box is
     /// still empty (nothing typed or picked meanwhile).
     fn fill_from_clipboard(&mut self, clip: &str) {
         let clip = clip.trim();
@@ -640,7 +640,7 @@ impl AddUrl {
             return;
         }
         if let Ok(u) = Url::parse(clip)
-            && (mdm_engine::supported(&u) || u.scheme() == "magnet")
+            && (tdm_engine::supported(&u) || u.scheme() == "magnet")
         {
             self.address = clip.to_owned();
         }
@@ -843,7 +843,7 @@ impl AddUrl {
                 }
                 if ok || (enter && !list_was_open) {
                     match crate::model::parse_address(&self.address) {
-                        Ok(url) if mdm_engine::supported(&url) || url.scheme() == "magnet" => {
+                        Ok(url) if tdm_engine::supported(&url) || url.scheme() == "magnet" => {
                             return Outcome::Done(NewUrl {
                                 url,
                                 login: self.typed_login(),
@@ -871,7 +871,7 @@ pub struct FileInfo {
     /// … category on last selected" says.
     pub remember: bool,
     url_text: String,
-    /// The URL box holds no address MDM downloads: Start and Later wait.
+    /// The URL box holds no address TDM downloads: Start and Later wait.
     url_bad: bool,
     /// Save As has been given the focus (once, when the dialog opens).
     focused: bool,
@@ -882,14 +882,14 @@ pub struct FileInfo {
     probe: Arc<Mutex<Option<Probed>>>,
     info: Option<Result<ProbeInfo, String>>,
     /// The look's open answer, for the download to read instead of asking again (#28).
-    kept: Option<mdm_engine::KeptAnswer>,
+    kept: Option<tdm_engine::KeptAnswer>,
     edited: bool,
     downloads: PathBuf,
     /// Options → Save to folders per category (label, folder).
     dirs: Vec<(String, String)>,
     category_open: bool,
     /// Browser request context for the download this dialog adds.
-    pub context: mdm_ipc::Command,
+    pub context: tdm_ipc::Command,
     /// Asking to create a missing folder, the dialog's choice held meanwhile.
     asking: Option<(CreateFolder, Start)>,
     /// The download already running while the dialog shows (Options → Downloads → "Start
@@ -934,7 +934,7 @@ impl FileInfo {
     #[allow(clippy::too_many_arguments)]
     pub fn new(
         new: NewUrl,
-        context: mdm_ipc::Command,
+        context: tdm_ipc::Command,
         request: crate::app::RequestParts,
         route: crate::debrid::Route,
         downloads: PathBuf,
@@ -947,14 +947,14 @@ impl FileInfo {
         let from_browser = context
             .name
             .as_deref()
-            .map(mdm_engine::naming::sanitize)
+            .map(tdm_engine::naming::sanitize)
             .filter(|n| !n.is_empty());
         let name = from_browser
             .clone()
-            .unwrap_or_else(|| mdm_engine::naming::file_name(None, &new.url));
+            .unwrap_or_else(|| tdm_engine::naming::file_name(None, &new.url));
         let category = Category::of(&name);
         let folder = crate::model::category_folder(category, &downloads, &dirs);
-        let save_as = display_path(&mdm_engine::naming::destination(&folder, &name));
+        let save_as = display_path(&tdm_engine::naming::destination(&folder, &name));
         let (probe, info) = match from_browser {
             Some(file_name) => (
                 Arc::new(Mutex::new(None)),
@@ -1019,7 +1019,7 @@ impl FileInfo {
     }
 
     /// The account that takes the address appeared or changed (the services' host lists are
-    /// read when MDM starts, and Options may change them while the dialog is open): looked up
+    /// read when TDM starts, and Options may change them while the dialog is open): looked up
     /// again its way. A download the browser had started keeps the browser's answer, and goes
     /// directly unless the line is ticked.
     fn follow_route(&mut self, ctx: &egui::Context) {
@@ -1034,23 +1034,23 @@ impl FileInfo {
         }
     }
 
-    /// The URL box changed: a new address MDM downloads is the one to download (looked up
+    /// The URL box changed: a new address TDM downloads is the one to download (looked up
     /// again; its file name too, unless Save As was edited); anything else holds Start and
     /// Later back.
     fn url_edited(&mut self, ctx: &egui::Context) {
         match crate::model::parse_address(&self.url_text) {
-            Ok(url) if mdm_engine::supported(&url) => {
+            Ok(url) if tdm_engine::supported(&url) => {
                 self.url_bad = false;
                 if url == self.url {
                     return;
                 }
                 let from_browser = crate::debrid::browser_started(&self.context);
                 if !self.edited {
-                    let name = mdm_engine::naming::file_name(None, &url);
+                    let name = tdm_engine::naming::file_name(None, &url);
                     self.category = Category::of(&name);
                     let dir =
                         crate::model::category_folder(self.category, &self.downloads, &self.dirs);
-                    self.save_as = display_path(&mdm_engine::naming::destination(&dir, &name));
+                    self.save_as = display_path(&tdm_engine::naming::destination(&dir, &name));
                 }
                 // Another address: the browser's name, size and form are not its own, and on
                 // another site neither are its cookies and page (never sent there).
@@ -1088,7 +1088,7 @@ impl FileInfo {
             .map(|n| n.to_string_lossy().into_owned())
             .unwrap_or_default();
         // Fitted to the new folder too (#28): a deeper one leaves a long name less room.
-        self.save_as = display_path(&mdm_engine::naming::destination(folder, &name));
+        self.save_as = display_path(&tdm_engine::naming::destination(folder, &name));
         self.edited = true;
     }
 
@@ -1105,7 +1105,7 @@ impl FileInfo {
 
     /// The look's open answer, for the download of this address to start from (#28); taken
     /// once.
-    pub fn take_kept(&mut self) -> Option<mdm_engine::KeptAnswer> {
+    pub fn take_kept(&mut self) -> Option<tdm_engine::KeptAnswer> {
         self.kept.take()
     }
 
@@ -1140,7 +1140,7 @@ impl FileInfo {
             .map(|n| n.to_string_lossy().into_owned())
             .unwrap_or_default();
         let folder = crate::model::category_folder(c, &self.downloads, &self.dirs);
-        self.save_as = display_path(&mdm_engine::naming::destination(&folder, &name));
+        self.save_as = display_path(&tdm_engine::naming::destination(&folder, &name));
     }
 
     /// The dialog; Start (or Download Later) waits for a missing folder to be created.
@@ -1196,7 +1196,7 @@ impl FileInfo {
             if let (Ok(pi), false) = (&res, self.edited) {
                 self.category = Category::of(&pi.file_name);
                 let dir = crate::model::category_folder(self.category, &self.downloads, &self.dirs);
-                self.save_as = display_path(&mdm_engine::naming::destination(&dir, &pi.file_name));
+                self.save_as = display_path(&tdm_engine::naming::destination(&dir, &pi.file_name));
             }
             self.info = Some(res);
         }
@@ -1617,7 +1617,7 @@ fn cancel_waiting(ctx: &egui::Context, n: usize) -> Outcome<bool> {
     question(
         ctx,
         "cancel-waiting",
-        "Mister Download Manager",
+        "Tufan Download Manager",
         [374.0, 100.0 + extra],
         false,
         winui::BG(),
@@ -1675,7 +1675,7 @@ fn cancel_waiting(ctx: &egui::Context, n: usize) -> Outcome<bool> {
 /// Look `url` up in the background (name, size) as the download will ask it (`request`), the
 /// answer landing in the slot returned.
 /// A look's result: what it learned, and its open answer when the download can read it.
-type Probed = Result<(ProbeInfo, Option<mdm_engine::KeptAnswer>), String>;
+type Probed = Result<(ProbeInfo, Option<tdm_engine::KeptAnswer>), String>;
 
 fn start_probe(
     rt: &tokio::runtime::Handle,
@@ -1688,7 +1688,7 @@ fn start_probe(
     let (headers, opts) = (request.headers.clone(), request.opts.clone());
     rt.spawn(async move {
         // In the interface language (the engine's own words are English).
-        let res = mdm_engine::probe_kept(url, headers, &opts)
+        let res = tdm_engine::probe_kept(url, headers, &opts)
             .await
             .map_err(|e| crate::errors::describe(&e));
         *slot.lock().unwrap() = Some(res);
@@ -1986,7 +1986,7 @@ impl SpeedSettings {
                     ui,
                     o + vec2(11.0, 86.0),
                     &mut self.on_startup,
-                    "Always turn on Speed Limiter on Mister Download Manager startup",
+                    "Always turn on Speed Limiter on Tufan Download Manager startup",
                     true,
                 );
                 // Beyond IDM: a limit for all downloads together.
@@ -2254,7 +2254,7 @@ impl TurnOffCountdown {
         question(
             ctx,
             "turn-off",
-            "Mister Download Manager",
+            "Tufan Download Manager",
             [374.0, 100.0],
             false,
             winui::LIGHT_BG(),
@@ -2421,7 +2421,7 @@ impl ConfirmDelete {
                 let text = if n == 1 && self.unfinished {
                     crate::i18n::t(
                         "The selected download is not complete. Are you sure you want to delete
-it from Mister Download Manager list of downloads?",
+it from Tufan Download Manager list of downloads?",
                     )
                     .to_owned()
                 } else if n == 1 {
@@ -2429,7 +2429,7 @@ it from Mister Download Manager list of downloads?",
                     let name = self.name.clone();
                     crate::i18n::fmt(
                         crate::i18n::t(
-                            "Are you sure you want to delete \"{name}\" from Mister Download Manager list of downloads?",
+                            "Are you sure you want to delete \"{name}\" from Tufan Download Manager list of downloads?",
                         ),
                         // A file name keeps its own direction (an Arabic one reads right to left).
                         &[("name", &crate::i18n::isolate(&name))],
@@ -2441,8 +2441,8 @@ it from Mister Download Manager list of downloads?",
                         // i18n: never shown for a single download
                         &crate::i18n::tn(
                             n,
-                            "Are you sure you want to delete {n} download from Mister Download Manager list of downloads?",
-                            "Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?",
+                            "Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?",
+                            "Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?",
                         ),
                         &[("n", &crate::i18n::integer(n))],
                     )
@@ -3605,7 +3605,7 @@ mod tests {
                         ui.painter().text(
                             origin + vec2(10.0, 10.0),
                             egui::Align2::LEFT_TOP,
-                            "Mister Download Manager",
+                            "Tufan Download Manager",
                             egui::FontId::proportional(12.0),
                             egui::Color32::BLACK,
                         );

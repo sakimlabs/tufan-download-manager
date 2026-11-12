@@ -1,12 +1,12 @@
-//! Mister Download Manager's remote control (#141): a phone or another computer on the local
+//! Tufan Download Manager's remote control (#141): a phone or another computer on the local
 //! network adds downloads and torrents, sees the list and controls it, from a small web page
-//! MDM serves over HTTPS. Off by default (Options → Remote).
+//! TDM serves over HTTPS. Off by default (Options → Remote).
 //!
-//! * One command path: every request becomes an [`mdm_ipc::Command`] marked `remote`, handed to
-//!   the app through its command channel ([`mdm_ipc::Sink`]) and answered by the app as the
+//! * One command path: every request becomes an [`tdm_ipc::Command`] marked `remote`, handed to
+//!   the app through its command channel ([`tdm_ipc::Sink`]) and answered by the app as the
 //!   automation API is: downloads added this way get the categories, queues, limits, adapter
 //!   and kill switch of any other.
-//! * Paired devices only: a code shown in MDM pairs a device ([`pairing`]), which gets a token of
+//! * Paired devices only: a code shown in TDM pairs a device ([`pairing`]), which gets a token of
 //!   its own ([`devices`]), removable in Options.
 //! * Local network only: one listener per local network address ([`addrs`]), never all at once.
 //! * HTTPS with a certificate made once and kept ([`tls`]); plain `http://` is redirected.
@@ -77,7 +77,7 @@ pub struct PageTexts {
 }
 
 /// The app's translations for the page: given the browser's languages (`de-DE,de,en`), the
-/// texts in the best one MDM has.
+/// texts in the best one TDM has.
 pub type Texts = Arc<dyn Fn(&str) -> PageTexts + Send + Sync>;
 
 /// The remote control: one per app, cheap to clone.
@@ -90,7 +90,7 @@ struct Inner {
     rt: tokio::runtime::Handle,
     /// `remote/` in the data folder: certificate, paired devices.
     dir: PathBuf,
-    sink: mdm_ipc::Sink,
+    sink: tdm_ipc::Sink,
     texts: Texts,
     state: Mutex<State>,
     devices: Mutex<devices::Devices>,
@@ -117,7 +117,7 @@ impl Remote {
     pub fn new(
         rt: tokio::runtime::Handle,
         dir: PathBuf,
-        sink: mdm_ipc::Sink,
+        sink: tdm_ipc::Sink,
         texts: Texts,
     ) -> Remote {
         let devices = devices::Devices::load(Some(dir.join("devices.json")));
@@ -219,7 +219,7 @@ impl Inner {
             st.status = Some(Status::Off);
             return;
         }
-        let adapters = mdm_engine::net::adapters();
+        let adapters = tdm_engine::net::adapters();
         let ips = addrs::chosen(&st.config.listen, &adapters);
         // Every local network address: watched, as they come and go (Wi-Fi joined, DHCP).
         if st.config.listen.trim().is_empty() {
@@ -295,7 +295,7 @@ async fn watch(weak: Weak<Inner>) {
     loop {
         tokio::time::sleep(Duration::from_secs(10)).await;
         let Some(this) = weak.upgrade() else { return };
-        let ips = tokio::task::spawn_blocking(|| addrs::chosen("", &mdm_engine::net::adapters()))
+        let ips = tokio::task::spawn_blocking(|| addrs::chosen("", &tdm_engine::net::adapters()))
             .await
             .unwrap_or_default();
         let mut st = this.state.lock().unwrap();

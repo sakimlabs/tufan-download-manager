@@ -59,20 +59,20 @@ pub fn have(data: &Path, version: &str) -> bool {
     any_sym(&store(data, version), 3)
 }
 
-/// Fetch `version`'s symbols into the store with MDM's own engine (`net`); `progress(done,
+/// Fetch `version`'s symbols into the store with TDM's own engine (`net`); `progress(done,
 /// total)` as it downloads. A download cut off resumes next time. Earlier versions' symbols are
 /// removed (only the running version's are useful).
 pub async fn fetch(
     data: &Path,
     version: &str,
-    net: mdm_engine::Options,
+    net: tdm_engine::Options,
     progress: &(dyn Fn(u64, Option<u64>) + Send + Sync),
 ) -> Result<(), String> {
     let url = url::Url::parse(&asset_url(version)).map_err(|e| e.to_string())?;
     let parent = data.join("symbols");
     std::fs::create_dir_all(&parent).map_err(|e| e.to_string())?;
     let zip = parent.join(asset_name(version));
-    mdm_engine::fetch(url, &zip, net, progress)
+    tdm_engine::fetch(url, &zip, net, progress)
         .await
         .map_err(|e| e.to_string())?;
     let bytes = std::fs::read(&zip).map_err(|e| e.to_string())?;

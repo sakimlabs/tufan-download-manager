@@ -1,4 +1,4 @@
-# Mister Download Manager in Vietnamese (Tiếng Việt): tools/i18n/translate.py
+# Tufan Download Manager in Vietnamese (Tiếng Việt): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	Tiếng Việt
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	Bạn có chắc muốn xóa {n} mục tải xuống này khỏi danh sách tải xuống của Mister Download Manager không?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	Bạn có chắc muốn xóa {n} mục tải xuống này khỏi danh sách tải xuống của Tufan Download Manager không?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Dịch vụ debrid tải xuống liên kết từ dịch vụ lưu trữ tệp bằng tài khoản trả phí của bạn rồi cung cấp cho MDM một liên kết trực tiếp. Chỉ sử dụng tài khoản của riêng bạn: chia sẻ tài khoản hoặc các liên kết của tài khoản sẽ vi phạm điều khoản dịch vụ và có thể khiến tài khoản bị đình chỉ. Các lượt tải xuống mà trình duyệt đã bắt đầu vẫn giữ nguyên.
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Dịch vụ debrid tải xuống liên kết từ dịch vụ lưu trữ tệp bằng tài khoản trả phí của bạn rồi cung cấp cho TDM một liên kết trực tiếp. Chỉ sử dụng tài khoản của riêng bạn: chia sẻ tài khoản hoặc các liên kết của tài khoản sẽ vi phạm điều khoản dịch vụ và có thể khiến tài khoản bị đình chỉ. Các lượt tải xuống mà trình duyệt đã bắt đầu vẫn giữ nguyên.
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	Torrent một tệp giữ nguyên tên
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	Trình theo dõi trên máy tính này hoặc mạng cục bộ không bao giờ được liên hệ: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	một tập của nó bị thiếu
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Giới thiệu về Mister Download Manager
+	About Tufan Download Manager	Giới thiệu về Tufan Download Manager
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Thêm Mister Download Manager vào trình duyệt của bạn
+	Add Tufan Download Manager to your browser	Thêm Tufan Download Manager vào trình duyệt của bạn
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	Đã thêm.
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	Đã thêm. MDM đang đọc torrent: nó sẽ tham gia danh sách trong giây lát.
+	Added. TDM is reading the torrent: it joins the list in a moment.	Đã thêm. TDM đang đọc torrent: nó sẽ tham gia danh sách trong giây lát.
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	Đã báo cáo là sự cố #{number}: {title}
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	Đính kèm dữ liệu sự cố (.dmp): có thể chứa địa chỉ, cookie và mật khẩu
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	Luôn vào một thư mục được đặt tên theo nó
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	Luôn bật Bộ giới hạn tốc độ khi khởi động Mister Download Manager
+	Always turn on Speed Limiter on Tufan Download Manager startup	Luôn bật Bộ giới hạn tốc độ khi khởi động Tufan Download Manager
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	Bạn có chắc chắn muốn xóa "{name}" khỏi danh sách tải xuống của Mister Download Manager không?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	Bạn có chắc chắn muốn xóa "{name}" khỏi danh sách tải xuống của Tufan Download Manager không?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	Áo
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	Tự động
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	Bosnia và Herzegovina
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Cả hai đều là mã nguồn mở. MDM lấy chúng từ các bản phát hành chính thức của chúng bằng trình tải xuống riêng và kiểm tra chữ ký của từng tệp trước khi chạy. Khoảng 100 MB, một lần.
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Cả hai đều là mã nguồn mở. TDM lấy chúng từ các bản phát hành chính thức của chúng bằng trình tải xuống riêng và kiểm tra chữ ký của từng tệp trước khi chạy. Khoảng 100 MB, một lần.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	Duyệt...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	Tích hợp trình duyệt chưa được thiết lập trên máy tính này, vì vậy chưa có trình duyệt nào có thể truy cập Mister Download Manager.
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	Tích hợp trình duyệt chưa được thiết lập trên máy tính này, vì vậy chưa có trình duyệt nào có thể truy cập Tufan Download Manager.
 #. page title in the Options window
 #, machine
 	Browser/System Integration	Tích hợp Trình duyệt/Hệ thống
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	Kiểm tra bản cập nhật
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
 	Check for updates at every start	Kiểm tra bản cập nhật mỗi khi khởi động
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	Kiểm tra kết nối của bạn, sau đó thử lại hoặc tải chúng sau từ cửa sổ video.
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	Khi chọn tùy chọn này, đóng cửa sổ sẽ giữ MDM chạy: chương trình sẽ ẩn vào vùng thông báo nếu có, hoặc thu nhỏ xuống thanh tác vụ nếu không, và các lượt tải xuống sẽ tiếp tục; nếu không chọn, đóng cửa sổ sẽ thoát MDM.
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	Khi chọn tùy chọn này, đóng cửa sổ sẽ giữ TDM chạy: chương trình sẽ ẩn vào vùng thông báo nếu có, hoặc thu nhỏ xuống thanh tác vụ nếu không, và các lượt tải xuống sẽ tiếp tục; nếu không chọn, đóng cửa sổ sẽ thoát TDM.
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	Chọn ngôn ngữ
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	Chọn ngôn ngữ Mister Download Manager hiển thị cửa sổ:
+	Choose the language Tufan Download Manager shows its windows in:	Chọn ngôn ngữ Tufan Download Manager hiển thị cửa sổ:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	Congo
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	Đã kết nối
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	Tùy chỉnh hộp thoại "Tiến độ tải xuống"
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	Tùy chỉnh các phím để ngăn hoặc buộc tải xuống bằng MDM
+	Customize keys to prevent or force downloading with TDM	Tùy chỉnh các phím để ngăn hoặc buộc tải xuống bằng TDM
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	Tùy chỉnh bảng điều khiển tải xuống MDM trong trình duyệt
+	Customize TDM Download panels in browsers	Tùy chỉnh bảng điều khiển tải xuống TDM trong trình duyệt
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	Tùy chỉnh các mục menu MDM trong menu ngữ cảnh của trình duyệt
+	Customize TDM menu items in context menu of browsers	Tùy chỉnh các mục menu TDM trong menu ngữ cảnh của trình duyệt
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	Để trống: tất cả. Trên hầu hết các trang web, những mục mới nhất sẽ xuất hiện trước.
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	Kết thúc và khởi động lại MDM
+	End and restart TDM	Kết thúc và khởi động lại TDM
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	Nhập liên kết magnet hoặc chọn tệp .torrent
@@ -1518,7 +1518,7 @@
 	Exit	Thoát
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	Thoát Mister Download Manager khi hoàn tất
+	Exit Tufan Download Manager when done	Thoát Tufan Download Manager khi hoàn tất
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	Tổng kiểm tra dự kiến (MD5, SHA-1, SHA-256, SHA-512 hoặc CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	Ví dụ: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	Chỉ dành cho tài khoản của bạn. Một ứng dụng khác được đặt làm mặc định vẫn được ưu tiên.
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	Buộc các quy trình phải chấm dứt
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	Quên thiết bị này
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	Trợ giúp
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	Trợ giúp
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	Trợ giúp...
@@ -1954,7 +1954,7 @@
 	Hide web pages	Ẩn các trang web
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Giữ phím Alt trong khi nhấp vào liên kết để trình duyệt tải xuống thay vì Mister Download Manager.
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Giữ phím Alt trong khi nhấp vào liên kết để trình duyệt tải xuống thay vì Tufan Download Manager.
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	Trang chủ
@@ -1990,7 +1990,7 @@
 	Hungary	Hungary
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	Tôi tải xuống bằng Mister Download Manager: nhanh, miễn phí và trông giống như trình quản lý tải xuống mà bạn đã biết. {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	Tôi tải xuống bằng Tufan Download Manager: nhanh, miễn phí và trông giống như trình quản lý tải xuống mà bạn đã biết. {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	Trong các danh mục: menu của danh mục đã chọn
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	trong chuỗi khóa bị khóa
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	Cài đặt thủ công
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	Cài đặt các gói còn thiếu từ bản phân phối của bạn.
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	nó không phải là tệp lưu trữ mà MDM giải nén
+	it is not an archive TDM extracts	nó không phải là tệp lưu trữ mà TDM giải nén
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	Có thể thêm một nhóm tên tệp tuần tự như img001.jpg, img002.jpg, v.v.,\nimg100.jpg vào hàng đợi tải xuống của MDM. Sử dụng ký tự đại diện dấu hoa thị cho mẫu tên tệp.
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	Có thể thêm một nhóm tên tệp tuần tự như img001.jpg, img002.jpg, v.v.,\nimg100.jpg vào hàng đợi tải xuống của TDM. Sử dụng ký tự đại diện dấu hoa thị cho mẫu tên tệp.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,9 +2186,9 @@
 #, machine
 	KBytes/sec	KB/giây
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
-	Keep running when closing the window	Giữ MDM chạy khi đóng cửa sổ
+	Keep running when closing the window	Giữ TDM chạy khi đóng cửa sổ
 #. checkbox in the Add torrent window
 #, machine
 	Keep sharing torrents after they finish	Tiếp tục chia sẻ torrent sau khi hoàn tất
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	Phím tắt
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	Phím
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	Lào
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	lớn hơn kích thước nguồn cấp dữ liệu có thể có
 #. text in the Batch download window
 #, machine
 	Last file:	Tệp cuối cùng:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	Lần cuối nhìn thấy
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	Latvia
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	Khởi chạy Mister Download Manager khi khởi động
+	Launch Tufan Download Manager on startup	Khởi chạy Tufan Download Manager khi khởi động
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	Cho phép điện thoại và máy tính trên mạng cục bộ điều khiển MDM
+	Let phones and computers on the local network control TDM	Cho phép điện thoại và máy tính trên mạng cục bộ điều khiển TDM
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	Liệt kê phần còn lại
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	Nghe trên:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	Không thể truy cập MDM trên mạng ngay bây giờ: Tùy chọn → Điều khiển từ xa cho biết lý do.
+	TDM can't be reached on the network now: Options → Remote says why.	Không thể truy cập TDM trên mạng ngay bây giờ: Tùy chọn → Điều khiển từ xa cho biết lý do.
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	MDM không thể tải xuống địa chỉ này.
+	TDM cannot download this address.	TDM không thể tải xuống địa chỉ này.
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	MDM không thể thêm nó.
+	TDM could not add it.	TDM không thể thêm nó.
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	MDM không thể thực hiện nó.
+	TDM could not do it.	TDM không thể thực hiện nó.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	MDM không trả lời. Kiểm tra xem nó có đang chạy và trên cùng một mạng không.
+	TDM does not answer. Check that it is running and on the same network.	TDM không trả lời. Kiểm tra xem nó có đang chạy và trên cùng một mạng không.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	MDM không trả lời. Đang thử lại...
+	TDM does not answer. Trying again...	TDM không trả lời. Đang thử lại...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	MDM không hiển thị mã nào bây giờ. Nhấp vào Ghép nối thiết bị ở đó trước.
+	TDM shows no code now. Click Pair a device there first.	TDM không hiển thị mã nào bây giờ. Nhấp vào Ghép nối thiết bị ở đó trước.
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	Thu nhỏ
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	Thu nhỏ vào vùng thông báo
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	Thiếu
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Mister Download Manager không thể mở cửa sổ: hệ thống này thiếu {libraries}.
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Tufan Download Manager không thể mở cửa sổ: hệ thống này thiếu {libraries}.
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Mister Download Manager đã đóng đột ngột
+	Tufan Download Manager closed unexpectedly	Tufan Download Manager đã đóng đột ngột
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Cấu hình Mister Download Manager
+	Tufan Download Manager Configuration	Cấu hình Tufan Download Manager
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Báo cáo sự cố Mister Download Manager
+	Tufan Download Manager crash report	Báo cáo sự cố Tufan Download Manager
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Mister Download Manager gặp lỗi nội bộ
+	Tufan Download Manager hit an internal error	Tufan Download Manager gặp lỗi nội bộ
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Mister Download Manager đang chạy hàng đợi "{queue}"
+	Tufan Download Manager is running the queue "{queue}"	Tufan Download Manager đang chạy hàng đợi "{queue}"
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Mister Download Manager đã ngừng phản hồi
+	Tufan Download Manager stopped responding	Tufan Download Manager đã ngừng phản hồi
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Mister Download Manager đã ngừng phản hồi một lúc
+	Tufan Download Manager stopped responding for a while	Tufan Download Manager đã ngừng phản hồi một lúc
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Mister Download Manager ghi mọi kết nối trực tiếp vào tệp cuối cùng\n(một tệp thưa bên cạnh), vì vậy không cần thư mục tạm thời và không\ncần bước ghép nối.
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Tufan Download Manager ghi mọi kết nối trực tiếp vào tệp cuối cùng\n(một tệp thưa bên cạnh), vì vậy không cần thư mục tạm thời và không\ncần bước ghép nối.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Mister Download Manager {version} đã có sẵn (phát hành ngày {date}).
+	Tufan Download Manager {version} is available (released {date}).	Tufan Download Manager {version} đã có sẵn (phát hành ngày {date}).
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Bản sao riêng của Mister Download Manager, phiên bản {version}
+	Tufan Download Manager's own copy, version {version}	Bản sao riêng của Tufan Download Manager, phiên bản {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Cửa sổ X11 của Mister Download Manager cần {libraries}, nhưng hệ thống này không có các thư viện đó nên cửa sổ sẽ mở trên Wayland, nơi các menu có thể mở lệch khỏi tiêu đề của chúng.
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Cửa sổ X11 của Tufan Download Manager cần {libraries}, nhưng hệ thống này không có các thư viện đó nên cửa sổ sẽ mở trên Wayland, nơi các menu có thể mở lệch khỏi tiêu đề của chúng.
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	Chưa có địa chỉ nào
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	Không tìm thấy trình duyệt nào mà MDM có thể kết nối
+	No browser TDM can connect to was found	Không tìm thấy trình duyệt nào mà TDM có thể kết nối
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	Chưa có tiện ích mở rộng trình duyệt nào kết nối
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	Không có proxy/socks
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Không có chuỗi khóa hệ thống nào phản hồi, vì vậy thông tin đăng nhập và mật khẩu được giữ trong cài đặt của MDM, chỉ bạn mới có thể đọc.
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Không có chuỗi khóa hệ thống nào phản hồi, vì vậy thông tin đăng nhập và mật khẩu được giữ trong cài đặt của TDM, chỉ bạn mới có thể đọc.
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	Tắt: không có gì trên mạng có thể truy cập MDM.
+	Off: nothing on the network can reach TDM.	Tắt: không có gì trên mạng có thể truy cập TDM.
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	Đề xuất tải xuống các liên kết đã sao chép vào bảng tạm
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	Trên macOS, chỉ quản trị viên mới có thể lên lịch đánh thức
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	Trên máy tính, mở Tùy chọn, sau đó Điều khiển từ xa và nhấp vào Ghép nối thiết bị. Nhập mã mà nó hiển thị.
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	Chỉ các thiết bị đã ghép nối mới có thể xem hoặc thay đổi bất cứ điều gì. Lần đầu tiên, trình duyệt của điện thoại cảnh báo về chứng chỉ của MDM: dấu vân tay của nó là dấu vân tay ở trên.
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	Chỉ các thiết bị đã ghép nối mới có thể xem hoặc thay đổi bất cứ điều gì. Lần đầu tiên, trình duyệt của điện thoại cảnh báo về chứng chỉ của TDM: dấu vân tay của nó là dấu vân tay ở trên.
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	Chỉ {n} video đầu tiên được liệt kê.
@@ -3109,10 +3109,10 @@
 	Open folder	Mở thư mục
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	Mở liên kết magnet và tệp .torrent bằng Mister Download Manager
+	Open magnet links and .torrent files with Tufan Download Manager	Mở liên kết magnet và tệp .torrent bằng Tufan Download Manager
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	Mở Mister Download Manager
+	Open Tufan Download Manager	Mở Tufan Download Manager
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	Địa chỉ trang
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	Ghép nối
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Ghép nối với Mister Download Manager
+	Pair with Tufan Download Manager	Ghép nối với Tufan Download Manager
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	Ghi nhớ đường dẫn này cho danh mục "{category}"
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	Điều khiển từ xa
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	Điều khiển từ xa
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	Thay thế dấu hoa thị bằng
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	Khởi động lại MDM
+	Restart TDM	Khởi động lại TDM
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	Khôi phục các danh mục tích hợp
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	Chọn hoặc bỏ chọn bản tải xuống có đường viền chấm chấm
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	Chọn âm thanh cho các sự kiện của Mister Download Manager
+	Select sounds for Tufan Download Manager events	Chọn âm thanh cho các sự kiện của Tufan Download Manager
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	Chọn các bản tải xuống trong hộp
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	Gửi cái này cho một người bạn:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	Gửi torrent và liên kết magnet đến tài khoản đầu tiên thay vì đến các đồng đẳng
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	Đặt ngày tạo tệp theo ngày máy chủ cung cấp
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	Thiết lập
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	Đăng nhập trang web
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	Các trang web gửi video và âm thanh riêng biệt với chất lượng tốt nhất, rồi ffmpeg ghép chúng lại. Trên hệ thống này, MDM sử dụng ffmpeg của bạn: cài đặt ffmpeg bằng trình quản lý gói.
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	Các trang web gửi video và âm thanh riêng biệt với chất lượng tốt nhất, rồi ffmpeg ghép chúng lại. Trên hệ thống này, TDM sử dụng ffmpeg của bạn: cài đặt ffmpeg bằng trình quản lý gói.
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	Các trang web gửi chất lượng tốt nhất của chúng dưới dạng video và âm thanh riêng biệt. ffmpeg ghép chúng lại thành một tệp có thể phát ở bất cứ đâu.
@@ -4012,7 +4012,7 @@
 	Start download at	Bắt đầu tải xuống lúc
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	Bắt đầu tải xuống khi khởi động Mister Download Manager
+	Start download on Tufan Download Manager startup	Bắt đầu tải xuống khi khởi động Tufan Download Manager
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	Bắt đầu tải xuống ngay lập tức trong khi hiển thị hộp thoại "Thông tin tệp tải xuống"
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	Đã bắt đầu bằng gallery-dl {version}
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	Khởi động cùng máy tính, ứng dụng sẽ khởi động ở chế độ thu nhỏ: vùng thông báo không hiển thị biểu tượng ở đây
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	Khởi động cùng máy tính, nó sẽ đợi trong vùng thông báo
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	Chủ Nhật
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	Hỗ trợ MDM trên GitHub Sponsors
+	Support TDM on GitHub Sponsors	Hỗ trợ TDM trên GitHub Sponsors
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	Các chất lượng tốt nhất, MP3, Opus và FLAC cần ffmpeg: cài đặt bằng trình quản lý gói của hệ thống (hoặc Homebrew).
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	proxy của trình duyệt (tiện ích VPN hoặc proxy) yêu cầu đăng nhập mà chỉ tiện ích đó có: hãy dùng ứng dụng VPN riêng hoặc chọn bộ điều hợp mạng của ứng dụng đó trong Tùy chọn → Proxy / Socks
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	Các trình duyệt có thể tìm thấy Mister Download Manager
+	The browsers can find Tufan Download Manager	Các trình duyệt có thể tìm thấy Tufan Download Manager
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	Máy tính được đánh thức một phút trước thời gian bắt đầu và được giữ ở trạng thái hoạt động trong khi hàng đợi chạy. Mister Download Manager phải đang chạy (nó có thể đợi trong vùng thông báo).
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	Máy tính được đánh thức một phút trước thời gian bắt đầu và được giữ ở trạng thái hoạt động trong khi hàng đợi chạy. Tufan Download Manager phải đang chạy (nó có thể đợi trong vùng thông báo).
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	Không thể lưu danh sách tải xuống: {error}. Các thay đổi được giữ lại khi MDM chạy.
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	Không thể lưu danh sách tải xuống: {error}. Các thay đổi được giữ lại khi TDM chạy.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	Trình quản lý tải xuống mà bạn đã biết, được xây dựng lại để nhanh hơn. Miễn phí và mã nguồn mở theo GNU GPL, phiên bản 3 trở lên. Video được tìm thấy bởi yt-dlp; torrent chạy trên librqbit.
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	máy chủ FTP đã trả lời {code} {reply}
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Chương trình trợ giúp mà trình duyệt khởi động bị thiếu
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	Bản tải xuống đã chọn chưa hoàn tất. Bạn có chắc chắn muốn xóa\nbản tải xuống này khỏi danh sách tải xuống của Mister Download Manager không?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	Bản tải xuống đã chọn chưa hoàn tất. Bạn có chắc chắn muốn xóa\nbản tải xuống này khỏi danh sách tải xuống của Tufan Download Manager không?
 #. text in errors.rs
 #, machine
 	the server answered {status}	máy chủ đã trả lời {status}
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	Không thể tải ký hiệu xuống: một số dòng trong báo cáo hiển thị địa chỉ thay vì tên (các nhà phát triển vẫn có thể đọc được).
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Chuỗi khóa hệ thống bị khóa và MDM không mở khóa, vì vậy thông tin đăng nhập và mật khẩu được giữ trong cài đặt của MDM, chỉ bạn mới có thể đọc.
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Chuỗi khóa hệ thống bị khóa và TDM không mở khóa, vì vậy thông tin đăng nhập và mật khẩu được giữ trong cài đặt của TDM, chỉ bạn mới có thể đọc.
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	Trang web mà từ đó tệp này được tải xuống:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	Chủ đề và bảng màu
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	Ngày này đã qua: hàng đợi sẽ không bắt đầu
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	Tên thiết bị này
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	Qua {service}: dịch vụ tải xuống torrent, sau đó MDM tải xuống các tệp của nó
+	Through {service}: the service downloads the torrent, then TDM its files	Qua {service}: dịch vụ tải xuống torrent, sau đó TDM tải xuống các tệp của nó
 #. text in the Scheduler window
 #, machine
 	Thursday	Thứ Năm
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	Bật “Mister Download Manager” và cho phép trên tất cả trang web.
+	Turn on "Tufan Download Manager" and allow it on all websites.	Bật “Tufan Download Manager” và cho phép trên tất cả trang web.
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	Nhập mã này tại {page} và cho phép MDM; đang chờ bạn (mã sẽ hết hạn sau {time}).
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	Nhập mã này tại {page} và cho phép TDM; đang chờ bạn (mã sẽ hết hạn sau {time}).
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	Sử dụng FTP ở chế độ PASV
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	Sử dụng bản sao của MDM
+	Use TDM's own copy	Sử dụng bản sao của TDM
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	Windows chỉ cho phép hẹn giờ đánh thức khi cắm điện
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	Trình quản lý Thông tin xác thực của Windows không phản hồi, vì vậy thông tin đăng nhập và mật khẩu được giữ trong cài đặt của MDM, được mã hóa cho tài khoản Windows của bạn.
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	Trình quản lý Thông tin xác thực của Windows không phản hồi, vì vậy thông tin đăng nhập và mật khẩu được giữ trong cài đặt của TDM, được mã hóa cho tài khoản Windows của bạn.
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	Sai mã. Hiển thị mã mới trong MDM và thử lại.
+	Wrong code. Show a new code in TDM and try again.	Sai mã. Hiển thị mã mới trong TDM và thử lại.
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	Bạn đang dùng phiên bản mới nhất của Mister Download Manager ({version}).
+	You have the latest version of Tufan Download Manager ({version}).	Bạn đang dùng phiên bản mới nhất của Tufan Download Manager ({version}).
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	Bạn đang dùng phiên bản {version}, từ trình quản lý gói của hệ thống: hãy cập nhật tại đó.
@@ -5275,7 +5275,7 @@
 	Your browser	Trình duyệt của bạn
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	Trình duyệt mặc định không nằm trong danh sách trình duyệt MDM nhận diện: User-Agent của Chrome hiện tại
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	Trình duyệt mặc định không nằm trong danh sách trình duyệt TDM nhận diện: User-Agent của Chrome hiện tại
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	tài khoản Google của bạn không có quyền truy cập vào tệp này hoặc chủ sở hữu của nó đã tắt tính năng tải xuống
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	Chương trình của bạn ({version}) đã quá cũ: MDM cần {oldest} trở lên
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	Chương trình của bạn ({version}) đã quá cũ: TDM cần {oldest} trở lên
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	{device} đã được ghép nối. Giờ đây, nó có thể điều khiển MDM.
+	{device} is paired. It can control TDM now.	{device} đã được ghép nối. Giờ đây, nó có thể điều khiển TDM.
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	{name} là tệp lưu trữ 7z hoặc RAR. MDM giải nén các tệp này bằng 7-Zip, nhưng 7-Zip chưa được cài đặt.
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	{name} là tệp lưu trữ 7z hoặc RAR. TDM giải nén các tệp này bằng 7-Zip, nhưng 7-Zip chưa được cài đặt.
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	{name} không được cung cấp dưới dạng {how}.
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	{name} {version} đã quá cũ: MDM cần {oldest} trở lên
+	{name} {version} is too old: TDM needs {oldest} or newer	{name} {version} đã quá cũ: TDM cần {oldest} trở lên
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	Đã chọn {n}/{total}
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{percent} trên {service}
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	{service} yêu cầu giảm tốc độ; MDM sẽ thử lại sau một phút
+	{service} asks to slow down; TDM will try again in a minute	{service} yêu cầu giảm tốc độ; TDM sẽ thử lại sau một phút
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	{service} không thể tải torrent này: không có ai chia sẻ hoặc không thể đọc liên kết
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	{service} hiện không thể truy cập máy chủ lưu trữ tệp này; MDM sẽ thử lại sau
+	{service} can't reach this file host right now; TDM will try again later	{service} hiện không thể truy cập máy chủ lưu trữ tệp này; TDM sẽ thử lại sau
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: cần tài khoản Premium
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: quá nhiều lượt tải xuống cùng lúc thông qua tài khoản của bạn; MDM sẽ thử lại
+	{service}: too many downloads at once through your account; TDM will try again	{service}: quá nhiều lượt tải xuống cùng lúc thông qua tài khoản của bạn; TDM sẽ thử lại
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: đã có trong danh sách
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: không được thêm: đã có tệp cùng tên trong {folder}
 #. message or event log entry in the main window
@@ -5662,15 +5662,15 @@ column	Transfer rate	Tốc độ truyền
 #, machine
 column	Upload speed	Tốc độ tải lên
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	Một Mister Download Manager khác (máy chủ)
+extension	Another Tufan Download Manager (a server)	Một Tufan Download Manager khác (máy chủ)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	Tiện ích mở rộng trình duyệt
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	Cài đặt nút...
@@ -5679,41 +5679,41 @@ extension	Button settings...	Cài đặt nút...
 #, machine
 extension	Can't tell which video this is: open its own page and try there	Không xác định được đây là video nào: hãy mở trang riêng của video và thử ở đó
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	Đã kết nối với Mister Download Manager
+extension	Connected to Tufan Download Manager	Đã kết nối với Tufan Download Manager
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	Đã kết nối với Mister Download Manager {version}
+extension	Connected to Tufan Download Manager {version}	Đã kết nối với Tufan Download Manager {version}
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	Tải xuống
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	Tải xuống tất cả liên kết bằng Mister Download Manager
+extension	Download all links with Tufan Download Manager	Tải xuống tất cả liên kết bằng Tufan Download Manager
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	Tải xuống các liên kết đã chọn bằng Mister Download Manager
+extension	Download selected links with Tufan Download Manager	Tải xuống các liên kết đã chọn bằng Tufan Download Manager
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	Tải xuống video
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	Tải xuống bằng Mister Download Manager
+extension	Download with Tufan Download Manager	Tải xuống bằng Tufan Download Manager
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	Tải xuống từ {site} vẫn ở lại trình duyệt
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	Tải xuống chuyển đến {address}
 #. text in the browser extension
@@ -5725,9 +5725,9 @@ extension	Drag to move it along the video's edge	Kéo để di chuyển dọc th
 #, machine
 extension	Enter its https:// address.	Nhập địa chỉ https:// của nó.
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	Chuyển các bản tải xuống từ trình duyệt sang Mister Download Manager.
+extension	Hands downloads from the browser to Tufan Download Manager.	Chuyển các bản tải xuống từ trình duyệt sang Tufan Download Manager.
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5749,7 +5749,7 @@ extension	How to fix it	Cách khắc phục
 #, machine
 extension	It didn't work. Try again.	Không thành công. Thử lại.
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	Hiện không có mã: trước tiên hãy nhấp vào Ghép nối thiết bị ở đó.
 #. text in the browser extension
@@ -5782,33 +5782,33 @@ extension	Live	Trực tiếp
 #, machine
 extension	Media on this page	Nội dung đa phương tiện trên trang này
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Mister Download Manager chưa khởi động kịp
+extension	Tufan Download Manager didn't start in time	Tufan Download Manager chưa khởi động kịp
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Mister Download Manager không chấp nhận bản sao tiện ích mở rộng này
+extension	Tufan Download Manager doesn't accept this copy of the extension	Tufan Download Manager không chấp nhận bản sao tiện ích mở rộng này
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Mister Download Manager chưa được cài đặt hoặc chưa khởi động
+extension	Tufan Download Manager isn't installed or didn't start	Tufan Download Manager chưa được cài đặt hoặc chưa khởi động
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Mister Download Manager chưa được cài đặt hoặc tích hợp trình duyệt chưa được thiết lập
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Tufan Download Manager chưa được cài đặt hoặc tích hợp trình duyệt chưa được thiết lập
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Mister Download Manager sau đó tải xuống thông qua cùng một proxy với trình duyệt này. Trình duyệt sẽ hỏi bạn một lần để cho phép; tắt tùy chọn này sẽ thu hồi quyền đó.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Tufan Download Manager sau đó tải xuống thông qua cùng một proxy với trình duyệt này. Trình duyệt sẽ hỏi bạn một lần để cho phép; tắt tùy chọn này sẽ thu hồi quyền đó.
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Mister Download Manager sau đó tải xuống qua cùng một proxy với trình duyệt này. Khi tắt tùy chọn này, tiện ích sẽ không đọc proxy của trình duyệt.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Tufan Download Manager sau đó tải xuống qua cùng một proxy với trình duyệt này. Khi tắt tùy chọn này, tiện ích sẽ không đọc proxy của trình duyệt.
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5828,21 +5828,21 @@ extension	Never take downloads from {site}	Không nhận tải xuống từ {sit
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	Chưa tìm thấy video hoặc âm thanh nào trên trang này. Hãy phát rồi mở lại.
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	Không thể truy cập. Mở địa chỉ của nó một lần trong trình duyệt này và chấp nhận chứng chỉ của nó, sau đó thử lại.
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	Mở
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	Mở địa chỉ của nó một lần và chấp nhận chứng chỉ của nó, sau đó nhập mã từ Tùy chọn, Từ xa, Ghép nối thiết bị (hoặc misterdownloadmanager-cli pair).
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	Mở địa chỉ của nó một lần và chấp nhận chứng chỉ của nó, sau đó nhập mã từ Tùy chọn, Từ xa, Ghép nối thiết bị (hoặc tufan-download-manager-cli pair).
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	Mở Mister Download Manager
+extension	Open Tufan Download Manager	Mở Tufan Download Manager
 #. shown briefly on the download button over a video in a feed (a social site's home page, a timeline) when nothing in the feed gives that video's own address, so nothing was sent: the user should open the post the video belongs to and click the button on that page; short
 #, machine
 extension	Open the post, then use the button there	Mở bài đăng, sau đó dùng nút ở đó
@@ -5852,11 +5852,11 @@ extension	Open the post, then use the button there	Mở bài đăng, sau đó d�
 #, machine
 extension	Options...	Tùy chọn...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	Ghép nối
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	Mã ghép nối
 #. text in the browser extension
@@ -5884,13 +5884,13 @@ extension	Send downloads through this browser's proxy or VPN extension	Gửi cá
 #, machine
 extension	Send downloads to	Gửi tải xuống đến
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	Đã gửi đến Mister Download Manager
+extension	Sent to Tufan Download Manager	Đã gửi đến Tufan Download Manager
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	Hỗ trợ MDM
+extension	Support TDM	Hỗ trợ TDM
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5900,9 +5900,9 @@ extension	Take downloads from this browser	Nhận tải xuống từ trình duy�
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	Quy tắc của Cửa hàng Chrome trực tuyến giữ bản sao tiện ích này tránh xa video của trang web này. Mục Trợ giúp cho biết bạn có thể làm gì.
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	Kết nối với Mister Download Manager không thành công
+extension	The connection to Tufan Download Manager failed	Kết nối với Tufan Download Manager không thành công
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5920,7 +5920,7 @@ extension	The last download was left to the browser.	Bản tải xuống cuối 
 #, machine
 extension	This browser isn't ticked in Options → General.	Trình duyệt này không được chọn trong Tùy chọn → Chung.
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	Máy tính này
 #. text in the browser extension
@@ -5932,9 +5932,9 @@ extension	This download's details were too large to hand over	Thông tin của l
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	Trình phát của trang này truyền video theo từng phần nên không có tệp nào để liệt kê. Trỏ vào video và dùng nút Tải xuống video của nó.
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	Cập nhật Mister Download Manager để sử dụng mọi tính năng mà tiện ích mở rộng này cung cấp
+extension	Update Tufan Download Manager to use everything this extension offers	Cập nhật Tufan Download Manager để sử dụng mọi tính năng mà tiện ích mở rộng này cung cấp
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6050,7 +6050,7 @@ key	Up / Down	Mũi tên lên / Mũi tên xuống
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	&About Mister Download Manager	&Giới thiệu Mister Download Manager
+menu	&About Tufan Download Manager	&Giới thiệu Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6086,7 +6086,7 @@ menu	&Exit	&Thoát
 #, machine
 menu	&Import	&Nhập
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Interface size	Kích thước &giao diện
@@ -6203,9 +6203,9 @@ menu	Adwaita	Adwaita
 #, machine
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
 #, machine
-menu	Applies the next time MDM starts	Có hiệu lực vào lần khởi động MDM tiếp theo
+menu	Applies the next time TDM starts	Có hiệu lực vào lần khởi động TDM tiếp theo
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 #, machine
@@ -6280,7 +6280,7 @@ menu	C&ustomize URL List...	Tùy chỉnh &Danh sách URL...
 #, machine
 menu	Check for &updates...	Kiểm tra &cập nhật...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 #, machine
 menu	Classic	Cổ điển
 #. menu command in the main window
@@ -6326,7 +6326,7 @@ menu	Download &video from a page...	Tải xuống &video từ một trang...
 #, machine
 menu	Download in order	Tải xuống theo thứ tự
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 #, machine
 menu	Draw with	Vẽ bằng
 #. menu command in the main window
@@ -6382,15 +6382,15 @@ menu	Hide drop target	Ẩn mục tiêu thả
 #, machine
 menu	High contrast	Độ tương phản cao
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 #, machine
 menu	It couldn't start: the log says why	Không thể khởi động: nhật ký cho biết lý do
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 #, machine
 menu	Its first frame didn't show within 10 seconds	Khung hình đầu tiên không hiển thị trong vòng 10 giây
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 #, machine
 menu	Its last start ended before its first frame	Lần khởi động gần nhất kết thúc trước khi khung hình đầu tiên xuất hiện
 #. menu command in the main window
@@ -6412,7 +6412,7 @@ menu	Metro	Metro
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Mister Download Manager &Home Page	Trang chủ Mister Download Manager (&H)
+menu	Tufan Download Manager &Home Page	Trang chủ Tufan Download Manager (&H)
 #. menu command in the main window
 #, machine
 menu	Move/Rename (Ctrl-M)	Di chuyển/Đổi tên (Ctrl-M)
@@ -6525,7 +6525,7 @@ menu	Select &all	Chọn &tất cả
 menu	Show &drop target	Hiển thị mục tiêu &kéo thả
 #. menu command in the main window
 #, machine
-menu	Show Mister Download Manager	Hiển thị Mister Download Manager
+menu	Show Tufan Download Manager	Hiển thị Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6547,7 +6547,7 @@ menu	Stop Download	Dừng tải xuống
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Support &MDM	Hỗ trợ &MDM
+menu	Support &TDM	Hỗ trợ &TDM
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6557,7 +6557,7 @@ menu	Tell a &friend	Giới thiệu cho bạn &bè
 #, machine
 menu	The graphics card was lost twice in 10 minutes	Cạc đồ họa bị mất hai lần trong 10 phút
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 #, machine
 menu	Theme	Chủ đề
 #. menu command in the main window

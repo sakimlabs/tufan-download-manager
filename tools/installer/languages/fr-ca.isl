@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in French (Canada): tools/installer/languages.py
+﻿; Tufan Download Manager's installer in French (Canada): tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Désinstallation de %1.
 
 [CustomMessages]
 TaskBrowser=Configurer l'intégration au &navigateur (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Ouvrir les fichiers .&torrent et les liens magnet avec Mister Download Manager
-TaskStartup=Démarrer Mister Download Manager au démarrage de &Windows
+TaskTorrents=Ouvrir les fichiers .&torrent et les liens magnet avec Tufan Download Manager
+TaskStartup=Démarrer Tufan Download Manager au démarrage de &Windows
 TaskGroupOther=Autre :
-Launch=Démarrer Mister Download Manager
+Launch=Démarrer Tufan Download Manager
 KeepData=Supprimer également votre liste de téléchargements et vos paramètres?%n%nVos fichiers téléchargés ne sont pas affectés dans tous les cas.

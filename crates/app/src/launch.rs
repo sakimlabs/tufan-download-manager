@@ -1,4 +1,4 @@
-//! Other programs MDM starts and waits for, and the files and pages it hands to the system,
+//! Other programs TDM starts and waits for, and the files and pages it hands to the system,
 //! never waited for on the window's thread (#222): a frame that waits for a program freezes the
 //! window for as long as that program takes, and a program can take forever (a file manager
 //! that never answers over D-Bus froze the window until the freeze report caught it). So a
@@ -248,7 +248,7 @@ mod tests {
     }
 
     fn temp(name: &str) -> PathBuf {
-        let d = std::env::temp_dir().join(format!("mdm-launch-{name}-{}", std::process::id()));
+        let d = std::env::temp_dir().join(format!("tdm-launch-{name}-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&d);
         d
     }

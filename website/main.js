@@ -1,11 +1,11 @@
-// Mister Download Manager — site behaviour: light/dark, the download for your system, the
+// Tufan Download Manager — site behaviour: light/dark, the download for your system, the
 // split button's menu, the "What do you download?" chips and the rotating hello.
 (function () {
   "use strict";
   var root = document.documentElement;
-  // Words for people in the page's language: a translated page carries its own (MDM_I18N,
+  // Words for people in the page's language: a translated page carries its own (TDM_I18N,
   // tools/website/sitei18n.py); English otherwise. Every such string goes through t().
-  var I18N = window.MDM_I18N || {};
+  var I18N = window.TDM_I18N || {};
   function t(s) { return I18N[s] || s; }
   // Visitors who asked for less motion get every moving part at rest: the race at its finish,
   // the tour still, the hello on its first word.
@@ -40,12 +40,12 @@
   (function () {
     var links = document.querySelectorAll(".lang-pick a[hreflang]");
     if (!links.length) return;
-    function remember(code) { try { localStorage.setItem("mdm-lang", code); } catch (e) { /* asked again */ } }
+    function remember(code) { try { localStorage.setItem("tdm-lang", code); } catch (e) { /* asked again */ } }
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener("click", function () { remember(this.getAttribute("hreflang")); });
     }
     var chosen = null;
-    try { chosen = localStorage.getItem("mdm-lang"); } catch (e) { /* none */ }
+    try { chosen = localStorage.getItem("tdm-lang"); } catch (e) { /* none */ }
     if (chosen || (root.getAttribute("lang") || "en").toLowerCase() !== "en") return;
     var wanted = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
     var match = null;
@@ -120,7 +120,7 @@
     button.addEventListener("click", function () {
       var next = current() === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
-      try { localStorage.setItem("mdm-theme", next); } catch (e) { /* not remembered */ }
+      try { localStorage.setItem("tdm-theme", next); } catch (e) { /* not remembered */ }
     });
   });
 
@@ -145,9 +145,9 @@
   var RACES = [
     { label: "faster", note: t("1 GiB over a fast link. IDM spends 3 s before its first request reaches the server."),
       mdm: [14, 438, 556], idm: [3076, 1831, 545], e2e: [1009, 5456], ratio: 5.41, bytes: 1073741824 },
-    { label: "faster", note: t("A 256 KiB file. MDM is done in 30 ms; IDM is still starting."),
+    { label: "faster", note: t("A 256 KiB file. TDM is done in 30 ms; IDM is still starting."),
       mdm: [14, 7, 8], idm: [3090, 25, 32], e2e: [30, 3141], ratio: 105.9, bytes: 262144 },
-    { label: "faster", note: t("A server that allows two connections. MDM learns it and keeps to two; IDM opened 480."),
+    { label: "faster", note: t("A server that allows two connections. TDM learns it and keeps to two; IDM opened 480."),
       mdm: [14, 12546, 9], idm: [3069, 12733, 48], e2e: [12568, 15864], ratio: 1.26, bytes: 52428800 }
   ];
   // mdmRace(box, races): sets up one race box; the benchmark page calls it with every scenario

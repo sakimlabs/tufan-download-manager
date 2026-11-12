@@ -1,12 +1,12 @@
 {
   "name": {
-    "message": "Mister Download Manager"
+    "message": "Tufan Download Manager"
   },
   "description": {
-    "message": "Passa a Mister Download Manager i download del browser."
+    "message": "Passa a Tufan Download Manager i download del browser."
   },
   "menu": {
-    "message": "Scarica con Mister Download Manager"
+    "message": "Scarica con Tufan Download Manager"
   },
   "video_download": {
     "message": "Scarica video"
@@ -30,25 +30,25 @@
     "message": "Impostazioni pulsante..."
   },
   "video_sent": {
-    "message": "Inviato a Mister Download Manager"
+    "message": "Inviato a Tufan Download Manager"
   },
   "video_failed": {
-    "message": "Mister Download Manager non è installato o non si è avviato"
+    "message": "Tufan Download Manager non è installato o non si è avviato"
   },
   "video_drag": {
     "message": "Trascina per spostarlo lungo il bordo del video"
   },
   "menu_selected": {
-    "message": "Scarica i collegamenti selezionati con Mister Download Manager"
+    "message": "Scarica i collegamenti selezionati con Tufan Download Manager"
   },
   "menu_all": {
-    "message": "Scarica tutti i collegamenti con Mister Download Manager"
+    "message": "Scarica tutti i collegamenti con Tufan Download Manager"
   },
   "status_connected": {
-    "message": "Connesso a Mister Download Manager"
+    "message": "Connesso a Tufan Download Manager"
   },
   "status_connected_version": {
-    "message": "Connesso a Mister Download Manager $version$",
+    "message": "Connesso a Tufan Download Manager $version$",
     "placeholders": {
       "version": {
         "content": "$1",
@@ -60,22 +60,22 @@
     "message": "In pausa: i download restano al browser"
   },
   "status_not_installed": {
-    "message": "Mister Download Manager non è installato oppure la sua integrazione con i browser non è configurata"
+    "message": "Tufan Download Manager non è installato oppure la sua integrazione con i browser non è configurata"
   },
   "status_forbidden": {
-    "message": "Mister Download Manager non accetta questa copia dell'estensione"
+    "message": "Tufan Download Manager non accetta questa copia dell'estensione"
   },
   "status_not_running": {
-    "message": "Mister Download Manager non si è avviato in tempo"
+    "message": "Tufan Download Manager non si è avviato in tempo"
   },
   "status_host_failed": {
-    "message": "La connessione a Mister Download Manager non è riuscita"
+    "message": "La connessione a Tufan Download Manager non è riuscita"
   },
   "status_too_large": {
     "message": "I dati di questo download erano troppo grandi per essere trasferiti"
   },
   "status_update_app": {
-    "message": "Aggiorna Mister Download Manager per usare tutte le funzioni di questa estensione"
+    "message": "Aggiorna Tufan Download Manager per usare tutte le funzioni di questa estensione"
   },
   "popup_take": {
     "message": "Acquisisci i download da questo browser"
@@ -84,10 +84,10 @@
     "message": "Invia i download tramite il proxy o l'estensione VPN di questo browser"
   },
   "popup_proxy_title": {
-    "message": "Mister Download Manager scaricherà così tramite lo stesso proxy di questo browser. Il browser ti chiederà l'autorizzazione una sola volta; disattivando l'opzione la revochi."
+    "message": "Tufan Download Manager scaricherà così tramite lo stesso proxy di questo browser. Il browser ti chiederà l'autorizzazione una sola volta; disattivando l'opzione la revochi."
   },
   "popup_proxy_title_chromium": {
-    "message": "Mister Download Manager scaricherà così tramite lo stesso proxy di questo browser. Quando l'opzione è disattivata, l'estensione non legge il proxy del browser."
+    "message": "Tufan Download Manager scaricherà così tramite lo stesso proxy di questo browser. Quando l'opzione è disattivata, l'estensione non legge il proxy del browser."
   },
   "popup_exclude_site": {
     "message": "Non acquisire mai download da $site$",
@@ -108,7 +108,7 @@
     }
   },
   "popup_open": {
-    "message": "Apri Mister Download Manager"
+    "message": "Apri Tufan Download Manager"
   },
   "popup_options": {
     "message": "Opzioni..."
@@ -117,7 +117,7 @@
     "message": "Guida"
   },
   "popup_support": {
-    "message": "Sostieni MDM"
+    "message": "Sostieni TDM"
   },
   "popup_fix": {
     "message": "Come risolvere"
@@ -198,7 +198,7 @@
     "message": "Questo computer"
   },
   "popup_send_remote": {
-    "message": "Un altro Mister Download Manager (un server)"
+    "message": "Un altro Tufan Download Manager (un server)"
   },
   "popup_remote_code": {
     "message": "Codice di associazione"
@@ -210,7 +210,7 @@
     "message": "Associa"
   },
   "popup_remote_help": {
-    "message": "Apri una volta il suo indirizzo e accetta il suo certificato, poi inserisci un codice da Opzioni → Remoto → Associa un dispositivo (o misterdownloadmanager-cli pair)."
+    "message": "Apri una volta il suo indirizzo e accetta il suo certificato, poi inserisci un codice da Opzioni → Remoto → Associa un dispositivo (o tufan-download-manager-cli pair)."
   },
   "status_remote": {
     "message": "I download vanno a $address$",

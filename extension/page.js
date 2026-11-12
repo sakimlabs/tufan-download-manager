@@ -1,4 +1,4 @@
-// Mister Download Manager's link watcher (a content script, in every page and frame):
+// Tufan Download Manager's link watcher (a content script, in every page and frame):
 //  - a link clicked with Alt held is the browser's to download (background.js leaves its download
 //    alone), the key the app's help names for it;
 //  - Safari only: it has no downloads API, so background.js can't take a download from the
@@ -67,7 +67,7 @@
     const name = a.getAttribute("download") || "";
     tell({ type: "link", url: a.href, ...(name ? { name } : {}) }).then((reply) => {
       if (reply && reply.taken) return;
-      // Not the app's (Options, an excluded site, MDM not running): the click as it was, its
+      // Not the app's (Options, an excluded site, TDM not running): the click as it was, its
       // Cmd/Shift/Ctrl too (a new tab or window stays one). This one isn't trusted, so `note`
       // leaves it alone.
       const keys = { ctrlKey: e.ctrlKey, metaKey: e.metaKey, shiftKey: e.shiftKey };

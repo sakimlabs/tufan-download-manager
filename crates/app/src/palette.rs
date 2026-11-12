@@ -8,7 +8,7 @@
 //!   sizes, row heights). Where a window puts its controls stays the window's layout.
 //! - [`IconStyle`]: how the toolbar's and Options' outline icons are inked.
 //!
-//! [`CLASSIC`] is MDM's own look (IDM's classic layout, Windows 11 controls, accent #0078D4),
+//! [`CLASSIC`] is TDM's own look (IDM's classic layout, Windows 11 controls, accent #0078D4),
 //! written out with the exact values the painters had before themes: the default, unchanged.
 
 use std::borrow::Cow;
@@ -300,7 +300,7 @@ palette! {
     piece_partial: "pieces.partial", "A square standing for pieces partly here" = rgb(0x3a, 0x6e, 0x4b), rgb(0x9c, 0xd2, 0xae);
     piece_missing: "pieces.missing", "A piece not here yet" = grey(0x45), grey(0xd6);
     // ---- title bars we draw ----
-    caption: "caption", "A title bar MDM draws itself" = grey(0x20), grey(0xff);
+    caption: "caption", "A title bar TDM draws itself" = grey(0x20), grey(0xff);
     caption_text: "caption.text", "Its title and glyphs" = grey(0xff), grey(0x00);
     caption_text_inactive: "caption.text.inactive", "Its title and glyphs while the window isn't the active one, and a greyed button's" = grey(0x8a), grey(0x8a);
     caption_hot: "caption.hot", "A caption button under the pointer (a tint over the bar)" = rgba(0xff, 0xff, 0xff, 0x0f), rgba(0x00, 0x00, 0x00, 0x09);
@@ -308,7 +308,7 @@ palette! {
     caption_button: "caption.button", "A caption button at rest, where the style shows one (a tint over the bar; transparent: none)" = Color32::TRANSPARENT, Color32::TRANSPARENT;
     caption_close: "caption.close", "Close under the pointer" = rgb(0xc4, 0x2b, 0x1c), rgb(0xc4, 0x2b, 0x1c);
     caption_close_text: "caption.close.text", "Close's glyph under the pointer" = grey(0xff), grey(0xff);
-    caption_inactive: "caption.inactive", "A title bar MDM draws, while its window isn't the active one (transparent: as when active)" = Color32::TRANSPARENT, Color32::TRANSPARENT;
+    caption_inactive: "caption.inactive", "A title bar TDM draws, while its window isn't the active one (transparent: as when active)" = Color32::TRANSPARENT, Color32::TRANSPARENT;
     // ---- other ----
     drop_edge: "drop-target.edge", "The drop target's edge at rest" = grey(0x8d), grey(0x8d);
     // ---- egui's own widgets (tooltips, multi-line boxes' scroll bars) ----
@@ -427,7 +427,7 @@ pub struct Controls {
     /// A scroll bar: Windows 11's (thin until hovered, arrows then), or arrows always shown and a
     /// square thumb the bar's width (Windows 8, the classic bars).
     pub scroll: ScrollLook,
-    /// The title bar: the system's, or drawn by MDM in the theme's style (Windows only).
+    /// The title bar: the system's, or drawn by TDM in the theme's style (Windows only).
     pub caption: CaptionLook,
     /// The keyboard focus around a control: Windows' dotted rectangle, GNOME's rounded ring or
     /// KDE's frame.
@@ -606,7 +606,7 @@ impl Theme {
     }
 }
 
-/// The classic look, MDM's default.
+/// The classic look, TDM's default.
 pub static CLASSIC: Theme = Theme {
     id: Cow::Borrowed("classic"),
     name: Cow::Borrowed("Classic"),

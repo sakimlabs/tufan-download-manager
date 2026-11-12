@@ -5,7 +5,7 @@
 # served by the lab server on 127.0.0.1. Needs a release-mode build with the `test-update`
 # feature (vmtest or release profile: debug builds are "built from source" and never update).
 #
-#   tools/lab/update/upd-lin.sh <folder with misterdownloadmanager and labserver> [scenario ...]
+#   tools/lab/update/upd-lin.sh <folder with tufan-download-manager and labserver> [scenario ...]
 #   e.g. upd-lin.sh ~/src/mdm/target/vmtest     (every scenario)
 #
 # Scenarios and what each must show (the run fails otherwise, exit status 1):
@@ -15,13 +15,13 @@
 #   targz-close-download        the window closed while it downloads (1 MB/s): nothing replaced or started
 #   appimage-close-install      the window closed during "Installing the update...": replaced, nothing started
 #
-# Work folder: $MDM_UPDATE_E2E_WORK, else /tmp/mdm-update-e2e (emptied first).
+# Work folder: $TDM_UPDATE_E2E_WORK, else /tmp/tdm-update-e2e (emptied first).
 set -uo pipefail
 bin=$(cd "${1:?usage: upd-lin.sh <build folder> [scenario ...]}" && pwd); shift
 here=$(cd "$(dirname "$0")" && pwd)
 all="targz-good appimage-good targz-bad-hash appimage-other-key targz-close-download appimage-close-install"
 want=${*:-$all}
-work=${MDM_UPDATE_E2E_WORK:-/tmp/mdm-update-e2e}
+work=${TDM_UPDATE_E2E_WORK:-/tmp/tdm-update-e2e}
 rm -rf "$work"; mkdir -p "$work"
 for t in Xvfb dbus-daemon metacity wmctrl python3 gpg; do
   command -v $t >/dev/null || { echo "needs $t"; exit 2; }
@@ -57,7 +57,7 @@ keys=$work/keys
 release() { # release <name> <kind targz|file> <asset> [mkrel args]
   local name=$1 kind=$2 asset=$3; shift 3
   python3 "$here/mkrel.py" --keys "$keys" --out "$work/rel-$name" --base "$base" --asset "$asset" \
-    --kind "$kind" --program "$bin/misterdownloadmanager" --program-name misterdownloadmanager "$@" |
+    --kind "$kind" --program "$bin/tufan-download-manager" --program-name tufan-download-manager "$@" |
     sed 's/^/  /' | tee -a "$work/log.txt"
 }
 TGZ=MisterDownloadManager-9.9.9-linux-x86_64.tar.gz
@@ -74,8 +74,8 @@ run() { # run <name> <targz|appimage> <release> <hold> <close: -|download|instal
   local name=$1 kind=$2 rel=$3 hold=$4 close=$5
   local w=$work/run-$1 prog srv slow="" pid upd before new
   mkdir -p "$w/copy" "$w/data" "$w/Downloads"
-  if [ "$kind" = appimage ]; then prog=$w/copy/MisterDownloadManager.AppImage; else prog=$w/copy/misterdownloadmanager; fi
-  cp "$bin/misterdownloadmanager" "$prog"
+  if [ "$kind" = appimage ]; then prog=$w/copy/MisterDownloadManager.AppImage; else prog=$w/copy/tufan-download-manager; fi
+  cp "$bin/tufan-download-manager" "$prog"
   local start_hash; start_hash=$(sha256sum "$prog" | cut -c1-16)
   python3 - "$w/data/downloads.json" "$w/Downloads" <<'PY'
 import json, sys
@@ -88,22 +88,22 @@ PY
   "$bin/labserver" --bind "127.0.0.1:$port" --files "$work/rel-$rel" >"$w/labserver.log" 2>&1 & srv=$!
   [ "$close" = download ] && { python3 "$here/slowserve.py" "$work/rel-$rel" $slowport 1000000 2>"$w/slow.log" & slow=$!; }
   (
-    export MDM_DATA_DIR=$w/data MDM_OFFSCREEN=1 MDM_UPDATE_FEED=$base/latest.json MDM_TEST_UPDATE_KEY=$keys/test-key.asc
-    [ "$hold" != 0 ] && export MDM_TEST_UPDATE_HOLD=$hold
+    export TDM_DATA_DIR=$w/data TDM_OFFSCREEN=1 TDM_UPDATE_FEED=$base/latest.json TDM_TEST_UPDATE_KEY=$keys/test-key.asc
+    [ "$hold" != 0 ] && export TDM_TEST_UPDATE_HOLD=$hold
     if [ "$kind" = appimage ]; then export APPIMAGE=$prog; else unset APPIMAGE; fi
     cd "$w" && setsid -f "$prog" >"$w/stdout.log" 2>&1 </dev/null
   )
   pid=""
   for _ in $(seq 300); do pid=$(pgrep -f "^$prog$" | head -1); [ -n "$pid" ] && [ -n "$(mine "$pid")" ] && break; sleep 0.1; done
   STARTED=no; ENDED=no; REPLACED=no
-  if [ -z "$pid" ]; then log "  MDM showed no window (see $w/stdout.log)"; kill $srv $slow 2>/dev/null; return; fi
+  if [ -z "$pid" ]; then log "  TDM showed no window (see $w/stdout.log)"; kill $srv $slow 2>/dev/null; return; fi
   sleep 2
   before=$(mine "$pid")
-  ( export MDM_DATA_DIR=$w/data; [ "$kind" = appimage ] && export APPIMAGE=$prog; "$prog" /show updates >/dev/null 2>&1 )
+  ( export TDM_DATA_DIR=$w/data; [ "$kind" = appimage ] && export APPIMAGE=$prog; "$prog" /show updates >/dev/null 2>&1 )
   upd=""
   for _ in $(seq 100); do upd=$(mine "$pid" | grep -vxF -f <(echo "$before") | head -1); [ -n "$upd" ] && break; sleep 0.1; done
   sleep 2
-  ( export MDM_DATA_DIR=$w/data; [ "$kind" = appimage ] && export APPIMAGE=$prog; "$prog" /show update-now >/dev/null 2>&1 )
+  ( export TDM_DATA_DIR=$w/data; [ "$kind" = appimage ] && export APPIMAGE=$prog; "$prog" /show update-now >/dev/null 2>&1 )
   log "  Update now pressed (window $upd)"
   [ "$close" = download ] && { sleep 1.5; wmctrl -i -c "$upd"; log "  the update window closed while it downloads"; }
   [ "$close" = install ] && { sleep 3; wmctrl -i -c "$upd"; log "  the update window closed during 'Installing the update...'"; }

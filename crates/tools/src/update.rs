@@ -1,6 +1,6 @@
-//! Mister Download Manager updating itself: how this copy was installed, the release file that
+//! Tufan Download Manager updating itself: how this copy was installed, the release file that
 //! replaces it, and that file fetched and checked against the release's SHA256SUMS.txt, whose
-//! signature by MDM's release key ([`crate::signed_by_mdm`]) is checked first. Putting the file
+//! signature by TDM's release key ([`crate::signed_by_mdm`]) is checked first. Putting the file
 //! in place is the app's (`crates/app/src/update.rs`): it has to close itself to do it.
 
 use std::path::{Path, PathBuf};
@@ -8,7 +8,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 
 use crate::{Error, signed_by_mdm, sum_for};
 
-/// How this copy of MDM was installed: what an update replaces, and how.
+/// How this copy of TDM was installed: what an update replaces, and how.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Install {
     /// Windows, the setup program.
@@ -25,7 +25,7 @@ pub enum Install {
     /// Linux, the plain programs.
     TarGz,
     /// Linux, a package of another package manager (pacman, …): that package manager updates
-    /// it, never MDM.
+    /// it, never TDM.
     System,
     /// Built here: never updated from a release.
     Source,
@@ -43,7 +43,7 @@ impl Install {
         if cfg!(debug_assertions) {
             return Install::Source;
         }
-        if mdm_ipc::portable_dir().is_some() {
+        if tdm_ipc::portable_dir().is_some() {
             return Install::PortableZip;
         }
         let Some(exe) = std::env::current_exe().ok() else {
@@ -138,8 +138,8 @@ impl Install {
 
 /// Linux: which package manager's package `exe` is, asking each whether it owns the file
 /// (`owns(program, arguments)`: it ran and said yes). The .deb's (dpkg), the .rpm's (rpm), or
-/// another's (pacman; a program in /usr/bin none of them owns): those MDM leaves to the system's
-/// updates. Else the plain programs (.tar.gz), which MDM replaces itself. A path that isn't
+/// another's (pacman; a program in /usr/bin none of them owns): those TDM leaves to the system's
+/// updates. Else the plain programs (.tar.gz), which TDM replaces itself. A path that isn't
 /// UTF-8 is never one of the packages'.
 fn linux_package(exe: &Path, owns: &dyn Fn(&str, &[&str]) -> bool) -> Install {
     let Some(path) = exe.to_str() else {
@@ -180,14 +180,14 @@ impl Progress {
     }
 }
 
-/// Fetch release file `name` from `assets` (name, download address) into `dir` with MDM's own
-/// engine (`net`), after checking the release's SHA256SUMS.txt is signed by MDM's key, and check
+/// Fetch release file `name` from `assets` (name, download address) into `dir` with TDM's own
+/// engine (`net`), after checking the release's SHA256SUMS.txt is signed by TDM's key, and check
 /// the file against it. Returns the file.
 pub async fn fetch(
     assets: &[(String, String)],
     name: &str,
     dir: &Path,
-    net: &mdm_engine::Options,
+    net: &tdm_engine::Options,
     progress: &Progress,
 ) -> Result<PathBuf, Error> {
     let url = |file: &str| {
@@ -197,7 +197,7 @@ pub async fn fetch(
             .map(|(_, u)| u.clone())
             .ok_or_else(|| Error::Missing(file.to_owned()))
     };
-    let client = mdm_engine::net::client_builder(&net.dns, &net.route, &url("SHA256SUMS.txt")?)?
+    let client = tdm_engine::net::client_builder(&net.dns, &net.route, &url("SHA256SUMS.txt")?)?
         .user_agent(crate::USER_AGENT)
         .build()?;
     let sums = crate::signed_list(
@@ -360,15 +360,15 @@ Connection: close
                 .collect()
         };
         let base = serve(vec![
-            ("SHA256SUMS.txt", "mdm-SHA256SUMS.txt"),
-            ("SHA256SUMS.txt.sig", "mdm-SHA256SUMS.txt.sig"),
+            ("SHA256SUMS.txt", "tdm-SHA256SUMS.txt"),
+            ("SHA256SUMS.txt.sig", "tdm-SHA256SUMS.txt.sig"),
             (zip, zip),
             // Not what the signed list says it is.
-            (setup, "mdm-SHA256SUMS.txt"),
+            (setup, "tdm-SHA256SUMS.txt"),
         ]);
         let dir = tempfile::tempdir().unwrap();
-        // Through MDM's own engine, as the app fetches it.
-        let net = crate::net(mdm_engine::Proxy::None);
+        // Through TDM's own engine, as the app fetches it.
+        let net = crate::net(tdm_engine::Proxy::None);
         let progress = Progress::default();
         let file = fetch(&assets(&base), zip, dir.path(), &net, &progress)
             .await
@@ -379,7 +379,7 @@ Connection: close
         let out = dir.path().join("out");
         unzip(&file, &out).unwrap();
         assert_eq!(
-            std::fs::read(single_folder(&out).join("misterdownloadmanager.exe")).unwrap(),
+            std::fs::read(single_folder(&out).join("tufan-download-manager.exe")).unwrap(),
             b"new program"
         );
         // A file that isn't the one the signed list names is refused, and not kept.
@@ -489,47 +489,47 @@ Connection: close
     fn a_linux_copy_knows_its_package_manager() {
         let owner = |who: &'static str| {
             move |tool: &str, args: &[&str]| {
-                assert_eq!(args.last(), Some(&"/usr/bin/misterdownloadmanager"));
+                assert_eq!(args.last(), Some(&"/usr/bin/tufan-download-manager"));
                 tool == who
             }
         };
-        let exe = Path::new("/usr/bin/misterdownloadmanager");
+        let exe = Path::new("/usr/bin/tufan-download-manager");
         assert_eq!(linux_package(exe, &owner("dpkg-query")), Install::Deb);
         assert_eq!(linux_package(exe, &owner("rpm")), Install::Rpm);
-        // An Arch package (pacman), or in /usr/bin with no package manager MDM knows: the
+        // An Arch package (pacman), or in /usr/bin with no package manager TDM knows: the
         // system's.
         assert_eq!(linux_package(exe, &owner("pacman")), Install::System);
         assert_eq!(linux_package(exe, &owner("none")), Install::System);
         // On Debian with rpm's tools installed too: still the .deb's.
         let both = |tool: &str, _: &[&str]| tool == "dpkg-query" || tool == "rpm";
         assert_eq!(linux_package(exe, &both), Install::Deb);
-        // The .tar.gz unpacked in the home folder, /opt or /usr/local: MDM's own to replace.
+        // The .tar.gz unpacked in the home folder, /opt or /usr/local: TDM's own to replace.
         let nobody = |_: &str, _: &[&str]| false;
-        let home = Path::new("/home/me/MisterDownloadManager/misterdownloadmanager");
+        let home = Path::new("/home/me/MisterDownloadManager/tufan-download-manager");
         assert_eq!(linux_package(home, &nobody), Install::TarGz);
         assert_eq!(
-            linux_package(Path::new("/opt/mdm/misterdownloadmanager"), &nobody),
+            linux_package(Path::new("/opt/mdm/tufan-download-manager"), &nobody),
             Install::TarGz
         );
         assert_eq!(
-            linux_package(Path::new("/usr/local/bin/misterdownloadmanager"), &nobody),
+            linux_package(Path::new("/usr/local/bin/tufan-download-manager"), &nobody),
             Install::TarGz
         );
-        // MDM updates neither another package manager's copy nor a build of its own.
+        // TDM updates neither another package manager's copy nor a build of its own.
         assert!(Install::System.assets("1.0.0").is_empty());
     }
 
     #[test]
     fn bundles_on_a_mac() {
         let exe = Path::new(
-            "/Applications/Mister Download Manager.app/Contents/MacOS/misterdownloadmanager",
+            "/Applications/Tufan Download Manager.app/Contents/MacOS/tufan-download-manager",
         );
         assert_eq!(
             app_bundle(exe).as_deref(),
-            Some(Path::new("/Applications/Mister Download Manager.app"))
+            Some(Path::new("/Applications/Tufan Download Manager.app"))
         );
         assert_eq!(
-            app_bundle(Path::new("/usr/bin/misterdownloadmanager")),
+            app_bundle(Path::new("/usr/bin/tufan-download-manager")),
             None
         );
     }

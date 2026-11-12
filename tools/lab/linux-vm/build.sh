@@ -5,7 +5,7 @@
 #
 #   bash build.sh [<branch, pr/<number> or commit>] [<label>]     # e.g. main, fix/foo, pr/167
 #
-# MDM_PROFILE picks the cargo profile: `vmtest` (default; setup.sh defines it in ~/.cargo/config.toml:
+# TDM_PROFILE picks the cargo profile: `vmtest` (default; setup.sh defines it in ~/.cargo/config.toml:
 # release without LTO, incremental, a few minutes per branch) for functional checks, `release`
 # (fat LTO, what ships) when a check measures speed or size. Six jobs leave two cores to the desktop.
 set -uo pipefail
@@ -20,7 +20,7 @@ if [ $# -gt 0 ]; then
   # the last commit (the build would then carry the wrong label).
   git checkout -q -f --detach "$ref" || { echo "== could not check out $1"; exit 1; }
 fi
-profile=${MDM_PROFILE:-vmtest}
+profile=${TDM_PROFILE:-vmtest}
 label=${2:-$(echo "$ref_name" | tr '/' '-')}
 mkdir -p "$HOME/lab"
 log="$HOME/lab/build.log"
@@ -29,12 +29,12 @@ log="$HOME/lab/build.log"
   echo "== cargo build --profile $profile -j 6 (app, browser host, command line, lab server) -> ~/lab/bin/$label"
 } | tee "$log"
 start=$(date +%s)
-cargo build --profile "$profile" -j 6 -p mdm-app -p mdm-nmhost -p mdm-cli -p mdm-labserver 2>&1 | tee -a "$log"
+cargo build --profile "$profile" -j 6 -p tdm-app -p tdm-nmhost -p tdm-cli -p tdm-labserver 2>&1 | tee -a "$log"
 status=${PIPESTATUS[0]}
 if [ "$status" = 0 ]; then
   out=target/$profile; [ "$profile" = dev ] && out=target/debug
   mkdir -p "$HOME/lab/bin/$label"
-  cp "$out"/misterdownloadmanager{,-nmhost,-cli} "$out"/labserver "$HOME/lab/bin/$label/"
+  cp "$out"/tufan-download-manager{,-nmhost,-cli} "$out"/labserver "$HOME/lab/bin/$label/"
 fi
 echo "== exit $status after $(( $(date +%s) - start )) s" | tee -a "$log"
 exit "$status"

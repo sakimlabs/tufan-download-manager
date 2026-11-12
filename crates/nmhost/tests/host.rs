@@ -1,5 +1,5 @@
 //! The native host as the browser runs it: the real program, its standard streams framed as
-//! native messages, its own data folder (MDM_DATA_DIR) with a fake Mister Download Manager
+//! native messages, its own data folder (TDM_DATA_DIR) with a fake Tufan Download Manager
 //! listening where `ipc.json` says, answering as the test wants.
 
 use std::io::{BufRead, BufReader, Read, Write};
@@ -9,13 +9,13 @@ use std::process::{Command, Stdio};
 use std::sync::mpsc;
 use std::time::Duration;
 
-const HOST: &str = env!("CARGO_BIN_EXE_misterdownloadmanager-nmhost");
+const HOST: &str = env!("CARGO_BIN_EXE_tufan-download-manager-nmhost");
 const CALLER: &str = "chrome-extension://oogbclbbninliongijffeeggalppliok/";
 const UA: &str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/141.0.0.0 Safari/537.36";
 
 /// A data folder of its own, with the app's Options as `settings` (downloads.json).
 fn data_dir(name: &str, settings: serde_json::Value) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("mdm-nmhost-test-{name}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("tdm-nmhost-test-{name}-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(&dir).unwrap();
     let list = serde_json::json!({ "settings": settings });
@@ -54,7 +54,7 @@ fn run(
 ) -> (Vec<serde_json::Value>, bool) {
     let mut child = Command::new(HOST)
         .arg(caller)
-        .env("MDM_DATA_DIR", dir)
+        .env("TDM_DATA_DIR", dir)
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::null())
@@ -186,7 +186,7 @@ fn options_and_a_refusing_app_start_nothing() {
     let _ = std::fs::remove_dir_all(&dir);
 }
 
-/// #208: every download left to the browser is in MDM's log with why, whether the host refused
+/// #208: every download left to the browser is in TDM's log with why, whether the host refused
 /// it or the extension left it alone by the same rules (and only told the host); none reaches
 /// the app. A private window's is logged without its site or name.
 #[test]
@@ -291,14 +291,14 @@ fn zen_and_helium_alone_are_registered() {
             .arg(arg)
             .env("HOME", &home)
             .env_remove("XDG_CONFIG_HOME")
-            .env("MDM_DATA_DIR", &home)
+            .env("TDM_DATA_DIR", &home)
             .output()
             .unwrap();
         assert!(out.status.success(), "{arg}: {out:?}");
     };
     host("--register");
     let manifest = |dir: &std::path::Path| -> serde_json::Value {
-        let file = dir.join("com.misterdownloadmanager.host.json");
+        let file = dir.join("com.tufan-download-manager.host.json");
         serde_json::from_str(&std::fs::read_to_string(&file).unwrap()).unwrap()
     };
     assert!(manifest(&mozilla_hosts)["allowed_extensions"].is_array());
@@ -322,7 +322,7 @@ fn zen_and_helium_alone_are_registered() {
     );
     host("--unregister");
     for dir in [&mozilla_hosts, &helium_hosts] {
-        assert!(!dir.join("com.misterdownloadmanager.host.json").exists());
+        assert!(!dir.join("com.tufan-download-manager.host.json").exists());
     }
     assert!(!offer.exists());
     let _ = std::fs::remove_dir_all(&home);
@@ -353,11 +353,11 @@ fn brave_origin_alone_is_registered() {
         .env("HOME", &home)
         .env_remove("XDG_CONFIG_HOME")
         .env_remove("APPDIR")
-        .env("MDM_DATA_DIR", &home)
+        .env("TDM_DATA_DIR", &home)
         .output()
         .unwrap();
     assert!(out.status.success(), "{out:?}");
-    let file = hosts.join("com.misterdownloadmanager.host.json");
+    let file = hosts.join("com.tufan-download-manager.host.json");
     let manifest: serde_json::Value =
         serde_json::from_str(&std::fs::read_to_string(&file).unwrap()).unwrap();
     assert_eq!(
@@ -380,14 +380,14 @@ fn a_host_inside_an_appimage_mount_is_not_registered() {
         .env("HOME", &home)
         .env_remove("XDG_CONFIG_HOME")
         .env("APPDIR", &mount)
-        .env("MDM_DATA_DIR", &home)
+        .env("TDM_DATA_DIR", &home)
         .output()
         .unwrap();
     assert!(!out.status.success());
     assert!(String::from_utf8_lossy(&out.stderr).contains("AppImage"));
     assert!(
         !home
-            .join(".config/google-chrome/NativeMessagingHosts/com.misterdownloadmanager.host.json")
+            .join(".config/google-chrome/NativeMessagingHosts/com.tufan-download-manager.host.json")
             .exists()
     );
     let _ = std::fs::remove_dir_all(&home);

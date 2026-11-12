@@ -22,7 +22,7 @@
 //! ```
 //!
 //! Unknown keys and values that can't be read are skipped and reported as warnings, so a file
-//! written for a newer MDM still loads; a file that isn't TOML or JSON is an error.
+//! written for a newer TDM still loads; a file that isn't TOML or JSON is an error.
 //!
 //! A Base16 scheme (`.yaml`, `.yml`) and pywal's `colors.json` are themes too: `crate::schemes`
 //! reads them into the same value tree, on the classic look. pywal's own file, where `wal`
@@ -42,9 +42,9 @@ pub struct Loaded {
 }
 
 /// Where theme files are: the data folder's `themes` (portable copies' next to the program,
-/// `MDM_DATA_DIR`'s in tests). None when there is no data folder (built-ins only).
+/// `TDM_DATA_DIR`'s in tests). None when there is no data folder (built-ins only).
 pub fn dir() -> Option<PathBuf> {
-    mdm_ipc::data_dir().map(|d| d.join("themes"))
+    tdm_ipc::data_dir().map(|d| d.join("themes"))
 }
 
 /// A theme the user can pick: a built-in, or a file in [`dir`].
@@ -128,7 +128,7 @@ fn folder_file(dir: &Path) -> Option<PathBuf> {
         .find(|p| p.is_file())
 }
 
-/// The file kinds a theme can be: MDM's own (TOML, JSON, pywal's JSON too) and Base16's YAML.
+/// The file kinds a theme can be: TDM's own (TOML, JSON, pywal's JSON too) and Base16's YAML.
 const EXTENSIONS: [&str; 4] = ["toml", "json", "yaml", "yml"];
 
 /// A theme file's id: its name without its extension ([`EXTENSIONS`]); None for any other file.
@@ -264,7 +264,7 @@ fn load_in(folder: &Path, id: &str, depth: usize) -> Result<Loaded, String> {
         } else {
             loaded
                 .warnings
-                .push("icons: no icon MDM knows in the folder".into());
+                .push("icons: no icon TDM knows in the folder".into());
         }
     }
     Ok(loaded)
@@ -304,7 +304,7 @@ fn read_value(path: &Path, text: &str) -> Result<(Value, Vec<String>), String> {
 /// has that name; the same file already there is used as it is. The copy must load (with the
 /// themes it inherits, beside it), or it is taken out again. Returns the theme's id.
 pub fn add(source: &Path) -> Result<String, String> {
-    let folder = dir().ok_or("MDM has no data folder")?;
+    let folder = dir().ok_or("TDM has no data folder")?;
     add_in(&folder, source)
 }
 
@@ -731,7 +731,7 @@ mod tests {
 
     #[test]
     fn files_in_the_folder_inherit_one_another() {
-        let dir = std::env::temp_dir().join(format!("mdm-themes-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("tdm-themes-{}", std::process::id()));
         std::fs::create_dir_all(&dir).unwrap();
         std::fs::write(dir.join("base.toml"), "[colors]\naccent = \"#112233\"\n").unwrap();
         std::fs::write(
@@ -752,7 +752,7 @@ mod tests {
     }
 
     fn temp_dir(name: &str) -> PathBuf {
-        let dir = std::env::temp_dir().join(format!("mdm-{name}-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("tdm-{name}-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).unwrap();
         dir

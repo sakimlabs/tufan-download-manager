@@ -10,10 +10,10 @@ use std::net::{IpAddr, Ipv4Addr, TcpStream};
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
-use mdm_engine::net::Binding;
-use mdm_engine::{DnsChoice, Route};
-use mdm_labserver::{Config, LabServer};
-use mdm_tools::relay::Relay;
+use tdm_engine::net::Binding;
+use tdm_engine::{DnsChoice, Route};
+use tdm_labserver::{Config, LabServer};
+use tdm_tools::relay::Relay;
 
 const TWO: IpAddr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 2));
 
@@ -101,7 +101,7 @@ fn plain_and_tunnelled_requests_leave_from_the_adapter() {
     assert!(text.starts_with("HTTP/1.1 200"), "{text}");
     assert!(text.contains("Connection: close") || text.contains("connection: close"));
     let mut want = vec![0; 64 * 1024];
-    mdm_labserver::content::fill(1, 0, &mut want);
+    tdm_labserver::content::fill(1, 0, &mut want);
     assert_eq!(body(&plain), &want[..], "plain bytes");
 
     // A tunnel (what HTTPS takes), then a request inside it.
@@ -126,7 +126,7 @@ fn plain_and_tunnelled_requests_leave_from_the_adapter() {
     let mut tunnelled = Vec::new();
     let _ = s.read_to_end(&mut tunnelled);
     let mut want = vec![0; 32 * 1024];
-    mdm_labserver::content::fill(2, 0, &mut want);
+    tdm_labserver::content::fill(2, 0, &mut want);
     assert_eq!(body(&tunnelled), &want[..], "tunnelled bytes");
 
     let log = lab.log();
@@ -248,19 +248,19 @@ fn a_route_change_closes_what_is_open() {
     );
 }
 
-/// The real yt-dlp and ffmpeg, through `mdm_tools::proc` as the app starts them, against the lab
-/// server. Ignored: it needs `MDM_TEST_YTDLP` (yt-dlp's program) and `MDM_TEST_FFMPEG` (ffmpeg's).
+/// The real yt-dlp and ffmpeg, through `tdm_tools::proc` as the app starts them, against the lab
+/// server. Ignored: it needs `TDM_TEST_YTDLP` (yt-dlp's program) and `TDM_TEST_FFMPEG` (ffmpeg's).
 ///
-///   MDM_TEST_YTDLP=…\yt-dlp.exe MDM_TEST_FFMPEG=…\ffmpeg.exe cargo test -p mdm-tools --test relay -- --ignored --nocapture
+///   TDM_TEST_YTDLP=…\yt-dlp.exe TDM_TEST_FFMPEG=…\ffmpeg.exe cargo test -p tdm-tools --test relay -- --ignored --nocapture
 #[test]
 #[ignore]
 fn real_helpers_go_through_the_relay() {
     use std::process::Stdio;
     let (Ok(ytdlp), Ok(ffmpeg)) = (
-        std::env::var("MDM_TEST_YTDLP"),
-        std::env::var("MDM_TEST_FFMPEG"),
+        std::env::var("TDM_TEST_YTDLP"),
+        std::env::var("TDM_TEST_FFMPEG"),
     ) else {
-        panic!("set MDM_TEST_YTDLP and MDM_TEST_FFMPEG");
+        panic!("set TDM_TEST_YTDLP and TDM_TEST_FFMPEG");
     };
     let ffmpeg_dir = std::path::Path::new(&ffmpeg).parent().unwrap().to_owned();
     let (_rt, lab) = lab();
@@ -282,7 +282,7 @@ fn real_helpers_go_through_the_relay() {
         ours.extend(extra.iter().map(|s| s.to_string()));
         ours
     };
-    let finish = |what: &str, cmd: Result<std::process::Command, mdm_tools::proc::ProcError>| {
+    let finish = |what: &str, cmd: Result<std::process::Command, tdm_tools::proc::ProcError>| {
         let mut cmd = match cmd {
             Ok(c) => c,
             Err(e) => return (false, format!("refused before starting: {e}")),
@@ -290,7 +290,7 @@ fn real_helpers_go_through_the_relay() {
         cmd.stdout(Stdio::null()).stderr(Stdio::piped());
         let out = cmd.output().unwrap();
         let err = String::from_utf8_lossy(&out.stderr).to_string();
-        if std::env::var_os("MDM_TEST_VERBOSE").is_some() {
+        if std::env::var_os("TDM_TEST_VERBOSE").is_some() {
             println!(
                 "===== {what}
 {err}"
@@ -306,7 +306,7 @@ fn real_helpers_go_through_the_relay() {
     };
     let run = |what: &str, url: &str, extra: &[&str]| {
         let cmd =
-            mdm_tools::proc::ytdlp(std::path::Path::new(&ytdlp), &[], &ours(what, extra), url);
+            tdm_tools::proc::ytdlp(std::path::Path::new(&ytdlp), &[], &ours(what, extra), url);
         finish(what, cmd)
     };
     // A looked-up page whose one format is `url` over `protocol` (what the app hands yt-dlp).
@@ -318,7 +318,7 @@ fn real_helpers_go_through_the_relay() {
         });
         std::fs::write(&info, json.to_string()).unwrap();
         let cmd =
-            mdm_tools::proc::ytdlp_info(std::path::Path::new(&ytdlp), &[], &ours(what, &[]), &info);
+            tdm_tools::proc::ytdlp_info(std::path::Path::new(&ytdlp), &[], &ours(what, &[]), &info);
         finish(what, cmd)
     };
     let print_log = |label: &str| {
@@ -338,7 +338,7 @@ fn real_helpers_go_through_the_relay() {
 
     // 1. Through the adapter: a progressive file (yt-dlp's own requests), and an HLS stream
     //    fetched by ffmpeg (`--downloader m3u8:ffmpeg`).
-    mdm_tools::proc::set_route(bound());
+    tdm_tools::proc::set_route(bound());
     let (ok, why) = run("progressive", &lab.url("/gen/2M/clip.mp4"), &[]);
     println!("progressive: ok={ok} {why}");
     let (ok2, why2) = run(
@@ -377,16 +377,16 @@ fn real_helpers_go_through_the_relay() {
     }
     assert!(other.accept().is_err(), "nothing connected to that server");
 
-    // 3. gallery-dl (when `MDM_TEST_GALLERYDL` names it): a picture by its direct address.
-    if let Ok(gdl) = std::env::var("MDM_TEST_GALLERYDL") {
+    // 3. gallery-dl (when `TDM_TEST_GALLERYDL` names it): a picture by its direct address.
+    if let Ok(gdl) = std::env::var("TDM_TEST_GALLERYDL") {
         lab.clear_log();
         let ours = vec!["-D".into(), dir.path().to_string_lossy().into_owned()];
-        let tool = mdm_tools::chosen::ask(
-            mdm_tools::chosen::Helper::GalleryDl,
+        let tool = tdm_tools::chosen::ask(
+            tdm_tools::chosen::Helper::GalleryDl,
             std::path::Path::new(&gdl),
         )
         .expect("gallery-dl answers its version");
-        let cmd = mdm_tools::proc::gallery_dl(&tool, &ours, &lab.url("/gen/64K/picture.jpg"));
+        let cmd = tdm_tools::proc::gallery_dl(&tool, &ours, &lab.url("/gen/64K/picture.jpg"));
         let (ok, why) = finish("gallery-dl", cmd);
         println!("gallery-dl: ok={ok} {why}");
         let log = print_log("gallery-dl bound to 127.0.0.2");
@@ -404,7 +404,7 @@ fn real_helpers_go_through_the_relay() {
 
     // 4. The adapter down: refused before yt-dlp starts.
     lab.clear_log();
-    mdm_tools::proc::set_route(Route::Down {
+    tdm_tools::proc::set_route(Route::Down {
         label: "Lab adapter".into(),
     });
     let (ok4, why4) = run("down", &lab.url("/gen/2M/clip2.mp4"), &[]);

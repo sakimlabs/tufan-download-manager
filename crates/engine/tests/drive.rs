@@ -1,11 +1,11 @@
-//! Google Drive links (#34) against the lab's fake Drive (`mdm_labserver::drive`): Google's host
+//! Google Drive links (#34) against the lab's fake Drive (`tdm_labserver::drive`): Google's host
 //! names resolve to the lab server, which answers as Drive does, so every step runs as it would
 //! against Google, over plain http on the lab's port.
 
 use std::time::Duration;
 
-use mdm_engine::{Destination, Download, Error, Options, Outcome, Refusal, Request};
-use mdm_labserver::{Config, Faults, LabServer, LogEntry, content, drive};
+use tdm_engine::{Destination, Download, Error, Options, Outcome, Refusal, Request};
+use tdm_labserver::{Config, Faults, LabServer, LogEntry, content, drive};
 use reqwest::header::{COOKIE, HeaderMap, HeaderValue};
 use url::Url;
 
@@ -126,12 +126,12 @@ async fn every_link_form_downloads_the_file() {
     }
 }
 
-/// Drive's hosts are asked with a browser's agent (PR #67), every other site with MDM's automatic
+/// Drive's hosts are asked with a browser's agent (PR #67), every other site with TDM's automatic
 /// one (the default browser's, #668), and an agent handed over by the browser wins.
 #[tokio::test]
 async fn drive_is_asked_with_a_browsers_agent() {
-    let automatic = mdm_engine::agent::automatic();
-    use mdm_engine::sites::gdrive::USER_AGENT;
+    let automatic = tdm_engine::agent::automatic();
+    use tdm_engine::sites::gdrive::USER_AGENT;
     let s = server("").await;
     let id = drive::id("big", "2M", &["uuid"]);
     let url = link(&s, drive::HOSTS[0], "/file/d/ID/view", &id);
@@ -232,7 +232,7 @@ async fn the_look_gets_drives_name_and_size() {
         let id = drive::id(kind, &format!("{}K", size >> 10), &[]);
         for path in ["/file/d/ID/view", "/uc?id=ID", "/open?id=ID"] {
             let url = link(&s, drive::HOSTS[0], path, &id);
-            let info = mdm_engine::probe(url.clone(), HeaderMap::new(), &opts())
+            let info = tdm_engine::probe(url.clone(), HeaderMap::new(), &opts())
                 .await
                 .unwrap_or_else(|e| panic!("{url}: {e}"));
             assert_eq!(info.file_name, name, "{url}");
@@ -265,7 +265,7 @@ async fn a_quota_page_is_a_refusal_and_nothing_is_written() {
     // The look at what the ID is: a file, so the refusal stands.
     assert!(log.iter().any(|e| e.path == "/open"));
     // The look (probe) says the same.
-    let err = mdm_engine::probe(
+    let err = tdm_engine::probe(
         link(&s, drive::HOSTS[0], "/uc?id=ID", &id),
         HeaderMap::new(),
         &opts(),
@@ -433,8 +433,8 @@ async fn a_paused_drive_download_resumes() {
     tokio::time::sleep(Duration::from_millis(500)).await;
     dl.cancel();
     assert!(matches!(dl.wait().await, Err(Error::Cancelled)));
-    let state = mdm_engine::state::state_path(&file);
-    let saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let state = tdm_engine::state::state_path(&file);
+    let saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     assert_eq!(saved.final_url.host_str(), Some(drive::HOSTS[1]));
     assert!(saved.downloaded() > 0 && saved.downloaded() < 8 << 20);
     tokio::time::sleep(Duration::from_millis(500)).await;

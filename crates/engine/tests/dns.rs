@@ -8,8 +8,8 @@
 use std::net::{IpAddr, SocketAddr};
 use std::sync::{Arc, Mutex};
 
-use mdm_engine::{Destination, Dns, DnsChoice, Download, Options, Request};
-use mdm_labserver::{Config, LabServer, content};
+use tdm_engine::{Destination, Dns, DnsChoice, Download, Options, Request};
+use tdm_labserver::{Config, LabServer, content};
 
 /// The answer to DNS query `q`: an A record 127.0.0.1 for names ending in `.mdm.test` (others:
 /// NXDOMAIN), and the name asked; None for a query it can't read.
@@ -48,7 +48,7 @@ fn answer(q: &[u8]) -> Option<(Vec<u8>, String)> {
     Some((r, name))
 }
 
-/// A DNS server over TCP on 127.0.0.1 (MDM asks plain DNS over TCP only), answering as
+/// A DNS server over TCP on 127.0.0.1 (TDM asks plain DNS over TCP only), answering as
 /// [`answer`] and recording each name asked and the address each connection came from.
 async fn fake_dns() -> (SocketAddr, Arc<Mutex<Vec<String>>>, Arc<Mutex<Vec<IpAddr>>>) {
     use tokio::io::{AsyncReadExt, AsyncWriteExt};
@@ -156,8 +156,8 @@ async fn a_dead_dns_fails_the_download_and_names_itself() {
 /// Options → Proxy / Socks → Network adapter (#35), on this computer's loopback: 127.0.0.2
 /// stands for the adapter's address (Windows and Linux answer on all of 127/8; macOS doesn't,
 /// so the bound download runs elsewhere). `loopback_too` binds what is otherwise left unbound.
-fn bound(v4: [u8; 4]) -> mdm_engine::Route {
-    mdm_engine::Route::Bound(Arc::new(mdm_engine::net::Binding {
+fn bound(v4: [u8; 4]) -> tdm_engine::Route {
+    tdm_engine::Route::Bound(Arc::new(tdm_engine::net::Binding {
         label: "the test adapter".into(),
         name: "lo".into(),
         index: 1,
@@ -226,7 +226,7 @@ async fn a_down_adapter_sends_nothing() {
         format!("http://files.mdm.test:{port}/gen/64K/down.bin"),
     ] {
         let opts = Options {
-            route: mdm_engine::Route::Down {
+            route: tdm_engine::Route::Down {
                 label: "WireGuard".into(),
             },
             ..options(Dns::Plain(vec![dns]))

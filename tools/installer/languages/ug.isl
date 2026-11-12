@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Uyghur: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Uyghur: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -292,8 +292,8 @@ ShutdownBlockReasonUninstallingApp=%1 چىقىرىۋاتىدۇ.
 
 [CustomMessages]
 TaskBrowser=كۆ&رسەتكۈچ بىر گەۋدىلەشتۈرۈش (Chrome, Edge, Brave, Firefox) تەڭشەش
-TaskTorrents=Mister Download Manager ئارقىلىق .&torrent ھۆججەتلىرى ۋە ماگنىت ئۇلىنىشلىرىنى ئېچىڭ
-TaskStartup=Windows ئى&جرا بولغاندا Mister Download Manager نى قوزغىتىڭ
+TaskTorrents=Tufan Download Manager ئارقىلىق .&torrent ھۆججەتلىرى ۋە ماگنىت ئۇلىنىشلىرىنى ئېچىڭ
+TaskStartup=Windows ئى&جرا بولغاندا Tufan Download Manager نى قوزغىتىڭ
 TaskGroupOther=باشقىلار:
-Launch=Mister Download Manager نى قوزغىتىش
+Launch=Tufan Download Manager نى قوزغىتىش
 KeepData=چۈشۈرۈش تىزىملىكىڭىز ۋە تەڭشەكلىرىڭىزنىمۇ ئۆچۈرەمسىز؟%n%nچۈشۈرۈلگەن ھۆججەتلىرىڭىزگە ھېچقانداق تەسىر يەتمەيدۇ.

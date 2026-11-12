@@ -4,7 +4,7 @@ use std::sync::{Arc, Mutex};
 
 use anyhow::Context;
 use clap::Parser;
-use mdm_labserver::{Config, Faults, LabServer};
+use tdm_labserver::{Config, Faults, LabServer};
 
 /// HTTP Range test server with a request log and fault injection.
 #[derive(Parser)]
@@ -53,7 +53,7 @@ async fn main() -> anyhow::Result<()> {
         )),
         None => None,
     };
-    let on_log = Arc::new(move |e: &mdm_labserver::LogEntry| {
+    let on_log = Arc::new(move |e: &tdm_labserver::LogEntry| {
         let line = serde_json::to_string(e).expect("log entry serializes");
         println!("{line}");
         if let Some(f) = &file {
@@ -74,7 +74,7 @@ async fn main() -> anyhow::Result<()> {
     );
     let _ftp = match args.ftp {
         Some(bind) => {
-            use mdm_labserver::ftp::{FtpConfig, FtpServer, FtpTls};
+            use tdm_labserver::ftp::{FtpConfig, FtpServer, FtpTls};
             let tls = match args.ftp_tls.as_deref() {
                 None => FtpTls::None,
                 Some("explicit") => FtpTls::Explicit,
@@ -90,7 +90,7 @@ async fn main() -> anyhow::Result<()> {
                 None => None,
             };
             let rate = match args.ftp_rate.as_deref() {
-                Some(r) => Some(mdm_labserver::content::parse_size(r).context("--ftp-rate")?),
+                Some(r) => Some(tdm_labserver::content::parse_size(r).context("--ftp-rate")?),
                 None => None,
             };
             let ftp = FtpServer::start(

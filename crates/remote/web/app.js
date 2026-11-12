@@ -1,4 +1,4 @@
-// Mister Download Manager's remote control page (#141). Served by MDM itself; no other site is
+// Tufan Download Manager's remote control page (#141). Served by TDM itself; no other site is
 // reached. Every text shown goes through T() (the app's translations, /api/texts): the English
 // texts here are the catalog's keys (crates/app/src/remote.rs lists them for the catalog).
 'use strict';
@@ -14,7 +14,7 @@ let failures = 0;
 let chosenFile = null;
 const rows = new Map();
 
-try { token = localStorage.getItem('mdm-token'); } catch (e) { token = null; }
+try { token = localStorage.getItem('tdm-token'); } catch (e) { token = null; }
 
 function T(s) { return TX[s] || s; }
 function F(s, args) { return T(s).replace(/\{(\w+)\}/g, (m, k) => (k in args ? String(args[k]) : m)); }
@@ -95,7 +95,7 @@ function showPair() {
   $('summary').textContent = '';
   $('pair').hidden = false;
   if (!$('name').value) $('name').value = guessName();
-  // A code from the QR code MDM shows (#pair=12345678): filled in, never sent anywhere else.
+  // A code from the QR code TDM shows (#pair=12345678): filled in, never sent anywhere else.
   const m = /^#pair=(\d{8})$/.exec(location.hash);
   if (m) { $('code').value = m[1].slice(0, 4) + ' ' + m[1].slice(4); history.replaceState(null, '', location.pathname); }
   ($('code').value ? $('name') : $('code')).focus();
@@ -103,7 +103,7 @@ function showPair() {
 
 function signedOut() {
   token = null;
-  try { localStorage.removeItem('mdm-token'); } catch (e) { /* nothing kept */ }
+  try { localStorage.removeItem('tdm-token'); } catch (e) { /* nothing kept */ }
   showPair();
 }
 
@@ -114,15 +114,15 @@ $('pair-form').addEventListener('submit', async (ev) => {
   try {
     const j = await api('pair', { json: { code: $('code').value, name: $('name').value } });
     token = j.token;
-    try { localStorage.setItem('mdm-token', token); } catch (e) { /* this visit only */ }
+    try { localStorage.setItem('tdm-token', token); } catch (e) { /* this visit only */ }
     $('code').value = '';
     showMain();
   } catch (e) {
     if (e.code === 'wrong-code' && e.body && e.body.left > 0) err.textContent = F('Wrong code. Tries left: {n}', { n: e.body.left });
-    else if (e.code === 'wrong-code') err.textContent = T('Wrong code. Show a new code in MDM and try again.');
-    else if (e.code === 'no-code') err.textContent = T('MDM shows no code now. Click Pair a device there first.');
+    else if (e.code === 'wrong-code') err.textContent = T('Wrong code. Show a new code in TDM and try again.');
+    else if (e.code === 'no-code') err.textContent = T('TDM shows no code now. Click Pair a device there first.');
     else if (e.code === 'too-soon') err.textContent = T('Wait a moment, then try again.');
-    else err.textContent = T('MDM does not answer. Check that it is running and on the same network.');
+    else err.textContent = T('TDM does not answer. Check that it is running and on the same network.');
   }
 });
 
@@ -153,7 +153,7 @@ async function refresh() {
   } catch (e) {
     if (e.code === 'not-paired') return;
     failures++;
-    $('offline').textContent = T('MDM does not answer. Trying again...');
+    $('offline').textContent = T('TDM does not answer. Trying again...');
     $('offline').hidden = false;
   }
   schedule();
@@ -256,7 +256,7 @@ async function toggle(id) {
   if (!x) return;
   try {
     await act(x.status === 'Downloading' ? 'pause' : 'start', [x.id]);
-  } catch (e) { toast(T('MDM could not do it.'), true); }
+  } catch (e) { toast(T('TDM could not do it.'), true); }
   refresh();
 }
 
@@ -277,13 +277,13 @@ $('confirm').addEventListener('close', async () => {
   try {
     if (x.status === 'Downloading') await act('pause', [x.id]);
     const j = await act($('confirm-file').checked ? 'delete' : 'remove', [x.id]);
-    if (j.skipped && j.skipped.length) toast(T('MDM could not do it.'), true);
-  } catch (e) { toast(T('MDM could not do it.'), true); }
+    if (j.skipped && j.skipped.length) toast(T('TDM could not do it.'), true);
+  } catch (e) { toast(T('TDM could not do it.'), true); }
   refresh();
 });
 
 async function queueAction(name, start) {
-  try { await api('queue', { json: { name, start } }); } catch (e) { toast(T('MDM could not do it.'), true); }
+  try { await api('queue', { json: { name, start } }); } catch (e) { toast(T('TDM could not do it.'), true); }
   refresh();
 }
 
@@ -332,15 +332,15 @@ $('add').addEventListener('submit', async (ev) => {
     } else {
       j = await api('add', { json: { url, category, queue, start } });
     }
-    toast(j && j.pending ? T('Added. MDM is reading the torrent: it joins the list in a moment.') : T('Added.'));
+    toast(j && j.pending ? T('Added. TDM is reading the torrent: it joins the list in a moment.') : T('Added.'));
     $('url').value = '';
     $('file').value = '';
     chosenFile = null;
     $('file-name').hidden = true;
   } catch (e) {
-    if (e.code === 'unsupported') toast(T('MDM cannot download this address.'), true);
+    if (e.code === 'unsupported') toast(T('TDM cannot download this address.'), true);
     else if (e.code === 'not-a-torrent') toast(T('This is not a torrent file.'), true);
-    else if (e.code !== 'not-paired') toast(T('MDM could not add it.'), true);
+    else if (e.code !== 'not-paired') toast(T('TDM could not add it.'), true);
   } finally {
     button.disabled = false;
   }

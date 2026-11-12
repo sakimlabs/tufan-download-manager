@@ -3,7 +3,7 @@
 //! event log. Every engine error is named here, so a new one can't reach the list untranslated.
 //! Data inside a message (status codes, paths, sizes) goes in as isolates (crate::i18n::fmt).
 
-use mdm_engine::{Error, NetKind, Refusal};
+use tdm_engine::{Error, NetKind, Refusal};
 
 use crate::i18n::{fmt, ltr, t};
 
@@ -113,8 +113,8 @@ pub fn describe(e: &Error) -> String {
 
 /// A site's refusal to give the file (Google Drive, #34), with what to do about it.
 /// A debrid service's refusal (#44), `{service}` its name ("Real-Debrid").
-pub fn service(service: &str, fault: &mdm_engine::ServiceFault) -> String {
-    use mdm_engine::ServiceFault as F;
+pub fn service(service: &str, fault: &tdm_engine::ServiceFault) -> String {
+    use tdm_engine::ServiceFault as F;
     let text = match fault {
         // i18n: a download's error through a debrid account (Real-Debrid…): its sign-in no longer works
         F::SignIn => t("{service}: sign in again (Options → Accounts)"),
@@ -124,15 +124,15 @@ pub fn service(service: &str, fault: &mdm_engine::ServiceFault) -> String {
         F::AccountBlocked => t("{service}: the account is locked or not activated"),
         // i18n: a debrid service's error: the account has no premium (or it ended)
         F::NotPremium => t("{service}: this needs a premium account"),
-        // i18n: a debrid service's error: it can't reach the file's host now; MDM retries later
+        // i18n: a debrid service's error: it can't reach the file's host now; TDM retries later
         F::HostDown => {
-            t("{service} can't reach this file host right now; MDM will try again later")
+            t("{service} can't reach this file host right now; TDM will try again later")
         }
         // i18n: a debrid service's error: the account's limit (traffic) for this host is used up
         F::LimitReached => t("{service}: your limit for this file host is used up for now"),
         // i18n: a debrid service's error: too many downloads at once through the account
         F::TooManyActive => {
-            t("{service}: too many downloads at once through your account; MDM will try again")
+            t("{service}: too many downloads at once through your account; TDM will try again")
         }
         // i18n: a debrid service's error: it refuses this computer's address (a VPN or a server address)
         F::IpRefused => t("{service} refuses this connection (a VPN or server address?)"),
@@ -142,8 +142,8 @@ pub fn service(service: &str, fault: &mdm_engine::ServiceFault) -> String {
         F::FileRefused => t("{service} won't give this file"),
         // i18n: a debrid service's error: the file has a password
         F::PasswordNeeded => t("{service}: this file is password-protected"),
-        // i18n: a debrid service's error: too many requests; MDM waits and retries
-        F::TooManyRequests(_) => t("{service} asks to slow down; MDM will try again in a minute"),
+        // i18n: a debrid service's error: too many requests; TDM waits and retries
+        F::TooManyRequests(_) => t("{service} asks to slow down; TDM will try again in a minute"),
         // i18n: a debrid service's error: it isn't answering
         F::ServiceDown => t("{service} is not responding; try again later"),
         // i18n: a debrid service's error: it can't get the torrent sent to it (nobody shares it any more, or its magnet link can't be read)
@@ -204,8 +204,8 @@ fn refusal(r: &Refusal) -> String {
 
 /// Why a torrent couldn't be listed or added, in the interface language. librqbit's own errors
 /// (`Engine`) come in its English.
-pub fn torrent(e: &mdm_torrent::TorrentError) -> String {
-    use mdm_torrent::TorrentError as E;
+pub fn torrent(e: &tdm_torrent::TorrentError) -> String {
+    use tdm_torrent::TorrentError as E;
     match e {
         E::NotATorrent => t("this is not a magnet link or a .torrent file").to_owned(),
         E::MetadataTimeout => t("no peer sent the torrent's file list in time").to_owned(),
@@ -220,8 +220,8 @@ pub fn torrent(e: &mdm_torrent::TorrentError) -> String {
 }
 
 /// Why the chosen network adapter (#35) didn't let a connection open, in the interface language.
-pub fn adapter(e: &mdm_engine::NetError) -> String {
-    use mdm_engine::NetError as N;
+pub fn adapter(e: &tdm_engine::NetError) -> String {
+    use tdm_engine::NetError as N;
     match e {
         N::Down { label } => fmt(
             // i18n: an error: the network adapter chosen in Options (a VPN's, usually) is off or gone; {adapter} its name
@@ -250,10 +250,10 @@ pub fn adapter(e: &mdm_engine::NetError) -> String {
     }
 }
 
-/// Why yt-dlp or ffmpeg couldn't be installed, in the interface language (mdm-tools words its
+/// Why yt-dlp or ffmpeg couldn't be installed, in the interface language (tdm-tools words its
 /// errors in English, for the command line). File and build names stay as they are.
-pub fn tools(e: &mdm_tools::Error) -> String {
-    use mdm_tools::Error as E;
+pub fn tools(e: &tdm_tools::Error) -> String {
+    use tdm_tools::Error as E;
     match e {
         E::Http(e) => http(e),
         // i18n: error installing yt-dlp or ffmpeg; {error} = the system's reason
@@ -281,8 +281,8 @@ pub fn tools(e: &mdm_tools::Error) -> String {
             version,
             oldest,
         } => fmt(
-            // i18n: error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
-            t("{name} {version} is too old: MDM needs {oldest} or newer"),
+            // i18n: error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
+            t("{name} {version} is too old: TDM needs {oldest} or newer"),
             &[("name", name), ("version", version), ("oldest", oldest)],
         ),
     }

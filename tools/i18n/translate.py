@@ -12,7 +12,7 @@ line is a person's work: it is never sent again (not by --redo, not when a check
 flag is printed for the person to decide), and tools/i18n/reviewed_guard.py fails CI when a pull
 request changes or drops one.
 
-The key: OPENROUTER_API_KEY, else %USERPROFILE%\\.mdm-dev\\openrouter.key (never in the repo).
+The key: OPENROUTER_API_KEY, else %USERPROFILE%\\.tdm-dev\\openrouter.key (never in the repo).
 Requests run in parallel (--workers); a 429 or 5xx backs off and retries. Spending stops at
 --budget dollars, counted from OpenRouter's own per-request cost.
 
@@ -68,7 +68,7 @@ BATCH = 40
 REASONING = {"enabled": False}
 
 # Names that stay as they are in every language.
-KEEP = ["Mister Download Manager", "MDM", "IDM", "Internet Download Manager", "Windows",
+KEEP = ["Tufan Download Manager", "TDM", "IDM", "Internet Download Manager", "Windows",
         "Chrome", "Edge", "Firefox", "Brave", "Opera", "yt-dlp", "ffmpeg", "BitTorrent",
         "GitHub", "librqbit", "URL", "HTTP", "HTTPS", "FTP", "SOCKS", "MD5", "SHA-1", "SHA-256",
         "DNS", "TLS", "TCP", "UDP", "IP", "Cloudflare", "Google", "Quad9", "AdGuard", "NextDNS",
@@ -95,7 +95,7 @@ JOINERS = "\u200c\u200d"
 PLACEHOLDER = re.compile(r"\{[^{}]*\}")
 ACCESS = re.compile(r"&(?!&)(.)")
 
-RULES = """You translate the user interface of Mister Download Manager, a Windows desktop download
+RULES = """You translate the user interface of Tufan Download Manager, a Windows desktop download
 manager, from English into {english} ({native}, language code {code}). Write exactly what a
 professional Microsoft localizer would ship in Windows 11 in this language.
 
@@ -158,7 +158,7 @@ Rules:
 
 # The second pass: a native reviewer reads every draft beside the English (--review).
 REVIEW = """You are a native {english} ({native}) software localizer reviewing machine translations
-of Mister Download Manager, a Windows download manager, before they ship. For each row you get the
+of Tufan Download Manager, a Windows download manager, before they ship. For each row you get the
 English, where it is used ("context", "notes"), this language's settled "terms", and the "draft".
 "reviewed" (when present) are rows a native speaker of this language already reviewed: they set
 the standard.
@@ -435,11 +435,11 @@ class Spend:
 def api_key():
     key = os.environ.get("OPENROUTER_API_KEY")
     if not key:
-        path = Path.home() / ".mdm-dev" / "openrouter.key"
+        path = Path.home() / ".tdm-dev" / "openrouter.key"
         if path.exists():
             key = path.read_text(encoding="utf-8").strip()
     if not key:
-        sys.exit("no OpenRouter key: set OPENROUTER_API_KEY or write %USERPROFILE%\\.mdm-dev\\openrouter.key")
+        sys.exit("no OpenRouter key: set OPENROUTER_API_KEY or write %USERPROFILE%\\.tdm-dev\\openrouter.key")
     return key
 
 
@@ -458,7 +458,7 @@ def call(key, model, system, items, spend, max_tokens=8192, reasoning=None):
     for attempt in range(8):
         req = urllib.request.Request(URL, data=body, headers={
             "Authorization": f"Bearer {key}", "Content-Type": "application/json",
-            "X-Title": "Mister Download Manager i18n"})
+            "X-Title": "Tufan Download Manager i18n"})
         try:
             with urllib.request.urlopen(req, timeout=180) as r:
                 data = json.loads(r.read().decode("utf-8"))
@@ -525,7 +525,7 @@ def glossary_terms():
 
 # The product name goes to the model as a placeholder and comes back as the name: some models
 # transliterate it however firmly rule 5 asks them not to.
-APP = "Mister Download Manager"
+APP = "Tufan Download Manager"
 
 
 def hide(s):
@@ -630,7 +630,7 @@ def review_drafts(key, review_model, lang, forms, rows, drafts, spend, pairs):
 
 def write_catalog(lang, rows, done, machine):
     lines = [
-        f"# Mister Download Manager in {lang['english']} ({lang['native']}): tools/i18n/translate.py",
+        f"# Tufan Download Manager in {lang['english']} ({lang['native']}): tools/i18n/translate.py",
         "# writes the rows marked '#, machine'; a native speaker deletes that line after checking.",
         "# context\tsource\ttranslation (craft-i18n format, rows as in en.tsv)",
         f"@id\tlanguage.name\t{esc(lang['native'])}",

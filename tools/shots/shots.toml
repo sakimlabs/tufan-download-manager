@@ -43,7 +43,7 @@ page = "getting-started.md"
 under = "The video helpers"
 take = "helpers"
 ring = ["Yes, download them (recommended)"]
-alt = "MDM offers yt-dlp and ffmpeg on its first start, with Yes, download them (recommended) and Not now"
+alt = "TDM offers yt-dlp and ffmpeg on its first start, with Yes, download them (recommended) and Not now"
 caption = "Yes downloads both helpers in the background, once."
 
 [[shot]]
@@ -65,7 +65,7 @@ take = "@menu:menu:3"
 crop = [145, 28, 230, 300]
 marks = [{ at = "Dark Mode support", side = "right" }, { at = "Always dark", side = "right" }]
 alt = "The View menu open, with Dark Mode support and Always dark"
-caption = "1 Dark Mode support follows the system; 2 Always dark keeps MDM dark."
+caption = "1 Dark Mode support follows the system; 2 Always dark keeps TDM dark."
 
 [[shot]]
 id = "view-theme"
@@ -156,8 +156,8 @@ id = "browser-offer"
 page = "browser-integration.md"
 under = "Set it up"
 take = "extension"
-alt = "Add Mister Download Manager to your browser: each browser found, with a button to its store page"
-caption = "MDM's own window opens each browser's store page for you."
+alt = "Add Tufan Download Manager to your browser: each browser found, with a button to its store page"
+caption = "TDM's own window opens each browser's store page for you."
 
 [[shot]]
 id = "catch-file-info"
@@ -165,8 +165,8 @@ page = "browser-integration.md"
 under = "What it takes"
 take = "@download:gen/250M/project-files-2026.zip"
 ring = ["Start Download"]
-alt = "Download File Info in MDM for a file clicked in the browser"
-caption = "Click a download link in the browser: Download File Info opens in MDM."
+alt = "Download File Info in TDM for a file clicked in the browser"
+caption = "Click a download link in the browser: Download File Info opens in TDM."
 
 [[shot]]
 id = "catch-progress"
@@ -192,7 +192,7 @@ under = "What it takes"
 take = "options:general"
 crop = [18, 172, 380, 208]
 marks = ["Use advanced browser integration", "List:Capture downloads from the following browsers"]
-alt = "Options, General: Use advanced browser integration and the list of browsers MDM takes downloads from"
+alt = "Options, General: Use advanced browser integration and the list of browsers TDM takes downloads from"
 caption = "1 must be on, and 2 your browser ticked."
 
 [[shot]]
@@ -300,7 +300,7 @@ id = "rss-feeds"
 page = "torrents.md"
 under = "RSS feeds"
 take = "rss"
-alt = "RSS feeds: the feeds MDM follows and their items"
+alt = "RSS feeds: the feeds TDM follows and their items"
 caption = "RSS feeds, and the rules that pick what to download."
 
 [[shot]]
@@ -392,7 +392,7 @@ id = "about-updates"
 page = "troubleshooting.md"
 under = "Updates"
 take = "about"
-alt = "About Mister Download Manager: its version, licence and links"
+alt = "About Tufan Download Manager: its version, licence and links"
 caption = "Help → About: the version you have."
 
 # ---- Options -------------------------------------------------------------------------------------
@@ -402,15 +402,15 @@ id = "options-general"
 page = "options.md"
 under = "General"
 take = "options:general"
-alt = "Options on its General page: start with the system, the clipboard, browser integration and the browsers MDM takes downloads from"
-caption = "General: how MDM starts, and what it takes from the clipboard and the browsers."
+alt = "Options on its General page: start with the system, the clipboard, browser integration and the browsers TDM takes downloads from"
+caption = "General: how TDM starts, and what it takes from the clipboard and the browsers."
 
 [[shot]]
 id = "options-file-types"
 page = "options.md"
 under = "File types"
 take = "options:types"
-alt = "Options on its File types page: the file types the browser hands to MDM and the sites it leaves alone"
+alt = "Options on its File types page: the file types the browser hands to TDM and the sites it leaves alone"
 caption = "File types: what the browser hands over, and the sites left alone."
 
 [[shot]]
@@ -525,12 +525,12 @@ caption = "Done: Open the file, or Open folder."
 [[shot]]
 id = "catch-file-types"
 page = "guide-catch-browser-downloads.md"
-under = "Choose what MDM takes"
+under = "Choose what TDM takes"
 take = "options:types"
 # The two lists have no accessible names: their rectangles.
 marks = [{ at = [22, 135, 378, 57], side = "right" }, { at = [22, 253, 378, 48], side = "right" }]
-alt = "Options, File types: the file types MDM takes from the browser, and the sites it leaves alone"
-caption = "1 the file types MDM takes, 2 the sites it leaves to the browser."
+alt = "Options, File types: the file types TDM takes from the browser, and the sites it leaves alone"
+caption = "1 the file types TDM takes, 2 the sites it leaves to the browser."
 
 [[shot]]
 id = "overnight-later"
@@ -560,15 +560,15 @@ take = "scheduler"
 crop = [218, 316, 420, 122]
 ring = ["CheckBox:Turn off computer when done"]
 alt = "The Scheduler's choices for when the queue is done, Turn off computer when done among them"
-caption = "When the queue is done: open a file, quit MDM, or turn the computer off."
+caption = "When the queue is done: open a file, quit TDM, or turn the computer off."
 
 [[shot]]
 id = "speed-limiter"
 page = "guide-keep-speed-for-everything-else.md"
-under = "Cap MDM as a whole (recommended)"
+under = "Cap TDM as a whole (recommended)"
 take = "speedlimit"
 alt = "Speed Limiter settings: the maximum speed for all downloads"
-caption = "Downloads → Speed Limiter → Settings...: one speed for all of MDM."
+caption = "Downloads → Speed Limiter → Settings...: one speed for all of TDM."
 
 [[shot]]
 id = "usb-save-to"
@@ -603,7 +603,7 @@ page = "guide-video-from-page.md"
 under = "Steps"
 take = "video-subs"
 alt = "The video window listing a video's qualities with their sizes"
-caption = "MDM lists the qualities: pick one."
+caption = "TDM lists the qualities: pick one."
 
 [[shot]]
 id = "vfp-progress"
@@ -616,14 +616,14 @@ caption = "It downloads like any other file."
 [[shot]]
 id = "test-integration"
 page = "browser-integration.md"
-under = "When MDM isn't running"
+under = "When TDM isn't running"
 take = "options:general"
 crop = [18, 172, 380, 208]
 ring = ["Test browser integration..."]
 alt = "Options, General with Test browser integration..."
-caption = "Test browser integration... says whether the browser reaches MDM."
+caption = "Test browser integration... says whether the browser reaches TDM."
 
-# ---- The website (misterdownloadmanager.com) ------------------------------------------------------
+# ---- The website (tufan-download-manager.com) ------------------------------------------------------
 # Pictures the site's own pages show (tools/website/build.py), not a help page: `page` names the
 # website file that lists them, where `make.py check` looks for "images/help/<id>.webp".
 

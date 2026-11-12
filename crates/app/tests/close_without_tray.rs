@@ -2,10 +2,10 @@
 //! off quits; on hides; on with no visible icon minimizes to the taskbar instead (downloads
 //! continue, and the window stays reachable); with no tray at all it quits, as ever. The real app,
 //! off the screens, with data folders of its own; a tray object whose visibility
-//! MDM_TEST_TRAY_VISIBLE decides, or no tray object; and a real icon, the shell asked for real,
+//! TDM_TEST_TRAY_VISIBLE decides, or no tray object; and a real icon, the shell asked for real,
 //! hides the window even when the shell gives it no place (an icon behind ^, #545). Windows only
 //! (WM_CLOSE), so it runs on request:
-//! `cargo test -p mdm-app --test close_without_tray -- --ignored`.
+//! `cargo test -p tdm-app --test close_without_tray -- --ignored`.
 
 #![cfg(windows)]
 
@@ -13,9 +13,9 @@ use std::path::{Path, PathBuf};
 use std::process::{Child, Command, ExitStatus};
 use std::time::{Duration, Instant};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 /// The main window's title (main.rs MAIN_TITLE).
-const MAIN: &str = concat!("Mister Download Manager ", env!("CARGO_PKG_VERSION"));
+const MAIN: &str = concat!("Tufan Download Manager ", env!("CARGO_PKG_VERSION"));
 
 /// The app, ended and reaped however the test leaves it (a failed assert too).
 struct Process(Child);
@@ -85,17 +85,17 @@ fn wait_exit(app: &mut Child, wait: Duration) -> ExitStatus {
 }
 
 /// The app's environment: off the screens, its own data folder, its tray icon, and whether the
-/// test says that icon is visible (MDM_TEST_TRAY_VISIBLE).
+/// test says that icon is visible (TDM_TEST_TRAY_VISIBLE).
 fn env<'a>(cmd: &'a mut Command, data: &Path, visible: bool) -> &'a mut Command {
-    cmd.env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_TEST_TRAY", "1")
-        .env("MDM_TEST_TRAY_VISIBLE", if visible { "1" } else { "0" })
+    cmd.env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_TEST_TRAY", "1")
+        .env("TDM_TEST_TRAY_VISIBLE", if visible { "1" } else { "0" })
 }
 
 /// The app's environment with no tray object at all (off-screen copies have none unless asked).
 fn env_no_tray<'a>(cmd: &'a mut Command, data: &Path) -> &'a mut Command {
-    cmd.env("MDM_DATA_DIR", data).env("MDM_OFFSCREEN", "1")
+    cmd.env("TDM_DATA_DIR", data).env("TDM_OFFSCREEN", "1")
 }
 
 /// A data folder whose first start asks nothing and checks nothing, with the close-to-tray
@@ -228,13 +228,13 @@ fn closing_follows_the_option_and_the_tray_icon() {
 }
 
 /// The app's environment with its real tray icon, the shell asked for real; `placed` false says
-/// the shell gives the icon no place (MDM_TEST_TRAY_RECT=0), as the reporters' did for an icon
+/// the shell gives the icon no place (TDM_TEST_TRAY_RECT=0), as the reporters' did for an icon
 /// behind ^ (#545, #534, #527).
 fn env_real<'a>(cmd: &'a mut Command, data: &Path, placed: bool) -> &'a mut Command {
-    cmd.env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_TEST_TRAY", "1")
-        .env("MDM_TEST_TRAY_RECT", if placed { "1" } else { "0" })
+    cmd.env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_TEST_TRAY", "1")
+        .env("TDM_TEST_TRAY_RECT", if placed { "1" } else { "0" })
 }
 
 /// Closing with a real icon the shell holds: hidden there, whether or not the shell says where

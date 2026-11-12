@@ -988,7 +988,7 @@ pub fn show_popup(ctx: &egui::Context, vid: egui::ViewportId) {
 /// work area too (it was taken in pixels, which differ at a display or interface scale other
 /// than 100 %, #262).
 fn place_menu(ctx: &egui::Context, at: Pos2, size: egui::Vec2, parent: Option<Rect>) -> Pos2 {
-    // An off-screen test copy (MDM_OFFSCREEN) keeps its menus beside its window, off the
+    // An off-screen test copy (TDM_OFFSCREEN) keeps its menus beside its window, off the
     // screens too (scale::work_area has none there): the nearest monitor's work area brought
     // them onto the screen, over the user's work.
     if let Some(area) = crate::scale::work_area(ctx, at) {
@@ -1027,13 +1027,13 @@ fn place_menu(ctx: &egui::Context, at: Pos2, size: egui::Vec2, parent: Option<Re
 }
 
 /// Whether the menu bar's menus share one window per level ([`menu_viewport`]): on X11 and
-/// XWayland, where MDM places its menus itself.
+/// XWayland, where TDM places its menus itself.
 fn bar_shares_window() -> bool {
     #[cfg(target_os = "linux")]
     {
         !crate::unix::on_wayland()
     }
-    // Windows and macOS: one window per menu, as before. Native Wayland (MDM_WAYLAND=1) too: a
+    // Windows and macOS: one window per menu, as before. Native Wayland (TDM_WAYLAND=1) too: a
     // program can't move its windows there (winit 0.30 has no popup windows on Wayland), so a
     // shared window would stay where the first menu opened.
     #[cfg(not(target_os = "linux"))]
@@ -1116,7 +1116,7 @@ fn popup_level<C: Clone>(
         // Where the submenu is, for its menu's next pass (`heading_into`, #579).
         ctx.data_mut(|d| d.insert_temp(sub_key.with("sub-rect"), screen));
     }
-    let title = format!("misterdownloadmanager menu {depth}"); // not translated: an id
+    let title = format!("tufan-download-manager menu {depth}"); // not translated: an id
     let builder = popup_viewport(&title)
         .with_active(false)
         .with_position(screen.min)

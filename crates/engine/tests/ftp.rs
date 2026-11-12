@@ -3,9 +3,9 @@
 
 use std::time::Duration;
 
-use mdm_engine::{Destination, Download, Error, Options, Request};
-use mdm_labserver::content;
-use mdm_labserver::ftp::{FtpConfig, FtpServer, FtpTls};
+use tdm_engine::{Destination, Download, Error, Options, Request};
+use tdm_labserver::content;
+use tdm_labserver::ftp::{FtpConfig, FtpServer, FtpTls};
 use reqwest::header::{AUTHORIZATION, HeaderMap};
 
 async fn server(config: FtpConfig) -> FtpServer {
@@ -212,7 +212,7 @@ async fn paused(s: &FtpServer, path: &str, dir: &std::path::Path) -> std::path::
     dl.cancel();
     let r = dl.wait().await;
     assert!(matches!(r, Err(Error::Cancelled)), "{r:?}");
-    mdm_engine::state::state_path(&file)
+    tdm_engine::state::state_path(&file)
 }
 
 #[tokio::test]
@@ -224,7 +224,7 @@ async fn pause_and_resume_continues_where_it_stopped() {
     .await;
     let dir = tempfile::tempdir().unwrap();
     let state = paused(&s, "/gen/4M/s9/r.bin", dir.path()).await;
-    let saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     assert!(saved.downloaded() > 0 && saved.downloaded() < 4 << 20);
     assert!(saved.validators.last_modified.is_some(), "MDTM kept");
     let out = Download::resume(state.clone(), HeaderMap::new(), opts(&s))
@@ -286,7 +286,7 @@ async fn the_password_is_not_written_to_the_resume_state() {
         tokio::time::sleep(Duration::from_millis(50)).await;
         let snap = dl.snapshot();
         if let Some(f) = snap.file.filter(|_| snap.downloaded > 0) {
-            break mdm_engine::state::state_path(&f);
+            break tdm_engine::state::state_path(&f);
         }
     };
     tokio::time::sleep(Duration::from_millis(300)).await;
@@ -357,7 +357,7 @@ async fn an_untrusted_certificate_is_refused() {
         matches!(
             err,
             Error::Net {
-                kind: mdm_engine::NetKind::Tls,
+                kind: tdm_engine::NetKind::Tls,
                 ..
             }
         ),
@@ -368,7 +368,7 @@ async fn an_untrusted_certificate_is_refused() {
 #[tokio::test]
 async fn probe_tells_size_and_name() {
     let s = server(FtpConfig::default()).await;
-    let info = mdm_engine::probe(
+    let info = tdm_engine::probe(
         s.url("/gen/300K/s1/name.iso").parse().unwrap(),
         HeaderMap::new(),
         &opts(&s),

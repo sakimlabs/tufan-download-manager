@@ -4,12 +4,12 @@
 use std::process::{Command, Stdio};
 use std::time::{Duration, Instant};
 
-use mdm_engine::state::{ResumeState, state_path};
-use mdm_labserver::{Config, Faults, LabServer, content};
+use tdm_engine::state::{ResumeState, state_path};
+use tdm_labserver::{Config, Faults, LabServer, content};
 
-/// The app's program, which runs misterdownloadmanager-cli's commands when its launcher
+/// The app's program, which runs tufan-download-manager-cli's commands when its launcher
 /// (crates/cli) starts it with `--cli`.
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 #[tokio::test(flavor = "multi_thread")]
 async fn killed_download_resumes_correctly() {
@@ -24,7 +24,7 @@ async fn killed_download_resumes_correctly() {
     let size: u64 = 24 << 20;
 
     let mut child = Command::new(APP)
-        .arg(mdm_cli::FLAG)
+        .arg(tdm_cli::FLAG)
         .args(["get", &s.url("/gen/24M?seed=11"), "-o"])
         .arg(&dest)
         .stdout(Stdio::null())
@@ -52,7 +52,7 @@ async fn killed_download_resumes_correctly() {
     assert!(!dest.exists(), "not complete yet");
 
     let status = Command::new(APP)
-        .arg(mdm_cli::FLAG)
+        .arg(tdm_cli::FLAG)
         .arg("resume")
         .arg(&state)
         .stdout(Stdio::null())

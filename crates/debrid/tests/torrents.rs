@@ -1,5 +1,5 @@
 //! Torrents through each service (#44), end to end against the lab server's fakes: a magnet link
-//! sent to the account, its files downloaded over HTTP by MDM's engine into the torrent's folder,
+//! sent to the account, its files downloaded over HTTP by TDM's engine into the torrent's folder,
 //! byte for byte, and the torrent removed from the account's list afterwards. Nothing connects to
 //! a peer. Also: a torrent that dies at the service, and one whose file names climb out of the
 //! folder (refused, nothing written outside it).
@@ -8,11 +8,11 @@ use std::path::Path;
 use std::sync::Arc;
 use std::time::Duration;
 
-use mdm_debrid::torrents::{Order, RemoteTorrent};
-use mdm_debrid::{Account, Credential, Debrid, Http, ServiceKind, Services};
-use mdm_engine::download::State;
-use mdm_engine::{Options, ServiceFault};
-use mdm_labserver::{Config, LabServer, content, debrid::seed};
+use tdm_debrid::torrents::{Order, RemoteTorrent};
+use tdm_debrid::{Account, Credential, Debrid, Http, ServiceKind, Services};
+use tdm_engine::download::State;
+use tdm_engine::{Options, ServiceFault};
+use tdm_labserver::{Config, LabServer, content, debrid::seed};
 use url::Url;
 
 async fn setup(service: ServiceKind) -> (LabServer, Debrid) {
@@ -34,7 +34,7 @@ async fn setup(service: ServiceKind) -> (LabServer, Debrid) {
     (lab, d)
 }
 
-async fn run(d: &Debrid, hash: &str, folder: &Path) -> (RemoteTorrent, mdm_engine::Snapshot) {
+async fn run(d: &Debrid, hash: &str, folder: &Path) -> (RemoteTorrent, tdm_engine::Snapshot) {
     let order = Order {
         account: d.torrent_account().expect("an account").0,
         magnet: format!("magnet:?xt=urn:btih:{hash}&dn=Lab%20Show")

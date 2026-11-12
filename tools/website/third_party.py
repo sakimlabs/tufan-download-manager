@@ -9,10 +9,10 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OURS = {"mdm-app", "mdm-cli", "mdm-nmhost", "mdm-engine", "mdm-ipc", "mdm-tools", "mdm-torrent"}
+OURS = {"tdm-app", "tdm-cli", "tdm-nmhost", "tdm-engine", "tdm-ipc", "tdm-tools", "tdm-torrent"}
 
 rows = set()
-for package in ("mdm-app", "mdm-cli", "mdm-nmhost"):
+for package in ("tdm-app", "tdm-cli", "tdm-nmhost"):
     out = subprocess.run(
         ["cargo", "tree", "-p", package, "-e", "normal,build", "--prefix", "none", "--target", "all",
          "-f", "{p}\t{l}\t{r}"],

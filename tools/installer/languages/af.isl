@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Afrikaans: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Afrikaans: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Deïnstalleer %1.
 
 [CustomMessages]
 TaskBrowser=Stel &blaaierintegrasie op (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Maak .&torrent-lêers en magneetskakels oop met Mister Download Manager
-TaskStartup=Begin Mister Download Manager wanneer &Windows begin
+TaskTorrents=Maak .&torrent-lêers en magneetskakels oop met Tufan Download Manager
+TaskStartup=Begin Tufan Download Manager wanneer &Windows begin
 TaskGroupOther=Ander:
-Launch=Begin Mister Download Manager
+Launch=Begin Tufan Download Manager
 KeepData=Vee ook jou aflaailys en instellings uit?%n%nJou afgelaaide lêers word in elk geval nie aangeraak nie.

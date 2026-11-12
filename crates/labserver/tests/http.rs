@@ -2,7 +2,7 @@
 
 use std::time::Duration;
 
-use mdm_labserver::{Config, Faults, LabServer, LogEntry, content};
+use tdm_labserver::{Config, Faults, LabServer, LogEntry, content};
 
 async fn server(faults: &str) -> LabServer {
     LabServer::start(Config {
@@ -173,7 +173,7 @@ async fn a_refusal_shows_how_far_the_slots_responses_were_sent() {
         "{response:?}, {got} bytes received"
     );
     assert!(
-        r.held.contains(&mdm_labserver::Held::default()),
+        r.held.contains(&tdm_labserver::Held::default()),
         "the test's slot"
     );
     // Other entries have none.

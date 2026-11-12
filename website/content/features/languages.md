@@ -3,8 +3,8 @@ name: 86 languages
 title: Download manager in 86 languages, right to left included
 headline: Your language, from the first window.
 line: Every display language Windows 11 offers, picked by flag, with Arabic, Hebrew and Persian right to left.
-lede: MDM speaks 86 languages, every display language Windows 11 offers, from Afrikaans to Vietnamese. In Arabic, Hebrew, Persian, Urdu and Uyghur the whole window runs from right to left.
-description: Mister Download Manager in 86 languages: picked by flag, switched at once, right to left for Arabic, Hebrew, Persian, Urdu and Uyghur.
+lede: TDM speaks 86 languages, every display language Windows 11 offers, from Afrikaans to Vietnamese. In Arabic, Hebrew, Persian, Urdu and Uyghur the whole window runs from right to left.
+description: Tufan Download Manager in 86 languages: picked by flag, switched at once, right to left for Arabic, Hebrew, Persian, Urdu and Uyghur.
 group: app
 order: 330
 since: 0.1.0
@@ -20,7 +20,7 @@ The list covers every display language of Windows 11, including both Chinese scr
 for Spain and Mexico, French for France and Canada, Portuguese for Portugal and Brazil, and
 Serbian in Cyrillic and Latin. The [languages page](/languages.html) lists them all.
 
-The setup asks for its language first, with Windows' own already selected, and MDM starts in the
+The setup asks for its language first, with Windows' own already selected, and TDM starts in the
 one you pick. A zip copy shows the list on its first start instead: each language with its flag,
 its own name and its English name. The setup speaks the same languages, and the browser extension
 speaks your browser's.
@@ -29,16 +29,16 @@ speaks your browser's.
 
 **View → Language...** opens the same list. Type in **Search** to narrow it, then double-click a
 language. The window switches at once. **Windows' language**, at the top, follows Windows'
-display language, and falls back to English when MDM doesn't have it.
+display language, and falls back to English when TDM doesn't have it.
 
 ## Right to left, done properly
 
-![MDM in Arabic](images/arabic-main.webp)
+![TDM in Arabic](images/arabic-main.webp)
 *The main window in Arabic: the menus, toolbar and categories run from right to left.*
 
 In Arabic, Hebrew, Persian, Urdu and Uyghur the whole window is mirrored, the way Windows does
 it for these languages. File names, addresses and folder paths keep their own direction inside
-translated sentences, so they stay readable. MDM uses the system's own fonts for every script.
+translated sentences, so they stay readable. TDM uses the system's own fonts for every script.
 
 ## Honest about the translations
 

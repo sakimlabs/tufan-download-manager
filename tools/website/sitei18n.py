@@ -839,7 +839,7 @@ def localize(out: Path, site: str, langs_wanted: list[str] | None = None,
             if js:
                 blob = json.dumps(js, ensure_ascii=False).replace("</", "<\\/")
                 doc = doc.replace('<script src="/main.js"',
-                                  f'<script>window.MDM_I18N={blob};</script>\n  <script src="/main.js"', 1)
+                                  f'<script>window.TDM_I18N={blob};</script>\n  <script src="/main.js"', 1)
             target = file_of(out, lang_path(path, code))
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(doc, "utf-8", newline="\n")

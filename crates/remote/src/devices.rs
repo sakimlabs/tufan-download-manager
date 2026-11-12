@@ -85,9 +85,9 @@ impl Devices {
             && let Ok(json) = serde_json::to_vec_pretty(&self.list)
         {
             if let Some(dir) = path.parent() {
-                let _ = mdm_ipc::private_dir(dir);
+                let _ = tdm_ipc::private_dir(dir);
             }
-            if let Err(e) = mdm_ipc::private_write(path, &json) {
+            if let Err(e) = tdm_ipc::private_write(path, &json) {
                 tracing::warn!("remote control: the paired devices could not be saved: {e}");
             }
         }

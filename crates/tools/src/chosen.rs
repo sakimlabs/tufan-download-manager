@@ -1,6 +1,6 @@
-//! The yt-dlp and ffmpeg the person chose instead of MDM's own copies (#51: one copy of each
+//! The yt-dlp and ffmpeg the person chose instead of TDM's own copies (#51: one copy of each
 //! for every program that uses them). `<tools>/programs.json` holds them; `installed` and
-//! `ffmpeg::installed` read it first, so the app and the command line agree, and MDM's own
+//! `ffmpeg::installed` read it first, so the app and the command line agree, and TDM's own
 //! updates leave a chosen program alone (`install_latest`). The app's Video helpers window
 //! writes it.
 
@@ -81,7 +81,7 @@ pub fn chosen(dir: &Path, h: Helper) -> Option<Installed> {
 }
 
 /// Use `exe` for `h` from now on, once it has answered as that program (`--version`) in a
-/// release MDM can drive (gallery-dl: `gallery::OLDEST` or newer, #236).
+/// release TDM can drive (gallery-dl: `gallery::OLDEST` or newer, #236).
 pub fn choose(dir: &Path, h: Helper, exe: &Path) -> Result<Installed, Error> {
     let installed = ask(h, exe)?;
     if h == Helper::GalleryDl && crate::gallery::too_old(&installed.version) {
@@ -97,7 +97,7 @@ pub fn choose(dir: &Path, h: Helper, exe: &Path) -> Result<Installed, Error> {
     Ok(installed)
 }
 
-/// Back to MDM's own copy of `h`.
+/// Back to TDM's own copy of `h`.
 pub fn forget(dir: &Path, h: Helper) -> Result<(), Error> {
     let mut p = read(dir);
     if slot(&mut p, h).take().is_some() {
@@ -184,7 +184,7 @@ mod tests {
         );
     }
 
-    /// A chosen program is used first, and MDM's updates leave it alone: no download, no
+    /// A chosen program is used first, and TDM's updates leave it alone: no download, no
     /// network (an address that can't answer would fail the test otherwise).
     #[tokio::test]
     async fn chosen_programs_are_used_and_not_updated() {
@@ -207,7 +207,7 @@ mod tests {
         assert_eq!(crate::installed(dir.path()), Some(mine.clone()));
         assert_eq!(crate::ffmpeg::installed(dir.path()), Some(mine.clone()));
         assert_eq!(crate::gallery::installed(dir.path()), Some(mine.clone()));
-        let net = mdm_engine::Options::default();
+        let net = tdm_engine::Options::default();
         assert_eq!(
             crate::install_latest(dir.path(), &net, None).await.unwrap(),
             mine

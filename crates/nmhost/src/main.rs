@@ -1,9 +1,9 @@
-//! Mister Download Manager's browser native messaging host (Chrome, Edge, Brave, Firefox).
+//! Tufan Download Manager's browser native messaging host (Chrome, Edge, Brave, Firefox).
 //!
 //! - Started by the browser: reads native messages (u32 LE length + JSON) from stdin, hands each
-//!   download to the running Mister Download Manager over mdm-ipc (starting Mister Download Manager if needed), answers
+//!   download to the running Tufan Download Manager over tdm-ipc (starting Tufan Download Manager if needed), answers
 //!   `{"ok": …}`. A download Options says to leave to the browser (file type, excluded site or
-//!   address, browser, integration off: `mdm_ipc::capture`) is answered `{"ok": false}` without
+//!   address, browser, integration off: `tdm_ipc::capture`) is answered `{"ok": false}` without
 //!   starting anything, and the extension lets the browser have it. `{"rules": true}` asks for
 //!   the file types to offer: `{"ok": true, "types": "EXE ZIP …"}`.
 //! - The download button over videos: `{"panel": true, "url": page}` asks whether it may show on
@@ -12,7 +12,7 @@
 //!   `explicit`, the toolbar button's list of the tab's media asked, wherever the button shows);
 //!   `{"hideSite": host}` keeps it off that site from now on;
 //!   `{"openOptions": true}` opens Options where it is set up.
-//! - `misterdownloadmanager-nmhost --register` / `--unregister`: writes / removes the host
+//! - `tufan-download-manager-nmhost --register` / `--unregister`: writes / removes the host
 //!   manifests (Chromium's names the extension's origin, Firefox's its add-on ID). Windows: beside
 //!   this exe, with the per-user (HKCU) registry entries the browsers look up; with `--all-users`
 //!   (the installer, installing for everyone, elevated) under HKLM instead. Linux and macOS: in
@@ -20,11 +20,11 @@
 //!   installer step), or the system-wide ones with `--all-users`. A browser that reads a
 //!   system-wide manifest naming this same program (the .deb's or .rpm's) gets none in the home
 //!   folder: the package manager removes the package's with it (#266).
-//! - `misterdownloadmanager-nmhost --safari` (macOS): the same host for Safari, started by the
+//! - `tufan-download-manager-nmhost --safari` (macOS): the same host for Safari, started by the
 //!   app's Safari extension (tools/safari), which passes each message on; nothing to register.
-//! - `misterdownloadmanager-nmhost --package-manifests <root>` (Linux, the .deb and .rpm build):
+//! - `tufan-download-manager-nmhost --package-manifests <root>` (Linux, the .deb and .rpm build):
 //!   writes the system-wide manifests under `<root>`, naming the packaged helper
-//!   (`/usr/bin/misterdownloadmanager-nmhost`). Nothing else.
+//!   (`/usr/bin/tufan-download-manager-nmhost`). Nothing else.
 
 use std::io::{self, Read, Write};
 use std::path::PathBuf;
@@ -35,8 +35,8 @@ use serde::{Deserialize, Serialize};
 #[cfg(windows)]
 mod win32;
 
-const HOST_NAME: &str = "com.misterdownloadmanager.host";
-use mdm_ipc::extension::{FIREFOX_ID, STORE_ID, chromium_ids, store_id};
+const HOST_NAME: &str = "com.tufan-download-manager.host";
+use tdm_ipc::extension::{FIREFOX_ID, STORE_ID, chromium_ids, store_id};
 /// Where each Chromium browser looks for native messaging hosts on Windows, under HKCU (one
 /// user) or HKLM (everyone). Chromium-branded builds (Chromium, Helium, Thorium, and Brave and
 /// Brave Origin with every channel) read Chromium's first, then Chrome's, as most other forks do
@@ -72,9 +72,9 @@ struct Message {
     url: String,
     referrer: Option<String>,
     cookies: Option<String>,
-    /// The same cookies with their domains and flags (`mdm_ipc::Command::cookie_jar`); an older
+    /// The same cookies with their domains and flags (`tdm_ipc::Command::cookie_jar`); an older
     /// extension sends none.
-    cookie_jar: Vec<mdm_ipc::BrowserCookie>,
+    cookie_jar: Vec<tdm_ipc::BrowserCookie>,
     user_agent: Option<String>,
     /// `navigator.userAgentData` brands: Brave and Opera name themselves there, not in the
     /// User-Agent; Firefox's forks add the name `runtime.getBrowserInfo` gives ("Zen").
@@ -91,11 +91,11 @@ struct Message {
     /// From a private window.
     private: bool,
     /// The browser's proxy for `url` (#42): its address, or its auto-config script, and whether it
-    /// asked for a login (see mdm_ipc::Command).
+    /// asked for a login (see tdm_ipc::Command).
     proxy: Option<String>,
     proxy_pac: Option<String>,
     proxy_login: bool,
-    /// The user asked for this download (right-click → Download with Mister Download Manager):
+    /// The user asked for this download (right-click → Download with Tufan Download Manager):
     /// Options' automatic-capture rules don't apply, as IDM's "Download with IDM" takes any link.
     explicit: bool,
     /// May the download button show over videos on page `url`? With `referrer`: the tab's
@@ -119,10 +119,10 @@ struct Message {
     links: Vec<String>,
     /// The toolbar button: leave this site (a host name) to the browser.
     exclude_site: Option<String>,
-    /// The toolbar button: bring Mister Download Manager's window up.
+    /// The toolbar button: bring Tufan Download Manager's window up.
     open: bool,
     /// The extension left a download to the browser by Options' rules (it has them from
-    /// `rules`) without asking about it: for MDM's log. Under its own key, with no `url`: an
+    /// `rules`) without asking about it: for TDM's log. Under its own key, with no `url`: an
     /// older host takes it for an address it can't download, and hands nothing over.
     declined: Option<Notice>,
 }
@@ -147,7 +147,7 @@ struct Reply {
     /// (docs/browser-help.md): `not-running`, `too-large`, `refused`, `options`.
     #[serde(skip_serializing_if = "Option::is_none")]
     why: Option<&'static str>,
-    /// Mister Download Manager's version (this host comes with it).
+    /// Tufan Download Manager's version (this host comes with it).
     #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<&'static str>,
     /// For `rules`: Options → File types.
@@ -217,11 +217,11 @@ fn file_name_of(m: &Message) -> String {
 
 /// The browser `m` comes from, by the names Options lists.
 fn browser(m: &Message) -> &'static str {
-    mdm_ipc::capture::browser_named(m.user_agent.as_deref().unwrap_or_default(), &m.brands)
+    tdm_ipc::capture::browser_named(m.user_agent.as_deref().unwrap_or_default(), &m.brands)
 }
 
 /// The answer to one message, under `rules` (the app's saved Options).
-fn answer(m: Message, rules: &mdm_ipc::capture::CaptureRules) -> Reply {
+fn answer(m: Message, rules: &tdm_ipc::capture::CaptureRules) -> Reply {
     let browser = browser(&m);
     if m.rules || m.hello {
         return Reply {
@@ -255,7 +255,7 @@ fn answer(m: Message, rules: &mdm_ipc::capture::CaptureRules) -> Reply {
         .map(str::trim)
         .filter(|h| !h.is_empty());
     let panel_cmd = if let Some(host) = hide {
-        Some(mdm_ipc::Command {
+        Some(tdm_ipc::Command {
             panel_hide_site: Some(host.to_owned()),
             ..Default::default()
         })
@@ -264,20 +264,20 @@ fn answer(m: Message, rules: &mdm_ipc::capture::CaptureRules) -> Reply {
             Some("general") => "options:general",
             _ => "options:panels",
         };
-        Some(mdm_ipc::Command {
+        Some(tdm_ipc::Command {
             show: Some(page.into()),
             ..Default::default()
         })
     } else if m.open {
         // An empty command: the running app comes to the front (a second launch's).
-        Some(mdm_ipc::Command::default())
+        Some(tdm_ipc::Command::default())
     } else if let Some(host) = m
         .exclude_site
         .as_deref()
         .map(str::trim)
         .filter(|h| !h.is_empty())
     {
-        Some(mdm_ipc::Command {
+        Some(tdm_ipc::Command {
             exclude_site: Some(host.to_owned()),
             ..Default::default()
         })
@@ -289,9 +289,9 @@ fn answer(m: Message, rules: &mdm_ipc::capture::CaptureRules) -> Reply {
             .cloned()
             .collect();
         if links.is_empty() {
-            return Reply::failed("refused", "no link MDM downloads");
+            return Reply::failed("refused", "no link TDM downloads");
         }
-        Some(mdm_ipc::Command {
+        Some(tdm_ipc::Command {
             links,
             referer: m.referrer.clone().filter(|r| !r.is_empty()),
             cookies: m.cookies.clone().filter(|c| !c.is_empty()),
@@ -314,7 +314,7 @@ fn answer(m: Message, rules: &mdm_ipc::capture::CaptureRules) -> Reply {
         return Reply::failed("refused", "not an http(s) or ftp(s) URL");
     }
     if let Err(why) = verdict(&m, rules) {
-        let site = mdm_ipc::capture::host_of(&m.url);
+        let site = tdm_ipc::capture::host_of(&m.url);
         log_left(browser, &site, &file_name_of(&m), why.reason(), m.private);
         return Reply {
             declined: Some(why.code()),
@@ -329,7 +329,7 @@ fn answer(m: Message, rules: &mdm_ipc::capture::CaptureRules) -> Reply {
 
 /// Why the extension left a download alone, from its notice's code.
 fn notice_reason(code: &str) -> String {
-    match mdm_ipc::capture::Declined::from_code(code) {
+    match tdm_ipc::capture::Declined::from_code(code) {
         Some(d) => d.reason().to_owned(),
         None if code == "site-access" => {
             "the browser doesn't let the extension read this site (its site access is limited)"
@@ -373,23 +373,23 @@ fn log_left(browser: &str, site: &str, name: &str, reason: impl AsRef<str>, priv
     log_line(&left_line(browser, site, name, reason.as_ref(), private));
 }
 
-/// A line in MDM's log (`<data>/logs/mdm.log`, crates/crash/src/logs.rs), dated as the app's
+/// A line in TDM's log (`<data>/logs/mdm.log`, crates/crash/src/logs.rs), dated as the app's
 /// own lines: the host runs apart from the app, which may not be running at all. Appended
 /// whole, so it never splits a line the app writes at the same time.
 fn log_line(message: &str) {
-    // Unit tests run without a data folder of their own: never into the real MDM's log
+    // Unit tests run without a data folder of their own: never into the real TDM's log
     // (tests/host.rs runs the program with its own and reads what it wrote).
     if cfg!(test) {
         return;
     }
-    let Some(dir) = mdm_ipc::data_dir().map(|d| d.join("logs")) else {
+    let Some(dir) = tdm_ipc::data_dir().map(|d| d.join("logs")) else {
         return;
     };
     if std::fs::create_dir_all(&dir).is_err() {
         return;
     }
     let line = format!(
-        "{}  INFO nmhost mdm_nmhost: {message}\n",
+        "{}  INFO nmhost tdm_nmhost: {message}\n",
         chrono::Utc::now().format("%Y-%m-%dT%H:%M:%S%.6fZ")
     );
     if let Ok(mut f) = std::fs::OpenOptions::new()
@@ -406,9 +406,9 @@ fn log_line(message: &str) {
 /// `why` and `error`).
 fn video_command(
     m: &Message,
-    rules: &mdm_ipc::capture::CaptureRules,
+    rules: &tdm_ipc::capture::CaptureRules,
     browser: &str,
-) -> Result<mdm_ipc::Command, (&'static str, &'static str)> {
+) -> Result<tdm_ipc::Command, (&'static str, &'static str)> {
     if !(m.url.starts_with("http://") || m.url.starts_with("https://")) {
         return Err(("refused", "not an http(s) page"));
     }
@@ -427,7 +427,7 @@ fn video_command(
         Some(_) => Some(m.url.clone()),
         None => m.referrer.clone().filter(|r| !r.is_empty()),
     };
-    Ok(mdm_ipc::Command {
+    Ok(tdm_ipc::Command {
         video_page: Some(src.unwrap_or_else(|| m.url.clone())),
         video_title: m.title.clone().filter(|t| !t.trim().is_empty()),
         referer,
@@ -440,7 +440,7 @@ fn video_command(
 }
 
 /// `cmd` handed to the app: the reply saying so, or why not.
-fn delivered(cmd: &mdm_ipc::Command) -> Reply {
+fn delivered(cmd: &tdm_ipc::Command) -> Reply {
     match deliver(cmd) {
         Ok(()) => Reply::done(),
         Err(Undelivered::NotRunning(e)) => Reply::failed("not-running", e),
@@ -453,15 +453,15 @@ fn delivered(cmd: &mdm_ipc::Command) -> Reply {
 /// addresses must pass when redirects led elsewhere (an excluded site sending to a CDN).
 fn verdict(
     m: &Message,
-    rules: &mdm_ipc::capture::CaptureRules,
-) -> Result<(), mdm_ipc::capture::Declined> {
+    rules: &tdm_ipc::capture::CaptureRules,
+) -> Result<(), tdm_ipc::capture::Declined> {
     if m.explicit {
         return Ok(());
     }
     let (name, browser) = (file_name_of(m), browser(m));
     rules.accepts(&m.url, &name, browser)?;
     if rules.too_small(m.size) {
-        return Err(mdm_ipc::capture::Declined::Small);
+        return Err(tdm_ipc::capture::Declined::Small);
     }
     match m.final_url.as_deref().filter(|f| *f != m.url) {
         Some(f) => rules.accepts(f, &name, browser),
@@ -483,7 +483,7 @@ fn read_message(r: &mut impl Read) -> io::Result<Option<Result<Vec<u8>, usize>>>
     // Browsers send at most 4 GB, but a download request is small: refuse anything silly (the
     // app's channel takes this much, so whatever is read here reaches it). Read past it, so
     // the extension hears why instead of a closed host.
-    if len > mdm_ipc::MAX_MESSAGE {
+    if len > tdm_ipc::MAX_MESSAGE {
         io::copy(&mut r.take(len as u64), &mut io::sink())?;
         return Ok(Some(Err(len)));
     }
@@ -498,7 +498,7 @@ fn write_message(w: &mut impl Write, json: &[u8]) -> io::Result<()> {
     w.flush()
 }
 
-fn to_command(m: Message) -> mdm_ipc::Command {
+fn to_command(m: Message) -> tdm_ipc::Command {
     let some = |s: Option<String>| s.filter(|s| !s.is_empty());
     // The browser's file name, without its folder.
     let name = some(m.filename).and_then(|f| {
@@ -507,7 +507,7 @@ fn to_command(m: Message) -> mdm_ipc::Command {
             .filter(|n| !n.is_empty())
             .map(str::to_owned)
     });
-    mdm_ipc::Command {
+    tdm_ipc::Command {
         final_url: some(m.final_url).filter(|f| *f != m.url),
         url: Some(m.url),
         name,
@@ -569,7 +569,7 @@ enum Undelivered {
     Refused(String),
 }
 
-/// How long a Mister Download Manager just started gets to open its channel (a first start, a
+/// How long a Tufan Download Manager just started gets to open its channel (a first start, a
 /// slow disk or an antivirus scan can take a while); the browser's download waits meanwhile.
 const START_WAIT: Duration = Duration::from_secs(20);
 
@@ -585,18 +585,18 @@ fn bundle_of(exe: &std::path::Path) -> Option<PathBuf> {
         .map(PathBuf::from)
 }
 
-/// Hand `cmd` to Mister Download Manager, starting it only if none is running.
-fn deliver(cmd: &mdm_ipc::Command) -> Result<(), Undelivered> {
+/// Hand `cmd` to Tufan Download Manager, starting it only if none is running.
+fn deliver(cmd: &tdm_ipc::Command) -> Result<(), Undelivered> {
     // Whatever it asks may open a window: the app may bring it to the front (Windows only: Linux
     // and macOS have no foreground lock for a host to lift).
     #[cfg(windows)]
-    if let Some(pid) = mdm_ipc::app_pid() {
+    if let Some(pid) = tdm_ipc::app_pid() {
         win32::allow_foreground(pid);
     }
-    match mdm_ipc::send(cmd) {
+    match tdm_ipc::send(cmd) {
         Ok(()) => return Ok(()),
-        Err(mdm_ipc::SendError::Refused(e)) => return Err(Undelivered::Refused(e)),
-        Err(mdm_ipc::SendError::NotRunning(_)) => {}
+        Err(tdm_ipc::SendError::Refused(e)) => return Err(Undelivered::Refused(e)),
+        Err(tdm_ipc::SendError::NotRunning(_)) => {}
     }
     let dir = exe_dir().map_err(Undelivered::NotRunning)?;
     // Beside the app, or (an AppImage's host, copied out of its mount: unix.rs) the path
@@ -604,9 +604,9 @@ fn deliver(cmd: &mdm_ipc::Command) -> Result<(), Undelivered> {
     let app = match std::fs::read_to_string(dir.join("app-path")) {
         Ok(path) if !path.trim().is_empty() => PathBuf::from(path.trim()),
         _ => dir.join(if cfg!(windows) {
-            "misterdownloadmanager.exe"
+            "tufan-download-manager.exe"
         } else {
-            "misterdownloadmanager"
+            "tufan-download-manager"
         }),
     };
     let safari = SAFARI.load(std::sync::atomic::Ordering::Relaxed);
@@ -631,10 +631,10 @@ fn deliver(cmd: &mdm_ipc::Command) -> Result<(), Undelivered> {
     let started = std::time::Instant::now();
     while started.elapsed() < START_WAIT {
         std::thread::sleep(Duration::from_millis(100));
-        match mdm_ipc::send(cmd) {
+        match tdm_ipc::send(cmd) {
             Ok(()) => return Ok(()),
-            Err(mdm_ipc::SendError::Refused(e)) => return Err(Undelivered::Refused(e)),
-            Err(mdm_ipc::SendError::NotRunning(_)) => {}
+            Err(tdm_ipc::SendError::Refused(e)) => return Err(Undelivered::Refused(e)),
+            Err(tdm_ipc::SendError::NotRunning(_)) => {}
         }
         // It quit (another copy took over, or it failed to start): that one may answer still.
         // (`open` returns at once, the app being another process.)
@@ -646,7 +646,7 @@ fn deliver(cmd: &mdm_ipc::Command) -> Result<(), Undelivered> {
         }
     }
     Err(Undelivered::NotRunning(
-        "Mister Download Manager did not start".into(),
+        "Tufan Download Manager did not start".into(),
     ))
 }
 
@@ -711,8 +711,8 @@ fn serve() -> io::Result<()> {
             // The rules as saved now: a change in Options applies to the next download.
             Ok(m) => {
                 // This browser has the extension: the app stops offering it (extension.rs).
-                mdm_ipc::extension::mark_seen(browser(&m), m.v.as_deref().unwrap_or_default());
-                answer(m, &mdm_ipc::capture::CaptureRules::load())
+                tdm_ipc::extension::mark_seen(browser(&m), m.v.as_deref().unwrap_or_default());
+                answer(m, &tdm_ipc::capture::CaptureRules::load())
             }
             Err(e) => Reply::failed("refused", e.to_string()),
         };
@@ -734,7 +734,7 @@ fn this_program() -> Result<PathBuf, String> {
 fn chromium_manifest(program: &std::path::Path) -> serde_json::Value {
     serde_json::json!({
         "name": HOST_NAME,
-        "description": "Mister Download Manager",
+        "description": "Tufan Download Manager",
         "path": program,
         "type": "stdio",
         "allowed_origins": chromium_ids().into_iter().map(origin).collect::<Vec<_>>(),
@@ -745,7 +745,7 @@ fn chromium_manifest(program: &std::path::Path) -> serde_json::Value {
 fn firefox_manifest(program: &std::path::Path) -> serde_json::Value {
     serde_json::json!({
         "name": HOST_NAME,
-        "description": "Mister Download Manager",
+        "description": "Tufan Download Manager",
         "path": program,
         "type": "stdio",
         "allowed_extensions": [FIREFOX_ID],
@@ -761,10 +761,10 @@ fn write_json(path: &std::path::Path, value: &serde_json::Value) -> Result<(), S
 }
 
 fn portable_refused() -> Result<(), String> {
-    if mdm_ipc::portable_dir().is_some() {
+    if tdm_ipc::portable_dir().is_some() {
         return Err(
             "portable mode: browser integration is not registered (nothing is written outside \
-             its folder); install Mister Download Manager to use it"
+             its folder); install Tufan Download Manager to use it"
                 .into(),
         );
     }
@@ -826,7 +826,7 @@ fn register(all_users: bool) -> Result<(), String> {
             "/t",
             "REG_SZ",
             "/d",
-            mdm_ipc::extension::STORE_UPDATE_URL,
+            tdm_ipc::extension::STORE_UPDATE_URL,
             "/f",
             "/reg:32",
         ])?;
@@ -872,7 +872,7 @@ fn reg(args: &[&str]) -> Result<(), String> {
 }
 
 /// Linux and macOS: the folders the browsers there read host manifests from, for one user (in
-/// the home folder) or for everyone, each with whether it is Firefox's (`mdm_ipc::browsers`).
+/// the home folder) or for everyone, each with whether it is Firefox's (`tdm_ipc::browsers`).
 /// With `host`, a user's folder is left out for a browser that reads a manifest for everyone
 /// naming it (the package's, #266).
 #[cfg(not(windows))]
@@ -882,16 +882,16 @@ fn host_dirs(all_users: bool, host: Option<&std::path::Path>) -> Vec<(PathBuf, b
         .map(PathBuf::from)
         .filter(|p| p.is_absolute())
         .unwrap_or_else(|| home.join(".config"));
-    mdm_ipc::browsers::host_dirs(&home, &config, cfg!(target_os = "macos"), all_users, host)
+    tdm_ipc::browsers::host_dirs(&home, &config, cfg!(target_os = "macos"), all_users, host)
         .into_iter()
-        .map(|(d, f)| (d, f == mdm_ipc::browsers::Family::Gecko))
+        .map(|(d, f)| (d, f == tdm_ipc::browsers::Family::Gecko))
         .collect()
 }
 
 /// Linux and macOS: the folders the browsers there read external extensions from (an
 /// `<id>.json` naming the store's update service makes the browser offer that extension at its
 /// next start), for those that are there, each with the service's address as that browser names
-/// it (`mdm_ipc::browsers::external_dirs`: Chrome's, and Helium's own, #685). Linux Chrome reads
+/// it (`tdm_ipc::browsers::external_dirs`: Chrome's, and Helium's own, #685). Linux Chrome reads
 /// only the system's, so a per-user registration there leaves Chrome to the app's own offer
 /// (extension.rs).
 #[cfg(not(windows))]
@@ -901,7 +901,7 @@ fn external_dirs(all_users: bool) -> Vec<(PathBuf, &'static str)> {
         .map(PathBuf::from)
         .filter(|p| p.is_absolute())
         .unwrap_or_else(|| home.join(".config"));
-    mdm_ipc::browsers::external_dirs(&home, &config, cfg!(target_os = "macos"), all_users)
+    tdm_ipc::browsers::external_dirs(&home, &config, cfg!(target_os = "macos"), all_users)
 }
 
 /// Linux: this program runs from inside an AppImage's mount (`APPDIR`), which is gone once the
@@ -930,7 +930,7 @@ fn register(all_users: bool) -> Result<(), String> {
     // A browser that reads the package's manifest for everyone, naming this program, needs none
     // in the home folder: one written there before is taken away, so uninstalling the package
     // leaves nothing behind (#266). The browser reads a user's manifest first, so one naming
-    // another program (an earlier MDM, an AppImage's copy) would win over the package's: the MDM
+    // another program (an earlier TDM, an AppImage's copy) would win over the package's: the TDM
     // registered last is the one the browsers start, as when each wrote its own.
     let mut covered = 0;
     if !all_users {
@@ -1005,22 +1005,22 @@ fn unregister(all_users: bool) -> Result<(), String> {
 
 /// Linux: where the .deb and .rpm install this program, which their manifests name.
 #[cfg(target_os = "linux")]
-const PACKAGED_HOST: &str = "/usr/bin/misterdownloadmanager-nmhost";
+const PACKAGED_HOST: &str = "/usr/bin/tufan-download-manager-nmhost";
 
 /// Linux (the .deb and .rpm build, tools/installer/build-linux.sh): the manifests for everyone,
-/// in each folder the browsers read them from (`mdm_ipc::browsers::LINUX_SYSTEM_HOST_DIRS`),
+/// in each folder the browsers read them from (`tdm_ipc::browsers::LINUX_SYSTEM_HOST_DIRS`),
 /// under `root`, naming the packaged helper. The package owns them, so the package manager
 /// removes them with it (#266).
 #[cfg(target_os = "linux")]
 fn package_manifests(root: Option<&str>) -> Result<(), String> {
     let root = std::path::Path::new(root.ok_or("--package-manifests needs a folder")?);
     let program = std::path::Path::new(PACKAGED_HOST);
-    for (dir, family) in mdm_ipc::browsers::LINUX_SYSTEM_HOST_DIRS {
+    for (dir, family) in tdm_ipc::browsers::LINUX_SYSTEM_HOST_DIRS {
         let dir = root.join(dir.trim_start_matches('/'));
         std::fs::create_dir_all(&dir).map_err(|e| format!("{}: {e}", dir.display()))?;
         let manifest = match family {
-            mdm_ipc::browsers::Family::Chromium => chromium_manifest(program),
-            mdm_ipc::browsers::Family::Gecko => firefox_manifest(program),
+            tdm_ipc::browsers::Family::Chromium => chromium_manifest(program),
+            tdm_ipc::browsers::Family::Gecko => firefox_manifest(program),
         };
         let path = dir.join(format!("{HOST_NAME}.json"));
         write_json(&path, &manifest)?;
@@ -1053,16 +1053,16 @@ fn main() {
         // manifests' allowed_origins / allowed_extensions say the same; this is a second check).
         _ if our_caller(&args) => serve().map_err(|e| e.to_string()),
         _ => Err(format!(
-            "refusing caller {args:?}: not the Mister Download Manager extension"
+            "refusing caller {args:?}: not the Tufan Download Manager extension"
         )),
     };
     if let Err(e) = result {
-        eprintln!("misterdownloadmanager-nmhost: {e}");
+        eprintln!("tufan-download-manager-nmhost: {e}");
         std::process::exit(1);
     }
 }
 
-/// The addresses MDM downloads (mdm_engine::supported): http(s), and ftp links sent from a page
+/// The addresses TDM downloads (tdm_engine::supported): http(s), and ftp links sent from a page
 /// (browsers no longer download ftp themselves).
 fn downloadable(url: &str) -> bool {
     let scheme = url.split_once("://").map_or("", |(s, _)| s);
@@ -1079,11 +1079,11 @@ mod tests {
     #[test]
     fn safari_helper_finds_its_app() {
         let exe = std::path::Path::new(
-            "/Applications/Mister Download Manager.app/Contents/PlugIns/Mister Download Manager.appex/Contents/MacOS/misterdownloadmanager-nmhost",
+            "/Applications/Tufan Download Manager.app/Contents/PlugIns/Tufan Download Manager.appex/Contents/MacOS/tufan-download-manager-nmhost",
         );
         assert_eq!(
             bundle_of(exe),
-            Some(PathBuf::from("/Applications/Mister Download Manager.app"))
+            Some(PathBuf::from("/Applications/Tufan Download Manager.app"))
         );
         assert_eq!(bundle_of(std::path::Path::new("/usr/bin/nmhost")), None);
     }
@@ -1133,7 +1133,7 @@ mod tests {
 
     #[test]
     fn options_decide_what_is_taken() {
-        let mut rules = mdm_ipc::capture::CaptureRules::default();
+        let mut rules = tdm_ipc::capture::CaptureRules::default();
         let ua = "Mozilla/5.0 (Windows NT 10.0) Chrome/141.0.0.0 Safari/537.36";
         let msg = |url: &str, name: &str| Message {
             url: url.into(),
@@ -1170,7 +1170,7 @@ mod tests {
         );
         assert!(r.ok && r.types.unwrap().contains("ZIP"));
         assert_eq!(file_name_of(&msg("https://x.org/f/b.rar?x=1", "")), "b.rar");
-        // Right-click → Download with Mister Download Manager: any link, whatever Options say.
+        // Right-click → Download with Tufan Download Manager: any link, whatever Options say.
         let mut page = msg("https://example.com/page.html", "");
         assert!(verdict(&page, &rules).is_err());
         page.explicit = true;
@@ -1182,7 +1182,7 @@ mod tests {
     #[test]
     fn the_video_button_asks_the_rules() {
         let ua = "Mozilla/5.0 (Windows NT 10.0) Chrome/141.0.0.0 Safari/537.36";
-        let mut rules = mdm_ipc::capture::CaptureRules {
+        let mut rules = tdm_ipc::capture::CaptureRules {
             video_panel_sites: "*.quiet.test".into(),
             ..Default::default()
         };
@@ -1219,7 +1219,7 @@ mod tests {
             url: "https://www.quiet.test/watch".into(),
             src: Some("https://cdn.test/v/master.m3u8?t=1".into()),
             cookies: Some("cdn=1".into()),
-            cookie_jar: vec![mdm_ipc::BrowserCookie {
+            cookie_jar: vec![tdm_ipc::BrowserCookie {
                 name: "cdn".into(),
                 value: "1".into(),
                 domain: ".cdn.test".into(),
@@ -1295,7 +1295,7 @@ mod tests {
 
     #[test]
     fn redirects_are_checked_at_both_ends() {
-        let rules = mdm_ipc::capture::CaptureRules::default();
+        let rules = tdm_ipc::capture::CaptureRules::default();
         let ua = "Mozilla/5.0 (Windows NT 10.0) Chrome/141.0.0.0 Safari/537.36";
         let mut m = Message {
             url: "https://example.com/get/a.zip".into(),
@@ -1304,14 +1304,14 @@ mod tests {
             user_agent: Some(ua.into()),
             ..Default::default()
         };
-        assert_eq!(verdict(&m, &rules), Err(mdm_ipc::capture::Declined::Site));
+        assert_eq!(verdict(&m, &rules), Err(tdm_ipc::capture::Declined::Site));
         m.final_url = Some("https://cdn.example.com/a.zip".into());
         assert_eq!(verdict(&m, &rules), Ok(()));
     }
 
     #[test]
     fn rules_say_everything_the_extension_needs() {
-        let mut rules = mdm_ipc::capture::CaptureRules::default();
+        let mut rules = tdm_ipc::capture::CaptureRules::default();
         let hello = || Message {
             hello: true,
             user_agent: Some("Mozilla/5.0 Firefox/145.0".into()),
@@ -1343,7 +1343,7 @@ mod tests {
 
     #[test]
     fn a_refusal_says_which_rule() {
-        let rules = mdm_ipc::capture::CaptureRules {
+        let rules = tdm_ipc::capture::CaptureRules {
             browsers: vec![("Microsoft Edge".into(), false)],
             ..Default::default()
         };
@@ -1381,7 +1381,7 @@ mod tests {
 
     #[test]
     fn the_extensions_own_refusals_are_only_noted() {
-        let rules = mdm_ipc::capture::CaptureRules::default();
+        let rules = tdm_ipc::capture::CaptureRules::default();
         let raw = r#"{"declined":{"why":"file-type","site":"x.test","name":"p.png"},"userAgent":"UA","brands":[],"v":"0.3.0"}"#;
         let m: Message = serde_json::from_str(raw).unwrap();
         assert_eq!(
@@ -1399,7 +1399,7 @@ mod tests {
         assert!(r.ok && r.error.is_none(), "noted, nothing delivered");
         assert_eq!(
             notice_reason("site"),
-            mdm_ipc::capture::Declined::Site.reason()
+            tdm_ipc::capture::Declined::Site.reason()
         );
         assert!(notice_reason("site-access").contains("site access"));
         assert_eq!(notice_reason("x\ny"), r#""x y""#);
@@ -1407,7 +1407,7 @@ mod tests {
 
     #[test]
     fn log_lines_name_what_was_left_and_why() {
-        let reason = mdm_ipc::capture::Declined::FileType.reason();
+        let reason = tdm_ipc::capture::Declined::FileType.reason();
         assert_eq!(
             left_line("Waterfox", "x.test", "p.png", reason, false),
             "browser integration: Waterfox keeps p.png from x.test: its type isn't in Options > File types"
@@ -1426,7 +1426,7 @@ mod tests {
     fn older_extensions_messages_still_work() {
         // As the Chrome Web Store's 0.2.4 extension sends a download (no browser name from
         // getBrowserInfo, no notices), and as 0.2.4's own extension did (no brands, no version).
-        let rules = mdm_ipc::capture::CaptureRules::default();
+        let rules = tdm_ipc::capture::CaptureRules::default();
         for raw in [
             r#"{"url":"https://x.test/a.zip","finalUrl":"","referrer":"https://x.test/","cookies":"","filename":"a.zip","size":1048576,"mime":"application/zip","userAgent":"Mozilla/5.0 Chrome/141.0.0.0 Safari/537.36","brands":["Not:A-Brand","Chromium","Google Chrome"],"v":"0.2.4"}"#,
             r#"{"url":"https://x.test/a.zip","referrer":"https://x.test/","cookies":"","userAgent":"Mozilla/5.0 Chrome/141.0.0.0 Safari/537.36","filename":"a.zip"}"#,
@@ -1482,7 +1482,7 @@ mod tests {
         assert_eq!(
             c.cookie_jar,
             [
-                mdm_ipc::BrowserCookie {
+                tdm_ipc::BrowserCookie {
                     name: "SID".into(),
                     value: "1".into(),
                     domain: ".youtube.com".into(),
@@ -1491,7 +1491,7 @@ mod tests {
                     secure: true,
                     expires: Some(1893456000.5),
                 },
-                mdm_ipc::BrowserCookie {
+                tdm_ipc::BrowserCookie {
                     name: "pref".into(),
                     value: "2".into(),
                     domain: "music.youtube.com".into(),
@@ -1504,7 +1504,7 @@ mod tests {
         );
         // To the app and back (its command line): the same.
         let line = serde_json::to_string(&c).unwrap();
-        let back: mdm_ipc::Command = serde_json::from_str(&line).unwrap();
+        let back: tdm_ipc::Command = serde_json::from_str(&line).unwrap();
         assert_eq!(back.cookie_jar, c.cookie_jar);
         let old: Message =
             serde_json::from_str(r#"{"url":"https://x/a.zip","cookies":"a=1"}"#).unwrap();
@@ -1526,7 +1526,7 @@ mod tests {
         assert_eq!(c.user_agent.as_deref(), Some("UA"));
         assert_eq!(
             c.name, None,
-            "empty filename means: let Mister Download Manager decide"
+            "empty filename means: let Tufan Download Manager decide"
         );
         assert!(!c.later && !c.silent);
         assert_eq!((c.proxy, c.proxy_pac, c.proxy_login), (None, None, false));

@@ -1,7 +1,7 @@
 //! Where a download's server is, as the download sees it (#140): the address that answered, how
 //! long its own connections took to open (no extra probe: every connection the client opens is
 //! timed), whether a proxy stood in between, and the CDN its answer names. The app places the
-//! address on the map (`mdm-geo`, on this computer).
+//! address on the map (`tdm-geo`, on this computer).
 //!
 //! The round trip: a TCP connection opens in one round trip; over https its TLS handshake takes
 //! one more (TLS 1.3). The time a connection took to open, its name lookup left out (the

@@ -145,10 +145,10 @@ pub fn follow_pywal() -> bool {
     }
 }
 
-/// The theme to start with: `MDM_THEME` (tests and screenshots: an id or a theme file's path),
+/// The theme to start with: `TDM_THEME` (tests and screenshots: an id or a theme file's path),
 /// else the setting.
 pub fn startup_id(setting: &str) -> String {
-    std::env::var("MDM_THEME")
+    std::env::var("TDM_THEME")
         .ok()
         .filter(|s| !s.is_empty())
         .unwrap_or_else(|| setting.to_owned())
@@ -716,10 +716,10 @@ fn fc_match(pattern: &str) -> Option<std::path::PathBuf> {
 
 /// Every font file the windows may need, as fontconfig picks it: the interface font
 /// (`sans-serif`) and each script's (`:lang=…`). Each answer is an `fc-match` program; asked one
-/// after the other on the window's thread, the thirty of them held up MDM's first frame for 2 s
+/// after the other on the window's thread, the thirty of them held up TDM's first frame for 2 s
 /// on an idle computer and past the freeze report's 8 s on a busy one (#164). So they are asked
 /// once, all together (a third of the time), and [`prepare_fonts`] starts that while the window
-/// opens; the fonts only wait for what is still running. A font installed while MDM runs is
+/// opens; the fonts only wait for what is still running. A font installed while TDM runs is
 /// used from its next start.
 #[cfg(not(any(windows, target_os = "macos")))]
 fn fc_files() -> &'static std::collections::HashMap<String, std::path::PathBuf> {
@@ -962,7 +962,7 @@ pub fn apply(ctx: &egui::Context) {
         // Ctrl + / Ctrl − / Ctrl 0 step through View → Interface size and are saved (scale.rs),
         // not egui's own 10 % steps.
         o.zoom_with_keyboard = false;
-        // Every window's theme (its caption) is MDM's to give: the main window's in
+        // Every window's theme (its caption) is TDM's to give: the main window's in
         // `apply_mode`, each dialog's in `dialogs::keep_theme`, the caption the theme's surface.
         // egui's own would set the mode's instead, behind them, and the caption would have to
         // be checked with DWM again and again (#633).

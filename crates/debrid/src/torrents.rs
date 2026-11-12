@@ -1,5 +1,5 @@
 //! Torrents through the service (#44): a magnet link goes to the user's account, the service
-//! downloads the torrent on its own servers, and its files then come over HTTP through MDM's
+//! downloads the torrent on its own servers, and its files then come over HTTP through TDM's
 //! engine (every connection, resume). Nothing connects to peers from this computer. A `.torrent`
 //! file is sent as its magnet link (the app makes it: its hash, name and trackers).
 //!
@@ -20,8 +20,8 @@ use std::path::{Component, Path, PathBuf};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use mdm_engine::download::{SegmentView, State};
-use mdm_engine::{Destination, Download, ServiceFault, Snapshot};
+use tdm_engine::download::{SegmentView, State};
+use tdm_engine::{Destination, Download, ServiceFault, Snapshot};
 use serde::Deserialize;
 use tokio_util::sync::CancellationToken;
 use url::Url;
@@ -159,7 +159,7 @@ impl Debrid {
 }
 
 /// A path from the service, made safe to write under the torrent's folder: each part a file
-/// name MDM accepts, no `..`, no root, nothing empty. None: nothing usable is left.
+/// name TDM accepts, no `..`, no root, nothing empty. None: nothing usable is left.
 pub fn safe_path(path: &str) -> Option<PathBuf> {
     let mut out = PathBuf::new();
     for part in path.split(['/', '\\']) {
@@ -170,7 +170,7 @@ pub fn safe_path(path: &str) -> Option<PathBuf> {
         if part == ".." {
             return None;
         }
-        let clean = mdm_engine::naming::sanitize(part);
+        let clean = tdm_engine::naming::sanitize(part);
         if clean.is_empty()
             || Path::new(&clean)
                 .components()
@@ -196,7 +196,7 @@ pub struct Order {
     pub folder: PathBuf,
     /// The downloads' options (connections, proxy, DNS, adapter, speed limit); the unlocker is
     /// set here.
-    pub net: mdm_engine::Options,
+    pub net: tdm_engine::Options,
     /// How often the service is asked while it works.
     pub poll: Duration,
 }
@@ -337,7 +337,7 @@ impl RemoteTorrent {
         let unlocker = match s.account.service {
             ServiceKind::Premiumize | ServiceKind::TorBox => None,
             _ => Some(Arc::new(crate::AccountUnlocker { session: s.clone() })
-                as Arc<dyn mdm_engine::Unlocker>),
+                as Arc<dyn tdm_engine::Unlocker>),
         };
         // As torrent programs do: one file goes into the folder itself, several into a folder
         // named after the torrent (a path that already starts with that name isn't doubled).
@@ -373,7 +373,7 @@ impl RemoteTorrent {
         for f in &files {
             let link = Url::parse(&f.link).map_err(|_| {
                 Fault::Service(ServiceFault::Other(
-                    "the service gave a link MDM can't read".into(),
+                    "the service gave a link TDM can't read".into(),
                 ))
             })?;
             let dest = match safe_path(&within(&f.path)) {
@@ -391,7 +391,7 @@ impl RemoteTorrent {
             };
             if !dest.as_os_str().is_empty()
                 && dest.is_file()
-                && !mdm_engine::state::state_path(&dest).exists()
+                && !tdm_engine::state::state_path(&dest).exists()
             {
                 // Done in an earlier run.
                 let mut sh = self.shared.lock().unwrap();
@@ -399,11 +399,11 @@ impl RemoteTorrent {
                 sh.saved_files.push(dest);
                 continue;
             }
-            let opts = mdm_engine::Options {
+            let opts = tdm_engine::Options {
                 unlocker: unlocker.clone(),
                 ..order.net.clone()
             };
-            let state = mdm_engine::state::state_path(&dest);
+            let state = tdm_engine::state::state_path(&dest);
             let dl = if !dest.as_os_str().is_empty() && state.exists() {
                 Download::resume(state, Default::default(), opts.clone())
                     .unwrap_or_else(|_| Download::start(request(&link, &dest, &folder), opts))
@@ -444,7 +444,7 @@ impl RemoteTorrent {
                 return Err(cancelled());
             }
             let out = dl.wait().await.map_err(|e| match e {
-                mdm_engine::Error::Refused(mdm_engine::Refusal::Service { fault, .. }) => {
+                tdm_engine::Error::Refused(tdm_engine::Refusal::Service { fault, .. }) => {
                     Fault::Service(fault)
                 }
                 e => Fault::Service(ServiceFault::Other(e.to_string())),
@@ -540,7 +540,7 @@ impl RemoteTorrent {
             .cloned()
             .chain(running)
             .enumerate()
-            .map(|(i, (at, text))| mdm_engine::download::Event {
+            .map(|(i, (at, text))| tdm_engine::download::Event {
                 seq: i as u64 + 1,
                 at,
                 text,
@@ -567,7 +567,7 @@ impl RemoteTorrent {
             error: sh.error.clone(),
             // Said in the interface language by the app, as a link's refusal is.
             failure: sh.failure.clone().map(|fault| {
-                mdm_engine::Error::Refused(mdm_engine::Refusal::Service {
+                tdm_engine::Error::Refused(tdm_engine::Refusal::Service {
                     service: sh.service.to_owned(),
                     fault,
                 })
@@ -579,8 +579,8 @@ impl RemoteTorrent {
     }
 }
 
-fn request(link: &Url, dest: &Path, folder: &Path) -> mdm_engine::Request {
-    mdm_engine::Request {
+fn request(link: &Url, dest: &Path, folder: &Path) -> tdm_engine::Request {
+    tdm_engine::Request {
         url: link.clone(),
         headers: Default::default(),
         dest: if dest.as_os_str().is_empty() {
@@ -781,7 +781,7 @@ mod tests {
         assert_eq!(safe_path("ok/../../evil"), None);
         assert_eq!(safe_path(""), None);
         assert_eq!(safe_path("///"), None);
-        // Each part a name MDM writes: no drive, no reserved characters.
+        // Each part a name TDM writes: no drive, no reserved characters.
         let p = safe_path("C:/x<y>.txt").unwrap();
         assert!(
             p.components().all(|c| matches!(c, Component::Normal(_))),

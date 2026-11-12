@@ -1,14 +1,14 @@
-//! Crash and freeze reports, the app's side (mdm-crash has the rest). At start MDM launches its
-//! monitor (itself with `--crash-monitor`), which writes a minidump when MDM:
+//! Crash and freeze reports, the app's side (tdm-crash has the rest). At start TDM launches its
+//! monitor (itself with `--crash-monitor`), which writes a minidump when TDM:
 //! - crashes natively (win32.rs / unix.rs catch it through crash-handler),
 //! - panics (the hook here sends the message, then asks for the dump),
 //! - or freezes: a watchdog thread sees a frame of the window run past [`FREEZE_AFTER`] and asks
-//!   for a dump of every thread while MDM is still stuck (a deadlock, an endless loop). A frame
+//!   for a dump of every thread while TDM is still stuck (a deadlock, an endless loop). A frame
 //!   is two timed stretches: the app's logic (commands and the clock, which egui runs alone while
 //!   the main window is minimized) and its UI. The waits between frames aren't timed.
 //!
 //! The monitor then shows the report window (crashui.rs). Without a monitor (it couldn't start)
-//! MDM runs on, and a panic still leaves a text report.
+//! TDM runs on, and a panic still leaves a text report.
 
 use std::cell::RefCell;
 use std::collections::BTreeSet;
@@ -17,8 +17,8 @@ use std::sync::atomic::{AtomicBool, AtomicU8, AtomicU64, Ordering};
 use std::sync::{Arc, OnceLock};
 use std::time::{Duration, Instant};
 
-use mdm_crash::client::Reporter;
-use mdm_crash::protocol::{AppState, Busy, Freeze, Panic, Session};
+use tdm_crash::client::Reporter;
+use tdm_crash::protocol::{AppState, Busy, Freeze, Panic, Session};
 
 /// A frame running this long is a freeze (Windows calls a window "Not responding" after 5 s).
 pub const FREEZE_AFTER: Duration = Duration::from_secs(8);
@@ -51,7 +51,7 @@ fn now_ms() -> u64 {
 }
 
 /// Start the monitor and catch crashes, panics and freezes. Called on the window thread, after
-/// this process became MDM's instance.
+/// this process became TDM's instance.
 pub fn start(data: &Path, session: Session) {
     let _ = EPOCH.set(Instant::now());
     #[cfg(windows)]
@@ -104,7 +104,7 @@ fn dump_now() -> bool {
 }
 
 /// A panic: its message and Rust's backtrace to the monitor, then a dump; then the default hook
-/// (the message on stderr) and the panic goes on (on the window thread it ends MDM).
+/// (the message on stderr) and the panic goes on (on the window thread it ends TDM).
 fn hook_panics() {
     let default = std::panic::take_hook();
     std::panic::set_hook(Box::new(move |info| {
@@ -122,7 +122,7 @@ fn hook_panics() {
         };
         tracing::error!("panic: {} at {} ({})", p.message, p.location, p.thread);
         // In the file before the report reads the log's end (the log writes on its own thread).
-        mdm_crash::logs::flush(LOG_FOR_A_REPORT);
+        tdm_crash::logs::flush(LOG_FOR_A_REPORT);
         if !panic_reported(CLOSING.load(Ordering::Acquire), &p.thread) {
             default(info);
             return;
@@ -198,7 +198,7 @@ pub fn window(id: &str) {
     });
 }
 
-/// What MDM has open and running, for the report (sent when it changes).
+/// What TDM has open and running, for the report (sent when it changes).
 pub fn state(downloads: usize, running: usize, queues: usize, scale: f32) {
     let Some(r) = REPORTER.get() else { return };
     let windows = WINDOWS.with(|w| w.borrow().1.iter().cloned().collect());
@@ -211,16 +211,16 @@ pub fn state(downloads: usize, running: usize, queues: usize, scale: f32) {
     });
 }
 
-/// MDM has started closing normally: what panics on the runtime's own threads now (a task's
+/// TDM has started closing normally: what panics on the runtime's own threads now (a task's
 /// timer once the runtime is shutting down, #422) is the runtime going away, not a problem.
 static CLOSING: AtomicBool = AtomicBool::new(false);
 
-/// Is this panic worth a report? Not one on a runtime worker while MDM is closing (#422).
+/// Is this panic worth a report? Not one on a runtime worker while TDM is closing (#422).
 fn panic_reported(closing: bool, thread: &str) -> bool {
     !(closing && thread.starts_with("tokio"))
 }
 
-/// MDM is closing normally: the monitor leaves without a report.
+/// TDM is closing normally: the monitor leaves without a report.
 pub fn clean_exit() {
     CLOSING.store(true, Ordering::Release);
     if let Some(r) = REPORTER.get() {
@@ -228,7 +228,7 @@ pub fn clean_exit() {
         r.clean();
     }
     // Some ends exit at once after this: the log's last lines first.
-    mdm_crash::logs::flush(LOG_FOR_A_REPORT);
+    tdm_crash::logs::flush(LOG_FOR_A_REPORT);
 }
 
 /// How long a report (or an exit) waits for the log's last lines to be in the file: the log
@@ -297,7 +297,7 @@ fn watchdog() {
                 b.faults.map_or("unknown".to_owned(), |n| n.to_string())
             );
         }
-        mdm_crash::logs::flush(LOG_FOR_A_REPORT);
+        tdm_crash::logs::flush(LOG_FOR_A_REPORT);
         if let Some(r) = REPORTER.get() {
             r.freeze(&Freeze {
                 ui_thread: ui,
@@ -338,7 +338,7 @@ pub fn session(language: &str, dark: bool) -> Session {
     Session {
         version: crate::help::VERSION.to_owned(),
         commit: crate::help::COMMIT.to_owned(),
-        install: mdm_tools::update::Install::detect().label().to_owned(),
+        install: tdm_tools::update::Install::detect().label().to_owned(),
         os: if cfg!(windows) {
             "Windows"
         } else if cfg!(target_os = "macos") {
@@ -361,11 +361,11 @@ pub fn session(language: &str, dark: bool) -> Session {
     }
 }
 
-/// MDM_CRASH_TEST=1 lets `/show crash-test:<what>` crash MDM on purpose (the crash reports'
+/// TDM_CRASH_TEST=1 lets `/show crash-test:<what>` crash TDM on purpose (the crash reports'
 /// own end-to-end check): panic, crash (an access violation / SIGSEGV), freeze (a deadlock on
 /// the window thread), spin (the window thread busy for 12 s, then it answers again), abort.
 pub fn test(what: &str) {
-    if std::env::var_os("MDM_CRASH_TEST").is_none_or(|v| v != "1") {
+    if std::env::var_os("TDM_CRASH_TEST").is_none_or(|v| v != "1") {
         return;
     }
     tracing::warn!("crash test: {what}");
@@ -404,7 +404,7 @@ fn crash_test_freeze() {
 
 #[cfg(test)]
 mod closing_tests {
-    /// #422: a Tokio task panicking while MDM closes is no crash; the window thread's would be.
+    /// #422: a Tokio task panicking while TDM closes is no crash; the window thread's would be.
     #[test]
     fn a_runtime_panic_while_closing_is_not_reported() {
         use super::panic_reported;

@@ -1,16 +1,16 @@
-# The bug report form. MDM's Help -> Report a problem opens it with the text fields filled in
+# The bug report form. TDM's Help -> Report a problem opens it with the text fields filled in
 # (crates/app/src/help.rs: the ids below are the URL's parameters; keep them in step). System and
 # Installed with are text fields, not dropdowns: GitHub's page showed a dropdown's value from the
 # address for a moment, then put it back to none.
 name: Bug report
-description: Something in Mister Download Manager doesn't work as it should.
+description: Something in Tufan Download Manager doesn't work as it should.
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time. **Help → Report a problem** in MDM opens this form with your version and system already filled in.
-        A security problem? Please don't report it here: see the [security page](https://misterdownloadmanager.com/security.html).
+        Thanks for taking the time. **Help → Report a problem** in TDM opens this form with your version and system already filled in.
+        A security problem? Please don't report it here: see the [security page](https://tufan-download-manager.com/security.html).
   - type: input
     id: os
     attributes:
@@ -30,7 +30,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: MDM version
+      label: TDM version
       description: Help → About shows it.
       placeholder: "0.2.0"
     validations:
@@ -46,7 +46,7 @@ body:
   - type: dropdown
     id: area
     attributes:
-      label: Part of MDM
+      label: Part of TDM
       options:
         - Downloads (speed, resuming, errors)
         - Browser extension
@@ -55,7 +55,7 @@ body:
         - Queues and the Scheduler
         - The window, menus and dialogs
         - Languages and translations
-        - Installing, updating or removing MDM
+        - Installing, updating or removing TDM
         - Command line, automation API or MCP server
         - Something else
   - type: input
@@ -67,7 +67,7 @@ body:
   - type: input
     id: language
     attributes:
-      label: MDM's language
+      label: TDM's language
       placeholder: en
   - type: textarea
     id: what
@@ -97,11 +97,11 @@ body:
     attributes:
       label: Log or screenshots
       description: |
-        A download's recent events: hover over its **Status** in the list. A crash: crash.log in MDM's data folder (Windows: %APPDATA%\misterdownloadmanager). Drag screenshots in here.
+        A download's recent events: hover over its **Status** in the list. A crash: crash.log in TDM's data folder (Windows: %APPDATA%\tufan-download-manager). Drag screenshots in here.
   - type: checkboxes
     id: searched
     attributes:
       label: Before you send it
       options:
-        - label: I looked through the [open issues](https://github.com/anefzaoui/misterdownloadmanager/issues) and this one isn't there yet.
+        - label: I looked through the [open issues](https://github.com/sakimlabs/tufan-download-manager/issues) and this one isn't there yet.
           required: true

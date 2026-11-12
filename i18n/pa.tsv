@@ -1,4 +1,4 @@
-# Mister Download Manager in Punjabi (ਪੰਜਾਬੀ): tools/i18n/translate.py
+# Tufan Download Manager in Punjabi (ਪੰਜਾਬੀ): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	ਪੰਜਾਬੀ
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	ਕੀ ਤੁਸੀਂ Mister Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ {n} ਡਾਊਨਲੋਡ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?|ਕੀ ਤੁਸੀਂ Mister Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ ਇਹ {n} ਡਾਊਨਲੋਡ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	ਕੀ ਤੁਸੀਂ Tufan Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ {n} ਡਾਊਨਲੋਡ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?|ਕੀ ਤੁਸੀਂ Tufan Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ ਇਹ {n} ਡਾਊਨਲੋਡ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	ਡੀਬ੍ਰਿਡ ਸੇਵਾ ਤੁਹਾਡੇ ਆਪਣੇ ਭੁਗਤਾਨਸ਼ੁਦਾ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਫ਼ਾਈਲ ਹੋਸਟ ਦੇ ਲਿੰਕ ਤੋਂ ਫ਼ਾਈਲ ਡਾਊਨਲੋਡ ਕਰਦੀ ਹੈ ਅਤੇ MDM ਨੂੰ ਸਿੱਧਾ ਲਿੰਕ ਦਿੰਦੀ ਹੈ। ਸਿਰਫ਼ ਆਪਣਾ ਖਾਤਾ ਵਰਤੋ: ਖਾਤਾ ਜਾਂ ਇਸ ਦੇ ਲਿੰਕ ਸਾਂਝੇ ਕਰਨਾ ਸੇਵਾਵਾਂ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੀ ਉਲੰਘਣਾ ਹੈ ਅਤੇ ਇਸ ਕਾਰਨ ਖਾਤਾ ਮੁਅੱਤਲ ਹੋ ਸਕਦਾ ਹੈ। ਬ੍ਰਾਊਜ਼ਰ ਵੱਲੋਂ ਪਹਿਲਾਂ ਹੀ ਸ਼ੁਰੂ ਕੀਤੇ ਡਾਊਨਲੋਡ ਜਿਵੇਂ ਦੇ ਤਿਵੇਂ ਰਹਿੰਦੇ ਹਨ।
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	ਡੀਬ੍ਰਿਡ ਸੇਵਾ ਤੁਹਾਡੇ ਆਪਣੇ ਭੁਗਤਾਨਸ਼ੁਦਾ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਫ਼ਾਈਲ ਹੋਸਟ ਦੇ ਲਿੰਕ ਤੋਂ ਫ਼ਾਈਲ ਡਾਊਨਲੋਡ ਕਰਦੀ ਹੈ ਅਤੇ TDM ਨੂੰ ਸਿੱਧਾ ਲਿੰਕ ਦਿੰਦੀ ਹੈ। ਸਿਰਫ਼ ਆਪਣਾ ਖਾਤਾ ਵਰਤੋ: ਖਾਤਾ ਜਾਂ ਇਸ ਦੇ ਲਿੰਕ ਸਾਂਝੇ ਕਰਨਾ ਸੇਵਾਵਾਂ ਦੀਆਂ ਸ਼ਰਤਾਂ ਦੀ ਉਲੰਘਣਾ ਹੈ ਅਤੇ ਇਸ ਕਾਰਨ ਖਾਤਾ ਮੁਅੱਤਲ ਹੋ ਸਕਦਾ ਹੈ। ਬ੍ਰਾਊਜ਼ਰ ਵੱਲੋਂ ਪਹਿਲਾਂ ਹੀ ਸ਼ੁਰੂ ਕੀਤੇ ਡਾਊਨਲੋਡ ਜਿਵੇਂ ਦੇ ਤਿਵੇਂ ਰਹਿੰਦੇ ਹਨ।
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	ਇੱਕ-ਫਾਇਲ ਟੋਰੈਂਟ ਆਪਣਾ ਨਾਮ ਬਰਕਰਾਰ ਰੱਖਦਾ ਹੈ
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	ਇਸ ਕੰਪਿਊਟਰ ਜਾਂ ਸਥਾਨਕ ਨੈੱਟਵਰਕ 'ਤੇ ਕਿਸੇ ਟਰੈਕਰ ਨਾਲ ਕਦੇ ਸੰਪਰਕ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	ਇਸਦਾ ਇੱਕ ਭਾਗ ਗੁੰਮ ਹੈ
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Mister Download Manager ਬਾਰੇ
+	About Tufan Download Manager	Tufan Download Manager ਬਾਰੇ
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Mister Download Manager ਨੂੰ ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ
+	Add Tufan Download Manager to your browser	Tufan Download Manager ਨੂੰ ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ। MDM ਟੋਰੈਂਟ ਪੜ੍ਹ ਰਿਹਾ ਹੈ: ਇਹ ਇੱਕ ਪਲ ਵਿੱਚ ਸੂਚੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋ ਜਾਵੇਗਾ।
+	Added. TDM is reading the torrent: it joins the list in a moment.	ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ। TDM ਟੋਰੈਂਟ ਪੜ੍ਹ ਰਿਹਾ ਹੈ: ਇਹ ਇੱਕ ਪਲ ਵਿੱਚ ਸੂਚੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋ ਜਾਵੇਗਾ।
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	ਪਹਿਲਾਂ ਹੀ ਅੰਕ #{number}: {title} ਵਜੋਂ ਰਿਪੋਰਟ ਕੀਤਾ ਗਿਆ ਹੈ
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	ਕ੍ਰੈਸ਼ ਡਾਟਾ (.dmp) ਵੀ ਨੱਥੀ ਕਰੋ: ਇਸ ਵਿੱਚ ਪਤੇ, ਕੂਕੀਜ਼ ਅਤੇ ਪਾਸਵਰਡ ਹੋ ਸਕਦੇ ਹਨ
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	ਹਮੇਸ਼ਾ ਇਸਦੇ ਨਾਮ ਵਾਲੇ ਫੋਲਡਰ ਵਿੱਚ
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	Mister Download Manager ਸ਼ੁਰੂ ਹੋਣ 'ਤੇ ਹਮੇਸ਼ਾ ਸਪੀਡ ਲਿਮੀਟਰ ਚਾਲੂ ਕਰੋ
+	Always turn on Speed Limiter on Tufan Download Manager startup	Tufan Download Manager ਸ਼ੁਰੂ ਹੋਣ 'ਤੇ ਹਮੇਸ਼ਾ ਸਪੀਡ ਲਿਮੀਟਰ ਚਾਲੂ ਕਰੋ
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	ਕੀ ਤੁਸੀਂ Mister Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ "{name}" ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	ਕੀ ਤੁਸੀਂ Tufan Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ "{name}" ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	ਆਸਟ੍ਰੀਆ
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	ਆਟੋਮੈਟਿਕ
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	ਬੋਸਨੀਆ ਅਤੇ ਹਰਜ਼ੇਗੋਵਿਨਾ
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	ਦੋਵੇਂ ਓਪਨ ਸੋਰਸ ਹਨ। MDM ਉਹਨਾਂ ਨੂੰ ਆਪਣੇ ਡਾਊਨਲੋਡਰ ਨਾਲ ਉਹਨਾਂ ਦੀਆਂ ਅਧਿਕਾਰਤ ਰੀਲੀਜ਼ਾਂ ਤੋਂ ਪ੍ਰਾਪਤ ਕਰਦਾ ਹੈ ਅਤੇ ਚਲਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਹਰੇਕ ਫਾਈਲ ਦੇ ਦਸਤਖਤ ਦੀ ਜਾਂਚ ਕਰਦਾ ਹੈ। ਲਗਭਗ 100 MB, ਇੱਕ ਵਾਰ।
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	ਦੋਵੇਂ ਓਪਨ ਸੋਰਸ ਹਨ। TDM ਉਹਨਾਂ ਨੂੰ ਆਪਣੇ ਡਾਊਨਲੋਡਰ ਨਾਲ ਉਹਨਾਂ ਦੀਆਂ ਅਧਿਕਾਰਤ ਰੀਲੀਜ਼ਾਂ ਤੋਂ ਪ੍ਰਾਪਤ ਕਰਦਾ ਹੈ ਅਤੇ ਚਲਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਹਰੇਕ ਫਾਈਲ ਦੇ ਦਸਤਖਤ ਦੀ ਜਾਂਚ ਕਰਦਾ ਹੈ। ਲਗਭਗ 100 MB, ਇੱਕ ਵਾਰ।
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	ਫੋਲਡਰ ਚੁਣੋ...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	ਇਸ ਕੰਪਿਊਟਰ 'ਤੇ ਬ੍ਰਾਊਜ਼ਰ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਸੈੱਟਅੱਪ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਕੋਈ ਵੀ ਬ੍ਰਾਊਜ਼ਰ ਅਜੇ Mister Download Manager ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦਾ।
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	ਇਸ ਕੰਪਿਊਟਰ 'ਤੇ ਬ੍ਰਾਊਜ਼ਰ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਸੈੱਟਅੱਪ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਕੋਈ ਵੀ ਬ੍ਰਾਊਜ਼ਰ ਅਜੇ Tufan Download Manager ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦਾ।
 #. page title in the Options window
 #, machine
 	Browser/System Integration	ਬ੍ਰਾਊਜ਼ਰ/ਸਿਸਟਮ ਇੰਟੀਗ੍ਰੇਸ਼ਨ
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	ਅੱਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰੋ
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
 	Check for updates at every start	ਹਰ ਸ਼ੁਰੂਆਤ 'ਤੇ ਅੱਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰੋ
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	ਆਪਣਾ ਕਨੈਕਸ਼ਨ ਜਾਂਚੋ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਬਾਅਦ ਵਿੱਚ ਵੀਡੀਓ ਵਿੰਡੋ ਤੋਂ ਪ੍ਰਾਪਤ ਕਰੋ।
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	ਚੁਣਿਆ ਹੋਣ 'ਤੇ, ਵਿੰਡੋ ਬੰਦ ਕਰਨ ਨਾਲ MDM ਚੱਲਦਾ ਰਹਿੰਦਾ ਹੈ: ਉਪਲਬਧ ਹੋਣ 'ਤੇ ਇਹ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਲੁਕ ਜਾਂਦਾ ਹੈ, ਨਹੀਂ ਤਾਂ ਟਾਸਕਬਾਰ 'ਤੇ ਛੋਟਾ ਹੋ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਡਾਊਨਲੋਡ ਜਾਰੀ ਰਹਿੰਦੇ ਹਨ; ਨਾ ਚੁਣਿਆ ਹੋਣ 'ਤੇ, ਵਿੰਡੋ ਬੰਦ ਕਰਨ ਨਾਲ MDM ਬੰਦ ਹੋ ਜਾਂਦਾ ਹੈ
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	ਚੁਣਿਆ ਹੋਣ 'ਤੇ, ਵਿੰਡੋ ਬੰਦ ਕਰਨ ਨਾਲ TDM ਚੱਲਦਾ ਰਹਿੰਦਾ ਹੈ: ਉਪਲਬਧ ਹੋਣ 'ਤੇ ਇਹ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਲੁਕ ਜਾਂਦਾ ਹੈ, ਨਹੀਂ ਤਾਂ ਟਾਸਕਬਾਰ 'ਤੇ ਛੋਟਾ ਹੋ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਡਾਊਨਲੋਡ ਜਾਰੀ ਰਹਿੰਦੇ ਹਨ; ਨਾ ਚੁਣਿਆ ਹੋਣ 'ਤੇ, ਵਿੰਡੋ ਬੰਦ ਕਰਨ ਨਾਲ TDM ਬੰਦ ਹੋ ਜਾਂਦਾ ਹੈ
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	ਇੱਕ ਭਾਸ਼ਾ ਚੁਣੋ
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	ਉਹ ਭਾਸ਼ਾ ਚੁਣੋ ਜਿਸ ਵਿੱਚ Mister Download Manager ਆਪਣੀਆਂ ਵਿੰਡੋਜ਼ ਦਿਖਾਉਂਦਾ ਹੈ:
+	Choose the language Tufan Download Manager shows its windows in:	ਉਹ ਭਾਸ਼ਾ ਚੁਣੋ ਜਿਸ ਵਿੱਚ Tufan Download Manager ਆਪਣੀਆਂ ਵਿੰਡੋਜ਼ ਦਿਖਾਉਂਦਾ ਹੈ:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	ਕਾਂਗੋ
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	ਕਨੈਕਟ ਕੀਤਾ ਗਿਆ
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	"ਡਾਊਨਲੋਡ ਪ੍ਰਗਤੀ" ਡਾਇਲਾਗ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	MDM ਨਾਲ ਡਾਊਨਲੋਡ ਕਰਨ ਤੋਂ ਰੋਕਣ ਜਾਂ ਮਜਬੂਰ ਕਰਨ ਲਈ ਕੁੰਜੀਆਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
+	Customize keys to prevent or force downloading with TDM	TDM ਨਾਲ ਡਾਊਨਲੋਡ ਕਰਨ ਤੋਂ ਰੋਕਣ ਜਾਂ ਮਜਬੂਰ ਕਰਨ ਲਈ ਕੁੰਜੀਆਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	ਬ੍ਰਾਊਜ਼ਰਾਂ ਵਿੱਚ MDM ਡਾਊਨਲੋਡ ਪੈਨਲਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
+	Customize TDM Download panels in browsers	ਬ੍ਰਾਊਜ਼ਰਾਂ ਵਿੱਚ TDM ਡਾਊਨਲੋਡ ਪੈਨਲਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	ਬ੍ਰਾਊਜ਼ਰਾਂ ਦੇ ਸੰਦਰਭ ਮੀਨੂ ਵਿੱਚ MDM ਮੀਨੂ ਆਈਟਮਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
+	Customize TDM menu items in context menu of browsers	ਬ੍ਰਾਊਜ਼ਰਾਂ ਦੇ ਸੰਦਰਭ ਮੀਨੂ ਵਿੱਚ TDM ਮੀਨੂ ਆਈਟਮਾਂ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	ਖਾਲੀ: ਸਾਰੇ। ਜ਼ਿਆਦਾਤਰ ਸਾਈਟਾਂ 'ਤੇ ਨਵੀਆਂ ਫ਼ਾਈਲਾਂ ਪਹਿਲਾਂ ਆਉਂਦੀਆਂ ਹਨ।
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	MDM ਨੂੰ ਸਮਾਪਤ ਕਰੋ ਅਤੇ ਮੁੜ-ਚਾਲੂ ਕਰੋ
+	End and restart TDM	TDM ਨੂੰ ਸਮਾਪਤ ਕਰੋ ਅਤੇ ਮੁੜ-ਚਾਲੂ ਕਰੋ
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	ਮੈਗਨੈੱਟ ਲਿੰਕ ਦਾਖਲ ਕਰੋ ਜਾਂ .torrent ਫ਼ਾਈਲ ਚੁਣੋ
@@ -1518,7 +1518,7 @@
 	Exit	ਬਾਹਰ ਜਾਓ
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	ਹੋਣ 'ਤੇ Mister Download Manager ਤੋਂ ਬਾਹਰ ਆਓ
+	Exit Tufan Download Manager when done	ਹੋਣ 'ਤੇ Tufan Download Manager ਤੋਂ ਬਾਹਰ ਆਓ
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	ਉਮੀਦ ਕੀਤੀ ਗਈ ਚੈੱਕਸਮ (MD5, SHA-1, SHA-256, SHA-512 ਜਾਂ CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	ਉਦਾਹਰਨ ਲਈ: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	ਸਿਰਫ਼ ਤੁਹਾਡੇ ਖਾਤੇ ਲਈ। ਡਿਫੌਲਟ ਵਜੋਂ ਸੈੱਟ ਕੀਤੀ ਗਈ ਕੋਈ ਹੋਰ ਐਪ ਪਹਿਲਾਂ ਰਹਿੰਦੀ ਹੈ।
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	ਪ੍ਰਕਿਰਿਆਵਾਂ ਨੂੰ ਖਤਮ ਕਰਨ ਲਈ ਮਜਬੂਰ ਕਰੋ
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਭੁੱਲ ਜਾਓ
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	ਮਦਦ
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	ਮਦਦਗਾਰ
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	ਸਹਾਇਕ...
@@ -1954,7 +1954,7 @@
 	Hide web pages	ਵੈੱਬ ਪੰਨੇ ਲੁਕਾਓ
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Mister Download Manager ਦੀ ਬਜਾਏ ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਦੇਣ ਲਈ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਸਮੇਂ Alt ਦਬਾ ਕੇ ਰੱਖੋ।
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Tufan Download Manager ਦੀ ਬਜਾਏ ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਦੇਣ ਲਈ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਸਮੇਂ Alt ਦਬਾ ਕੇ ਰੱਖੋ।
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	ਮੁੱਖ ਪੰਨਾ
@@ -1990,7 +1990,7 @@
 	Hungary	ਹੰਗਰੀ
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	ਮੈਂ Mister Download Manager ਨਾਲ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹਾਂ: ਤੇਜ਼, ਮੁਫ਼ਤ, ਅਤੇ ਇਹ ਉਸ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ ਵਰਗਾ ਲੱਗਦਾ ਹੈ ਜਿਸਨੂੰ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹੋ। {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	ਮੈਂ Tufan Download Manager ਨਾਲ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹਾਂ: ਤੇਜ਼, ਮੁਫ਼ਤ, ਅਤੇ ਇਹ ਉਸ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ ਵਰਗਾ ਲੱਗਦਾ ਹੈ ਜਿਸਨੂੰ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹੋ। {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	ਸ਼੍ਰੇਣੀਆਂ ਵਿੱਚ: ਚੁਣੀ ਗਈ ਸ਼੍ਰੇਣੀ ਦਾ ਮੀਨੂ
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	ਲਾਕ ਕੀਤੀ ਕੀਰਿੰਗ ਵਿੱਚ
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	ਇਸਨੂੰ ਹੱਥੀਂ ਸਥਾਪਤ ਕਰੋ
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	ਆਪਣੀ ਡਿਸਟ੍ਰੀਬਿਊਸ਼ਨ ਦੇ ਪੈਕੇਜਾਂ ਤੋਂ ਜੋ ਗੁੰਮ ਹੈ, ਉਸਨੂੰ ਇੰਸਟਾਲ ਕਰੋ।
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	ਇਹ ਉਹ ਆਰਕਾਈਵ ਨਹੀਂ ਹੈ ਜਿਸਨੂੰ MDM ਐਕਸਟਰੈਕਟ ਕਰਦਾ ਹੈ
+	it is not an archive TDM extracts	ਇਹ ਉਹ ਆਰਕਾਈਵ ਨਹੀਂ ਹੈ ਜਿਸਨੂੰ TDM ਐਕਸਟਰੈਕਟ ਕਰਦਾ ਹੈ
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	MDM ਡਾਊਨਲੋਡ ਕਤਾਰ ਵਿੱਚ img001.jpg, img002.jpg, ਆਦਿ, img100.jpg ਵਰਗੇ ਕ੍ਰਮਵਾਰ ਫ਼ਾਈਲ ਨਾਂਵਾਂ ਦਾ ਸਮੂਹ ਜੋੜਿਆ ਜਾ ਸਕਦਾ ਹੈ। ਫ਼ਾਈਲ ਨਾਂ ਦੇ ਪੈਟਰਨ ਲਈ ਤਾਰੇ ਵਾਲੇ ਵਾਈਲਡਕਾਰਡ ਦੀ ਵਰਤੋਂ ਕਰੋ।
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	TDM ਡਾਊਨਲੋਡ ਕਤਾਰ ਵਿੱਚ img001.jpg, img002.jpg, ਆਦਿ, img100.jpg ਵਰਗੇ ਕ੍ਰਮਵਾਰ ਫ਼ਾਈਲ ਨਾਂਵਾਂ ਦਾ ਸਮੂਹ ਜੋੜਿਆ ਜਾ ਸਕਦਾ ਹੈ। ਫ਼ਾਈਲ ਨਾਂ ਦੇ ਪੈਟਰਨ ਲਈ ਤਾਰੇ ਵਾਲੇ ਵਾਈਲਡਕਾਰਡ ਦੀ ਵਰਤੋਂ ਕਰੋ।
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,9 +2186,9 @@
 #, machine
 	KBytes/sec	ਕਿਲੋਬਾਈਟ/ਸਕਿੰਟ
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
-	Keep running when closing the window	ਵਿੰਡੋ ਬੰਦ ਕਰਨ 'ਤੇ MDM ਚੱਲਦਾ ਰਹੇ
+	Keep running when closing the window	ਵਿੰਡੋ ਬੰਦ ਕਰਨ 'ਤੇ TDM ਚੱਲਦਾ ਰਹੇ
 #. checkbox in the Add torrent window
 #, machine
 	Keep sharing torrents after they finish	ਟੋਰੈਂਟ ਪੂਰੇ ਹੋਣ ਤੋਂ ਬਾਅਦ ਵੀ ਸਾਂਝੇ ਕਰਦੇ ਰਹੋ
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	ਕੁੰਜੀਆਂ
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	ਲਾਓਸ
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	ਇੱਕ ਫੀਡ ਤੋਂ ਵੱਡਾ ਹੋ ਸਕਦਾ ਹੈ
 #. text in the Batch download window
 #, machine
 	Last file:	ਆਖਰੀ ਫ਼ਾਈਲ:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	ਆਖਰੀ ਵਾਰ ਦੇਖਿਆ ਗਿਆ
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	ਲਾਤਵੀਆ
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	ਸਟਾਰਟਅੱਪ 'ਤੇ Mister Download Manager ਲਾਂਚ ਕਰੋ
+	Launch Tufan Download Manager on startup	ਸਟਾਰਟਅੱਪ 'ਤੇ Tufan Download Manager ਲਾਂਚ ਕਰੋ
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	ਸਥਾਨਕ ਨੈੱਟਵਰਕ 'ਤੇ ਫ਼ੋਨਾਂ ਅਤੇ ਕੰਪਿਊਟਰਾਂ ਨੂੰ MDM ਨੂੰ ਕੰਟਰੋਲ ਕਰਨ ਦਿਓ
+	Let phones and computers on the local network control TDM	ਸਥਾਨਕ ਨੈੱਟਵਰਕ 'ਤੇ ਫ਼ੋਨਾਂ ਅਤੇ ਕੰਪਿਊਟਰਾਂ ਨੂੰ TDM ਨੂੰ ਕੰਟਰੋਲ ਕਰਨ ਦਿਓ
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	ਬਾਕੀ ਸੂਚੀਬੱਧ ਕਰੋ
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	ਇਸ 'ਤੇ ਸੁਣੋ:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	MDM ਹੁਣ ਨੈੱਟਵਰਕ 'ਤੇ ਨਹੀਂ ਪਹੁੰਚਿਆ ਜਾ ਸਕਦਾ: ਵਿਕਲਪ → ਰਿਮੋਟ ਦੱਸਦਾ ਹੈ ਕਿਉਂ।
+	TDM can't be reached on the network now: Options → Remote says why.	TDM ਹੁਣ ਨੈੱਟਵਰਕ 'ਤੇ ਨਹੀਂ ਪਹੁੰਚਿਆ ਜਾ ਸਕਦਾ: ਵਿਕਲਪ → ਰਿਮੋਟ ਦੱਸਦਾ ਹੈ ਕਿਉਂ।
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	MDM ਇਸ ਪਤੇ ਨੂੰ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦਾ।
+	TDM cannot download this address.	TDM ਇਸ ਪਤੇ ਨੂੰ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦਾ।
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	MDM ਇਸਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਿਆ।
+	TDM could not add it.	TDM ਇਸਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਿਆ।
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	MDM ਇਹ ਨਹੀਂ ਕਰ ਸਕਿਆ।
+	TDM could not do it.	TDM ਇਹ ਨਹੀਂ ਕਰ ਸਕਿਆ।
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	MDM ਜਵਾਬ ਨਹੀਂ ਦੇ ਰਿਹਾ। ਜਾਂਚ ਕਰੋ ਕਿ ਇਹ ਚੱਲ ਰਿਹਾ ਹੈ ਅਤੇ ਉਸੇ ਨੈੱਟਵਰਕ 'ਤੇ ਹੈ।
+	TDM does not answer. Check that it is running and on the same network.	TDM ਜਵਾਬ ਨਹੀਂ ਦੇ ਰਿਹਾ। ਜਾਂਚ ਕਰੋ ਕਿ ਇਹ ਚੱਲ ਰਿਹਾ ਹੈ ਅਤੇ ਉਸੇ ਨੈੱਟਵਰਕ 'ਤੇ ਹੈ।
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	MDM ਜਵਾਬ ਨਹੀਂ ਦੇ ਰਿਹਾ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਿਹਾ ਹੈ...
+	TDM does not answer. Trying again...	TDM ਜਵਾਬ ਨਹੀਂ ਦੇ ਰਿਹਾ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਿਹਾ ਹੈ...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	MDM ਹੁਣ ਕੋਈ ਕੋਡ ਨਹੀਂ ਦਿਖਾ ਰਿਹਾ। ਪਹਿਲਾਂ ਉੱਥੇ ਇੱਕ ਡਿਵਾਈਸ ਪੇਅਰ ਕਰੋ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।
+	TDM shows no code now. Click Pair a device there first.	TDM ਹੁਣ ਕੋਈ ਕੋਡ ਨਹੀਂ ਦਿਖਾ ਰਿਹਾ। ਪਹਿਲਾਂ ਉੱਥੇ ਇੱਕ ਡਿਵਾਈਸ ਪੇਅਰ ਕਰੋ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	ਛੋਟਾ ਕਰੋ
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਛੋਟਾ ਕਰੋ
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	ਬਾਕੀ
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Mister Download Manager ਆਪਣੀ ਵਿੰਡੋ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦਾ: ਇਸ ਸਿਸਟਮ ਵਿੱਚ {libraries} ਦੀ ਘਾਟ ਹੈ।
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Tufan Download Manager ਆਪਣੀ ਵਿੰਡੋ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦਾ: ਇਸ ਸਿਸਟਮ ਵਿੱਚ {libraries} ਦੀ ਘਾਟ ਹੈ।
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Mister Download Manager ਅਚਾਨਕ ਬੰਦ ਹੋ ਗਿਆ
+	Tufan Download Manager closed unexpectedly	Tufan Download Manager ਅਚਾਨਕ ਬੰਦ ਹੋ ਗਿਆ
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Mister Download Manager ਸੰਰਚਨਾ
+	Tufan Download Manager Configuration	Tufan Download Manager ਸੰਰਚਨਾ
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Mister Download Manager ਕ੍ਰੈਸ਼ ਰਿਪੋਰਟ
+	Tufan Download Manager crash report	Tufan Download Manager ਕ੍ਰੈਸ਼ ਰਿਪੋਰਟ
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Mister Download Manager ਵਿੱਚ ਅੰਦਰੂਨੀ ਗਲਤੀ ਆਈ
+	Tufan Download Manager hit an internal error	Tufan Download Manager ਵਿੱਚ ਅੰਦਰੂਨੀ ਗਲਤੀ ਆਈ
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Mister Download Manager ਕਤਾਰ "{queue}" ਚਲਾ ਰਿਹਾ ਹੈ
+	Tufan Download Manager is running the queue "{queue}"	Tufan Download Manager ਕਤਾਰ "{queue}" ਚਲਾ ਰਿਹਾ ਹੈ
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Mister Download Manager ਨੇ ਜਵਾਬ ਦੇਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ
+	Tufan Download Manager stopped responding	Tufan Download Manager ਨੇ ਜਵਾਬ ਦੇਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Mister Download Manager ਨੇ ਕੁਝ ਸਮੇਂ ਲਈ ਜਵਾਬ ਦੇਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ
+	Tufan Download Manager stopped responding for a while	Tufan Download Manager ਨੇ ਕੁਝ ਸਮੇਂ ਲਈ ਜਵਾਬ ਦੇਣਾ ਬੰਦ ਕਰ ਦਿੱਤਾ
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Mister Download Manager ਹਰੇਕ ਕਨੈਕਸ਼ਨ ਨੂੰ ਸਿੱਧਾ ਅੰਤਿਮ ਫਾਈਲ\n(ਇਸਦੇ ਨਾਲ ਇੱਕ ਸਪਾਰਸ ਪਾਰਟ ਫਾਈਲ) ਵਿੱਚ ਲਿਖਦਾ ਹੈ, ਇਸਲਈ ਕਿਸੇ ਅਸਥਾਈ ਡਾਇਰੈਕਟਰੀ ਅਤੇ ਕਿਸੇ\nਅਸੈਂਬਲਿੰਗ ਕਦਮ ਦੀ ਲੋੜ ਨਹੀਂ ਹੈ।
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Tufan Download Manager ਹਰੇਕ ਕਨੈਕਸ਼ਨ ਨੂੰ ਸਿੱਧਾ ਅੰਤਿਮ ਫਾਈਲ\n(ਇਸਦੇ ਨਾਲ ਇੱਕ ਸਪਾਰਸ ਪਾਰਟ ਫਾਈਲ) ਵਿੱਚ ਲਿਖਦਾ ਹੈ, ਇਸਲਈ ਕਿਸੇ ਅਸਥਾਈ ਡਾਇਰੈਕਟਰੀ ਅਤੇ ਕਿਸੇ\nਅਸੈਂਬਲਿੰਗ ਕਦਮ ਦੀ ਲੋੜ ਨਹੀਂ ਹੈ।
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Mister Download Manager {version} ਉਪਲਬਧ ਹੈ ({date} ਨੂੰ ਜਾਰੀ ਕੀਤਾ ਗਿਆ)।
+	Tufan Download Manager {version} is available (released {date}).	Tufan Download Manager {version} ਉਪਲਬਧ ਹੈ ({date} ਨੂੰ ਜਾਰੀ ਕੀਤਾ ਗਿਆ)।
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Mister Download Manager ਦੀ ਆਪਣੀ ਕਾਪੀ, ਵਰਜਨ {version}
+	Tufan Download Manager's own copy, version {version}	Tufan Download Manager ਦੀ ਆਪਣੀ ਕਾਪੀ, ਵਰਜਨ {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Mister Download Manager ਦੀ X11 ਵਿੰਡੋ ਨੂੰ {libraries} ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਸਿਸਟਮ ਵਿੱਚ ਨਹੀਂ ਹਨ: ਇਹ ਇਸ ਦੀ ਬਜਾਏ Wayland 'ਤੇ ਖੁੱਲ੍ਹਦੀ ਹੈ, ਜਿੱਥੇ ਇਸਦੇ ਮੀਨੂ ਆਪਣੇ ਸਿਰਲੇਖਾਂ ਤੋਂ ਦੂਰ ਖੁੱਲ੍ਹ ਸਕਦੇ ਹਨ।
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Tufan Download Manager ਦੀ X11 ਵਿੰਡੋ ਨੂੰ {libraries} ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਸਿਸਟਮ ਵਿੱਚ ਨਹੀਂ ਹਨ: ਇਹ ਇਸ ਦੀ ਬਜਾਏ Wayland 'ਤੇ ਖੁੱਲ੍ਹਦੀ ਹੈ, ਜਿੱਥੇ ਇਸਦੇ ਮੀਨੂ ਆਪਣੇ ਸਿਰਲੇਖਾਂ ਤੋਂ ਦੂਰ ਖੁੱਲ੍ਹ ਸਕਦੇ ਹਨ।
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	ਕੋਈ ਪਤੇ ਨਹੀਂ ਹਨ
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	ਕੋਈ ਬ੍ਰਾਊਜ਼ਰ ਨਹੀਂ ਮਿਲਿਆ ਜਿਸ ਨਾਲ MDM ਕਨੈਕਟ ਕਰ ਸਕੇ
+	No browser TDM can connect to was found	ਕੋਈ ਬ੍ਰਾਊਜ਼ਰ ਨਹੀਂ ਮਿਲਿਆ ਜਿਸ ਨਾਲ TDM ਕਨੈਕਟ ਕਰ ਸਕੇ
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	ਕਿਸੇ ਵੀ ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਐਕਸਟੈਂਸ਼ਨ ਅਜੇ ਕਨੈਕਟ ਨਹੀਂ ਹੋਈ ਹੈ
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	ਕੋਈ ਪ੍ਰੌਕਸੀ/SOCKS ਨਹੀਂ
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	ਕੋਈ ਸਿਸਟਮ ਕੀਰਿੰਗ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ, ਇਸ ਲਈ ਸਾਈਨ-ਇਨ ਅਤੇ ਪਾਸਵਰਡ MDM ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ, ਜਿਨ੍ਹਾਂ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	ਕੋਈ ਸਿਸਟਮ ਕੀਰਿੰਗ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ, ਇਸ ਲਈ ਸਾਈਨ-ਇਨ ਅਤੇ ਪਾਸਵਰਡ TDM ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ, ਜਿਨ੍ਹਾਂ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	ਬੰਦ: ਨੈੱਟਵਰਕ 'ਤੇ ਕੋਈ ਵੀ MDM ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦਾ।
+	Off: nothing on the network can reach TDM.	ਬੰਦ: ਨੈੱਟਵਰਕ 'ਤੇ ਕੋਈ ਵੀ TDM ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦਾ।
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	ਕਲਿੱਪਬੋਰਡ 'ਤੇ ਕਾਪੀ ਕੀਤੇ ਲਿੰਕਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਦੀ ਪੇਸ਼ਕਸ਼ ਕਰੋ
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	macOS 'ਤੇ, ਸਿਰਫ਼ ਇੱਕ ਪ੍ਰਬੰਧਕ ਹੀ ਵੇਕ ਨੂੰ ਤਹਿ ਕਰ ਸਕਦਾ ਹੈ
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	ਕੰਪਿਊਟਰ 'ਤੇ, ਵਿਕਲਪ ਖੋਲ੍ਹੋ, ਫਿਰ ਰਿਮੋਟ, ਅਤੇ ਇੱਕ ਡਿਵਾਈਸ ਪੇਅਰ ਕਰੋ 'ਤੇ ਕਲਿੱਕ ਕਰੋ। ਇਹ ਜੋ ਕੋਡ ਦਿਖਾਉਂਦਾ ਹੈ, ਉਹ ਦਾਖਲ ਕਰੋ।
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	ਸਿਰਫ਼ ਪੇਅਰ ਕੀਤੀਆਂ ਡਿਵਾਈਸਾਂ ਹੀ ਕੁਝ ਵੀ ਦੇਖ ਜਾਂ ਬਦਲ ਸਕਦੀਆਂ ਹਨ। ਪਹਿਲੀ ਵਾਰ, ਫ਼ੋਨ ਦਾ ਬ੍ਰਾਊਜ਼ਰ MDM ਦੇ ਆਪਣੇ ਸਰਟੀਫਿਕੇਟ ਬਾਰੇ ਚੇਤਾਵਨੀ ਦਿੰਦਾ ਹੈ: ਇਸਦਾ ਫਿੰਗਰਪ੍ਰਿੰਟ ਉੱਪਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	ਸਿਰਫ਼ ਪੇਅਰ ਕੀਤੀਆਂ ਡਿਵਾਈਸਾਂ ਹੀ ਕੁਝ ਵੀ ਦੇਖ ਜਾਂ ਬਦਲ ਸਕਦੀਆਂ ਹਨ। ਪਹਿਲੀ ਵਾਰ, ਫ਼ੋਨ ਦਾ ਬ੍ਰਾਊਜ਼ਰ TDM ਦੇ ਆਪਣੇ ਸਰਟੀਫਿਕੇਟ ਬਾਰੇ ਚੇਤਾਵਨੀ ਦਿੰਦਾ ਹੈ: ਇਸਦਾ ਫਿੰਗਰਪ੍ਰਿੰਟ ਉੱਪਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	ਸਿਰਫ਼ ਪਹਿਲੇ {n} ਵੀਡੀਓ ਸੂਚੀਬੱਧ ਹਨ।
@@ -3109,10 +3109,10 @@
 	Open folder	ਫੋਲਡਰ ਖੋਲ੍ਹੋ
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	Mister Download Manager ਨਾਲ ਮੈਗਨੈੱਟ ਲਿੰਕ ਅਤੇ .torrent ਫ਼ਾਈਲਾਂ ਖੋਲ੍ਹੋ
+	Open magnet links and .torrent files with Tufan Download Manager	Tufan Download Manager ਨਾਲ ਮੈਗਨੈੱਟ ਲਿੰਕ ਅਤੇ .torrent ਫ਼ਾਈਲਾਂ ਖੋਲ੍ਹੋ
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	Mister Download Manager ਖੋਲ੍ਹੋ
+	Open Tufan Download Manager	Tufan Download Manager ਖੋਲ੍ਹੋ
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	ਪੰਨੇ ਦਾ ਪਤਾ
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	ਪੇਅਰ ਕਰੋ
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Mister Download Manager ਨਾਲ ਜੋੜਾ ਬਣਾਓ
+	Pair with Tufan Download Manager	Tufan Download Manager ਨਾਲ ਜੋੜਾ ਬਣਾਓ
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	"{category}" ਸ਼੍ਰੇਣੀ ਲਈ ਇਹ ਮਾਰਗ ਯਾਦ ਰੱਖੋ
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	ਰਿਮੋਟ
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	ਰਿਮੋਟ ਕੰਟਰੋਲ
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	ਤਾਰੇ ਨੂੰ ਇਸ ਨਾਲ ਬਦਲੋ
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	MDM ਨੂੰ ਮੁੜ-ਚਾਲੂ ਕਰੋ
+	Restart TDM	TDM ਨੂੰ ਮੁੜ-ਚਾਲੂ ਕਰੋ
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	ਬਿਲਟ-ਇਨ ਸ਼੍ਰੇਣੀਆਂ ਨੂੰ ਬਹਾਲ ਕਰੋ
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	ਬਿੰਦੀਦਾਰ ਰੂਪਰੇਖਾ ਵਾਲਾ ਡਾਊਨਲੋਡ ਚੁਣੋ ਜਾਂ ਅਣਚੁਣੋ
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	Mister Download Manager ਦੇ ਇਵੈਂਟਾਂ ਲਈ ਆਵਾਜ਼ਾਂ ਚੁਣੋ
+	Select sounds for Tufan Download Manager events	Tufan Download Manager ਦੇ ਇਵੈਂਟਾਂ ਲਈ ਆਵਾਜ਼ਾਂ ਚੁਣੋ
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	ਬਾਕਸ ਵਿੱਚ ਡਾਊਨਲੋਡ ਚੁਣੋ
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	ਇਹ ਕਿਸੇ ਦੋਸਤ ਨੂੰ ਭੇਜੋ:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	ਟੋਰੈਂਟਾਂ ਅਤੇ ਮੈਗਨੈੱਟ ਲਿੰਕਾਂ ਨੂੰ ਪੀਅਰਾਂ ਦੀ ਬਜਾਏ ਪਹਿਲੇ ਖਾਤੇ 'ਤੇ ਭੇਜੋ
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	ਸਰਵਰ ਦੁਆਰਾ ਪ੍ਰਦਾਨ ਕੀਤੀ ਗਈ ਫਾਈਲ ਬਣਾਉਣ ਦੀ ਮਿਤੀ ਸੈੱਟ ਕਰੋ
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	ਇਸਨੂੰ ਸੈੱਟਅੱਪ ਕਰੋ
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	ਸਾਈਟਾਂ ਦੇ ਲੌਗਇਨ
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	ਸਾਈਟਾਂ ਆਪਣੀ ਸਭ ਤੋਂ ਵਧੀਆ ਗੁਣਵੱਤਾ ਨੂੰ ਵੱਖਰੇ ਵੀਡੀਓ ਅਤੇ ਆਡੀਓ ਦੇ ਰੂਪ ਵਿੱਚ ਭੇਜਦੀਆਂ ਹਨ, ਅਤੇ ffmpeg ਉਹਨਾਂ ਨੂੰ ਜੋੜਦਾ ਹੈ। ਇਸ ਸਿਸਟਮ 'ਤੇ MDM ਤੁਹਾਡਾ ffmpeg ਵਰਤਦਾ ਹੈ: ਆਪਣੇ ਪੈਕੇਜ ਮੈਨੇਜਰ ਨਾਲ ffmpeg ਇੰਸਟਾਲ ਕਰੋ।
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	ਸਾਈਟਾਂ ਆਪਣੀ ਸਭ ਤੋਂ ਵਧੀਆ ਗੁਣਵੱਤਾ ਨੂੰ ਵੱਖਰੇ ਵੀਡੀਓ ਅਤੇ ਆਡੀਓ ਦੇ ਰੂਪ ਵਿੱਚ ਭੇਜਦੀਆਂ ਹਨ, ਅਤੇ ffmpeg ਉਹਨਾਂ ਨੂੰ ਜੋੜਦਾ ਹੈ। ਇਸ ਸਿਸਟਮ 'ਤੇ TDM ਤੁਹਾਡਾ ffmpeg ਵਰਤਦਾ ਹੈ: ਆਪਣੇ ਪੈਕੇਜ ਮੈਨੇਜਰ ਨਾਲ ffmpeg ਇੰਸਟਾਲ ਕਰੋ।
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	ਸਾਈਟਾਂ ਆਪਣੀ ਸਭ ਤੋਂ ਵਧੀਆ ਗੁਣਵੱਤਾ ਨੂੰ ਵੱਖਰੇ ਵੀਡੀਓ ਅਤੇ ਆਡੀਓ ਦੇ ਰੂਪ ਵਿੱਚ ਭੇਜਦੀਆਂ ਹਨ। ffmpeg ਉਹਨਾਂ ਨੂੰ ਇੱਕ ਫਾਈਲ ਵਿੱਚ ਇਕੱਠਾ ਕਰਦਾ ਹੈ ਜੋ ਕਿਤੇ ਵੀ ਚੱਲਦੀ ਹੈ।
@@ -4012,7 +4012,7 @@
 	Start download at	ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰੋ
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	Mister Download Manager ਸ਼ੁਰੂ ਹੋਣ 'ਤੇ ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰੋ
+	Start download on Tufan Download Manager startup	Tufan Download Manager ਸ਼ੁਰੂ ਹੋਣ 'ਤੇ ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰੋ
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	"ਡਾਊਨਲੋਡ ਫਾਈਲ ਜਾਣਕਾਰੀ" ਡਾਇਲਾਗ ਦਿਖਾਉਂਦੇ ਹੋਏ ਤੁਰੰਤ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰੋ
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	gallery-dl {version} ਨਾਲ ਸ਼ੁਰੂ ਕੀਤਾ ਗਿਆ
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	ਕੰਪਿਊਟਰ ਨਾਲ ਸ਼ੁਰੂ ਕੀਤਾ ਗਿਆ, ਇਹ ਛੋਟਾ ਹੋ ਕੇ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ: ਇੱਥੇ ਕੋਈ ਸੂਚਨਾ ਖੇਤਰ ਇਸਦਾ ਆਈਕਨ ਨਹੀਂ ਦਿਖਾਉਂਦਾ
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	ਕੰਪਿਊਟਰ ਨਾਲ ਸ਼ੁਰੂ ਕੀਤਾ ਗਿਆ, ਇਹ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਉਡੀਕ ਕਰਦਾ ਹੈ
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	ਐਤਵਾਰ
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	GitHub ਸਪਾਂਸਰਾਂ 'ਤੇ MDM ਦਾ ਸਮਰਥਨ ਕਰੋ
+	Support TDM on GitHub Sponsors	GitHub ਸਪਾਂਸਰਾਂ 'ਤੇ TDM ਦਾ ਸਮਰਥਨ ਕਰੋ
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	ਸਭ ਤੋਂ ਵਧੀਆ ਗੁਣਵੱਤਾ, MP3, Opus ਅਤੇ FLAC ਲਈ ffmpeg ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ: ਇਸਨੂੰ ਆਪਣੇ ਸਿਸਟਮ ਦੇ ਪੈਕੇਜ ਮੈਨੇਜਰ (ਜਾਂ Homebrew) ਨਾਲ ਸਥਾਪਤ ਕਰੋ।
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	ਬ੍ਰਾਊਜ਼ਰ ਦਾ ਪ੍ਰੌਕਸੀ (ਇੱਕ VPN ਜਾਂ ਪ੍ਰੌਕਸੀ ਐਕਸਟੈਂਸ਼ਨ) ਸਿਰਫ਼ ਉਸ ਐਕਸਟੈਂਸ਼ਨ ਕੋਲ ਮੌਜੂਦ ਲੌਗਇਨ ਲਈ ਪੁੱਛਦਾ ਹੈ: VPN ਦੀ ਆਪਣੀ ਐਪ ਦੀ ਵਰਤੋਂ ਕਰੋ, ਜਾਂ ਵਿਕਲਪ → ਪ੍ਰੌਕਸੀ / SOCKS ਵਿੱਚ ਇਸਦਾ ਨੈੱਟਵਰਕ ਅਡਾਪਟਰ ਚੁਣੋ
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	ਬ੍ਰਾਊਜ਼ਰ Mister Download Manager ਨੂੰ ਲੱਭ ਸਕਦੇ ਹਨ
+	The browsers can find Tufan Download Manager	ਬ੍ਰਾਊਜ਼ਰ Tufan Download Manager ਨੂੰ ਲੱਭ ਸਕਦੇ ਹਨ
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	ਕੰਪਿਊਟਰ ਨੂੰ ਸ਼ੁਰੂ ਹੋਣ ਦੇ ਸਮੇਂ ਤੋਂ ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ ਜਗਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਕਤਾਰ ਚੱਲਣ ਤੱਕ ਜਗਾਇਆ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ। Mister Download Manager ਚੱਲਦਾ ਰਹਿਣਾ ਚਾਹੀਦਾ ਹੈ (ਇਹ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਉਡੀਕ ਕਰ ਸਕਦਾ ਹੈ)।
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	ਕੰਪਿਊਟਰ ਨੂੰ ਸ਼ੁਰੂ ਹੋਣ ਦੇ ਸਮੇਂ ਤੋਂ ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ ਜਗਾਇਆ ਜਾਂਦਾ ਹੈ ਅਤੇ ਕਤਾਰ ਚੱਲਣ ਤੱਕ ਜਗਾਇਆ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ। Tufan Download Manager ਚੱਲਦਾ ਰਹਿਣਾ ਚਾਹੀਦਾ ਹੈ (ਇਹ ਸੂਚਨਾ ਖੇਤਰ ਵਿੱਚ ਉਡੀਕ ਕਰ ਸਕਦਾ ਹੈ)।
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	ਡਾਊਨਲੋਡ ਸੂਚੀ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ: {error}। MDM ਚੱਲਣ ਤੱਕ ਤਬਦੀਲੀਆਂ ਰੱਖੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	ਡਾਊਨਲੋਡ ਸੂਚੀ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ: {error}। TDM ਚੱਲਣ ਤੱਕ ਤਬਦੀਲੀਆਂ ਰੱਖੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	ਉਹੀ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ ਜਿਸਨੂੰ ਤੁਸੀਂ ਜਾਣਦੇ ਹੋ, ਹੁਣ ਹੋਰ ਤੇਜ਼ ਕੀਤਾ ਗਿਆ ਹੈ। GNU GPL ਸੰਸਕਰਣ 3 ਜਾਂ ਇਸ ਤੋਂ ਬਾਅਦ ਦੇ ਤਹਿਤ ਮੁਫ਼ਤ ਅਤੇ ਓਪਨ ਸੋਰਸ। ਵੀਡੀਓ yt-dlp ਰਾਹੀਂ ਲੱਭੇ ਜਾਂਦੇ ਹਨ; ਟੋਰੈਂਟ librqbit 'ਤੇ ਚੱਲਦੇ ਹਨ।
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	FTP ਸਰਵਰ ਨੇ {code} {reply} ਨਾਲ ਜਵਾਬ ਦਿੱਤਾ
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	ਬ੍ਰਾਊਜ਼ਰਾਂ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤਾ ਗਿਆ ਸਹਾਇਕ ਪ੍ਰੋਗਰਾਮ ਗੁੰਮ ਹੈ
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	ਚੁਣਿਆ ਗਿਆ ਡਾਊਨਲੋਡ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ\nMister Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	ਚੁਣਿਆ ਗਿਆ ਡਾਊਨਲੋਡ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸਨੂੰ\nTufan Download Manager ਦੀ ਡਾਊਨਲੋਡ ਸੂਚੀ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
 #. text in errors.rs
 #, machine
 	the server answered {status}	ਸਰਵਰ ਨੇ {status} ਦਾ ਜਵਾਬ ਦਿੱਤਾ
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	ਚਿੰਨ੍ਹ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ: ਰਿਪੋਰਟ ਦੀਆਂ ਕੁਝ ਲਾਈਨਾਂ ਨਾਮਾਂ ਦੀ ਬਜਾਏ ਪਤੇ ਦਿਖਾਉਂਦੀਆਂ ਹਨ (ਡਿਵੈਲਪਰ ਅਜੇ ਵੀ ਉਹਨਾਂ ਨੂੰ ਪੜ੍ਹ ਸਕਦੇ ਹਨ)।
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	ਸਿਸਟਮ ਕੀਰਿੰਗ ਲਾਕ ਹੈ ਅਤੇ MDM ਇਸਨੂੰ ਅਨਲਾਕ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਲਈ ਸਾਈਨ-ਇਨ ਅਤੇ ਪਾਸਵਰਡ MDM ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ, ਜਿਨ੍ਹਾਂ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	ਸਿਸਟਮ ਕੀਰਿੰਗ ਲਾਕ ਹੈ ਅਤੇ TDM ਇਸਨੂੰ ਅਨਲਾਕ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਲਈ ਸਾਈਨ-ਇਨ ਅਤੇ ਪਾਸਵਰਡ TDM ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ, ਜਿਨ੍ਹਾਂ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	ਵੈੱਬ ਪੰਨਾ ਜਿੱਥੋਂ ਇਹ ਫਾਈਲ ਪ੍ਰਾਪਤ ਕੀਤੀ ਗਈ ਸੀ:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	ਥੀਮ ਅਤੇ ਰੰਗ ਸਕੀਮਾਂ
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	ਇਹ ਮਿਤੀ ਲੰਘ ਚੁੱਕੀ ਹੈ: ਕਤਾਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਵੇਗੀ
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	ਇਸ ਡਿਵਾਈਸ ਦਾ ਨਾਮ
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	{service} ਰਾਹੀਂ: ਸੇਵਾ ਟੋਰੈਂਟ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਦੀ ਹੈ, ਫਿਰ MDM ਇਸ ਦੀਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ
+	Through {service}: the service downloads the torrent, then TDM its files	{service} ਰਾਹੀਂ: ਸੇਵਾ ਟੋਰੈਂਟ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਦੀ ਹੈ, ਫਿਰ TDM ਇਸ ਦੀਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ
 #. text in the Scheduler window
 #, machine
 	Thursday	ਵੀਰਵਾਰ
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	“Mister Download Manager” ਨੂੰ ਚਾਲੂ ਕਰੋ ਅਤੇ ਇਸ ਨੂੰ ਸਾਰੀਆਂ ਵੈੱਬਸਾਈਟਾਂ 'ਤੇ ਇਜਾਜ਼ਤ ਦਿਓ।
+	Turn on "Tufan Download Manager" and allow it on all websites.	“Tufan Download Manager” ਨੂੰ ਚਾਲੂ ਕਰੋ ਅਤੇ ਇਸ ਨੂੰ ਸਾਰੀਆਂ ਵੈੱਬਸਾਈਟਾਂ 'ਤੇ ਇਜਾਜ਼ਤ ਦਿਓ।
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	ਇਸ ਕੋਡ ਨੂੰ {page} 'ਤੇ ਟਾਈਪ ਕਰੋ ਅਤੇ MDM ਨੂੰ ਇਜਾਜ਼ਤ ਦਿਓ; ਤੁਹਾਡੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ (ਕੋਡ ਦੀ ਮਿਆਦ {time} ਵਿੱਚ ਖਤਮ ਹੋ ਜਾਂਦੀ ਹੈ)।
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	ਇਸ ਕੋਡ ਨੂੰ {page} 'ਤੇ ਟਾਈਪ ਕਰੋ ਅਤੇ TDM ਨੂੰ ਇਜਾਜ਼ਤ ਦਿਓ; ਤੁਹਾਡੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ (ਕੋਡ ਦੀ ਮਿਆਦ {time} ਵਿੱਚ ਖਤਮ ਹੋ ਜਾਂਦੀ ਹੈ)।
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	PASV ਮੋਡ ਵਿੱਚ FTP ਦੀ ਵਰਤੋਂ ਕਰੋ
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	MDM ਦੀ ਆਪਣੀ ਕਾਪੀ ਵਰਤੋ
+	Use TDM's own copy	TDM ਦੀ ਆਪਣੀ ਕਾਪੀ ਵਰਤੋ
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	Windows ਵੇਕ ਟਾਈਮਰਾਂ ਦੀ ਇਜਾਜ਼ਤ ਸਿਰਫ਼ ਪਲੱਗ ਇਨ ਹੋਣ 'ਤੇ ਹੀ ਦਿੰਦਾ ਹੈ
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	Windows ਕ੍ਰੇਡੈਂਸ਼ੀਅਲ ਮੈਨੇਜਰ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ, ਇਸ ਲਈ ਸਾਈਨ-ਇਨ ਅਤੇ ਪਾਸਵਰਡ MDM ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ, ਜੋ ਤੁਹਾਡੇ Windows ਖਾਤੇ ਲਈ ਐਨਕ੍ਰਿਪਟਡ ਹਨ।
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	Windows ਕ੍ਰੇਡੈਂਸ਼ੀਅਲ ਮੈਨੇਜਰ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ, ਇਸ ਲਈ ਸਾਈਨ-ਇਨ ਅਤੇ ਪਾਸਵਰਡ TDM ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਰੱਖੇ ਜਾਂਦੇ ਹਨ, ਜੋ ਤੁਹਾਡੇ Windows ਖਾਤੇ ਲਈ ਐਨਕ੍ਰਿਪਟਡ ਹਨ।
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	ਗਲਤ ਕੋਡ। MDM ਵਿੱਚ ਇੱਕ ਨਵਾਂ ਕੋਡ ਦਿਖਾਓ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
+	Wrong code. Show a new code in TDM and try again.	ਗਲਤ ਕੋਡ। TDM ਵਿੱਚ ਇੱਕ ਨਵਾਂ ਕੋਡ ਦਿਖਾਓ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	ਤੁਹਾਡੇ ਕੋਲ Mister Download Manager ({version}) ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਹੈ।
+	You have the latest version of Tufan Download Manager ({version}).	ਤੁਹਾਡੇ ਕੋਲ Tufan Download Manager ({version}) ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਹੈ।
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	ਤੁਹਾਡੇ ਕੋਲ ਸਿਸਟਮ ਦੇ ਪੈਕੇਜ ਮੈਨੇਜਰ ਰਾਹੀਂ ਵਰਜਨ {version} ਇੰਸਟਾਲ ਹੈ: ਇਸਨੂੰ ਉੱਥੇ ਅੱਪਡੇਟ ਕਰੋ।
@@ -5275,7 +5275,7 @@
 	Your browser	ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	ਤੁਹਾਡਾ ਡਿਫੌਲਟ ਬ੍ਰਾਊਜ਼ਰ MDM ਨੂੰ ਪਤਾ ਨਹੀਂ: ਇੱਕ ਮੌਜੂਦਾ Chrome ਦਾ User-Agent
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	ਤੁਹਾਡਾ ਡਿਫੌਲਟ ਬ੍ਰਾਊਜ਼ਰ TDM ਨੂੰ ਪਤਾ ਨਹੀਂ: ਇੱਕ ਮੌਜੂਦਾ Chrome ਦਾ User-Agent
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	ਤੁਹਾਡੇ Google ਖਾਤੇ ਨੂੰ ਇਸ ਫ਼ਾਈਲ ਤੱਕ ਪਹੁੰਚ ਨਹੀਂ ਹੈ, ਜਾਂ ਇਸਦੇ ਮਾਲਕ ਨੇ ਡਾਊਨਲੋਡ ਕਰਨ 'ਤੇ ਪਾਬੰਦੀ ਲਾ ਦਿੱਤੀ ਹੈ
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	ਤੁਹਾਡਾ ਆਪਣਾ ਪ੍ਰੋਗਰਾਮ ({version}) ਬਹੁਤ ਪੁਰਾਣਾ ਹੈ: MDM ਨੂੰ {oldest} ਜਾਂ ਨਵਾਂ ਚਾਹੀਦਾ ਹੈ
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	ਤੁਹਾਡਾ ਆਪਣਾ ਪ੍ਰੋਗਰਾਮ ({version}) ਬਹੁਤ ਪੁਰਾਣਾ ਹੈ: TDM ਨੂੰ {oldest} ਜਾਂ ਨਵਾਂ ਚਾਹੀਦਾ ਹੈ
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	{device} ਜੋੜਾ ਬਣਾਇਆ ਗਿਆ ਹੈ। ਇਹ ਹੁਣ MDM ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦਾ ਹੈ।
+	{device} is paired. It can control TDM now.	{device} ਜੋੜਾ ਬਣਾਇਆ ਗਿਆ ਹੈ। ਇਹ ਹੁਣ TDM ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦਾ ਹੈ।
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	{name} ਇੱਕ 7z ਜਾਂ RAR ਪੁਰਾਲੇਖ ਹੈ। MDM ਇਹਨਾਂ ਨੂੰ 7-Zip ਨਾਲ ਖੋਲ੍ਹਦਾ ਹੈ, ਪਰ 7-Zip ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ।
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	{name} ਇੱਕ 7z ਜਾਂ RAR ਪੁਰਾਲੇਖ ਹੈ। TDM ਇਹਨਾਂ ਨੂੰ 7-Zip ਨਾਲ ਖੋਲ੍ਹਦਾ ਹੈ, ਪਰ 7-Zip ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ।
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	{name} {how} ਵਜੋਂ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	{name} {version} ਬਹੁਤ ਪੁਰਾਣਾ ਹੈ: MDM ਨੂੰ {oldest} ਜਾਂ ਨਵਾਂ ਚਾਹੀਦਾ ਹੈ
+	{name} {version} is too old: TDM needs {oldest} or newer	{name} {version} ਬਹੁਤ ਪੁਰਾਣਾ ਹੈ: TDM ਨੂੰ {oldest} ਜਾਂ ਨਵਾਂ ਚਾਹੀਦਾ ਹੈ
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	ਚੁਣੇ ਗਏ {n} ਵਿੱਚੋਂ {total}
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{service} 'ਤੇ {percent}
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	{service} ਹੌਲੀ ਕਰਨ ਲਈ ਕਹਿੰਦਾ ਹੈ; MDM ਇੱਕ ਮਿੰਟ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ
+	{service} asks to slow down; TDM will try again in a minute	{service} ਹੌਲੀ ਕਰਨ ਲਈ ਕਹਿੰਦਾ ਹੈ; TDM ਇੱਕ ਮਿੰਟ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	{service} ਇਹ ਟੋਰੈਂਟ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਦਾ: ਕੋਈ ਵੀ ਇਸਨੂੰ ਸਾਂਝਾ ਨਹੀਂ ਕਰ ਰਿਹਾ, ਜਾਂ ਇਸਦਾ ਲਿੰਕ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	{service} ਇਸ ਫ਼ਾਈਲ ਹੋਸਟ ਤੱਕ ਇਸ ਵੇਲੇ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦਾ; MDM ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ
+	{service} can't reach this file host right now; TDM will try again later	{service} ਇਸ ਫ਼ਾਈਲ ਹੋਸਟ ਤੱਕ ਇਸ ਵੇਲੇ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦਾ; TDM ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: ਇਸ ਲਈ ਪ੍ਰੀਮੀਅਮ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: ਤੁਹਾਡੇ ਖਾਤੇ ਰਾਹੀਂ ਇੱਕੋ ਸਮੇਂ ਬਹੁਤ ਸਾਰੇ ਡਾਊਨਲੋਡ ਹੋ ਰਹੇ ਹਨ; MDM ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ
+	{service}: too many downloads at once through your account; TDM will try again	{service}: ਤੁਹਾਡੇ ਖਾਤੇ ਰਾਹੀਂ ਇੱਕੋ ਸਮੇਂ ਬਹੁਤ ਸਾਰੇ ਡਾਊਨਲੋਡ ਹੋ ਰਹੇ ਹਨ; TDM ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: ਪਹਿਲਾਂ ਹੀ ਸੂਚੀ ਵਿੱਚ ਹੈ
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਗਿਆ: ਇਸ ਨਾਮ ਵਾਲੀਆਂ ਫ਼ਾਈਲਾਂ ਪਹਿਲਾਂ ਹੀ {folder} ਵਿੱਚ ਹਨ
 #. message or event log entry in the main window
@@ -5662,15 +5662,15 @@ column	Transfer rate	ਟ੍ਰਾਂਸਫ਼ਰ ਦਰ
 #, machine
 column	Upload speed	ਅੱਪਲੋਡ ਸਪੀਡ
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	ਇੱਕ ਹੋਰ Mister Download Manager (ਇੱਕ ਸਰਵਰ)
+extension	Another Tufan Download Manager (a server)	ਇੱਕ ਹੋਰ Tufan Download Manager (ਇੱਕ ਸਰਵਰ)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	ਬ੍ਰਾਊਜ਼ਰ ਐਕਸਟੈਂਸ਼ਨ
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	ਬਟਨ ਸੈਟਿੰਗਾਂ...
@@ -5679,41 +5679,41 @@ extension	Button settings...	ਬਟਨ ਸੈਟਿੰਗਾਂ...
 #, machine
 extension	Can't tell which video this is: open its own page and try there	ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗ ਰਿਹਾ ਕਿ ਇਹ ਕਿਹੜੀ ਵੀਡੀਓ ਹੈ: ਇਸ ਦਾ ਆਪਣਾ ਪੰਨਾ ਖੋਲ੍ਹ ਕੇ ਉੱਥੇ ਕੋਸ਼ਿਸ਼ ਕਰੋ
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	Mister Download Manager ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਗਿਆ
+extension	Connected to Tufan Download Manager	Tufan Download Manager ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਗਿਆ
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	Mister Download Manager {version} ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਗਿਆ
+extension	Connected to Tufan Download Manager {version}	Tufan Download Manager {version} ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਗਿਆ
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	ਡਾਊਨਲੋਡ ਕਰੋ
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	Mister Download Manager ਨਾਲ ਸਾਰੇ ਲਿੰਕ ਡਾਊਨਲੋਡ ਕਰੋ
+extension	Download all links with Tufan Download Manager	Tufan Download Manager ਨਾਲ ਸਾਰੇ ਲਿੰਕ ਡਾਊਨਲੋਡ ਕਰੋ
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	Mister Download Manager ਨਾਲ ਚੁਣੇ ਗਏ ਲਿੰਕ ਡਾਊਨਲੋਡ ਕਰੋ
+extension	Download selected links with Tufan Download Manager	Tufan Download Manager ਨਾਲ ਚੁਣੇ ਗਏ ਲਿੰਕ ਡਾਊਨਲੋਡ ਕਰੋ
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	ਵੀਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	Mister Download Manager ਨਾਲ ਡਾਊਨਲੋਡ ਕਰੋ
+extension	Download with Tufan Download Manager	Tufan Download Manager ਨਾਲ ਡਾਊਨਲੋਡ ਕਰੋ
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	{site} ਤੋਂ ਡਾਊਨਲੋਡ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਰਹਿਣਗੇ
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	ਡਾਊਨਲੋਡ {address} 'ਤੇ ਜਾਂਦੇ ਹਨ
 #. text in the browser extension
@@ -5725,9 +5725,9 @@ extension	Drag to move it along the video's edge	ਵੀਡੀਓ ਦੇ ਕਿ�
 #, machine
 extension	Enter its https:// address.	ਇਸਦਾ https:// ਪਤਾ ਦਾਖਲ ਕਰੋ।
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	ਬ੍ਰਾਊਜ਼ਰ ਤੋਂ ਡਾਊਨਲੋਡ Mister Download Manager ਨੂੰ ਭੇਜਦਾ ਹੈ।
+extension	Hands downloads from the browser to Tufan Download Manager.	ਬ੍ਰਾਊਜ਼ਰ ਤੋਂ ਡਾਊਨਲੋਡ Tufan Download Manager ਨੂੰ ਭੇਜਦਾ ਹੈ।
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5749,7 +5749,7 @@ extension	How to fix it	ਇਸਨੂੰ ਕਿਵੇਂ ਠੀਕ ਕਰਨਾ �
 #, machine
 extension	It didn't work. Try again.	ਇਹ ਕੰਮ ਨਹੀਂ ਕੀਤਾ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	ਇਹ ਹੁਣ ਕੋਈ ਕੋਡ ਨਹੀਂ ਦਿਖਾਉਂਦਾ: ਪਹਿਲਾਂ ਉੱਥੇ ਇੱਕ ਡਿਵਾਈਸ ਜੋੜੋ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।
 #. text in the browser extension
@@ -5782,33 +5782,33 @@ extension	Live	ਲਾਈਵ
 #, machine
 extension	Media on this page	ਇਸ ਪੰਨੇ 'ਤੇ ਮੀਡੀਆ
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Mister Download Manager ਸਮੇਂ ਸਿਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਇਆ
+extension	Tufan Download Manager didn't start in time	Tufan Download Manager ਸਮੇਂ ਸਿਰ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਇਆ
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Mister Download Manager ਐਕਸਟੈਂਸ਼ਨ ਦੀ ਇਸ ਕਾਪੀ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ
+extension	Tufan Download Manager doesn't accept this copy of the extension	Tufan Download Manager ਐਕਸਟੈਂਸ਼ਨ ਦੀ ਇਸ ਕਾਪੀ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Mister Download Manager ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ ਜਾਂ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਇਆ
+extension	Tufan Download Manager isn't installed or didn't start	Tufan Download Manager ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ ਜਾਂ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਇਆ
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Mister Download Manager ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ, ਜਾਂ ਇਸਦੀ ਬ੍ਰਾਊਜ਼ਰ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਸੈੱਟਅੱਪ ਨਹੀਂ ਹੈ
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Tufan Download Manager ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ, ਜਾਂ ਇਸਦੀ ਬ੍ਰਾਊਜ਼ਰ ਇੰਟੀਗ੍ਰੇਸ਼ਨ ਸੈੱਟਅੱਪ ਨਹੀਂ ਹੈ
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Mister Download Manager ਫਿਰ ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਾਂਗ ਉਸੇ ਪ੍ਰੌਕਸੀ ਰਾਹੀਂ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ। ਬ੍ਰਾਊਜ਼ਰ ਤੁਹਾਨੂੰ ਇੱਕ ਵਾਰ ਇਸਦੀ ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਪੁੱਛਦਾ ਹੈ; ਇਸਨੂੰ ਬੰਦ ਕਰਨ ਨਾਲ ਉਹ ਵਾਪਸ ਲੈ ਲਿਆ ਜਾਂਦਾ ਹੈ।
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Tufan Download Manager ਫਿਰ ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਾਂਗ ਉਸੇ ਪ੍ਰੌਕਸੀ ਰਾਹੀਂ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ। ਬ੍ਰਾਊਜ਼ਰ ਤੁਹਾਨੂੰ ਇੱਕ ਵਾਰ ਇਸਦੀ ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਪੁੱਛਦਾ ਹੈ; ਇਸਨੂੰ ਬੰਦ ਕਰਨ ਨਾਲ ਉਹ ਵਾਪਸ ਲੈ ਲਿਆ ਜਾਂਦਾ ਹੈ।
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Mister Download Manager ਫਿਰ ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਾਂਗ ਉਸੇ ਪ੍ਰੌਕਸੀ ਰਾਹੀਂ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ। ਜਦੋਂ ਇਹ ਬੰਦ ਹੁੰਦਾ ਹੈ, ਤਾਂ ਐਕਸਟੈਂਸ਼ਨ ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਪ੍ਰੌਕਸੀ ਨੂੰ ਨਹੀਂ ਪੜ੍ਹਦੀ।
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Tufan Download Manager ਫਿਰ ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਾਂਗ ਉਸੇ ਪ੍ਰੌਕਸੀ ਰਾਹੀਂ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ। ਜਦੋਂ ਇਹ ਬੰਦ ਹੁੰਦਾ ਹੈ, ਤਾਂ ਐਕਸਟੈਂਸ਼ਨ ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਪ੍ਰੌਕਸੀ ਨੂੰ ਨਹੀਂ ਪੜ੍ਹਦੀ।
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5828,21 +5828,21 @@ extension	Never take downloads from {site}	{site} ਤੋਂ ਕਦੇ ਵੀ ਡ
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	ਇਸ ਪੰਨੇ 'ਤੇ ਅਜੇ ਕੋਈ ਵੀਡੀਓ ਜਾਂ ਆਵਾਜ਼ ਨਹੀਂ ਮਿਲੀ। ਇਸਨੂੰ ਚਲਾਓ, ਫਿਰ ਇਸਨੂੰ ਦੁਬਾਰਾ ਖੋਲ੍ਹੋ।
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	ਪਹੁੰਚਿਆ ਨਹੀਂ। ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਇੱਕ ਵਾਰ ਇਸਦਾ ਪਤਾ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਦੇ ਸਰਟੀਫਿਕੇਟ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	ਇਸਨੂੰ ਖੋਲ੍ਹੋ
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	ਇਸਦਾ ਪਤਾ ਇੱਕ ਵਾਰ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਦੇ ਸਰਟੀਫਿਕੇਟ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ, ਫਿਰ ਇਸਦੇ ਵਿਕਲਪ, ਰਿਮੋਟ, ਇੱਕ ਡਿਵਾਈਸ ਜੋੜੋ (ਜਾਂ misterdownloadmanager-cli pair) ਤੋਂ ਇੱਕ ਕੋਡ ਦਾਖਲ ਕਰੋ।
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	ਇਸਦਾ ਪਤਾ ਇੱਕ ਵਾਰ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਦੇ ਸਰਟੀਫਿਕੇਟ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ, ਫਿਰ ਇਸਦੇ ਵਿਕਲਪ, ਰਿਮੋਟ, ਇੱਕ ਡਿਵਾਈਸ ਜੋੜੋ (ਜਾਂ tufan-download-manager-cli pair) ਤੋਂ ਇੱਕ ਕੋਡ ਦਾਖਲ ਕਰੋ।
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	Mister Download Manager ਖੋਲ੍ਹੋ
+extension	Open Tufan Download Manager	Tufan Download Manager ਖੋਲ੍ਹੋ
 #. shown briefly on the download button over a video in a feed (a social site's home page, a timeline) when nothing in the feed gives that video's own address, so nothing was sent: the user should open the post the video belongs to and click the button on that page; short
 #, machine
 extension	Open the post, then use the button there	ਪੋਸਟ ਖੋਲ੍ਹੋ, ਫਿਰ ਉੱਥੇ ਬਟਨ ਦੀ ਵਰਤੋਂ ਕਰੋ
@@ -5852,11 +5852,11 @@ extension	Open the post, then use the button there	ਪੋਸਟ ਖੋਲ੍ਹ�
 #, machine
 extension	Options...	ਵਿਕਲਪ...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	ਜੋੜੋ
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	ਜੋੜਨ ਵਾਲਾ ਕੋਡ
 #. text in the browser extension
@@ -5884,13 +5884,13 @@ extension	Send downloads through this browser's proxy or VPN extension	ਇਸ �
 #, machine
 extension	Send downloads to	ਡਾਊਨਲੋਡ ਇਸਨੂੰ ਭੇਜੋ
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	Mister Download Manager ਨੂੰ ਭੇਜਿਆ ਗਿਆ
+extension	Sent to Tufan Download Manager	Tufan Download Manager ਨੂੰ ਭੇਜਿਆ ਗਿਆ
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	MDM ਦਾ ਸਮਰਥਨ ਕਰੋ
+extension	Support TDM	TDM ਦਾ ਸਮਰਥਨ ਕਰੋ
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5900,9 +5900,9 @@ extension	Take downloads from this browser	ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਤ�
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	Chrome Web Store ਦੇ ਨਿਯਮ ਇਸ ਐਡ-ਆਨ ਦੀ ਇਸ ਕਾਪੀ ਨੂੰ ਇਸ ਸਾਈਟ ਦੀਆਂ ਵੀਡੀਓ ਤੋਂ ਦੂਰ ਰੱਖਦੇ ਹਨ। ਮਦਦ ਦੱਸਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਕੀ ਕਰ ਸਕਦੇ ਹੋ।
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	Mister Download Manager ਨਾਲ ਕਨੈਕਸ਼ਨ ਅਸਫਲ ਰਿਹਾ
+extension	The connection to Tufan Download Manager failed	Tufan Download Manager ਨਾਲ ਕਨੈਕਸ਼ਨ ਅਸਫਲ ਰਿਹਾ
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5920,7 +5920,7 @@ extension	The last download was left to the browser.	ਆਖਰੀ ਡਾਊਨ�
 #, machine
 extension	This browser isn't ticked in Options → General.	ਇਹ ਬ੍ਰਾਊਜ਼ਰ ਚੋਣਾਂ → ਆਮ ਵਿੱਚ ਚੁਣਿਆ ਨਹੀਂ ਗਿਆ ਹੈ।
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	ਇਹ ਕੰਪਿਊਟਰ
 #. text in the browser extension
@@ -5932,9 +5932,9 @@ extension	This download's details were too large to hand over	ਇਸ ਡਾਊ�
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	ਇਸ ਪੰਨੇ ਦਾ ਪਲੇਅਰ ਆਪਣੀ ਵੀਡੀਓ ਨੂੰ ਟੁਕੜਿਆਂ ਵਿੱਚ ਸਟ੍ਰੀਮ ਕਰਦਾ ਹੈ, ਇਸ ਲਈ ਸੂਚੀ ਵਿੱਚ ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਫ਼ਾਈਲ ਨਹੀਂ ਹੈ। ਵੀਡੀਓ 'ਤੇ ਪੁਆਇੰਟਰ ਲਿਆਓ ਅਤੇ ਇਸ ਦੇ Download video ਬਟਨ ਦੀ ਵਰਤੋਂ ਕਰੋ।
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	ਇਸ ਐਕਸਟੈਂਸ਼ਨ ਦੀਆਂ ਸਾਰੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਵਰਤਣ ਲਈ Mister Download Manager ਅੱਪਡੇਟ ਕਰੋ
+extension	Update Tufan Download Manager to use everything this extension offers	ਇਸ ਐਕਸਟੈਂਸ਼ਨ ਦੀਆਂ ਸਾਰੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਵਰਤਣ ਲਈ Tufan Download Manager ਅੱਪਡੇਟ ਕਰੋ
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6050,7 +6050,7 @@ key	Up / Down	ਉੱਪਰ / ਹੇਠਾਂ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	&About Mister Download Manager	Mister Download Manager ਬਾਰੇ(&A)
+menu	&About Tufan Download Manager	Tufan Download Manager ਬਾਰੇ(&A)
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6086,7 +6086,7 @@ menu	&Exit	ਬਾਹਰ ਜਾਓ(&E)
 #, machine
 menu	&Import	ਆਯਾਤ ਕਰੋ(&I)
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Interface size	ਇੰਟਰਫੇਸ ਦਾ &ਆਕਾਰ
@@ -6203,9 +6203,9 @@ menu	Adwaita	Adwaita
 #, machine
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
 #, machine
-menu	Applies the next time MDM starts	ਅਗਲੀ ਵਾਰ MDM ਸ਼ੁਰੂ ਹੋਣ 'ਤੇ ਲਾਗੂ ਹੁੰਦਾ ਹੈ
+menu	Applies the next time TDM starts	ਅਗਲੀ ਵਾਰ TDM ਸ਼ੁਰੂ ਹੋਣ 'ਤੇ ਲਾਗੂ ਹੁੰਦਾ ਹੈ
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 #, machine
@@ -6280,7 +6280,7 @@ menu	C&ustomize URL List...	URL ਸੂਚੀ ਨੂੰ ਅਨੁਕੂਲਿਤ 
 #, machine
 menu	Check for &updates...	ਅੱਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰੋ(&u)...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 #, machine
 menu	Classic	ਕਲਾਸਿਕ
 #. menu command in the main window
@@ -6326,7 +6326,7 @@ menu	Download &video from a page...	ਇੱਕ ਪੰਨੇ ਤੋਂ ਵੀਡ�
 #, machine
 menu	Download in order	ਕ੍ਰਮ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰੋ
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 #, machine
 menu	Draw with	ਇਸ ਨਾਲ ਡਰਾਅ ਕਰੋ
 #. menu command in the main window
@@ -6382,15 +6382,15 @@ menu	Hide drop target	ਡ੍ਰੌਪ ਟਾਰਗੇਟ ਲੁਕਾਓ
 #, machine
 menu	High contrast	ਉੱਚ ਕੰਟ੍ਰਾਸਟ
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 #, machine
 menu	It couldn't start: the log says why	ਇਹ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋ ਸਕਿਆ: ਲੌਗ ਵਿੱਚ ਕਾਰਨ ਦਿੱਤਾ ਹੈ
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 #, machine
 menu	Its first frame didn't show within 10 seconds	ਇਸਦਾ ਪਹਿਲਾ ਫਰੇਮ 10 ਸਕਿੰਟਾਂ ਦੇ ਅੰਦਰ ਨਹੀਂ ਦਿਖਾਇਆ ਗਿਆ
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 #, machine
 menu	Its last start ended before its first frame	ਇਸਦੀ ਆਖਰੀ ਸ਼ੁਰੂਆਤ ਇਸਦੇ ਪਹਿਲੇ ਫਰੇਮ ਤੋਂ ਪਹਿਲਾਂ ਖਤਮ ਹੋ ਗਈ
 #. menu command in the main window
@@ -6412,7 +6412,7 @@ menu	Metro	ਮੈਟਰੋ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Mister Download Manager &Home Page	Mister Download Manager ਦਾ &ਮੁੱਖ ਪੰਨਾ
+menu	Tufan Download Manager &Home Page	Tufan Download Manager ਦਾ &ਮੁੱਖ ਪੰਨਾ
 #. menu command in the main window
 #, machine
 menu	Move/Rename (Ctrl-M)	ਮੂਵ/ਨਾਮ ਬਦਲੋ (Ctrl-M)
@@ -6525,7 +6525,7 @@ menu	Select &all	ਸਾਰੇ ਚੁਣੋ(&A)
 menu	Show &drop target	ਡ੍ਰੌਪ ਟਾਰਗੇਟ ਦਿਖਾਓ(&d)
 #. menu command in the main window
 #, machine
-menu	Show Mister Download Manager	Mister Download Manager ਦਿਖਾਓ
+menu	Show Tufan Download Manager	Tufan Download Manager ਦਿਖਾਓ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6547,7 +6547,7 @@ menu	Stop Download	ਡਾਊਨਲੋਡ ਰੋਕੋ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Support &MDM	MDM ਦਾ ਸਮਰਥਨ ਕਰੋ(&M)
+menu	Support &TDM	TDM ਦਾ ਸਮਰਥਨ ਕਰੋ(&M)
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6557,7 +6557,7 @@ menu	Tell a &friend	ਦੋਸਤ ਨੂੰ ਦੱਸੋ(&f)
 #, machine
 menu	The graphics card was lost twice in 10 minutes	ਗ੍ਰਾਫਿਕਸ ਕਾਰਡ 10 ਮਿੰਟਾਂ ਵਿੱਚ ਦੋ ਵਾਰ ਕੰਮ ਕਰਨਾ ਬੰਦ ਕਰ ਗਿਆ
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 #, machine
 menu	Theme	ਥੀਮ
 #. menu command in the main window

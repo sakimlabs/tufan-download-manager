@@ -1,17 +1,17 @@
 //! #333: Move/Rename with several downloads selected. The real app, off the screens, with a data
 //! folder and a download folder of its own: every row selected (`/show context:all`), then the
-//! command (`/show move-rename`), the folder dialog answered by MDM_TEST_MOVE_TO. What can go goes
+//! command (`/show move-rename`), the folder dialog answered by TDM_TEST_MOVE_TO. What can go goes
 //! there under its own name (two not started under one name get a free one each), a part-way
 //! download stays where its pieces are.
 //!
 //! It opens windows, which needs OpenGL or Direct3D, so it runs on request:
-//! `cargo test -p mdm-app --test move_many -- --ignored`.
+//! `cargo test -p tdm-app --test move_many -- --ignored`.
 
 use std::path::Path;
 use std::process::Command;
 use std::time::{Duration, Instant};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 fn item(id: u64, name: &str, status: &str, downloaded: u64, dir: &Path) -> serde_json::Value {
     serde_json::json!({
@@ -29,9 +29,9 @@ fn log(data: &Path) -> String {
 fn second_launch(data: &Path, downloads: &Path, what: &str) {
     let status = Command::new(APP)
         .args(["/show", what])
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_DOWNLOADS", downloads)
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_DOWNLOADS", downloads)
         .status()
         .unwrap();
     assert!(status.success(), "/show {what}: {status}");
@@ -91,10 +91,10 @@ fn a_selection_moves_to_one_folder() {
     )
     .unwrap();
     let mut app = Command::new(APP)
-        .env("MDM_DATA_DIR", &data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_DOWNLOADS", &dl)
-        .env("MDM_TEST_MOVE_TO", &to)
+        .env("TDM_DATA_DIR", &data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_DOWNLOADS", &dl)
+        .env("TDM_TEST_MOVE_TO", &to)
         .spawn()
         .unwrap();
     let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {

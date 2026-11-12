@@ -2,8 +2,8 @@
 //! (notes/ui-spec/progress-dialog.md). Coordinates are client pixels from the spec.
 
 use egui::{Color32, Pos2, Ui, ViewportBuilder, ViewportId, vec2};
-use mdm_engine::Snapshot;
-use mdm_engine::download::ConnStatus;
+use tdm_engine::Snapshot;
+use tdm_engine::download::ConnStatus;
 
 use crate::dialogs::display_path;
 use crate::model::{self, Item, Status, size3};
@@ -169,7 +169,7 @@ pub struct Progress {
     /// Hidden in the notification area (#63): not shown, its tab and choices kept for when it
     /// comes back (the tray's "Downloads in progress", or the download double-clicked).
     pub hidden: bool,
-    /// A tray shows MDM's icon, so the window can be hidden there (set by the app each frame).
+    /// A tray shows TDM's icon, so the window can be hidden there (set by the app each frame).
     pub tray: bool,
     /// Options → General → "Minimize to the notification area": Minimize hides it there too.
     pub minimize_to_tray: bool,
@@ -681,7 +681,7 @@ impl Progress {
             self.tab = tabs[i].0;
         }
         self.tab_row_menu(ui, r(o, 18.0, 6.0, 514.0, 22.0));
-        // MDM's (#63): IDM puts this in its title bar, which here is the system's own (it takes
+        // TDM's (#63): IDM puts this in its title bar, which here is the system's own (it takes
         // no buttons of ours), so it sits at the tab row's end, over the page's corner.
         tab_button
             && winui::to_tray_button(
@@ -1036,7 +1036,7 @@ impl Progress {
             ui,
             o + vec2(33.0, 114.0),
             &mut self.exit,
-            "Exit Mister Download Manager when done",
+            "Exit Tufan Download Manager when done",
             on,
         );
         winui::checkbox_until(
@@ -1234,7 +1234,7 @@ impl Progress {
             fit(ui, label, vx, base, &value, vc);
         }
         // Where its server is (#140): a file download's (a torrent, a video or a gallery has no
-        // single server of MDM's own). As the running download sees it, else as its last run did.
+        // single server of TDM's own). As the running download sees it, else as its last run did.
         if item.torrent.is_none() && item.video.is_none() && item.gallery.is_none() {
             // i18n: label before where a download's server is (its country and round trip)
             let label = crate::i18n::t("Server");

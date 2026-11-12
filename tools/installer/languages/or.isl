@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Odia: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Odia: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 ଅନଇନଷ୍ଟଲ୍ କରାଯ�
 
 [CustomMessages]
 TaskBrowser=ବ୍ରାଉଜର୍ ଇଣ୍ଟିଗ୍ରେସନ୍ ସେଟ୍ ଅପ୍ କରନ୍ତୁ (&b) (Chrome, Edge, Brave, Firefox)
-TaskTorrents=.&torrent ଫାଇଲ୍ ଏବଂ ମ୍ୟାଗ୍ନେଟ୍ ଲିଙ୍କ୍‌ଗୁଡ଼ିକୁ Mister Download Manager ସହିତ ଖୋଲନ୍ତୁ
-TaskStartup=Start Mister Download Manager when &Windows starts
+TaskTorrents=.&torrent ଫାଇଲ୍ ଏବଂ ମ୍ୟାଗ୍ନେଟ୍ ଲିଙ୍କ୍‌ଗୁଡ଼ିକୁ Tufan Download Manager ସହିତ ଖୋଲନ୍ତୁ
+TaskStartup=Start Tufan Download Manager when &Windows starts
 TaskGroupOther=ଅନ୍ୟାନ୍ୟ:
-Launch=Mister Download Manager ଆରମ୍ଭ କରନ୍ତୁ
+Launch=Tufan Download Manager ଆରମ୍ଭ କରନ୍ତୁ
 KeepData=ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ତାଲିକା ଏବଂ ସେଟିଙ୍ଗ୍ସ ମଧ୍ୟ ଡିଲିଟ୍ କରିବେ କି?%n%nଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ କୌଣସି ପ୍ରକାରେ ସ୍ପର୍ଶ ହେବ ନାହିଁ।

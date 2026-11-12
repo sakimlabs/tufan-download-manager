@@ -1,5 +1,5 @@
 //! gofile.io (#346). Its share links (`gofile.io/d/<id>`) are a web page that lists the files
-//! with JavaScript, so asking one gets that page: MDM saved it in place of the file. Only its
+//! with JavaScript, so asking one gets that page: TDM saved it in place of the file. Only its
 //! file hosts' direct links are files, and those come from the browser.
 
 use url::Url;

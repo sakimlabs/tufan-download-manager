@@ -1,6 +1,6 @@
 [package]
-name = "mdm-geo"
-description = "Where a download's server is (#140): an IP address's country, from DB-IP's IP to Country Lite (CC BY 4.0) shipped with MDM, looked up on this computer only; and the countries' flags"
+name = "tdm-geo"
+description = "Where a download's server is (#140): an IP address's country, from DB-IP's IP to Country Lite (CC BY 4.0) shipped with TDM, looked up on this computer only; and the countries' flags"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -9,7 +9,7 @@ authors.workspace = true
 publish.workspace = true
 
 [dependencies]
-# The table's xz (already in the tree for archives, mdm-extract).
+# The table's xz (already in the tree for archives, tdm-extract).
 lzma-rust2 = { version = "0.23", default-features = false, features = ["std", "xz"] }
 
 [dev-dependencies]

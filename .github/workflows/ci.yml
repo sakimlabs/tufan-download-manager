@@ -99,8 +99,8 @@ jobs:
       - name: Safari extension's relay and helper, sandboxed
         if: runner.os == 'macOS'
         run: |
-          cargo build --release -p mdm-nmhost
-          tools/safari/selftest.sh target/release/misterdownloadmanager-nmhost
+          cargo build --release -p tdm-nmhost
+          tools/safari/selftest.sh target/release/tufan-download-manager-nmhost
 
   # A translator's reviewed rows (no "#, machine" line) must survive every pull request: no
   # tool or merge may drop them or hand them back to machine translation.
@@ -129,8 +129,8 @@ jobs:
       - name: Logic against fake Firefox and Chrome APIs
         run: node tools/extension/test.mjs
 
-      # Chrome, Edge, Brave, Opera, Vivaldi (mdm-chromium.zip), Firefox (mdm-firefox.xpi) and
-      # the Chrome Web Store's copy (mdm-chrome-store.zip).
+      # Chrome, Edge, Brave, Opera, Vivaldi (tdm-chromium.zip), Firefox (tdm-firefox.xpi) and
+      # the Chrome Web Store's copy (tdm-chrome-store.zip).
       - name: Pack for every browser
         shell: pwsh
         run: ./tools/extension/pack.ps1
@@ -142,6 +142,6 @@ jobs:
         with:
           name: extension
           path: |
-            target/extension/mdm-chromium.zip
-            target/extension/mdm-firefox.xpi
-            target/extension/mdm-chrome-store.zip
+            target/extension/tdm-chromium.zip
+            target/extension/tdm-firefox.xpi
+            target/extension/tdm-chrome-store.zip

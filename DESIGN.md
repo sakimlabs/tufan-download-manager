@@ -1,5 +1,5 @@
 ---
-name: Mister Download Manager website
+name: Tufan Download Manager website
 description: A download is a delivery. The site is the file's waybill, stuck on the real app window.
 colors:
   board: "#1f63d6"
@@ -181,7 +181,7 @@ components:
     textColor: "{colors.paper}"
 ---
 
-# Design System: Mister Download Manager website
+# Design System: Tufan Download Manager website
 
 ## Overview
 
@@ -221,7 +221,7 @@ Two materials and one law: the board in the logo's blue, label stock in white an
 - **Hairline** (line): quiet dividers inside a sheet (table rows, list rows, the help nav's edge).
 
 ### Named Rules
-**The Green By Law Rule.** Green appears only on the Download action and on delivered states (the done lane, the stamp). Never on a secondary button, a badge, a link or a decorative accent. One exception, the owner's choice: on the comparison page, MDM's line is live. Its foot carries a strip of eight connections that fill in green, each at its own pace with a head where the bytes arrive; then a Delivered stamp lands ("1 GiB in 1.01 s", the benchmark's median), and it loops every 6 s. Its ticks in the declaration are green. Reduced motion shows it delivered, at rest.
+**The Green By Law Rule.** Green appears only on the Download action and on delivered states (the done lane, the stamp). Never on a secondary button, a badge, a link or a decorative accent. One exception, the owner's choice: on the comparison page, TDM's line is live. Its foot carries a strip of eight connections that fill in green, each at its own pace with a head where the bytes arrive; then a Delivered stamp lands ("1 GiB in 1.01 s", the benchmark's median), and it loops every 6 s. Its ticks in the declaration are green. Reduced motion shows it delivered, at rest.
 
 **The Two Text Systems Rule.** Text on the board is on-board or on-board-2; text on label stock is ink, ink-2 or ink-3. Never put ink on the board or board text on a sheet; every element printed on stock declares ink colour, whatever it inherits.
 
@@ -335,7 +335,7 @@ A feature page's first view repeats the home's memorable moment at a smaller sca
 Paper tiles two to a row, each its screenshot (light or dark: the switch above the grid chooses, the site's theme by default) over a 1.5px ink rule, then the name and its feel. Rows share their heights (subgrid). The last tile is empty: no paper, a 2px dashed outline on the board, a dashed plus, "Make your own theme". The three make-your-own steps are numbered at poster scale (900, width 68%), because their order is the instruction.
 
 ### The Crew (contributors)
-The people who make MDM possible, from GitHub's public record (`tools/contributors.py`): round photos that link to each GitHub profile, with the login in an ink tag over the photo on hover and focus (kept inside the row by `main.js`). Real photos only, and no counts or claims beyond what GitHub shows.
+The people who make TDM possible, from GitHub's public record (`tools/contributors.py`): round photos that link to each GitHub profile, with the login in an ink tag over the photo on hover and focus (kept inside the row by `main.js`). Real photos only, and no counts or claims beyond what GitHub shows.
 - **In the hero (the owner's choice: a "liked by" line):** on the board under the window's caption, beside the label (after the label and the caption under 980px). The title "Made possible by these amazing humans" in board text, 800 weight at width 78%; then one row of 44px photos that overlap by 8px, each ringed 2.5px in on-board so it reads on the blue board and the navy depot; then "+N", an on-board disc in board-coloured figures, which opens `/contributors.html`. The row shows 7, 11 or 15 photos by width (`PILE_TIERS`). Hover lifts a photo 3px; reduced motion keeps it still.
 - **On `/contributors.html`:** one labelled sheet per group (pull requests, issues, comments), its people in a ruled roster of 1px hairlines: a 48px photo ringed 1.5px in ink, the login at 750 weight, the counts in ink-2 with their numbers in tabular ink.
 - **At the end of each release on the News page:** "Thanks to", then 40px photos ringed in ink, row under row, and a fine line naming the release before.

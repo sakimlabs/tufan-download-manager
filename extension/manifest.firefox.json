@@ -4,10 +4,10 @@
     "name": "__MSG_name__",
     "version": "0.1.0",
     "description": "__MSG_description__",
-    "homepage_url": "https://misterdownloadmanager.com/",
+    "homepage_url": "https://tufan-download-manager.com/",
     "browser_specific_settings": {
         "gecko": {
-            "id": "integration@misterdownloadmanager.com",
+            "id": "integration@tufan-download-manager.com",
             "strict_min_version": "140.0",
             "data_collection_permissions": {
                 "required": [
@@ -41,8 +41,8 @@
         "default_popup": "popup.html",
         "default_title": "__MSG_name__",
         "default_icon": {
-            "16": "icons/icon-16.png",
-            "32": "icons/icon-32.png"
+            "16": "icons/tdm-icon-16.png",
+            "32": "icons/tdm-icon-32.png"
         }
     },
     "content_scripts": [
@@ -68,9 +68,9 @@
         }
     ],
     "icons": {
-        "16": "icons/icon-16.png",
-        "32": "icons/icon-32.png",
-        "48": "icons/icon-48.png",
-        "128": "icons/icon-128.png"
+        "16": "icons/tdm-icon-16.png",
+        "32": "icons/tdm-icon-32.png",
+        "48": "icons/tdm-icon-48.png",
+        "128": "icons/tdm-icon-128.png"
     }
 }

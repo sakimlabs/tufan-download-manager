@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Luxembourgish: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Luxembourgish: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Deinstalléieren %1.
 
 [CustomMessages]
 TaskBrowser=Browserintegratioun ariichten (&B) (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Maacht .&torrent-Fichieren a Magnet-Linke mat Mister Download Manager op
-TaskStartup=Start Mister Download Manager, wann &Windows start
+TaskTorrents=Maacht .&torrent-Fichieren a Magnet-Linke mat Tufan Download Manager op
+TaskStartup=Start Tufan Download Manager, wann &Windows start
 TaskGroupOther=Aneres:
-Launch=Start Mister Download Manager
+Launch=Start Tufan Download Manager
 KeepData=Och Är Downloadlëscht an Astellunge läschen?%n%nÄr erofgeluede Fichiere ginn souwisou net beréiert.

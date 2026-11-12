@@ -2,7 +2,7 @@
 // on the lab's desktop (the DevTools pipe loads the unpacked extension), the lab's HLS player
 // page, a real right-click on the player (xdotool), then the menu's own entry by the keyboard
 // (Up from the menu's end: Inspect, then the extension's entry above it). Then as streams.mjs:
-// MDM's Download video window, the address yt-dlp was given, what the lab saw.
+// TDM's Download video window, the address yt-dlp was given, what the lab saw.
 //   node chrome-menu.mjs <unpacked extension folder> [lab] [kind:manifest]   e.g. hls:/hls/master.m3u8
 // MENU_KEYS: the keys after the right-click (default "Up Up Return"); MENU_SHOT: a file to write
 // "x y" of the click to and wait 4 s on, so a screenshot of the open menu can be taken from outside.
@@ -75,7 +75,7 @@ const profile = path.join(process.env.HOME, "lab/chrome-menu");
 fs.rmSync(profile, { recursive: true, force: true });
 const hosts = path.join(profile, "NativeMessagingHosts");
 fs.mkdirSync(hosts, { recursive: true });
-fs.copyFileSync(path.join(process.env.HOME, ".config/google-chrome/NativeMessagingHosts/com.misterdownloadmanager.host.json"), path.join(hosts, "com.misterdownloadmanager.host.json"));
+fs.copyFileSync(path.join(process.env.HOME, ".config/google-chrome/NativeMessagingHosts/com.tufan-download-manager.host.json"), path.join(hosts, "com.tufan-download-manager.host.json"));
 const proc = spawn(
   "/usr/bin/google-chrome",
   ["--remote-debugging-pipe", "--enable-unsafe-extension-debugging", "--password-store=basic", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "--window-position=40,60", "--window-size=1100,800", "about:blank"],
@@ -139,7 +139,7 @@ try {
   const seen = asked.map((e) => `${e.path}${e.query ? "?" + e.query : ""} ${e.status}${(e.cookie || "").includes(cookie) ? " +cookie" : ""}${e.referer === page ? " +referrer" : ""}`);
   const ok = windowAt && given && new URL(given).pathname === manifest && asked.some((e) => e.path === manifest);
   say(
-    `${ok ? "OK  " : "FAIL"} ${kind} right-click menu (keys ${keys.join(" ")}): MDM's window ${windowAt ? `at ${windowAt} s` : "NOT within 60 s"}; ` +
+    `${ok ? "OK  " : "FAIL"} ${kind} right-click menu (keys ${keys.join(" ")}): TDM's window ${windowAt ? `at ${windowAt} s` : "NOT within 60 s"}; ` +
       `yt-dlp given ${given || "nothing"}; the lab saw ${seen.join(", ") || "nothing"}`,
   );
   run("wmctrl", ["-c", "Download video from a page"]);

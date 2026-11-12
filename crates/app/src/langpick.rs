@@ -96,7 +96,7 @@ impl Picker {
                     o.x + 12.0,
                     o.y + 20.0,
                     crate::i18n::t(
-                        "Choose the language Mister Download Manager shows its windows in:",
+                        "Choose the language Tufan Download Manager shows its windows in:",
                     ),
                     ink,
                     o.x + W - 12.0,

@@ -1,6 +1,6 @@
 [package]
-name = "mdm-debrid"
-description = "Debrid service accounts for Mister Download Manager (#44): file-host links unlocked through the user's own account"
+name = "tdm-debrid"
+description = "Debrid service accounts for Tufan Download Manager (#44): file-host links unlocked through the user's own account"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -12,7 +12,7 @@ publish.workspace = true
 bytes.workspace = true
 chrono.workspace = true
 futures.workspace = true
-mdm-engine.workspace = true
+tdm-engine.workspace = true
 reqwest.workspace = true
 serde.workspace = true
 serde_json.workspace = true
@@ -21,7 +21,7 @@ tokio-util.workspace = true
 url.workspace = true
 
 [dev-dependencies]
-mdm-labserver.workspace = true
+tdm-labserver.workspace = true
 tempfile.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true

@@ -3,19 +3,19 @@
 //! UI until the window was restored). 0.2.4 closed on it ("egui backend is implemented incorrectly - the user callback was
 //! never called"): Add torrent or Download File Info, opened in a pass that ran while no window
 //! was being drawn, had no event loop to create its window with. The real app, off the screens
-//! (MDM_OFFSCREEN), with a data folder of its own: hidden with `/show tray`, then handed a magnet
+//! (TDM_OFFSCREEN), with a data folder of its own: hidden with `/show tray`, then handed a magnet
 //! link (as Windows starts the program for one) and a download (`/d`, the channel the browser's
 //! host uses). Both dialogs must open and the app must keep running.
 //!
 //! It opens windows, which needs OpenGL or Direct3D, so it runs on request:
-//! `cargo test -p mdm-app --test handoff_hidden -- --ignored`. tools/lab/magnet-hidden.ps1 plays
+//! `cargo test -p tdm-app --test handoff_hidden -- --ignored`. tools/lab/magnet-hidden.ps1 plays
 //! the same on a release build, through the browser's native host too, in more window states.
 
 use std::path::Path;
 use std::process::{Child, Command};
 use std::time::{Duration, Instant};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 /// The app's log so far (every file of `logs/`).
 fn log(data: &Path) -> String {
@@ -52,8 +52,8 @@ fn wait_for(app: &mut Child, data: &Path, line: &str, wait: Duration) {
 fn second_launch(data: &Path, args: &[&str]) {
     let status = Command::new(APP)
         .args(args)
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
         .status()
         .unwrap();
     assert!(status.success(), "second launch {args:?}: {status}");
@@ -82,8 +82,8 @@ fn hand_overs_while(away: &str) {
     )
     .unwrap();
     let mut app = Command::new(APP)
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
         .spawn()
         .unwrap();
     let wait = Duration::from_secs(60);
@@ -92,14 +92,14 @@ fn hand_overs_while(away: &str) {
 
         second_launch(data, &["/show", away]);
         std::thread::sleep(Duration::from_millis(1500));
-        let magnet = "magnet:?xt=urn:btih:5b4f0c3a9e1d27f86c0b3a4e9d1f2a7c6e8b0d14&dn=MDM%20test";
+        let magnet = "magnet:?xt=urn:btih:5b4f0c3a9e1d27f86c0b3a4e9d1f2a7c6e8b0d14&dn=TDM%20test";
         second_launch(data, &[magnet]);
         wait_for(&mut app, data, "window opened: add-torrent", wait);
 
         second_launch(data, &["/show", away]);
         std::thread::sleep(Duration::from_millis(1500));
         // Port 9 on this computer: nothing answers, and nothing leaves it.
-        second_launch(data, &["/d", "http://127.0.0.1:9/mdm-test-145.zip"]);
+        second_launch(data, &["/d", "http://127.0.0.1:9/tdm-test-145.zip"]);
         wait_for(&mut app, data, "window opened: file-info", wait);
 
         // Still running a moment later (the dialogs drew their first frames).
@@ -108,8 +108,8 @@ fn hand_overs_while(away: &str) {
     }));
     let _ = Command::new(APP)
         .arg("/exit")
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
         .status();
     let until = Instant::now() + Duration::from_secs(15);
     while app.try_wait().unwrap().is_none() && Instant::now() < until {

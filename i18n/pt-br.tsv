@@ -1,4 +1,4 @@
-# Mister Download Manager in Portuguese (Brazil) (Português (Brasil)): tools/i18n/translate.py
+# Tufan Download Manager in Portuguese (Brazil) (Português (Brasil)): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	Português (Brasil)
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	Tem certeza de que deseja excluir {n} download da lista de downloads do Mister Download Manager?|Tem certeza de que deseja excluir estes {n} downloads da lista de downloads do Mister Download Manager?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	Tem certeza de que deseja excluir {n} download da lista de downloads do Tufan Download Manager?|Tem certeza de que deseja excluir estes {n} downloads da lista de downloads do Tufan Download Manager?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Um serviço de desbridamento baixa um link de um host de arquivos com sua própria conta paga e fornece ao MDM um link direto. Use apenas sua própria conta: compartilhar uma conta ou seus links viola os termos de serviço e pode resultar na suspensão da conta. Os downloads que o navegador já iniciou permanecem como estão.
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Um serviço de desbridamento baixa um link de um host de arquivos com sua própria conta paga e fornece ao TDM um link direto. Use apenas sua própria conta: compartilhar uma conta ou seus links viola os termos de serviço e pode resultar na suspensão da conta. Os downloads que o navegador já iniciou permanecem como estão.
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	Um torrent de arquivo único mantém seu nome
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	Um rastreador neste computador ou na rede local nunca é contatado: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	um volume está faltando
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Sobre o Mister Download Manager
+	About Tufan Download Manager	Sobre o Tufan Download Manager
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Adicionar Mister Download Manager ao seu navegador
+	Add Tufan Download Manager to your browser	Adicionar Tufan Download Manager ao seu navegador
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	Adicionado.
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	Adicionado. O MDM está lendo o torrent: ele entrará na lista em um momento.
+	Added. TDM is reading the torrent: it joins the list in a moment.	Adicionado. O TDM está lendo o torrent: ele entrará na lista em um momento.
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	Já relatado como problema #{number}: {title}
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	Anexar também os dados de falha (.dmp): pode conter endereços, cookies e senhas
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	Sempre em uma pasta com o nome dele
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	Sempre ativar o Limitador de Velocidade na inicialização do Mister Download Manager
+	Always turn on Speed Limiter on Tufan Download Manager startup	Sempre ativar o Limitador de Velocidade na inicialização do Tufan Download Manager
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	Tem certeza de que deseja excluir "{name}" da lista de downloads do Mister Download Manager?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	Tem certeza de que deseja excluir "{name}" da lista de downloads do Tufan Download Manager?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	Áustria
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	Automático
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	Bósnia e Herzegovina
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Ambos são de código aberto. O MDM os obtém de seus lançamentos oficiais com seu próprio baixador e verifica a assinatura de cada arquivo antes de executá-lo. Cerca de 100 MB, uma vez.
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Ambos são de código aberto. O TDM os obtém de seus lançamentos oficiais com seu próprio baixador e verifica a assinatura de cada arquivo antes de executá-lo. Cerca de 100 MB, uma vez.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	Procurar...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	A integração do navegador não está configurada neste computador, então nenhum navegador pode acessar Mister Download Manager ainda.
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	A integração do navegador não está configurada neste computador, então nenhum navegador pode acessar Tufan Download Manager ainda.
 #. page title in the Options window
 #, machine
 	Browser/System Integration	Integração com Navegador/Sistema
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	Verificar atualizações
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
 	Check for updates at every start	Verificar atualizações a cada inicialização
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	Verifique sua conexão e tente novamente, ou obtenha-os mais tarde na janela de vídeo.
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	Marcado: ao fechar a janela, o MDM continua em execução, oculto na área de notificação (se disponível) ou minimizado na barra de tarefas, e os downloads continuam; desmarcado: ao fechar, o MDM é encerrado
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	Marcado: ao fechar a janela, o TDM continua em execução, oculto na área de notificação (se disponível) ou minimizado na barra de tarefas, e os downloads continuam; desmarcado: ao fechar, o TDM é encerrado
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	Escolher um idioma
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	Escolha o idioma em que o Mister Download Manager mostra suas janelas:
+	Choose the language Tufan Download Manager shows its windows in:	Escolha o idioma em que o Tufan Download Manager mostra suas janelas:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	Congo
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	Conectado
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	Personalizar caixa de diálogo "Progresso do download"
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	Personalizar teclas para impedir ou forçar o download com o MDM
+	Customize keys to prevent or force downloading with TDM	Personalizar teclas para impedir ou forçar o download com o TDM
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	Personalizar painéis de download do MDM nos navegadores
+	Customize TDM Download panels in browsers	Personalizar painéis de download do TDM nos navegadores
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	Personalizar itens de menu do MDM no menu de contexto dos navegadores
+	Customize TDM menu items in context menu of browsers	Personalizar itens de menu do TDM no menu de contexto dos navegadores
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	Vazio: todos eles. Na maioria dos sites, os mais novos vêm primeiro.
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	Encerrar e reiniciar o MDM
+	End and restart TDM	Encerrar e reiniciar o TDM
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	Insira um link magnet ou escolha um arquivo .torrent
@@ -1518,7 +1518,7 @@
 	Exit	Sair
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	Sair do Mister Download Manager quando terminar
+	Exit Tufan Download Manager when done	Sair do Tufan Download Manager quando terminar
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	Soma de verificação esperada (MD5, SHA-1, SHA-256, SHA-512 ou CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	Por exemplo: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	Apenas para sua conta. Outro aplicativo definido como padrão permanece primeiro.
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	Forçar o encerramento dos processos
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	Esquecer este dispositivo
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	Ajuda
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	Auxiliares
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	Auxiliares...
@@ -1954,7 +1954,7 @@
 	Hide web pages	Ocultar páginas da web
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Mantenha Alt pressionado ao clicar em um link para que o navegador o baixe em vez de Mister Download Manager.
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Mantenha Alt pressionado ao clicar em um link para que o navegador o baixe em vez de Tufan Download Manager.
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	Página inicial
@@ -1990,7 +1990,7 @@
 	Hungary	Hungria
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	Eu baixo com o Mister Download Manager: rápido, gratuito e parece o gerenciador de downloads que você já conhece. {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	Eu baixo com o Tufan Download Manager: rápido, gratuito e parece o gerenciador de downloads que você já conhece. {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	Nas categorias: menu da categoria selecionada
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	no chaveiro bloqueado
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	Instalar manualmente
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	Instale o que está faltando nos pacotes da sua distribuição.
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	não é um arquivo que o MDM extrai
+	it is not an archive TDM extracts	não é um arquivo que o TDM extrai
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	É possível adicionar um grupo de nomes de arquivo sequenciais como img001.jpg, img002.jpg, etc.,\nimg100.jpg à fila de downloads do MDM. Use o asterisco curinga para o padrão de nome de arquivo.
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	É possível adicionar um grupo de nomes de arquivo sequenciais como img001.jpg, img002.jpg, etc.,\nimg100.jpg à fila de downloads do TDM. Use o asterisco curinga para o padrão de nome de arquivo.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,7 +2186,7 @@
 #, machine
 	KBytes/sec	KB/s
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
 	Keep running when closing the window	Manter em execução ao fechar a janela
 #. checkbox in the Add torrent window
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	Atalhos de teclado
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	Teclas
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	Laos
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	maior do que um feed pode ser
 #. text in the Batch download window
 #, machine
 	Last file:	Último arquivo:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	Última vez visto
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	Letônia
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	Iniciar o Mister Download Manager na inicialização
+	Launch Tufan Download Manager on startup	Iniciar o Tufan Download Manager na inicialização
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	Permitir que telefones e computadores na rede local controlem o MDM
+	Let phones and computers on the local network control TDM	Permitir que telefones e computadores na rede local controlem o TDM
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	Listar o restante
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	Ouvir em:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	O MDM não pode ser acessado na rede agora: Opções → Remoto informa o motivo.
+	TDM can't be reached on the network now: Options → Remote says why.	O TDM não pode ser acessado na rede agora: Opções → Remoto informa o motivo.
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	O MDM não pode baixar este endereço.
+	TDM cannot download this address.	O TDM não pode baixar este endereço.
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	O MDM não pôde adicioná-lo.
+	TDM could not add it.	O TDM não pôde adicioná-lo.
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	O MDM não pôde fazer isso.
+	TDM could not do it.	O TDM não pôde fazer isso.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	O MDM não responde. Verifique se ele está em execução e na mesma rede.
+	TDM does not answer. Check that it is running and on the same network.	O TDM não responde. Verifique se ele está em execução e na mesma rede.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	O MDM não responde. Tentando novamente...
+	TDM does not answer. Trying again...	O TDM não responde. Tentando novamente...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	O MDM não mostra nenhum código agora. Clique em Emparelhar um dispositivo primeiro.
+	TDM shows no code now. Click Pair a device there first.	O TDM não mostra nenhum código agora. Clique em Emparelhar um dispositivo primeiro.
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	Minimizar
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	Minimizar para a área de notificação
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	Faltando
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Mister Download Manager não consegue abrir sua janela: este sistema não tem {libraries}.
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Tufan Download Manager não consegue abrir sua janela: este sistema não tem {libraries}.
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Mister Download Manager fechou inesperadamente
+	Tufan Download Manager closed unexpectedly	Tufan Download Manager fechou inesperadamente
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Configuração do Mister Download Manager
+	Tufan Download Manager Configuration	Configuração do Tufan Download Manager
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Relatório de falha do Mister Download Manager
+	Tufan Download Manager crash report	Relatório de falha do Tufan Download Manager
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Mister Download Manager encontrou um erro interno
+	Tufan Download Manager hit an internal error	Tufan Download Manager encontrou um erro interno
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Mister Download Manager está executando a fila "{queue}"
+	Tufan Download Manager is running the queue "{queue}"	Tufan Download Manager está executando a fila "{queue}"
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Mister Download Manager parou de responder
+	Tufan Download Manager stopped responding	Tufan Download Manager parou de responder
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Mister Download Manager parou de responder por um tempo
+	Tufan Download Manager stopped responding for a while	Tufan Download Manager parou de responder por um tempo
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	O Mister Download Manager grava cada conexão diretamente no arquivo\nfinal (um arquivo de parte esparsa ao lado dele), então nenhum diretório\ntemporário e nenhuma etapa de montagem são necessários.
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	O Tufan Download Manager grava cada conexão diretamente no arquivo\nfinal (um arquivo de parte esparsa ao lado dele), então nenhum diretório\ntemporário e nenhuma etapa de montagem são necessários.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Mister Download Manager {version} está disponível (lançado em {date}).
+	Tufan Download Manager {version} is available (released {date}).	Tufan Download Manager {version} está disponível (lançado em {date}).
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Cópia própria do Mister Download Manager, versão {version}
+	Tufan Download Manager's own copy, version {version}	Cópia própria do Tufan Download Manager, versão {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	A janela X11 de Mister Download Manager precisa de {libraries}, que não estão instaladas neste sistema: ela abre no Wayland, onde os menus podem aparecer longe dos títulos.
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	A janela X11 de Tufan Download Manager precisa de {libraries}, que não estão instaladas neste sistema: ela abre no Wayland, onde os menus podem aparecer longe dos títulos.
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	Nenhum endereço ainda
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	Nenhum navegador ao qual o MDM possa se conectar foi encontrado
+	No browser TDM can connect to was found	Nenhum navegador ao qual o TDM possa se conectar foi encontrado
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	Nenhuma extensão de navegador se conectou ainda
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	Sem proxy/socks
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Nenhum chaveiro do sistema respondeu, então os logins e senhas são mantidos nas configurações do MDM, que só você pode ler.
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Nenhum chaveiro do sistema respondeu, então os logins e senhas são mantidos nas configurações do TDM, que só você pode ler.
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	Desativado: nada na rede pode alcançar o MDM.
+	Off: nothing on the network can reach TDM.	Desativado: nada na rede pode alcançar o TDM.
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	Oferecer para baixar links copiados para a área de transferência
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	No macOS, somente um administrador pode agendar uma ativação
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	No computador, abra Opções, depois Remoto e clique em Emparelhar um dispositivo. Insira o código que ele mostra.
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	Apenas dispositivos emparelhados veem ou alteram algo. Na primeira vez, o navegador do telefone avisará sobre o certificado do MDM: sua impressão digital é a que está acima.
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	Apenas dispositivos emparelhados veem ou alteram algo. Na primeira vez, o navegador do telefone avisará sobre o certificado do TDM: sua impressão digital é a que está acima.
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	Apenas os primeiros {n} vídeos estão listados.
@@ -3109,10 +3109,10 @@
 	Open folder	Abrir pasta
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	Abrir links magnet e arquivos .torrent com o Mister Download Manager
+	Open magnet links and .torrent files with Tufan Download Manager	Abrir links magnet e arquivos .torrent com o Tufan Download Manager
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	Abrir Mister Download Manager
+	Open Tufan Download Manager	Abrir Tufan Download Manager
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	Endereço da página
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	Emparelhar
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Emparelhar com Mister Download Manager
+	Pair with Tufan Download Manager	Emparelhar com Tufan Download Manager
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	Lembrar este caminho para a categoria "{category}"
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	Remoto
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	Controle remoto
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	Substituir asterisco por
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	Reiniciar o MDM
+	Restart TDM	Reiniciar o TDM
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	Restaurar as categorias internas
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	Selecionar ou desmarcar o download com o contorno pontilhado
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	Selecionar sons para eventos do Mister Download Manager
+	Select sounds for Tufan Download Manager events	Selecionar sons para eventos do Tufan Download Manager
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	Selecionar os downloads na caixa
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	Enviar para um amigo:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	Enviar torrents e links magnéticos para a primeira conta em vez de para pares
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	Definir a data de criação do arquivo conforme fornecido pelo servidor
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	Configurar
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	Logins de Sites
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	Os sites enviam sua melhor qualidade como vídeo e áudio separados, e o ffmpeg os une. Neste sistema, o MDM usa o seu: instale o ffmpeg com seu gerenciador de pacotes.
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	Os sites enviam sua melhor qualidade como vídeo e áudio separados, e o ffmpeg os une. Neste sistema, o TDM usa o seu: instale o ffmpeg com seu gerenciador de pacotes.
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	Os sites enviam sua melhor qualidade como vídeo e áudio separados. O ffmpeg os junta em um único arquivo que pode ser reproduzido em qualquer lugar.
@@ -4012,7 +4012,7 @@
 	Start download at	Iniciar download em
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	Iniciar download na inicialização do Mister Download Manager
+	Start download on Tufan Download Manager startup	Iniciar download na inicialização do Tufan Download Manager
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	Iniciar o download imediatamente ao exibir a caixa de diálogo "Informações do arquivo de download"
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	Iniciado com gallery-dl {version}
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	Iniciado com o computador, ele inicia minimizado: nenhuma área de notificação mostra seu ícone aqui
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	Iniciado com o computador, ele aguarda na área de notificação
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	Domingo
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	Apoiar o MDM no GitHub Sponsors
+	Support TDM on GitHub Sponsors	Apoiar o TDM no GitHub Sponsors
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	As melhores qualidades, MP3, Opus e FLAC, precisam do ffmpeg: instale-o com o gerenciador de pacotes do seu sistema (ou Homebrew).
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	o proxy do navegador (uma VPN ou extensão de proxy) pede um login que só essa extensão tem: use o próprio aplicativo da VPN ou escolha o adaptador de rede dela em Opções → Proxy/Socks
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	Os navegadores podem encontrar Mister Download Manager
+	The browsers can find Tufan Download Manager	Os navegadores podem encontrar Tufan Download Manager
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	O computador é ativado um minuto antes da hora de início e mantido ativo enquanto a fila é executada. Mister Download Manager precisa estar em execução (pode aguardar na área de notificação).
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	O computador é ativado um minuto antes da hora de início e mantido ativo enquanto a fila é executada. Tufan Download Manager precisa estar em execução (pode aguardar na área de notificação).
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	A lista de downloads não pôde ser salva: {error}. As alterações são mantidas enquanto o MDM está em execução.
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	A lista de downloads não pôde ser salva: {error}. As alterações são mantidas enquanto o TDM está em execução.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	O gerenciador de downloads que você já conhece, reconstruído para ser mais rápido. Gratuito e de código aberto sob a GNU GPL, versão 3 ou posterior. Os vídeos são encontrados por yt-dlp; os torrents são executados em librqbit.
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	o servidor FTP respondeu {code} {reply}
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	O programa auxiliar que os navegadores iniciam está ausente
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	O download selecionado não está completo. Tem certeza de que deseja excluí-lo da lista de downloads do Mister Download Manager?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	O download selecionado não está completo. Tem certeza de que deseja excluí-lo da lista de downloads do Tufan Download Manager?
 #. text in errors.rs
 #, machine
 	the server answered {status}	o servidor respondeu {status}
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	Não foi possível buscar os símbolos: algumas linhas do relatório mostram endereços em vez de nomes (os desenvolvedores ainda conseguem lê-los).
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	O chaveiro do sistema está bloqueado e o MDM não o desbloqueia, então os logins e senhas são mantidos nas configurações do MDM, que só você pode ler.
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	O chaveiro do sistema está bloqueado e o TDM não o desbloqueia, então os logins e senhas são mantidos nas configurações do TDM, que só você pode ler.
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	A página da web de onde este arquivo foi obtido:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	Temas e esquemas de cores
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	Esta data já passou: a fila não será iniciada
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	Nome deste dispositivo
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	Através de {service}: o serviço baixa o torrent e, em seguida, o MDM baixa os arquivos
+	Through {service}: the service downloads the torrent, then TDM its files	Através de {service}: o serviço baixa o torrent e, em seguida, o TDM baixa os arquivos
 #. text in the Scheduler window
 #, machine
 	Thursday	Quinta-feira
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	Ativar “Mister Download Manager” e permitir em todos os sites.
+	Turn on "Tufan Download Manager" and allow it on all websites.	Ativar “Tufan Download Manager” e permitir em todos os sites.
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	Digite este código em {page} e permita o MDM; aguardando você (o código expira em {time}).
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	Digite este código em {page} e permita o TDM; aguardando você (o código expira em {time}).
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	Usar FTP no modo PASV
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	Usar a cópia própria do MDM
+	Use TDM's own copy	Usar a cópia própria do TDM
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	O Windows permite temporizadores de ativação somente enquanto conectado à energia
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	O Gerenciador de Credenciais do Windows não respondeu, então os logins e senhas são mantidos nas configurações do MDM, criptografadas para sua conta do Windows.
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	O Gerenciador de Credenciais do Windows não respondeu, então os logins e senhas são mantidos nas configurações do TDM, criptografadas para sua conta do Windows.
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	Código incorreto. Mostre um novo código no MDM e tente novamente.
+	Wrong code. Show a new code in TDM and try again.	Código incorreto. Mostre um novo código no TDM e tente novamente.
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	Você tem a versão mais recente do Mister Download Manager ({version}).
+	You have the latest version of Tufan Download Manager ({version}).	Você tem a versão mais recente do Tufan Download Manager ({version}).
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	Você tem a versão {version}, do gerenciador de pacotes do seu sistema: atualize-o por lá.
@@ -5275,7 +5275,7 @@
 	Your browser	Seu navegador
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	Seu navegador padrão não é um dos que o MDM reconhece: um User-Agent de uma versão recente do Chrome
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	Seu navegador padrão não é um dos que o TDM reconhece: um User-Agent de uma versão recente do Chrome
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	sua conta do Google não tem acesso a este arquivo, ou o proprietário desativou o download
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	Seu programa ({version}) é muito antigo: o MDM precisa da versão {oldest} ou mais recente
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	Seu programa ({version}) é muito antigo: o TDM precisa da versão {oldest} ou mais recente
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	{device} está emparelhado. Ele pode controlar o MDM agora.
+	{device} is paired. It can control TDM now.	{device} está emparelhado. Ele pode controlar o TDM agora.
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	{name} é um arquivo 7z ou RAR. O MDM extrai esses arquivos com o 7-Zip, que não está instalado.
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	{name} é um arquivo 7z ou RAR. O TDM extrai esses arquivos com o 7-Zip, que não está instalado.
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	{name} não é oferecido como {how}.
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	{name} {version} é muito antigo: o MDM precisa da versão {oldest} ou mais recente
+	{name} {version} is too old: TDM needs {oldest} or newer	{name} {version} é muito antigo: o TDM precisa da versão {oldest} ou mais recente
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	{n} de {total} selecionados
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{percent} em {service}
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	{service} pediu para reduzir a velocidade; o MDM tentará novamente em um minuto
+	{service} asks to slow down; TDM will try again in a minute	{service} pediu para reduzir a velocidade; o TDM tentará novamente em um minuto
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	{service} não consegue obter este torrent: ninguém o compartilha ou não é possível ler o link
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	{service} não consegue acessar este host de arquivos agora; o MDM tentará novamente mais tarde
+	{service} can't reach this file host right now; TDM will try again later	{service} não consegue acessar este host de arquivos agora; o TDM tentará novamente mais tarde
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: isso requer uma conta premium
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: muitos downloads ao mesmo tempo através da sua conta; o MDM tentará novamente
+	{service}: too many downloads at once through your account; TDM will try again	{service}: muitos downloads ao mesmo tempo através da sua conta; o TDM tentará novamente
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: já está na lista
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: não adicionado: arquivos com os mesmos nomes já estão na pasta {folder}
 #. message or event log entry in the main window
@@ -5662,15 +5662,15 @@ column	Transfer rate	Taxa de transferência
 #, machine
 column	Upload speed	Velocidade de envio
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	Outro Mister Download Manager (um servidor)
+extension	Another Tufan Download Manager (a server)	Outro Tufan Download Manager (um servidor)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	Extensão do navegador
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	Configurações do botão...
@@ -5679,41 +5679,41 @@ extension	Button settings...	Configurações do botão...
 #, machine
 extension	Can't tell which video this is: open its own page and try there	Não dá para saber qual é este vídeo: abra a página dele e tente lá
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	Conectado a Mister Download Manager
+extension	Connected to Tufan Download Manager	Conectado a Tufan Download Manager
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	Conectado a Mister Download Manager {version}
+extension	Connected to Tufan Download Manager {version}	Conectado a Tufan Download Manager {version}
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	Baixar
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	Baixar todos os links com Mister Download Manager
+extension	Download all links with Tufan Download Manager	Baixar todos os links com Tufan Download Manager
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	Baixar links selecionados com Mister Download Manager
+extension	Download selected links with Tufan Download Manager	Baixar links selecionados com Tufan Download Manager
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	Baixar vídeo
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	Baixar com Mister Download Manager
+extension	Download with Tufan Download Manager	Baixar com Tufan Download Manager
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	Os downloads de {site} continuam no navegador
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	Os downloads vão para {address}
 #. text in the browser extension
@@ -5725,9 +5725,9 @@ extension	Drag to move it along the video's edge	Arraste para movê-lo ao longo 
 #, machine
 extension	Enter its https:// address.	Insira o endereço https://.
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	Entrega os downloads do navegador para o Mister Download Manager.
+extension	Hands downloads from the browser to Tufan Download Manager.	Entrega os downloads do navegador para o Tufan Download Manager.
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5749,7 +5749,7 @@ extension	How to fix it	Como corrigir
 #, machine
 extension	It didn't work. Try again.	Não funcionou. Tente novamente.
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	Não mostra nenhum código agora: clique primeiro em Emparelhar um dispositivo lá.
 #. text in the browser extension
@@ -5782,33 +5782,33 @@ extension	Live	Ao vivo
 #, machine
 extension	Media on this page	Mídia nesta página
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Mister Download Manager não iniciou a tempo
+extension	Tufan Download Manager didn't start in time	Tufan Download Manager não iniciou a tempo
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Mister Download Manager não aceita esta cópia da extensão
+extension	Tufan Download Manager doesn't accept this copy of the extension	Tufan Download Manager não aceita esta cópia da extensão
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Mister Download Manager não está instalado ou não iniciou
+extension	Tufan Download Manager isn't installed or didn't start	Tufan Download Manager não está instalado ou não iniciou
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Mister Download Manager não está instalado ou sua integração com o navegador não está configurada
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Tufan Download Manager não está instalado ou sua integração com o navegador não está configurada
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	O Mister Download Manager baixa usando o mesmo proxy deste navegador. O navegador pedirá uma vez para permitir; desativar isso reverte a permissão.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	O Tufan Download Manager baixa usando o mesmo proxy deste navegador. O navegador pedirá uma vez para permitir; desativar isso reverte a permissão.
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	O Mister Download Manager baixa por meio do mesmo proxy que este navegador. Quando desativado, a extensão não lê o proxy do navegador.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	O Tufan Download Manager baixa por meio do mesmo proxy que este navegador. Quando desativado, a extensão não lê o proxy do navegador.
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5828,21 +5828,21 @@ extension	Never take downloads from {site}	Nunca baixar de {site}
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	Nenhum vídeo ou som encontrado nesta página ainda. Reproduza-o e abra isto novamente.
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	Não alcançado. Abra o endereço uma vez neste navegador e aceite o certificado, depois tente novamente.
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	Abrir
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	Abra o endereço uma vez e aceite o certificado, depois insira um código de suas Opções, Remoto, Emparelhar um dispositivo (ou misterdownloadmanager-cli pair).
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	Abra o endereço uma vez e aceite o certificado, depois insira um código de suas Opções, Remoto, Emparelhar um dispositivo (ou tufan-download-manager-cli pair).
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	Abrir Mister Download Manager
+extension	Open Tufan Download Manager	Abrir Tufan Download Manager
 #. shown briefly on the download button over a video in a feed (a social site's home page, a timeline) when nothing in the feed gives that video's own address, so nothing was sent: the user should open the post the video belongs to and click the button on that page; short
 #, machine
 extension	Open the post, then use the button there	Abra a publicação e use o botão lá
@@ -5852,11 +5852,11 @@ extension	Open the post, then use the button there	Abra a publicação e use o b
 #, machine
 extension	Options...	Opções...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	Emparelhar
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	Código de emparelhamento
 #. text in the browser extension
@@ -5884,13 +5884,13 @@ extension	Send downloads through this browser's proxy or VPN extension	Enviar do
 #, machine
 extension	Send downloads to	Enviar downloads para
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	Enviado para Mister Download Manager
+extension	Sent to Tufan Download Manager	Enviado para Tufan Download Manager
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	Apoiar o MDM
+extension	Support TDM	Apoiar o TDM
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5900,9 +5900,9 @@ extension	Take downloads from this browser	Assumir downloads deste navegador
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	As regras da Chrome Web Store mantêm esta cópia da extensão longe dos vídeos deste site. A Ajuda explica o que você pode fazer.
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	A conexão com Mister Download Manager falhou
+extension	The connection to Tufan Download Manager failed	A conexão com Tufan Download Manager falhou
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5920,7 +5920,7 @@ extension	The last download was left to the browser.	O último download foi deix
 #, machine
 extension	This browser isn't ticked in Options → General.	Este navegador não está marcado em Opções → Geral.
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	Este computador
 #. text in the browser extension
@@ -5932,9 +5932,9 @@ extension	This download's details were too large to hand over	Os detalhes deste 
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	O player desta página transmite o vídeo em partes, então não há arquivo para listar. Aponte para o vídeo e use o botão "Baixar vídeo" dele.
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	Atualize o Mister Download Manager para usar tudo o que esta extensão oferece
+extension	Update Tufan Download Manager to use everything this extension offers	Atualize o Tufan Download Manager para usar tudo o que esta extensão oferece
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6050,7 +6050,7 @@ key	Up / Down	Seta para Cima / Seta para Baixo
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	&About Mister Download Manager	So&bre o Mister Download Manager
+menu	&About Tufan Download Manager	So&bre o Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6086,7 +6086,7 @@ menu	&Exit	&Sair
 #, machine
 menu	&Import	&Importar
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Interface size	Tamanho da &interface
@@ -6203,9 +6203,9 @@ menu	Adwaita	Adwaita
 #, machine
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
 #, machine
-menu	Applies the next time MDM starts	Aplica na próxima vez que o MDM iniciar
+menu	Applies the next time TDM starts	Aplica na próxima vez que o TDM iniciar
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 #, machine
@@ -6280,7 +6280,7 @@ menu	C&ustomize URL List...	C&ustomizar Lista de URL...
 #, machine
 menu	Check for &updates...	Verificar se há &atualizações...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 #, machine
 menu	Classic	Clássico
 #. menu command in the main window
@@ -6326,7 +6326,7 @@ menu	Download &video from a page...	Baixar &vídeo de uma página...
 #, machine
 menu	Download in order	Baixar em ordem
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 #, machine
 menu	Draw with	Desenhar com
 #. menu command in the main window
@@ -6382,15 +6382,15 @@ menu	Hide drop target	Ocultar destino de arrastar
 #, machine
 menu	High contrast	Alto contraste
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 #, machine
 menu	It couldn't start: the log says why	Não foi possível iniciar: o log diz o porquê
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 #, machine
 menu	Its first frame didn't show within 10 seconds	Seu primeiro quadro não apareceu em 10 segundos
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 #, machine
 menu	Its last start ended before its first frame	Sua última inicialização terminou antes do primeiro quadro
 #. menu command in the main window
@@ -6412,7 +6412,7 @@ menu	Metro	Metro
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Mister Download Manager &Home Page	Página &Inicial do Mister Download Manager
+menu	Tufan Download Manager &Home Page	Página &Inicial do Tufan Download Manager
 #. menu command in the main window
 #, machine
 menu	Move/Rename (Ctrl-M)	Mover/Renomear (Ctrl+M)
@@ -6525,7 +6525,7 @@ menu	Select &all	Selecionar t&udo
 menu	Show &drop target	Mostrar &alvo de arrastar e soltar
 #. menu command in the main window
 #, machine
-menu	Show Mister Download Manager	Mostrar Mister Download Manager
+menu	Show Tufan Download Manager	Mostrar Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6547,7 +6547,7 @@ menu	Stop Download	Parar Download
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Support &MDM	Apoiar &MDM
+menu	Support &TDM	Apoiar &TDM
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6557,7 +6557,7 @@ menu	Tell a &friend	Contar a um a&migo
 #, machine
 menu	The graphics card was lost twice in 10 minutes	A placa de vídeo parou de funcionar duas vezes em 10 minutos
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 #, machine
 menu	Theme	Tema
 #. menu command in the main window

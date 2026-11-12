@@ -5,7 +5,7 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use mdm_engine::{Destination, Download, FileHook, Options, Request};
+use tdm_engine::{Destination, Download, FileHook, Options, Request};
 use reqwest::header::{CONTENT_TYPE, HeaderMap, HeaderValue};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
@@ -242,12 +242,12 @@ async fn a_bot_check_is_named() {
     };
     let challenge = attempt("/challenge/f.dat").wait().await.unwrap_err();
     assert!(
-        matches!(challenge, mdm_engine::Error::BotCheck),
+        matches!(challenge, tdm_engine::Error::BotCheck),
         "{challenge:?}"
     );
     assert_eq!(s.seen.lock().unwrap().len(), 1, "a bot check isn't retried");
     let plain = attempt("/plain/f.dat").wait().await.unwrap_err();
-    assert!(matches!(plain, mdm_engine::Error::Status(_)), "{plain:?}");
+    assert!(matches!(plain, tdm_engine::Error::Status(_)), "{plain:?}");
 }
 
 fn is_form_post(r: &Seen) -> bool {
@@ -293,7 +293,7 @@ async fn the_probe_posts_the_form_too() {
         }
     })
     .await;
-    let info = mdm_engine::probe(s.url("/export"), form_headers(), &post_opts())
+    let info = tdm_engine::probe(s.url("/export"), form_headers(), &post_opts())
         .await
         .expect("probe succeeds");
     assert_eq!(info.size, Some(1000));
@@ -440,7 +440,7 @@ async fn the_hook_sees_the_part_file_before_any_data() {
     let created = created.lock().unwrap().clone();
     assert_eq!(
         created,
-        vec![mdm_engine::naming::part_path(&out.path)],
+        vec![tdm_engine::naming::part_path(&out.path)],
         "once, the part file"
     );
     assert!(std::fs::read(&out.path).unwrap() == all);

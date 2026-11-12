@@ -32,7 +32,7 @@ pub enum TrayCmd {
     ShowDownload(u64),
 }
 
-/// Whether a tray shows MDM's icon at all, so hiding a window there can be undone. Windows and
+/// Whether a tray shows TDM's icon at all, so hiding a window there can be undone. Windows and
 /// macOS (the menu bar) always have one; on Linux only when a StatusNotifierItem host runs (#59),
 /// asked each time: it may come and go.
 pub fn available() -> bool {
@@ -42,7 +42,7 @@ pub fn available() -> bool {
     true
 }
 
-/// What the shell says of MDM's icon, asked by [`Tray::visible_now`] (Windows and macOS).
+/// What the shell says of TDM's icon, asked by [`Tray::visible_now`] (Windows and macOS).
 #[cfg(any(target_os = "windows", target_os = "macos"))]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct ShellIcon {
@@ -57,7 +57,7 @@ pub struct ShellIcon {
 impl ShellIcon {
     /// Whether the icon can bring a hidden window back. One the shell holds is reachable even
     /// where the shell gives no place for it: the hidden icons behind ^, where Windows puts a
-    /// new icon (#545, #534, #527: MDM took a missing place for a missing icon and left the
+    /// new icon (#545, #534, #527: TDM took a missing place for a missing icon and left the
     /// window in the taskbar).
     pub fn reachable(self) -> bool {
         self.placed || self.held
@@ -135,10 +135,10 @@ impl Tray {
     /// What the shell says of the icon now.
     #[cfg(any(target_os = "windows", target_os = "macos"))]
     fn shell_icon(&self) -> ShellIcon {
-        // MDM_TEST_TRAY_RECT=0: the shell gives no place for the icon, as the reporters' did for
+        // TDM_TEST_TRAY_RECT=0: the shell gives no place for the icon, as the reporters' did for
         // one behind ^ (the close test, with a real icon the shell holds).
         let placed = self.tray.rect().is_some()
-            && std::env::var_os("MDM_TEST_TRAY_RECT").is_none_or(|v| v != "0");
+            && std::env::var_os("TDM_TEST_TRAY_RECT").is_none_or(|v| v != "0");
         #[cfg(windows)]
         let held = {
             let id = crate::win32::tray_icon_held(self.tray.window_handle(), self.icon_id.get());
@@ -160,8 +160,8 @@ impl Tray {
     #[cfg(any(target_os = "windows", target_os = "macos"))]
     pub fn visible(&self) -> bool {
         // Off-screen tests can't make the shell answer reliably: the variable says what to
-        // answer (the startup tray test uses it with MDM_TEST_TRAY).
-        if let Some(v) = std::env::var_os("MDM_TEST_TRAY_VISIBLE") {
+        // answer (the startup tray test uses it with TDM_TEST_TRAY).
+        if let Some(v) = std::env::var_os("TDM_TEST_TRAY_VISIBLE") {
             return v == "1";
         }
         if let Some((shown, checked)) = self.visible_checked.get()
@@ -176,7 +176,7 @@ impl Tray {
     /// from before the icon went away.
     #[cfg(any(target_os = "windows", target_os = "macos"))]
     pub fn visible_now(&self) -> bool {
-        if let Some(v) = std::env::var_os("MDM_TEST_TRAY_VISIBLE") {
+        if let Some(v) = std::env::var_os("TDM_TEST_TRAY_VISIBLE") {
             return v == "1";
         }
         let icon = self.shell_icon();
@@ -208,7 +208,7 @@ impl Tray {
         };
         add(
             &menu,
-            crate::i18n::mark("Open Mister Download Manager"),
+            crate::i18n::mark("Open Tufan Download Manager"),
             TrayCmd::Show,
         );
         menu.append(&PredefinedMenuItem::separator()).ok();

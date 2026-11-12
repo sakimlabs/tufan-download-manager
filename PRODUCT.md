@@ -19,7 +19,7 @@ while using the app, and contributors (code, translations, bug reports) arriving
 
 ## Product Purpose
 
-Mister Download Manager (MDM) is a free, open-source (GPL-3.0) download manager for Windows and Linux,
+Tufan Download Manager (TDM) is a free, open-source (GPL-3.0) download manager for Windows and Linux,
 laid out the way IDM users expect: same windows, menus and workflow, rebuilt from scratch in
 Rust. The website's job is to get the right visitor to download it with confidence, then to
 help them use it (help pages, FAQ, tutorials).
@@ -34,7 +34,7 @@ is measured, not claimed (a public, reproducible benchmark against IDM 6.42); th
 nothing, with no ads, no trial and no sign-up. Torrents and video downloads are built in, and
 the app speaks 86 languages.
 
-MDM is a separate program, written from scratch. It is never presented as IDM, as made by IDM's
+TDM is a separate program, written from scratch. It is never presented as IDM, as made by IDM's
 maker (Tonec), or as a crack or copy of it.
 
 ## Operating Context
@@ -49,11 +49,11 @@ maker (Tonec), or as a crack or copy of it.
 ## Capabilities and Constraints
 
 - Static site: `tools/website/build.py` builds `website/`, `docs/` (help) and `CHANGELOG.md`
-  (news) into `target/site`; GitHub Pages serves it at misterdownloadmanager.com. Plain HTML,
+  (news) into `target/site`; GitHub Pages serves it at tufan-download-manager.com. Plain HTML,
   CSS and JavaScript, no framework, no external scripts except the Statcounter visit counter.
 - Every page exists in 21 languages (`tools/website/sitei18n.py`, catalogs in `i18n/site/`);
   layout must hold for long German words, CJK, Thai, Bengali and right-to-left Arabic/Persian.
-  Text in scripts is translated through `window.MDM_I18N`.
+  Text in scripts is translated through `window.TDM_I18N`.
 - Light and dark themes; the visitor's system choice is the default.
 - Clean room: nothing from IDM (code, artwork, icons, text) appears; IDM is named only to
   compare.
@@ -63,7 +63,7 @@ maker (Tonec), or as a crack or copy of it.
 - Real, unretouched screenshots of the app: `website/assets/screens/` (light and dark) and
   `docs/images/`.
 - Benchmark results, final, 2026-10-29: `website/bench/results.json` (seven scenarios, alternating
-  runs, IDM 6.42 vs MDM at defaults); the methodology is on the benchmark page.
+  runs, IDM 6.42 vs TDM at defaults); the methodology is on the benchmark page.
 - The app's logo (`website/assets/logo-*`), its 71 flag icons (`crates/app/assets/flags/`, lipis
   flag-icons, MIT), browser logos for the extension (`website/assets/browsers/`).
 - No testimonials, reviews, user counts, press or customer logos exist; none may be invented.

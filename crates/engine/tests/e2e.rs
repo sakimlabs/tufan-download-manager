@@ -1,8 +1,8 @@
 //! End-to-end: the engine downloads from a labserver (with faults) and the file is verified
 //! byte for byte against the generator.
 
-use mdm_engine::{Destination, Download, Options, Request};
-use mdm_labserver::{Config, Faults, LabServer, LogEntry, content};
+use tdm_engine::{Destination, Download, Options, Request};
+use tdm_labserver::{Config, Faults, LabServer, LogEntry, content};
 
 /// How long a test waits for the lab server's log to take in every request (`settled`).
 const SETTLE: std::time::Duration = std::time::Duration::from_secs(20);
@@ -138,7 +138,7 @@ async fn a_slow_download_does_not_rewrite_its_state_every_tick() {
     let state = loop {
         tokio::time::sleep(std::time::Duration::from_millis(50)).await;
         if let Some(f) = dl.snapshot().file {
-            let p = mdm_engine::state::state_path(&f);
+            let p = tdm_engine::state::state_path(&f);
             if p.exists() {
                 break p;
             }
@@ -169,7 +169,7 @@ async fn a_slow_download_does_not_rewrite_its_state_every_tick() {
     // Pausing always flushes and records the progress.
     dl.cancel();
     let _ = dl.wait().await;
-    let last = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let last = tdm_engine::state::ResumeState::load(&state).unwrap();
     assert!(last.downloaded() > 0);
     assert_ne!(std::fs::read(&state).unwrap(), first);
 }
@@ -180,7 +180,7 @@ async fn a_global_cap_is_shared_by_all_downloads() {
     // Timed from the cap's start: its budget builds up from then on, however long the
     // downloads take to start (a burst of up to a second's), so 2 MiB can't take less than 2 s.
     let started = std::time::Instant::now();
-    let global = std::sync::Arc::new(mdm_engine::limiter::Limiter::new(Some(1 << 20)));
+    let global = std::sync::Arc::new(tdm_engine::limiter::Limiter::new(Some(1 << 20)));
     let opts = Options {
         global: Some(global),
         ..fast_opts()
@@ -199,16 +199,16 @@ async fn a_global_cap_is_shared_by_all_downloads() {
 }
 
 /// The SHA-256 of generated content `seed` of `size` bytes.
-fn sha256_of(seed: u64, size: usize) -> mdm_engine::verify::Hash {
+fn sha256_of(seed: u64, size: usize) -> tdm_engine::verify::Hash {
     let dir = tempfile::tempdir().unwrap();
     let p = dir.path().join("want");
     let mut want = vec![0; size];
     content::fill(seed, 0, &mut want);
     std::fs::write(&p, &want).unwrap();
-    let algo = mdm_engine::verify::Algo::Sha256;
-    mdm_engine::verify::Hash {
+    let algo = tdm_engine::verify::Algo::Sha256;
+    tdm_engine::verify::Hash {
         algo,
-        value: mdm_engine::verify::digest(&p, algo).unwrap(),
+        value: tdm_engine::verify::digest(&p, algo).unwrap(),
     }
 }
 
@@ -238,7 +238,7 @@ async fn a_wrong_checksum_fails_and_keeps_the_data() {
     };
     let err = Download::start(req, opts).wait().await.unwrap_err();
     assert!(
-        matches!(err, mdm_engine::Error::ChecksumMismatch("SHA-256")),
+        matches!(err, tdm_engine::Error::ChecksumMismatch("SHA-256")),
         "{err}"
     );
     assert!(
@@ -266,7 +266,7 @@ async fn the_event_log_tells_what_happened() {
     let snap = loop {
         tokio::time::sleep(std::time::Duration::from_millis(50)).await;
         let snap = dl.snapshot();
-        if snap.state == mdm_engine::download::State::Done {
+        if snap.state == tdm_engine::download::State::Done {
             break snap;
         }
         assert!(std::time::Instant::now() < deadline, "never finished");
@@ -286,7 +286,7 @@ async fn a_host_connection_limit_is_learned_and_reused() {
     // byte at 256 KiB, inside the probe's part however the file is split, is held back until
     // the cap is learned: the probe keeps receiving while the other connection fetches the rest.
     let s = server("rate=2M&max_conns=2&stall_at=256K").await;
-    let limits = std::sync::Arc::new(mdm_engine::hosts::HostLimits::default());
+    let limits = std::sync::Arc::new(tdm_engine::hosts::HostLimits::default());
     let opts = Options {
         host_limits: Some(limits.clone()),
         ..fast_opts()
@@ -336,7 +336,7 @@ async fn a_host_connection_limit_is_learned_and_reused() {
         .filter(|e| matches!(e.status, 200 | 206))
         .map(|e| e.body_start)
         .collect();
-    let done = |h: &mdm_labserver::Held| starts.iter().any(|&s| h.from < s && s <= h.sent_to);
+    let done = |h: &tdm_labserver::Held| starts.iter().any(|&s| h.from < s && s <= h.sent_to);
     let too_many: Vec<_> = second
         .iter()
         .filter(|e| e.outcome == "fault:max_conns" && !e.held.iter().any(done))
@@ -364,7 +364,7 @@ async fn a_refusal_below_the_learned_cap_is_retried() {
     // has joined, so on a starved CPU the first one can't fetch the whole file alone before it.
     let s = server("rate=2M&max_conns=2&stall_at=6M").await;
     let ip: std::net::IpAddr = "127.0.0.1".parse().unwrap();
-    let limits = std::sync::Arc::new(mdm_engine::hosts::HostLimits::default());
+    let limits = std::sync::Arc::new(tdm_engine::hosts::HostLimits::default());
     limits.refused("127.0.0.1", 2);
     limits.refused("127.0.0.1", 2);
     let blocker = s.hold_slot(ip);
@@ -399,7 +399,7 @@ async fn a_refusal_below_the_learned_cap_is_retried() {
         dl.snapshot()
             .connections
             .iter()
-            .filter(|c| matches!(c.status, mdm_engine::download::ConnStatus::Receiving))
+            .filter(|c| matches!(c.status, tdm_engine::download::ConnStatus::Receiving))
             .count()
     };
     while receiving(&dl) < 2 {
@@ -690,7 +690,7 @@ async fn probe_is_a_plain_get() {
     assert_eq!(log.iter().filter(|e| e.range.is_none()).count(), 1);
     assert!(
         log.iter()
-            .all(|e| e.user_agent.as_deref() == Some(mdm_engine::agent::automatic().as_str()))
+            .all(|e| e.user_agent.as_deref() == Some(tdm_engine::agent::automatic().as_str()))
     );
 }
 
@@ -740,7 +740,7 @@ async fn paused(s: &LabServer, path: &str) -> (tempfile::TempDir, std::path::Pat
     dl.cancel();
     let stopped = dl.wait().await;
     assert!(
-        matches!(stopped, Err(mdm_engine::Error::Cancelled)),
+        matches!(stopped, Err(tdm_engine::Error::Cancelled)),
         "{:?}",
         stopped.map(|o| o.size)
     );
@@ -749,12 +749,12 @@ async fn paused(s: &LabServer, path: &str) -> (tempfile::TempDir, std::path::Pat
     tokio::time::timeout(SETTLE, s.settled())
         .await
         .expect("the stopped download's requests end");
-    (dir, mdm_engine::state::state_path(&file))
+    (dir, tdm_engine::state::state_path(&file))
 }
 
 /// Bytes of `range` (a `Range` header, `bytes=a-b`; none: the whole file) that the saved
 /// segments say were already on disk: outside every segment's part still to fetch.
-fn on_disk(range: Option<&str>, saved: &mdm_engine::state::ResumeState) -> u64 {
+fn on_disk(range: Option<&str>, saved: &tdm_engine::state::ResumeState) -> u64 {
     let (from, to) = match range.and_then(|r| r.strip_prefix("bytes=")?.split_once('-')) {
         Some((a, b)) => (
             a.parse::<u64>().unwrap(),
@@ -776,13 +776,13 @@ async fn view_and_outcome(dl: Download) -> (Option<std::path::PathBuf>, std::pat
     let until = std::time::Instant::now() + SETTLE;
     let file = loop {
         let v = dl.snapshot();
-        if v.state == mdm_engine::download::State::Done {
+        if v.state == tdm_engine::download::State::Done {
             break v.file;
         }
         assert!(
             !matches!(
                 v.state,
-                mdm_engine::download::State::Failed | mdm_engine::download::State::Cancelled
+                tdm_engine::download::State::Failed | tdm_engine::download::State::Cancelled
             ),
             "{:?}",
             v.error
@@ -830,7 +830,7 @@ async fn the_view_names_the_file_when_its_place_was_taken_meanwhile() {
 async fn the_view_names_the_file_when_a_resume_finds_its_place_taken() {
     let s = server("rate=1M").await;
     let (dir, state) = paused(&s, "/gen/8M/master.mp4?seed=13").await;
-    let dest = mdm_engine::state::ResumeState::load(&state).unwrap().dest;
+    let dest = tdm_engine::state::ResumeState::load(&state).unwrap().dest;
     std::fs::write(&dest, b"someone else's").unwrap();
     s.set_faults(Faults::default());
     let dl = Download::resume(state.clone(), Default::default(), fast_opts()).unwrap();
@@ -847,7 +847,7 @@ async fn the_view_names_the_file_when_a_resume_finds_its_place_taken() {
 async fn pause_and_resume_continues_where_it_stopped() {
     let s = server("rate=1M").await;
     let (_dir, state) = paused(&s, "/gen/8M/r.bin?seed=7").await;
-    let saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     let before = saved.downloaded();
     assert!(
         before > 0 && before < 8 << 20,
@@ -895,7 +895,7 @@ async fn resume_detects_changed_file() {
     let (_dir, state) = paused(&s, "/gen/8M?seed=8").await;
     // Pretend the data so far was fetched under another version of the file (another ETag
     // and date; another ETag alone is what CDN nodes do — see per_node_etags_...).
-    let mut saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let mut saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     saved.validators.etag = Some("\"another-version\"".into());
     saved.validators.last_modified = Some("Wed, 21 Oct 2015 07:28:00 GMT".into());
     std::fs::write(&state, serde_json::to_vec(&saved).unwrap()).unwrap();
@@ -904,7 +904,7 @@ async fn resume_detects_changed_file() {
         .wait()
         .await
         .unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::FileChanged), "{err}");
+    assert!(matches!(err, tdm_engine::Error::FileChanged), "{err}");
 }
 
 /// Pause, then drop the saved validator (a server without ETag/Last-Modified): the resume can
@@ -914,7 +914,7 @@ async fn paused_without_validator(
     path: &str,
 ) -> (tempfile::TempDir, std::path::PathBuf) {
     let (dir, state) = paused(s, path).await;
-    let mut saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let mut saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     saved.validators = Default::default();
     std::fs::write(&state, serde_json::to_vec(&saved).unwrap()).unwrap();
     (dir, state)
@@ -944,8 +944,8 @@ async fn resume_overlap_check_detects_changed_data() {
     let (_dir, state) = paused_without_validator(&s, "/gen/8M/c.bin?seed=12").await;
     // Make the data on disk differ from the server's just before every resume point, as if
     // the file had changed on the server since.
-    let mut saved = mdm_engine::state::ResumeState::load(&state).unwrap();
-    let part = mdm_engine::naming::part_path(&saved.dest);
+    let mut saved = tdm_engine::state::ResumeState::load(&state).unwrap();
+    let part = tdm_engine::naming::part_path(&saved.dest);
     let mut bytes = std::fs::read(&part).unwrap();
     // Every part with data resumes inside it: a finished one is saved as half done (its data is
     // on disk all the same). Which parts are under way when the download stops depends on the
@@ -970,7 +970,7 @@ async fn resume_overlap_check_detects_changed_data() {
         .wait()
         .await
         .unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::FileChanged), "{err}");
+    assert!(matches!(err, tdm_engine::Error::FileChanged), "{err}");
 }
 
 #[tokio::test]
@@ -1115,7 +1115,7 @@ async fn a_link_that_cannot_be_refreshed_reports_link_expired() {
     let target = s.url("/gen/8M/x.bin?seed=24");
     let (_dir, state) = paused(&s, &redirect_path(&target)).await;
     // The stored link has expired and the original address is gone too.
-    let mut saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let mut saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     saved.final_url = format!("{target}&expires=1").parse().unwrap();
     saved.url = s.url("/gone").parse().unwrap();
     std::fs::write(&state, serde_json::to_vec(&saved).unwrap()).unwrap();
@@ -1124,7 +1124,7 @@ async fn a_link_that_cannot_be_refreshed_reports_link_expired() {
         .wait()
         .await
         .unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::LinkExpired), "{err}");
+    assert!(matches!(err, tdm_engine::Error::LinkExpired), "{err}");
     assert!(state.exists(), "the data is kept for a fresh address");
 }
 
@@ -1134,7 +1134,7 @@ async fn resume_follows_the_original_address_when_the_redirected_one_expired() {
     let target = s.url("/gen/8M/e.bin?seed=14");
     let (_dir, state) = paused(&s, &redirect_path(&target)).await;
     // The signed CDN link has expired: the stored final address now answers 404.
-    let mut saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let mut saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     assert_ne!(saved.url, saved.final_url, "the download was redirected");
     saved.final_url = s.url("/expired-link").parse().unwrap();
     std::fs::write(&state, serde_json::to_vec(&saved).unwrap()).unwrap();
@@ -1157,7 +1157,7 @@ async fn a_dead_link_fails_fast_instead_of_retrying() {
     let (_dir, state) = paused(&s, "/gen/8M/d.bin?seed=15").await;
     // The address now answers 404 (and there is no other address to fall back to); the server
     // logs it ("gone" is no size).
-    let mut saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let mut saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     let gone: url::Url = s.url("/gen/gone/d.bin").parse().unwrap();
     saved.url = gone.clone();
     saved.final_url = gone;
@@ -1170,7 +1170,7 @@ async fn a_dead_link_fails_fast_instead_of_retrying() {
         .await
         .unwrap_err();
     assert!(
-        matches!(err, mdm_engine::Error::Status(s) if s.as_u16() == 404),
+        matches!(err, tdm_engine::Error::Status(s) if s.as_u16() == 404),
         "{err}"
     );
     asked_once(&s).await;
@@ -1197,7 +1197,7 @@ async fn asked_once(s: &LabServer) {
 
 /// Point a paused download's state at its own address plus the fault overrides `faults`.
 fn with_faults(state: &std::path::Path, faults: &str) {
-    let mut saved = mdm_engine::state::ResumeState::load(state).unwrap();
+    let mut saved = tdm_engine::state::ResumeState::load(state).unwrap();
     for url in [&mut saved.url, &mut saved.final_url] {
         let q = format!("{}&{faults}", url.query().unwrap_or(""));
         url.set_query(Some(&q));
@@ -1218,7 +1218,7 @@ async fn a_web_page_instead_of_the_file_stops_the_resume() {
         .wait()
         .await
         .unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::GotWebPage), "{err}");
+    assert!(matches!(err, tdm_engine::Error::GotWebPage), "{err}");
     asked_once(&s).await;
     assert!(state.exists(), "the data is kept for a later resume");
 }
@@ -1250,7 +1250,7 @@ async fn a_missing_folder_is_reported_and_nothing_restarts() {
         .err()
         .expect("refused");
     assert!(
-        matches!(&err, mdm_engine::Error::DestinationUnavailable(p) if *p == gone),
+        matches!(&err, tdm_engine::Error::DestinationUnavailable(p) if *p == gone),
         "{err}"
     );
 }
@@ -1267,7 +1267,7 @@ async fn a_path_too_long_for_windows_is_refused_before_anything_is_created() {
         dest: Destination::File(dest),
     };
     let err = Download::start(req, fast_opts()).wait().await.unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::PathTooLong(_)), "{err}");
+    assert!(matches!(err, tdm_engine::Error::PathTooLong(_)), "{err}");
     assert!(std::fs::read_dir(dir.path()).unwrap().next().is_none());
 }
 
@@ -1282,7 +1282,7 @@ async fn a_file_bigger_than_the_drive_is_refused_before_it_starts() {
         dest: Destination::Dir(dir.path().to_owned()),
     };
     let err = Download::start(req, fast_opts()).wait().await.unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::NoSpace { .. }), "{err}");
+    assert!(matches!(err, tdm_engine::Error::NoSpace { .. }), "{err}");
     assert!(
         std::fs::read_dir(dir.path()).unwrap().next().is_none(),
         "nothing is left behind"
@@ -1329,7 +1329,7 @@ async fn a_download_completing_during_a_progress_save_finishes() {
     assert_eq!(std::fs::metadata(&out.path).unwrap().len(), 8 << 20);
     tokio::time::sleep(std::time::Duration::from_millis(500)).await;
     assert!(
-        !mdm_engine::state::state_path(&out.path).exists(),
+        !tdm_engine::state::state_path(&out.path).exists(),
         "no progress file beside the finished file"
     );
 }
@@ -1339,8 +1339,8 @@ async fn crash_after_the_final_rename_completes_on_resume() {
     let s = server("rate=1M").await;
     let (_dir, state) = paused(&s, "/gen/8M/f.bin?seed=13").await;
     // Simulate a crash right after the part file was renamed, before the state was removed.
-    let saved = mdm_engine::state::ResumeState::load(&state).unwrap();
-    std::fs::rename(mdm_engine::naming::part_path(&saved.dest), &saved.dest).unwrap();
+    let saved = tdm_engine::state::ResumeState::load(&state).unwrap();
+    std::fs::rename(tdm_engine::naming::part_path(&saved.dest), &saved.dest).unwrap();
     let out = Download::resume(state.clone(), Default::default(), fast_opts())
         .unwrap()
         .wait()
@@ -1354,10 +1354,10 @@ async fn crash_after_the_final_rename_completes_on_resume() {
 async fn resume_rejects_damaged_part_file() {
     let s = server("rate=1M").await;
     let (_dir, state) = paused(&s, "/gen/8M?seed=9").await;
-    let saved = mdm_engine::state::ResumeState::load(&state).unwrap();
+    let saved = tdm_engine::state::ResumeState::load(&state).unwrap();
     std::fs::OpenOptions::new()
         .write(true)
-        .open(mdm_engine::naming::part_path(&saved.dest))
+        .open(tdm_engine::naming::part_path(&saved.dest))
         .unwrap()
         .set_len(10)
         .unwrap();
@@ -1366,7 +1366,7 @@ async fn resume_rejects_damaged_part_file() {
         .wait()
         .await
         .unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::BadState(_)), "{err}");
+    assert!(matches!(err, tdm_engine::Error::BadState(_)), "{err}");
 }
 
 #[tokio::test]
@@ -1381,7 +1381,7 @@ async fn changed_file_fails() {
         dest: Destination::Dir(dir.path().to_owned()),
     };
     let err = Download::start(req, fast_opts()).wait().await.unwrap_err();
-    assert!(matches!(err, mdm_engine::Error::FileChanged), "{err}");
+    assert!(matches!(err, tdm_engine::Error::FileChanged), "{err}");
 }
 
 #[tokio::test]
@@ -1418,7 +1418,7 @@ async fn speed_limit_caps_the_whole_download() {
     // connection, with no limit of ours. It takes 2 s on an idle machine, and as long as the
     // machine makes it on a busy one.
     // An unlimited global cap beside the limit counts the bytes the connections pay for.
-    let paid = std::sync::Arc::new(mdm_engine::limiter::Limiter::new(None));
+    let paid = std::sync::Arc::new(tdm_engine::limiter::Limiter::new(None));
     let limited = Options {
         speed_limit: Some(1 << 20),
         global: Some(paid.clone()),
@@ -1460,7 +1460,7 @@ async fn stop_is_prompt_under_a_low_limit() {
     };
     // The global cap starts unlimited: it only counts the bytes each connection pays for, until
     // the test needs a connection in a long wait.
-    let global = std::sync::Arc::new(mdm_engine::limiter::Limiter::new(None));
+    let global = std::sync::Arc::new(tdm_engine::limiter::Limiter::new(None));
     let opts = Options {
         speed_limit: Some(32 << 10),
         global: Some(global.clone()),
@@ -1493,7 +1493,7 @@ async fn stop_is_prompt_under_a_low_limit() {
         .await
         .expect("Stop waited out the speed limit");
     assert!(
-        matches!(stopped, Err(mdm_engine::Error::Cancelled)),
+        matches!(stopped, Err(tdm_engine::Error::Cancelled)),
         "{:?}",
         stopped.map(|o| o.size)
     );
@@ -1516,7 +1516,7 @@ async fn a_raised_limit_wakes_the_connections_waiting() {
             headers: Default::default(),
             dest: Destination::Dir(dir.path().to_owned()),
         };
-        let cap = std::sync::Arc::new(mdm_engine::limiter::Limiter::new(Some(256)));
+        let cap = std::sync::Arc::new(tdm_engine::limiter::Limiter::new(Some(256)));
         let opts = Options {
             speed_limit: (!global).then_some(256),
             global: global.then(|| cap.clone()),
@@ -1603,7 +1603,7 @@ async fn a_pac_script_routes_through_its_proxy() {
            return dnsDomainIs(host, '.invalid') ? 'PROXY 127.0.0.1:{port}' : 'DIRECT'; }}"
     );
     let opts = Options {
-        proxy: mdm_engine::Proxy::Pac {
+        proxy: tdm_engine::Proxy::Pac {
             script: std::sync::Arc::from(script.as_str()),
         },
         max_connections: 1,
@@ -1642,7 +1642,7 @@ async fn a_one_time_link_is_read_from_the_kept_answer() {
             max_connections: connections,
             ..fast_opts()
         };
-        let (info, kept) = mdm_engine::probe_kept(url.clone(), Default::default(), &opts)
+        let (info, kept) = tdm_engine::probe_kept(url.clone(), Default::default(), &opts)
             .await
             .unwrap();
         assert_eq!(info.size, Some(2 << 20));
@@ -1664,7 +1664,7 @@ async fn a_one_time_link_is_read_from_the_kept_answer() {
     }
     // Asked again (the look's answer not kept): refused.
     let url: url::Url = s.url("/gen/1M/once9.zip?once=1&seed=9").parse().unwrap();
-    mdm_engine::probe(url.clone(), Default::default(), &fast_opts())
+    tdm_engine::probe(url.clone(), Default::default(), &fast_opts())
         .await
         .unwrap();
     let dir = tempfile::tempdir().unwrap();
@@ -1690,8 +1690,8 @@ async fn watch(
     d: Download,
     size: u64,
     gate: Option<std::sync::Arc<std::sync::RwLock<()>>>,
-) -> (Result<mdm_engine::Outcome, mdm_engine::Error>, Watched) {
-    use mdm_engine::download::State;
+) -> (Result<tdm_engine::Outcome, tdm_engine::Error>, Watched) {
+    use tdm_engine::download::State;
     let started = std::time::Instant::now();
     let mut received = None;
     // `downloaded` when the flush was first seen holding the gate.
@@ -1762,7 +1762,7 @@ async fn a_slow_flush_does_not_stop_the_transfer() {
         .await
         .expect("every request ends");
     let before = s.log().len();
-    let slow = mdm_engine::download::SlowFlush {
+    let slow = tdm_engine::download::SlowFlush {
         takes: std::time::Duration::from_millis(1500),
         gate: Default::default(),
     };
@@ -1824,7 +1824,7 @@ async fn a_slow_flush_does_not_stop_the_transfer() {
 }
 
 /// #372: a server that refuses a browser's User-Agent with 403 (seen on a public
-/// PDF) is asked once more with MDM's own, and the download goes on.
+/// PDF) is asked once more with TDM's own, and the download goes on.
 #[tokio::test]
 async fn a_refused_browser_agent_is_asked_again_as_mdm() {
     let s = server("rate=20M&refuse_agent=Chrome").await;
@@ -1846,10 +1846,10 @@ async fn a_refused_browser_agent_is_asked_again_as_mdm() {
     .wait()
     .await;
     assert!(
-        matches!(refused, Err(mdm_engine::Error::Status(s)) if s.as_u16() == 403),
+        matches!(refused, Err(tdm_engine::Error::Status(s)) if s.as_u16() == 403),
         "{refused:?}"
     );
-    // With it, the same download succeeds under MDM's agent, every connection.
+    // With it, the same download succeeds under TDM's agent, every connection.
     let out = Download::start(
         Request {
             url: s.url("/gen/2M/a.bin?seed=372").parse().unwrap(),
@@ -1859,7 +1859,7 @@ async fn a_refused_browser_agent_is_asked_again_as_mdm() {
         Options {
             user_agent: browser.to_owned(),
             automatic_agent: false,
-            agent_fallback: Some("MDM-test".to_owned()),
+            agent_fallback: Some("TDM-test".to_owned()),
             ..fast_opts()
         },
     )
@@ -1878,7 +1878,7 @@ async fn a_refused_browser_agent_is_asked_again_as_mdm() {
     assert!(
         log.iter()
             .filter(|e| e.status == 200 || e.status == 206)
-            .all(|e| e.user_agent.as_deref() == Some("MDM-test")),
+            .all(|e| e.user_agent.as_deref() == Some("TDM-test")),
         "{log:?}"
     );
 }
@@ -1889,7 +1889,7 @@ async fn handed_over(
     link: String,
     browser_final: Option<&str>,
     dir: &std::path::Path,
-) -> Result<mdm_engine::Outcome, mdm_engine::Error> {
+) -> Result<tdm_engine::Outcome, tdm_engine::Error> {
     let mut headers = reqwest::header::HeaderMap::new();
     headers.insert(reqwest::header::COOKIE, "sid=1".parse().unwrap());
     headers.insert(
@@ -1911,7 +1911,7 @@ async fn handed_over(
     .await
 }
 
-/// #630: a site that refuses MDM the link (FileHippo's 412) while the browser's own download of
+/// #630: a site that refuses TDM the link (FileHippo's 412) while the browser's own download of
 /// it ended on another host (its CDN): the download goes on from there, without the link's
 /// cookie (another host) but with the page as Referer.
 #[tokio::test]
@@ -1924,7 +1924,7 @@ async fn a_refused_link_goes_on_where_the_browser_download_ended() {
     // Without the browser's address, the 412 is the end of it (what 0.5.2 did).
     let refused = handed_over(link.clone(), None, dir.path()).await;
     assert!(
-        matches!(refused, Err(mdm_engine::Error::Status(s)) if s.as_u16() == 412),
+        matches!(refused, Err(tdm_engine::Error::Status(s)) if s.as_u16() == 412),
         "{refused:?}"
     );
     let out = handed_over(link, Some(&cdn), dir.path())
@@ -1989,7 +1989,7 @@ async fn a_spent_link_goes_on_where_the_browser_download_ended() {
     let gone = s.url("/gen/1M/once.bin?seed=631&refuse=403");
     let refused = handed_over(link, Some(&gone), dir.path()).await;
     assert!(
-        matches!(refused, Err(mdm_engine::Error::Status(s)) if s.as_u16() == 410),
+        matches!(refused, Err(tdm_engine::Error::Status(s)) if s.as_u16() == 410),
         "{refused:?}"
     );
 }

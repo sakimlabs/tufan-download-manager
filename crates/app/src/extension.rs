@@ -1,5 +1,5 @@
 //! The browser extension's offer: at each start, until a browser's extension has reached the
-//! app (the native host notes it: mdm_ipc::extension::seen), a window lists the browsers
+//! app (the native host notes it: tdm_ipc::extension::seen), a window lists the browsers
 //! installed and opens the extension's page in the one picked (addons.mozilla.org for Firefox
 //! and its family, the Chrome Web Store for Chrome, Edge, Brave, Opera and Vivaldi), with the
 //! tutorial that adds it by hand as the fallback. Chrome may ask by itself too: registering the
@@ -29,8 +29,8 @@ const SAFARI: &str = "Apple Safari";
 pub fn worth_asking(settings: &crate::settings::Settings) -> bool {
     !settings.extension_never_ask
         && settings.advanced_integration
-        && mdm_ipc::portable_dir().is_none()
-        && !mdm_ipc::extension::seen()
+        && tdm_ipc::portable_dir().is_none()
+        && !tdm_ipc::extension::seen()
 }
 
 pub struct Extension {
@@ -38,7 +38,7 @@ pub struct Extension {
     browsers: Vec<(String, Option<PathBuf>)>,
     /// A browser's extension has reached the app since the window opened.
     connected: bool,
-    /// The browsers whose extension has (Options' names, mdm_ipc::extension::seen_browsers).
+    /// The browsers whose extension has (Options' names, tdm_ipc::extension::seen_browsers).
     seen: Vec<String>,
     /// The browsers can find the app (the native host is registered).
     registered: bool,
@@ -66,7 +66,7 @@ fn is_seen(seen: &[String], row: &str) -> bool {
 /// A row for a browser of Firefox's family (Firefox, Zen, LibreWolf …): it gets the add-on's
 /// page on addons.mozilla.org, not the Chrome Web Store.
 fn is_gecko(row: &str) -> bool {
-    mdm_ipc::browsers::named(row).is_some_and(|b| b.family == mdm_ipc::browsers::Family::Gecko)
+    tdm_ipc::browsers::named(row).is_some_and(|b| b.family == tdm_ipc::browsers::Family::Gecko)
 }
 
 impl Extension {
@@ -78,7 +78,7 @@ impl Extension {
         let mut browsers: Vec<_> = found.into_iter().map(|(n, p)| (n, Some(p))).collect();
         // The table's order (Chrome first, its button the accent one), others after.
         browsers.sort_by_key(|(n, _)| {
-            mdm_ipc::browsers::BROWSERS
+            tdm_ipc::browsers::BROWSERS
                 .iter()
                 .position(|b| b.name == n.as_str())
                 .unwrap_or(usize::MAX)
@@ -92,7 +92,7 @@ impl Extension {
         }
         Extension {
             browsers,
-            connected: mdm_ipc::extension::seen(),
+            connected: tdm_ipc::extension::seen(),
             seen: seen_names(),
             registered: registered(),
             looked: std::time::Instant::now(),
@@ -113,7 +113,7 @@ impl Extension {
         if self.looked.elapsed() >= Duration::from_secs(1) || set_up_finished(&mut self.set_up_seen)
         {
             self.looked = std::time::Instant::now();
-            self.connected = mdm_ipc::extension::seen();
+            self.connected = tdm_ipc::extension::seen();
             self.seen = seen_names();
             self.registered = registered();
         }
@@ -127,7 +127,7 @@ impl Extension {
             ctx,
             "extension",
             // i18n: title of the window that offers the browser extension
-            "Add Mister Download Manager to your browser",
+            "Add Tufan Download Manager to your browser",
             [W, h + extra],
             false,
             winui::BG(),
@@ -163,6 +163,10 @@ impl Extension {
     ) {
         let p = ui.painter().clone();
         let (ink, muted) = (winui::TEXT(), winui::MUTED());
+        // Check if we should skip the extension banner (e.g., just installed)
+        if std::env::args().nth(1).as_deref() == Some("/skip-extension-banner") {
+            return;
+        }
         // The banner: the logo, what the extension does, in one line, and how.
         let extra = winui::banner(
             ui,
@@ -182,11 +186,11 @@ impl Extension {
         // One row per browser: its name, and the button that opens the extension's page in it:
         // Firefox's on addons.mozilla.org, the Chrome Web Store's for the others (the tutorial
         // while STORE_ID is a placeholder, as in a build of its own).
-        let store = mdm_ipc::extension::store_page();
+        let store = tdm_ipc::extension::store_page();
         for (k, (name, program)) in self.browsers.iter().enumerate() {
             let y = BANNER + 16.0 + k as f32 * ROW;
             let page = if is_gecko(name) {
-                Some(mdm_ipc::extension::FIREFOX_PAGE.to_owned())
+                Some(tdm_ipc::extension::FIREFOX_PAGE.to_owned())
             } else {
                 store.clone()
             };
@@ -225,7 +229,7 @@ impl Extension {
                     o.y + y + 16.0,
                     &format!(
                         "\u{2714} {}",
-                        // i18n: in the browser extension's window, beside a browser whose extension reached MDM
+                        // i18n: in the browser extension's window, beside a browser whose extension reached TDM
                         crate::i18n::t("Connected")
                     ),
                     winui::SUCCESS(),
@@ -248,7 +252,7 @@ impl Extension {
             } else if add.clicked() {
                 // No store page: the tutorial on the website, in the interface language.
                 let url = page.clone().unwrap_or_else(|| {
-                    crate::help::page_url(mdm_ipc::extension::GUIDE_DOC, crate::i18n::code())
+                    crate::help::page_url(tdm_ipc::extension::GUIDE_DOC, crate::i18n::code())
                 });
                 let url = url.as_str();
                 match program {
@@ -275,7 +279,7 @@ impl Extension {
                 o.x + 18.0,
                 o.y + y,
                 crate::i18n::t(
-                    "Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.",
+                    "Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.",
                 ),
                 winui::ERROR(),
                 o.x + fix_x - 10.0,
@@ -284,7 +288,7 @@ impl Extension {
             let fix = winui::button(
                 ui,
                 r(o, fix_x, y - 4.0, fix_w, 25.0),
-                // i18n: button in the browser extension's window: register MDM's helper with the browsers
+                // i18n: button in the browser extension's window: register TDM's helper with the browsers
                 "Set it up",
                 ButtonKind::Accent,
                 false,
@@ -328,10 +332,10 @@ impl Extension {
                 "by-hand",
             )
         {
-            crate::help::open_page(mdm_ipc::extension::GUIDE_DOC);
+            crate::help::open_page(tdm_ipc::extension::GUIDE_DOC);
         }
         // As wide as their labels in this language (#192), Don't ask again only while no
-        // extension has reached MDM.
+        // extension has reached TDM.
         let row: Vec<(&str, f32)> = if self.connected {
             vec![("Close", 90.0)]
         } else {
@@ -495,12 +499,12 @@ const STEPS: [&str; 8] = [
     // i18n: step 7 of turning on the Safari extension; the quoted tab name is what Safari's settings show in this language: use Apple's own word for it, or keep the English name when unsure
     "Switch to the \"Extensions\" tab (the puzzle piece).",
     // i18n: step 8 of turning on the Safari extension
-    "Turn on \"Mister Download Manager\" and allow it on all websites.",
+    "Turn on \"Tufan Download Manager\" and allow it on all websites.",
 ];
 
 /// The browsers whose extension reached the app, by Options' names.
 fn seen_names() -> Vec<String> {
-    mdm_ipc::extension::seen_browsers()
+    tdm_ipc::extension::seen_browsers()
         .into_iter()
         .map(|(b, _)| b)
         .collect()
@@ -513,7 +517,7 @@ pub enum Registration {
     Ready,
     /// A browser's folder (or the registry) has no manifest.
     Missing,
-    /// No browser MDM knows was found to register with (Linux and macOS find them by their
+    /// No browser TDM knows was found to register with (Linux and macOS find them by their
     /// folders; Windows registers for every browser at once).
     #[cfg_attr(windows, allow(dead_code))]
     NoBrowser,
@@ -535,7 +539,7 @@ pub fn registered() -> bool {
     registration() == Registration::Ready
 }
 
-/// Why the last registration failed, in the system's words (Linux and macOS, where MDM
+/// Why the last registration failed, in the system's words (Linux and macOS, where TDM
 /// registers itself at each start).
 fn register_error() -> Option<String> {
     #[cfg(windows)]
@@ -570,7 +574,7 @@ pub fn set_up(ctx: &egui::Context) {
             if let Ok(exe) = std::env::current_exe() {
                 crate::launch::run_within(
                     std::process::Command::new(
-                        exe.with_file_name("misterdownloadmanager-nmhost.exe"),
+                        exe.with_file_name("tufan-download-manager-nmhost.exe"),
                     )
                     .arg("--register"),
                     SET_UP_LIMIT,
@@ -615,7 +619,7 @@ pub fn checks(settings: &crate::settings::Settings) -> Vec<Check> {
             Some("options"),
         ),
         check(
-            mdm_ipc::portable_dir().is_none(),
+            tdm_ipc::portable_dir().is_none(),
             // i18n: a check of Test browser integration: a portable copy can't be connected
             "This is the installed copy, not a portable one",
             Some("not-installed"),
@@ -625,21 +629,21 @@ pub fn checks(settings: &crate::settings::Settings) -> Vec<Check> {
     out.push(match &registration {
         Registration::Ready | Registration::Missing => check(
             registration == Registration::Ready,
-            // i18n: a check of Test browser integration: the browsers find MDM's helper program
-            "The browsers can find Mister Download Manager",
+            // i18n: a check of Test browser integration: the browsers find TDM's helper program
+            "The browsers can find Tufan Download Manager",
             Some("not-installed"),
         ),
         Registration::NoBrowser => check(
             false,
-            // i18n: a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
-            "No browser MDM can connect to was found",
+            // i18n: a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
+            "No browser TDM can connect to was found",
             Some("not-installed"),
         ),
         Registration::HelperMissing(path) => {
             tracing::warn!("browser integration: {} is missing", path.display());
             check(
                 false,
-                // i18n: a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+                // i18n: a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
                 "The helper program the browsers start is missing",
                 Some("not-installed"),
             )
@@ -658,11 +662,11 @@ pub fn checks(settings: &crate::settings::Settings) -> Vec<Check> {
             why: Some("not-installed"),
         });
     }
-    let seen = mdm_ipc::extension::seen_browsers();
+    let seen = tdm_ipc::extension::seen_browsers();
     if seen.is_empty() {
         out.push(check(
             false,
-            // i18n: a check of Test browser integration: no browser's extension has reached MDM
+            // i18n: a check of Test browser integration: no browser's extension has reached TDM
             "No browser's extension has connected yet",
             None,
         ));
@@ -718,7 +722,7 @@ mod tests {
         assert!(is_seen(&[SAFARI.to_owned()], SAFARI));
         assert_eq!(SAFARI, "Apple Safari");
         assert!(
-            mdm_ipc::capture::browser_of(
+            tdm_ipc::capture::browser_of(
                 "Mozilla/5.0 (Macintosh) AppleWebKit/605.1.15 Version/18.0 Safari/605.1.15"
             ) == SAFARI
         );

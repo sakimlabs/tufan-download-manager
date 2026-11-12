@@ -1,4 +1,4 @@
-# Mister Download Manager in Malay (Bahasa Melayu): tools/i18n/translate.py
+# Tufan Download Manager in Malay (Bahasa Melayu): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	Bahasa Melayu
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	Adakah anda mahu memadamkan {n} muat turun daripada senarai muat turun Mister Download Manager?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	Adakah anda mahu memadamkan {n} muat turun daripada senarai muat turun Tufan Download Manager?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Perkhidmatan debrid memuat turun fail daripada pautan hos fail menggunakan akaun berbayar anda sendiri, kemudian memberikan pautan terus kepada MDM. Gunakan akaun anda sendiri sahaja: berkongsi akaun atau pautannya melanggar syarat perkhidmatan dan boleh menyebabkan akaun digantung. Muat turun yang telah dimulakan oleh pelayar kekal seperti sedia kala.
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Perkhidmatan debrid memuat turun fail daripada pautan hos fail menggunakan akaun berbayar anda sendiri, kemudian memberikan pautan terus kepada TDM. Gunakan akaun anda sendiri sahaja: berkongsi akaun atau pautannya melanggar syarat perkhidmatan dan boleh menyebabkan akaun digantung. Muat turun yang telah dimulakan oleh pelayar kekal seperti sedia kala.
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	Torrent fail tunggal mengekalkan namanya
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	Penjejak pada komputer ini atau rangkaian tempatan tidak pernah dihubungi: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	satu jilidnya tiada
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Perihal Mister Download Manager
+	About Tufan Download Manager	Perihal Tufan Download Manager
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Tambah Mister Download Manager pada pelayar anda
+	Add Tufan Download Manager to your browser	Tambah Tufan Download Manager pada pelayar anda
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	Ditambah.
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	Ditambah. MDM sedang membaca torrent: ia akan menyertai senarai sebentar lagi.
+	Added. TDM is reading the torrent: it joins the list in a moment.	Ditambah. TDM sedang membaca torrent: ia akan menyertai senarai sebentar lagi.
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	Telah dilaporkan sebagai isu #{number}: {title}
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	Lampirkan juga data ranap (.dmp): ia mungkin mengandungi alamat, kuki dan kata laluan
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	Sentiasa dalam folder yang dinamakan sempena arkib
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	Sentiasa hidupkan Pengehad Kelajuan apabila Mister Download Manager dimulakan
+	Always turn on Speed Limiter on Tufan Download Manager startup	Sentiasa hidupkan Pengehad Kelajuan apabila Tufan Download Manager dimulakan
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	Adakah anda pasti mahu memadamkan "{name}" daripada senarai muat turun Mister Download Manager?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	Adakah anda pasti mahu memadamkan "{name}" daripada senarai muat turun Tufan Download Manager?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	Austria
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	Automatik
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	Bosnia dan Herzegovina
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Kedua-duanya adalah sumber terbuka. MDM mendapatkannya daripada keluaran rasmi mereka dengan pemuat turunnya sendiri dan menyemak tandatangan setiap fail sebelum ia dijalankan. Kira-kira 100 MB, sekali.
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Kedua-duanya adalah sumber terbuka. TDM mendapatkannya daripada keluaran rasmi mereka dengan pemuat turunnya sendiri dan menyemak tandatangan setiap fail sebelum ia dijalankan. Kira-kira 100 MB, sekali.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	Semak imbas...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	Penyepaduan penyemak imbas tidak disediakan pada komputer ini, jadi tiada penyemak imbas boleh mencapai Mister Download Manager lagi.
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	Penyepaduan penyemak imbas tidak disediakan pada komputer ini, jadi tiada penyemak imbas boleh mencapai Tufan Download Manager lagi.
 #. page title in the Options window
 #, machine
 	Browser/System Integration	Penyepaduan Pelayar/Sistem
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	Semak kemas kini
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
 	Check for updates at every start	Semak kemas kini pada setiap permulaan
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	Semak sambungan anda, kemudian cuba lagi, atau dapatkannya kemudian daripada tetingkap video.
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	Jika ditandai, MDM terus berjalan apabila tetingkap ditutup: MDM disembunyikan di kawasan pemberitahuan jika tersedia, atau diminimumkan ke bar tugas jika tidak, dan muat turun diteruskan; jika tidak ditandai, MDM akan ditutup
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	Jika ditandai, TDM terus berjalan apabila tetingkap ditutup: TDM disembunyikan di kawasan pemberitahuan jika tersedia, atau diminimumkan ke bar tugas jika tidak, dan muat turun diteruskan; jika tidak ditandai, TDM akan ditutup
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	Pilih bahasa
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	Pilih bahasa yang Mister Download Manager paparkan tetingkapnya:
+	Choose the language Tufan Download Manager shows its windows in:	Pilih bahasa yang Tufan Download Manager paparkan tetingkapnya:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	Congo
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	Bersambung
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	Sesuaikan dialog "Kemajuan muat turun"
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	Sesuaikan kekunci untuk menghalang atau memaksa muat turun dengan MDM
+	Customize keys to prevent or force downloading with TDM	Sesuaikan kekunci untuk menghalang atau memaksa muat turun dengan TDM
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	Sesuaikan panel Muat Turun MDM dalam pelayar
+	Customize TDM Download panels in browsers	Sesuaikan panel Muat Turun TDM dalam pelayar
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	Sesuaikan item menu MDM dalam menu konteks pelayar
+	Customize TDM menu items in context menu of browsers	Sesuaikan item menu TDM dalam menu konteks pelayar
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	Kosong: semuanya. Di kebanyakan tapak, yang terbaharu didahulukan.
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	Tamatkan dan mulakan semula MDM
+	End and restart TDM	Tamatkan dan mulakan semula TDM
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	Masukkan pautan magnet atau pilih fail .torrent
@@ -1518,7 +1518,7 @@
 	Exit	Keluar
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	Keluar daripada Mister Download Manager apabila selesai
+	Exit Tufan Download Manager when done	Keluar daripada Tufan Download Manager apabila selesai
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	Jumlah hasil semak yang dijangka (MD5, SHA-1, SHA-256, SHA-512 atau CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	Contoh: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	Untuk akaun anda sahaja. Apl lain yang ditetapkan sebagai lalai kekal diutamakan.
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	Paksa proses untuk ditamatkan
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	Lupakan peranti ini
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	Bantuan
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	Pembantu
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	Pembantu...
@@ -1954,7 +1954,7 @@
 	Hide web pages	Sembunyikan halaman web
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Pegang Alt sambil mengklik pautan untuk membiarkan penyemak imbas memuat turunnya dan bukannya Mister Download Manager.
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Pegang Alt sambil mengklik pautan untuk membiarkan penyemak imbas memuat turunnya dan bukannya Tufan Download Manager.
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	Halaman utama
@@ -1990,7 +1990,7 @@
 	Hungary	Hungary
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	Saya memuat turun dengan Mister Download Manager: pantas, percuma, dan ia kelihatan seperti pengurus muat turun yang anda sudah tahu. {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	Saya memuat turun dengan Tufan Download Manager: pantas, percuma, dan ia kelihatan seperti pengurus muat turun yang anda sudah tahu. {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	Dalam kategori: menu kategori yang dipilih
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	dalam rantai kunci yang terkunci
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	Pasang secara manual
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	Pasang apa yang tiada daripada pakej pengedaran anda.
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	ia bukan jenis arkib yang boleh diekstrak oleh MDM
+	it is not an archive TDM extracts	ia bukan jenis arkib yang boleh diekstrak oleh TDM
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	Anda boleh menambah kumpulan nama fail berjujukan seperti img001.jpg, img002.jpg, dsb.,\nimg100.jpg ke baris gilir muat turun MDM. Gunakan kad bebas asterisk untuk corak nama fail.
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	Anda boleh menambah kumpulan nama fail berjujukan seperti img001.jpg, img002.jpg, dsb.,\nimg100.jpg ke baris gilir muat turun TDM. Gunakan kad bebas asterisk untuk corak nama fail.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,7 +2186,7 @@
 #, machine
 	KBytes/sec	KBait/saat
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
 	Keep running when closing the window	Terus berjalan apabila tetingkap ditutup
 #. checkbox in the Add torrent window
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	Pintasan papan kekunci
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	Kekunci
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	Laos
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	lebih besar daripada saiz suapan yang boleh dibaca
 #. text in the Batch download window
 #, machine
 	Last file:	Fail terakhir:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	Terakhir dilihat
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	Latvia
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	Lancarkan Mister Download Manager semasa permulaan
+	Launch Tufan Download Manager on startup	Lancarkan Tufan Download Manager semasa permulaan
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	Benarkan telefon dan komputer pada rangkaian tempatan mengawal MDM
+	Let phones and computers on the local network control TDM	Benarkan telefon dan komputer pada rangkaian tempatan mengawal TDM
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	Senaraikan selebihnya
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	Dengar pada:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	MDM tidak dapat dicapai pada rangkaian sekarang: Pilihan → Jauh menyatakan sebabnya.
+	TDM can't be reached on the network now: Options → Remote says why.	TDM tidak dapat dicapai pada rangkaian sekarang: Pilihan → Jauh menyatakan sebabnya.
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	MDM tidak dapat memuat turun alamat ini.
+	TDM cannot download this address.	TDM tidak dapat memuat turun alamat ini.
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	MDM tidak dapat menambahnya.
+	TDM could not add it.	TDM tidak dapat menambahnya.
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	MDM tidak dapat melakukannya.
+	TDM could not do it.	TDM tidak dapat melakukannya.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	MDM tidak menjawab. Semak bahawa ia sedang berjalan dan pada rangkaian yang sama.
+	TDM does not answer. Check that it is running and on the same network.	TDM tidak menjawab. Semak bahawa ia sedang berjalan dan pada rangkaian yang sama.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	MDM tidak menjawab. Mencuba lagi...
+	TDM does not answer. Trying again...	TDM tidak menjawab. Mencuba lagi...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	MDM tidak menunjukkan kod sekarang. Klik Pasangkan peranti di sana dahulu.
+	TDM shows no code now. Click Pair a device there first.	TDM tidak menunjukkan kod sekarang. Klik Pasangkan peranti di sana dahulu.
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	Minimumkan
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	Minimumkan ke kawasan pemberitahuan
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	Belum dimuat turun
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Mister Download Manager tidak dapat membuka tetingkapnya: sistem ini tiada {libraries}.
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Tufan Download Manager tidak dapat membuka tetingkapnya: sistem ini tiada {libraries}.
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Mister Download Manager ditutup secara tidak dijangka
+	Tufan Download Manager closed unexpectedly	Tufan Download Manager ditutup secara tidak dijangka
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Konfigurasi Mister Download Manager
+	Tufan Download Manager Configuration	Konfigurasi Tufan Download Manager
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Laporan ranap Mister Download Manager
+	Tufan Download Manager crash report	Laporan ranap Tufan Download Manager
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Mister Download Manager mengalami ralat dalaman
+	Tufan Download Manager hit an internal error	Tufan Download Manager mengalami ralat dalaman
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Mister Download Manager sedang menjalankan baris gilir "{queue}"
+	Tufan Download Manager is running the queue "{queue}"	Tufan Download Manager sedang menjalankan baris gilir "{queue}"
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Mister Download Manager berhenti bertindak balas
+	Tufan Download Manager stopped responding	Tufan Download Manager berhenti bertindak balas
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Mister Download Manager berhenti bertindak balas seketika
+	Tufan Download Manager stopped responding for a while	Tufan Download Manager berhenti bertindak balas seketika
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Mister Download Manager menulis setiap sambungan terus ke dalam fail akhir\n(fail bahagian jarang di sebelahnya), jadi tiada direktori sementara dan tiada\nlangkah pemasangan diperlukan.
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Tufan Download Manager menulis setiap sambungan terus ke dalam fail akhir\n(fail bahagian jarang di sebelahnya), jadi tiada direktori sementara dan tiada\nlangkah pemasangan diperlukan.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Mister Download Manager {version} tersedia (dikeluarkan {date}).
+	Tufan Download Manager {version} is available (released {date}).	Tufan Download Manager {version} tersedia (dikeluarkan {date}).
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Salinan Mister Download Manager sendiri, versi {version}
+	Tufan Download Manager's own copy, version {version}	Salinan Tufan Download Manager sendiri, versi {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Tetingkap X11 Mister Download Manager memerlukan {libraries}, yang tiada pada sistem ini: tetingkap dibuka melalui Wayland, yang menyebabkan menunya mungkin muncul jauh daripada tajuknya.
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Tetingkap X11 Tufan Download Manager memerlukan {libraries}, yang tiada pada sistem ini: tetingkap dibuka melalui Wayland, yang menyebabkan menunya mungkin muncul jauh daripada tajuknya.
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	Tiada alamat lagi
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	Tiada pelayar yang boleh disambungkan oleh MDM ditemui
+	No browser TDM can connect to was found	Tiada pelayar yang boleh disambungkan oleh TDM ditemui
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	Tiada sambungan sambungan penyemak imbas lagi
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	Tiada proksi/socks
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Tiada rantai kunci sistem menjawab, jadi log masuk dan kata laluan disimpan dalam tetapan MDM, yang hanya anda boleh baca.
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Tiada rantai kunci sistem menjawab, jadi log masuk dan kata laluan disimpan dalam tetapan TDM, yang hanya anda boleh baca.
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	Mati: tiada apa-apa pada rangkaian boleh mencapai MDM.
+	Off: nothing on the network can reach TDM.	Mati: tiada apa-apa pada rangkaian boleh mencapai TDM.
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	Tawarkan untuk memuat turun pautan yang disalin ke papan keratan
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	Pada macOS, hanya pentadbir boleh menjadualkan bangun
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	Pada komputer, buka Pilihan, kemudian Jauh, dan klik Pasangkan peranti. Masukkan kod yang ditunjukkan.
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	Hanya peranti berpasangan melihat atau mengubah apa-apa. Kali pertama, pelayar telefon memberi amaran tentang sijil MDM sendiri: cap jarinya adalah yang di atas.
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	Hanya peranti berpasangan melihat atau mengubah apa-apa. Kali pertama, pelayar telefon memberi amaran tentang sijil TDM sendiri: cap jarinya adalah yang di atas.
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	Hanya {n} video pertama disenaraikan.
@@ -3109,10 +3109,10 @@
 	Open folder	Buka folder
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	Buka pautan magnet dan fail .torrent dengan Mister Download Manager
+	Open magnet links and .torrent files with Tufan Download Manager	Buka pautan magnet dan fail .torrent dengan Tufan Download Manager
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	Buka Mister Download Manager
+	Open Tufan Download Manager	Buka Tufan Download Manager
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	Alamat halaman
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	Pasangkan
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Gandingkan dengan Mister Download Manager
+	Pair with Tufan Download Manager	Gandingkan dengan Tufan Download Manager
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	Ingat laluan ini untuk kategori "{category}"
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	Jauh
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	Kawalan jauh
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	Gantikan asterisk kepada
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	Mulakan semula MDM
+	Restart TDM	Mulakan semula TDM
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	Pulihkan kategori terbina dalam
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	Pilih atau nyahpilih muat turun dengan garis putus-putus
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	Pilih bunyi untuk acara Mister Download Manager
+	Select sounds for Tufan Download Manager events	Pilih bunyi untuk acara Tufan Download Manager
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	Pilih muat turun dalam kotak
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	Hantar ini kepada rakan:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	Hantar torrent dan pautan magnet ke akaun pertama dan bukannya ke rakan sebaya
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	Tetapkan tarikh penciptaan fail seperti yang disediakan oleh pelayan
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	Sediakannya
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	Log Masuk Tapak
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	Tapak menghantar kualiti terbaik mereka sebagai video dan audio berasingan, dan ffmpeg menyertai mereka. Pada sistem ini MDM menggunakan milik anda: pasang ffmpeg dengan pengurus pakej anda.
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	Tapak menghantar kualiti terbaik mereka sebagai video dan audio berasingan, dan ffmpeg menyertai mereka. Pada sistem ini TDM menggunakan milik anda: pasang ffmpeg dengan pengurus pakej anda.
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	Tapak menghantar kualiti terbaik mereka sebagai video dan audio berasingan. ffmpeg menyatukannya menjadi satu fail yang boleh dimainkan di mana-mana sahaja.
@@ -4012,7 +4012,7 @@
 	Start download at	Mulakan muat turun pada
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	Mulakan muat turun apabila Mister Download Manager bermula
+	Start download on Tufan Download Manager startup	Mulakan muat turun apabila Tufan Download Manager bermula
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	Mulakan muat turun serta-merta sambil memaparkan dialog "Maklumat Fail Muat Turun"
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	Dimulakan dengan gallery-dl {version}
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	Dimulakan bersama komputer, tetingkapnya bermula dalam keadaan diminimumkan: tiada kawasan pemberitahuan memaparkan ikonnya di sini
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	Dimulakan bersama komputer, ia menunggu di kawasan pemberitahuan
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	Ahad
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	Sokong MDM di GitHub Sponsors
+	Support TDM on GitHub Sponsors	Sokong TDM di GitHub Sponsors
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	Kualiti terbaik, MP3, Opus dan FLAC memerlukan ffmpeg: pasangkannya dengan pengurus pakej sistem anda (atau Homebrew).
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	proksi pelayar (sambungan VPN atau proksi) meminta log masuk yang hanya ada pada sambungan itu: gunakan apl VPN sendiri, atau pilih penyesuai rangkaiannya dalam Pilihan → Proksi / Socks
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	Penyemak imbas boleh mencari Mister Download Manager
+	The browsers can find Tufan Download Manager	Penyemak imbas boleh mencari Tufan Download Manager
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	Komputer akan dibangunkan seminit sebelum waktu mula dan dikekalkan terjaga semasa baris gilir berjalan. Mister Download Manager perlu berjalan (ia boleh menunggu di kawasan pemberitahuan).
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	Komputer akan dibangunkan seminit sebelum waktu mula dan dikekalkan terjaga semasa baris gilir berjalan. Tufan Download Manager perlu berjalan (ia boleh menunggu di kawasan pemberitahuan).
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	Senarai muat turun tidak dapat disimpan: {error}. Perubahan disimpan semasa MDM berjalan.
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	Senarai muat turun tidak dapat disimpan: {error}. Perubahan disimpan semasa TDM berjalan.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	Pengurus muat turun yang anda sudah tahu, dibina semula untuk menjadi lebih pantas. Percuma dan sumber terbuka di bawah GNU GPL, versi 3 atau lebih baru. Video ditemui oleh yt-dlp; torrent berjalan pada librqbit.
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	pelayan FTP menjawab {code} {reply}
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Program pembantu yang dimulakan oleh pelayar tiada
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	Muat turun yang dipilih belum selesai. Adakah anda pasti ingin memadamkannya\ndaripada senarai muat turun Mister Download Manager?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	Muat turun yang dipilih belum selesai. Adakah anda pasti ingin memadamkannya\ndaripada senarai muat turun Tufan Download Manager?
 #. text in errors.rs
 #, machine
 	the server answered {status}	pelayan menjawab {status}
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	Simbol tidak dapat diambil: beberapa baris laporan menunjukkan alamat dan bukannya nama (pembangun masih boleh membacanya).
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Rantai kunci sistem dikunci dan MDM tidak membukanya, jadi log masuk dan kata laluan disimpan dalam tetapan MDM, yang hanya anda boleh baca.
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Rantai kunci sistem dikunci dan TDM tidak membukanya, jadi log masuk dan kata laluan disimpan dalam tetapan TDM, yang hanya anda boleh baca.
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	Halaman web dari mana fail ini diperoleh:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	Tema dan skema warna
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	Tarikh ini telah berlalu: baris gilir tidak akan bermula
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	Nama peranti ini
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	Melalui {service}: perkhidmatan memuat turun torrent, kemudian MDM memuat turun failnya
+	Through {service}: the service downloads the torrent, then TDM its files	Melalui {service}: perkhidmatan memuat turun torrent, kemudian TDM memuat turun failnya
 #. text in the Scheduler window
 #, machine
 	Thursday	Khamis
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	Hidupkan "Mister Download Manager" dan benarkan pada semua tapak web.
+	Turn on "Tufan Download Manager" and allow it on all websites.	Hidupkan "Tufan Download Manager" dan benarkan pada semua tapak web.
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	Taip kod ini di {page} dan benarkan MDM; menunggu anda (kod tamat tempoh dalam {time}).
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	Taip kod ini di {page} dan benarkan TDM; menunggu anda (kod tamat tempoh dalam {time}).
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	Gunakan FTP dalam mod PASV
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	Gunakan salinan MDM sendiri
+	Use TDM's own copy	Gunakan salinan TDM sendiri
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	Windows membenarkan pemasa bangun hanya semasa dipasang
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	Pengurus Kelayakan Windows tidak menjawab, jadi log masuk dan kata laluan disimpan dalam tetapan MDM, disulitkan untuk akaun Windows anda.
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	Pengurus Kelayakan Windows tidak menjawab, jadi log masuk dan kata laluan disimpan dalam tetapan TDM, disulitkan untuk akaun Windows anda.
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	Kod salah. Tunjukkan kod baharu dalam MDM dan cuba lagi.
+	Wrong code. Show a new code in TDM and try again.	Kod salah. Tunjukkan kod baharu dalam TDM dan cuba lagi.
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	Anda mempunyai versi terkini Mister Download Manager ({version}).
+	You have the latest version of Tufan Download Manager ({version}).	Anda mempunyai versi terkini Tufan Download Manager ({version}).
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	Anda menggunakan versi {version} daripada pengurus pakej sistem anda: kemas kininya di sana.
@@ -5275,7 +5275,7 @@
 	Your browser	Pelayar anda
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	MDM tidak mengenali pelayar lalai anda: User-Agent Chrome versi semasa
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	TDM tidak mengenali pelayar lalai anda: User-Agent Chrome versi semasa
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	akaun Google anda tiada akses kepada fail ini, atau pemiliknya mematikan muat turun
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	Program anda sendiri ({version}) terlalu lama: MDM memerlukan {oldest} atau yang lebih baharu
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	Program anda sendiri ({version}) terlalu lama: TDM memerlukan {oldest} atau yang lebih baharu
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	{device} digandingkan. Ia boleh mengawal MDM sekarang.
+	{device} is paired. It can control TDM now.	{device} digandingkan. Ia boleh mengawal TDM sekarang.
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	{name} ialah arkib 7z atau RAR. MDM mengekstraknya dengan 7-Zip, yang tidak dipasang.
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	{name} ialah arkib 7z atau RAR. TDM mengekstraknya dengan 7-Zip, yang tidak dipasang.
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	{name} tidak ditawarkan sebagai {how}.
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	{name} {version} terlalu lama: MDM memerlukan {oldest} atau yang lebih baharu
+	{name} {version} is too old: TDM needs {oldest} or newer	{name} {version} terlalu lama: TDM memerlukan {oldest} atau yang lebih baharu
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	{n} daripada {total} dipilih
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{percent} di {service}
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	{service} meminta untuk memperlahankan; MDM akan cuba lagi dalam seminit
+	{service} asks to slow down; TDM will try again in a minute	{service} meminta untuk memperlahankan; TDM akan cuba lagi dalam seminit
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	{service} tidak dapat mendapatkan torrent ini: tiada siapa yang berkongsinya, atau pautannya tidak dapat dibaca
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	{service} tidak dapat mencapai hos fail ini sekarang; MDM akan cuba lagi nanti
+	{service} can't reach this file host right now; TDM will try again later	{service} tidak dapat mencapai hos fail ini sekarang; TDM akan cuba lagi nanti
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: ini memerlukan akaun premium
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: terlalu banyak muat turun serentak melalui akaun anda; MDM akan cuba lagi
+	{service}: too many downloads at once through your account; TDM will try again	{service}: terlalu banyak muat turun serentak melalui akaun anda; TDM akan cuba lagi
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: sudah ada dalam senarai
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: tidak ditambah: fail dengan nama yang sama sudah ada dalam {folder}
 #. message or event log entry in the main window
@@ -5651,15 +5651,15 @@ column	Transfer rate	Kadar pemindahan
 #, machine
 column	Upload speed	Kelajuan muat naik
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	Mister Download Manager lain (pelayan)
+extension	Another Tufan Download Manager (a server)	Tufan Download Manager lain (pelayan)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	Sambungan pelayar
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	Tetapan butang...
@@ -5668,41 +5668,41 @@ extension	Button settings...	Tetapan butang...
 #, machine
 extension	Can't tell which video this is: open its own page and try there	Tidak dapat dipastikan video yang mana ini: buka halamannya sendiri dan cuba di sana
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	Bersambung ke Mister Download Manager
+extension	Connected to Tufan Download Manager	Bersambung ke Tufan Download Manager
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	Bersambung ke Mister Download Manager {version}
+extension	Connected to Tufan Download Manager {version}	Bersambung ke Tufan Download Manager {version}
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	Muat turun
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	Muat turun semua pautan dengan Mister Download Manager
+extension	Download all links with Tufan Download Manager	Muat turun semua pautan dengan Tufan Download Manager
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	Muat turun pautan terpilih dengan Mister Download Manager
+extension	Download selected links with Tufan Download Manager	Muat turun pautan terpilih dengan Tufan Download Manager
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	Muat turun video
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	Muat turun dengan Mister Download Manager
+extension	Download with Tufan Download Manager	Muat turun dengan Tufan Download Manager
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	Muat turun daripada {site} kekal dengan penyemak imbas
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	Muat turun pergi ke {address}
 #. text in the browser extension
@@ -5714,9 +5714,9 @@ extension	Drag to move it along the video's edge	Seret untuk mengalihkannya di s
 #, machine
 extension	Enter its https:// address.	Masukkan alamat https://nya.
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	Menyerahkan muat turun daripada pelayar kepada Mister Download Manager.
+extension	Hands downloads from the browser to Tufan Download Manager.	Menyerahkan muat turun daripada pelayar kepada Tufan Download Manager.
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5738,7 +5738,7 @@ extension	How to fix it	Cara membetulkannya
 #, machine
 extension	It didn't work. Try again.	Ia tidak berfungsi. Cuba lagi.
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	Ia tidak menunjukkan kod sekarang: klik Pasangkan peranti di sana dahulu.
 #. text in the browser extension
@@ -5771,33 +5771,33 @@ extension	Live	Langsung
 #, machine
 extension	Media on this page	Media pada halaman ini
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Mister Download Manager tidak bermula tepat pada masanya
+extension	Tufan Download Manager didn't start in time	Tufan Download Manager tidak bermula tepat pada masanya
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Mister Download Manager tidak menerima salinan sambungan ini
+extension	Tufan Download Manager doesn't accept this copy of the extension	Tufan Download Manager tidak menerima salinan sambungan ini
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Mister Download Manager tidak dipasang atau tidak bermula
+extension	Tufan Download Manager isn't installed or didn't start	Tufan Download Manager tidak dipasang atau tidak bermula
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Mister Download Manager tidak dipasang, atau penyepaduan penyemak imbasnya tidak disediakan
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Tufan Download Manager tidak dipasang, atau penyepaduan penyemak imbasnya tidak disediakan
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Mister Download Manager kemudian memuat turun melalui proksi yang sama seperti pelayar ini. Pelayar meminta anda sekali untuk membenarkannya; mematikan ini akan menarik balik kebenaran itu.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Tufan Download Manager kemudian memuat turun melalui proksi yang sama seperti pelayar ini. Pelayar meminta anda sekali untuk membenarkannya; mematikan ini akan menarik balik kebenaran itu.
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Mister Download Manager kemudian memuat turun melalui proksi yang sama dengan pelayar ini. Apabila pilihan ini dimatikan, sambungan tidak membaca proksi pelayar.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Tufan Download Manager kemudian memuat turun melalui proksi yang sama dengan pelayar ini. Apabila pilihan ini dimatikan, sambungan tidak membaca proksi pelayar.
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5817,21 +5817,21 @@ extension	Never take downloads from {site}	Jangan sekali-kali mengambil muat tur
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	Tiada video atau bunyi ditemui pada halaman ini lagi. Mainkannya, kemudian buka ini semula.
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	Tidak dicapai. Buka alamatnya sekali dalam pelayar ini dan terima sijilnya, kemudian cuba lagi.
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	Buka
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	Buka alamatnya sekali dan terima sijilnya, kemudian masukkan kod dari Pilihannya, Jauh, Pasangkan peranti (atau misterdownloadmanager-cli pair).
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	Buka alamatnya sekali dan terima sijilnya, kemudian masukkan kod dari Pilihannya, Jauh, Pasangkan peranti (atau tufan-download-manager-cli pair).
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	Buka Mister Download Manager
+extension	Open Tufan Download Manager	Buka Tufan Download Manager
 #. shown briefly on the download button over a video in a feed (a social site's home page, a timeline) when nothing in the feed gives that video's own address, so nothing was sent: the user should open the post the video belongs to and click the button on that page; short
 #, machine
 extension	Open the post, then use the button there	Buka siaran, kemudian gunakan butang di sana
@@ -5841,11 +5841,11 @@ extension	Open the post, then use the button there	Buka siaran, kemudian gunakan
 #, machine
 extension	Options...	Pilihan...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	Pasangkan
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	Kod pasangan
 #. text in the browser extension
@@ -5873,13 +5873,13 @@ extension	Send downloads through this browser's proxy or VPN extension	Hantar mu
 #, machine
 extension	Send downloads to	Hantar muat turun ke
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	Dihantar ke Mister Download Manager
+extension	Sent to Tufan Download Manager	Dihantar ke Tufan Download Manager
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	Sokong MDM
+extension	Support TDM	Sokong TDM
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5889,9 +5889,9 @@ extension	Take downloads from this browser	Ambil muat turun daripada penyemak im
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	Peraturan Chrome Web Store menjauhkan salinan alat tambah ini daripada video tapak ini. Bantuan menerangkan perkara yang boleh anda lakukan.
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	Sambungan ke Mister Download Manager gagal
+extension	The connection to Tufan Download Manager failed	Sambungan ke Tufan Download Manager gagal
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5909,7 +5909,7 @@ extension	The last download was left to the browser.	Muat turun terakhir diserah
 #, machine
 extension	This browser isn't ticked in Options → General.	Penyemak imbas ini tidak ditandakan dalam Pilihan → Umum.
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	Komputer ini
 #. text in the browser extension
@@ -5921,9 +5921,9 @@ extension	This download's details were too large to hand over	Butiran muat turun
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	Pemain halaman ini menstrim video secara berkeping-keping, jadi tiada fail untuk disenaraikan. Tuding pada video dan gunakan butang Muat turun videonya.
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	Kemas kini Mister Download Manager untuk menggunakan semua yang ditawarkan oleh sambungan ini
+extension	Update Tufan Download Manager to use everything this extension offers	Kemas kini Tufan Download Manager untuk menggunakan semua yang ditawarkan oleh sambungan ini
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6038,7 +6038,7 @@ key	Type a name	Taip nama
 key	Up / Down	Atas / Bawah
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
-menu	&About Mister Download Manager	&Perihal Mister Download Manager
+menu	&About Tufan Download Manager	&Perihal Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 menu	&Add new download	&Tambah muat turun baharu
@@ -6066,7 +6066,7 @@ menu	&Exit	&Keluar
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 menu	&Import	&Import
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 menu	&Interface size	Saiz &antara muka
 #. menu command in the main window
@@ -6157,8 +6157,8 @@ menu	Adwaita	Adwaita
 #. View → Theme: a style theme's name (Windows 7's glassy look), a name: keep "Aero" as written
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
-menu	Applies the next time MDM starts	Digunakan pada kali berikutnya MDM dimulakan
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
+menu	Applies the next time TDM starts	Digunakan pada kali berikutnya TDM dimulakan
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 menu	Aqua	Aqua
@@ -6215,7 +6215,7 @@ menu	C&ustomize URL List...	Ses&uaikan Senarai URL...
 #. the trailing ... means it opens a window: keep it
 menu	Check for &updates...	Semak kemas &kini...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 menu	Classic	Klasik
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
@@ -6249,7 +6249,7 @@ menu	Download &video from a page...	Muat turun &video daripada halaman...
 #. right-click → Torrent, a choice with a check mark: download the torrent's files from their start, to watch a video while it downloads
 menu	Download in order	Muat turun mengikut tertib
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 menu	Draw with	Lukis dengan
 #. menu command in the main window
 #. verb: save the download list to a file
@@ -6292,13 +6292,13 @@ menu	Hide drop target	Sembunyikan sasaran lepas
 #. View → Theme: black and white with strong edges, for low vision
 menu	High contrast	Kontras tinggi
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 menu	It couldn't start: the log says why	Ia tidak dapat dimulakan: log menyatakan sebabnya
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 menu	Its first frame didn't show within 10 seconds	Bingkai pertamanya tidak muncul dalam 10 saat
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 menu	Its last start ended before its first frame	Permulaan terakhirnya berakhir sebelum bingkai pertamanya
 #. menu command in the main window
 #. View → Theme: a style theme's name (Windows XP's look), a name: keep "Luna" as written
@@ -6314,7 +6314,7 @@ menu	Metal didn't start here: OpenGL draws	Metal tidak dapat dimulakan di sini: 
 menu	Metro	Metro
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
-menu	Mister Download Manager &Home Page	&Halaman Utama Mister Download Manager
+menu	Tufan Download Manager &Home Page	&Halaman Utama Tufan Download Manager
 #. menu command in the main window
 menu	Move/Rename (Ctrl-M)	Alih/Namakan Semula (Ctrl-M)
 #. menu command in the main window
@@ -6399,7 +6399,7 @@ menu	Select &all	Pilih &semua
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 menu	Show &drop target	Tunjukkan sasaran &lepas
 #. menu command in the main window
-menu	Show Mister Download Manager	Tunjukkan Mister Download Manager
+menu	Show Tufan Download Manager	Tunjukkan Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 menu	Speed &Limiter	Pengehad &Kelajuan
@@ -6415,7 +6415,7 @@ menu	Stop	Hentikan
 menu	Stop Download	Hentikan muat turun
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
-menu	Support &MDM	Sokong &MDM
+menu	Support &TDM	Sokong &TDM
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 menu	Tell a &friend	Beritahu &rakan
@@ -6423,7 +6423,7 @@ menu	Tell a &friend	Beritahu &rakan
 #. View → Draw with: a greyed note under "… didn't start here"; why: the graphics card stopped working twice (a driver update or reset)
 menu	The graphics card was lost twice in 10 minutes	Kad grafik hilang dua kali dalam 10 minit
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 menu	Theme	Tema
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation

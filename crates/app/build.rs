@@ -22,16 +22,16 @@ fn main() {
     // The icon and version info are for a Windows program only (not one built on Windows for
     // Linux or macOS); winresource builds on Windows only.
     #[cfg(windows)]
-    if windows {
-        println!("cargo:rerun-if-changed=assets/icons/app/mdm.ico");
-        let mut res = winresource::WindowsResource::new();
-        res.set_icon("assets/icons/app/mdm.ico")
-            .set("ProductName", "Mister Download Manager")
-            .set("FileDescription", "Mister Download Manager")
-            .set("CompanyName", "Ahmed Nefzaoui")
+        if windows {
+            println!("cargo:rerun-if-changed=assets/icons/app/tdm.ico");
+            let mut res = winresource::WindowsResource::new();
+            res.set_icon("assets/icons/app/tdm.ico")
+            .set("ProductName", "Tufan Download Manager")
+            .set("FileDescription", "Tufan Download Manager")
+            .set("CompanyName", "Md. Sakim")
             .set(
                 "LegalCopyright",
-                "Copyright (C) 2026 Ahmed Nefzaoui. GPL-3.0-or-later.",
+                "Copyright (C) 2026 Md. Sakim. GPL-3.0-or-later.",
             );
         if let Err(e) = res.compile() {
             // A missing resource compiler must not break the build; the window still sets
@@ -134,7 +134,7 @@ fn languages(root: &std::path::Path) {
     std::fs::write(out, format!("&[\n{}\n]\n", rows.join("\n"))).unwrap();
 }
 
-/// The commit this is built from (`MDM_COMMIT`, "unknown" outside a git checkout), for Help →
+/// The commit this is built from (`TDM_COMMIT`, "unknown" outside a git checkout), for Help →
 /// About and problem reports.
 fn commit() {
     println!("cargo:rerun-if-changed=../../.git/HEAD");
@@ -147,5 +147,5 @@ fn commit() {
         .map(|o| String::from_utf8_lossy(&o.stdout).trim().to_owned())
         .filter(|h| !h.is_empty())
         .unwrap_or_else(|| "unknown".into());
-    println!("cargo:rustc-env=MDM_COMMIT={hash}");
+    println!("cargo:rustc-env=TDM_COMMIT={hash}");
 }

@@ -1,5 +1,5 @@
 [package]
-name = "mdm-labserver"
+name = "tdm-labserver"
 description = "HTTP Range test server with request log and fault injection (tests + behaviour lab)"
 version.workspace = true
 edition.workspace = true

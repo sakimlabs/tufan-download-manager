@@ -29,7 +29,7 @@ pub struct GalleryDialog {
     page: String,
     folder: String,
     limit: String,
-    install: Option<Slot<mdm_tools::Installed>>,
+    install: Option<Slot<tdm_tools::Installed>>,
     /// gallery-dl's answer for the address (`check`), and the address it was for.
     check: Option<Slot<bool>>,
     checked: Option<(String, bool)>,
@@ -38,13 +38,13 @@ pub struct GalleryDialog {
     asking: Option<(crate::dialogs::CreateFolder, ())>,
     helpers: Option<crate::helpers::Programs>,
     /// The helper as found (read again after an install or Helpers, not every frame).
-    tool: Option<Option<mdm_tools::Installed>>,
+    tool: Option<Option<tdm_tools::Installed>>,
 }
 
-fn tool() -> Option<mdm_tools::Installed> {
-    mdm_tools::tools_dir()
+fn tool() -> Option<tdm_tools::Installed> {
+    tdm_tools::tools_dir()
         .as_deref()
-        .and_then(mdm_tools::gallery::installed)
+        .and_then(tdm_tools::gallery::installed)
 }
 
 impl GalleryDialog {
@@ -113,7 +113,7 @@ impl GalleryDialog {
                 let Ok(page) = url::Url::parse(self.page.trim()) else {
                     return Outcome::Closed;
                 };
-                let name = mdm_tools::gallery::name_of(&page);
+                let name = tdm_tools::gallery::name_of(&page);
                 Outcome::Done(GalleryAdd {
                     folder: folder.join(&name),
                     name,
@@ -153,7 +153,7 @@ impl GalleryDialog {
             let slot: Slot<bool> = Arc::new(Mutex::new(None));
             let (out, tool, url, ctx) = (slot.clone(), t.clone(), page.clone(), ui.ctx().clone());
             std::thread::spawn(move || {
-                let res = mdm_tools::gallery::handles(&tool, &url).map_err(|e| e.to_string());
+                let res = tdm_tools::gallery::handles(&tool, &url).map_err(|e| e.to_string());
                 *out.lock().unwrap() = Some(res);
                 ctx.request_repaint();
             });
@@ -163,7 +163,7 @@ impl GalleryDialog {
 
         // The status line: gallery-dl missing or installing / checking / what it said.
         let line_y = o.y + 70.0;
-        let can_install = mdm_tools::gallery::asset().is_some();
+        let can_install = tdm_tools::gallery::asset().is_some();
         let readable = self
             .checked
             .as_ref()
@@ -215,13 +215,13 @@ impl GalleryDialog {
                     None,
                 )
                 .clicked()
-                && let Some(dir) = mdm_tools::tools_dir()
+                && let Some(dir) = tdm_tools::tools_dir()
             {
-                let slot: Slot<mdm_tools::Installed> = Arc::new(Mutex::new(None));
+                let slot: Slot<tdm_tools::Installed> = Arc::new(Mutex::new(None));
                 let (out, ctx) = (slot.clone(), ui.ctx().clone());
                 let net = crate::settings::own_net();
                 rt.spawn(async move {
-                    let res = mdm_tools::gallery::install_latest(&dir, &net, None).await;
+                    let res = tdm_tools::gallery::install_latest(&dir, &net, None).await;
                     *out.lock().unwrap() = Some(res.map_err(|e| crate::errors::tools(&e)));
                     ctx.request_repaint();
                 });

@@ -1,12 +1,12 @@
-//! Issue #507: a magnet link handed to MDM while Add torrent was already open was dropped
+//! Issue #507: a magnet link handed to TDM while Add torrent was already open was dropped
 //! without a word (the channel answered ok, nothing happened). It now waits its turn: Add torrent
-//! opens again for it once the first one closes. The real app, off the screens (MDM_OFFSCREEN),
+//! opens again for it once the first one closes. The real app, off the screens (TDM_OFFSCREEN),
 //! with a data folder of its own: two magnet links handed over as Windows starts the program for
 //! one, the first Add torrent closed as its title bar's × does (WM_CLOSE), then the second one
 //! must open.
 //!
 //! It opens windows, which needs OpenGL or Direct3D, so it runs on request:
-//! `cargo test -p mdm-app --test magnet_while_open -- --ignored`.
+//! `cargo test -p tdm-app --test magnet_while_open -- --ignored`.
 //!
 //! Windows only: the window is closed with `PostMessage(WM_CLOSE)` through PowerShell; the
 //! queue itself is the same code on every system (app.rs `torrent_waiting`).
@@ -16,7 +16,7 @@ use std::path::Path;
 use std::process::{Child, Command};
 use std::time::{Duration, Instant};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 /// The app's log so far (every file of `logs/`).
 fn log(data: &Path) -> String {
@@ -53,8 +53,8 @@ fn wait_for(app: &mut Child, data: &Path, line: &str, times: usize, wait: Durati
 fn second_launch(data: &Path, args: &[&str]) {
     let status = Command::new(APP)
         .args(args)
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
         .status()
         .unwrap();
     assert!(status.success(), "second launch {args:?}: {status}");
@@ -112,8 +112,8 @@ fn a_magnet_handed_over_while_add_torrent_is_open_opens_after_it() {
     )
     .unwrap();
     let mut app = Command::new(APP)
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
         .spawn()
         .unwrap();
     let wait = Duration::from_secs(60);
@@ -121,9 +121,9 @@ fn a_magnet_handed_over_while_add_torrent_is_open_opens_after_it() {
     let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         wait_for(&mut app, data, "window opened: main", 1, wait);
         let first =
-            "magnet:?xt=urn:btih:5b4f0c3a9e1d27f86c0b3a4e9d1f2a7c6e8b0d14&dn=MDM%20test%201";
+            "magnet:?xt=urn:btih:5b4f0c3a9e1d27f86c0b3a4e9d1f2a7c6e8b0d14&dn=TDM%20test%201";
         let second =
-            "magnet:?xt=urn:btih:7c1e9a2b4d6f8e0a1c3b5d7f9e2a4c6b8d0f1e23&dn=MDM%20test%202";
+            "magnet:?xt=urn:btih:7c1e9a2b4d6f8e0a1c3b5d7f9e2a4c6b8d0f1e23&dn=TDM%20test%202";
         second_launch(data, &[first]);
         wait_for(&mut app, data, opened, 1, wait);
         // Its first frames drawn (a close asked before then isn't seen by the window yet).
@@ -150,8 +150,8 @@ fn a_magnet_handed_over_while_add_torrent_is_open_opens_after_it() {
     }));
     let _ = Command::new(APP)
         .arg("/exit")
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
         .status();
     let until = Instant::now() + Duration::from_secs(15);
     while app.try_wait().unwrap().is_none() && Instant::now() < until {

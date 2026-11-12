@@ -3,13 +3,13 @@
 
 use serde::Deserialize;
 
-pub const REPO: &str = "anefzaoui/misterdownloadmanager";
+pub const REPO: &str = "sakimlabs/tufan-download-manager";
 
 /// GitHub turns away very long addresses: the form's address is kept under this, the report cut
 /// to fit (the full one goes in as the attached file).
 pub const URL_BUDGET: usize = 7000;
 
-/// The form's fields MDM fills, besides the report: (field id, value).
+/// The form's fields TDM fills, besides the report: (field id, value).
 pub type Fields = Vec<(&'static str, String)>;
 
 fn enc(s: &str) -> String {

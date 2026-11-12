@@ -52,7 +52,7 @@ def to_model(s):
 def from_model(s):
     s = re.sub(r"\{(name|name_ver|kb|mb|gb)\}", lambda m: "[" + m.group(1).replace("_", "/") + "]", s)
     # .isl files aren't preprocessed: the name goes in as text.
-    s = re.sub(r"\{(\d)\}", r"%\1", s).replace("{AppName}", "Mister Download Manager")
+    s = re.sub(r"\{(\d)\}", r"%\1", s).replace("{AppName}", "Tufan Download Manager")
     return s.replace("\r", "").replace("\n", "%n")
 
 
@@ -194,7 +194,7 @@ def main():
             entries.append(f'Name: "{name}"; MessagesFile: "compiler:Languages\\{lang["inno"]}.isl,languages\\{code}.isl"')
         else:
             entries.append(f'Name: "{name}"; MessagesFile: "languages\\{code}.isl"')
-        lines = [f"; Mister Download Manager's installer in {lang['english']}: tools/installer/languages.py",
+        lines = [f"; Tufan Download Manager's installer in {lang['english']}: tools/installer/languages.py",
                  "; (machine-translated; a native speaker may correct any line)."]
         if lang["inno"] == "-":
             lines += ["", "[LangOptions]", f"LanguageName={lang['native']}",

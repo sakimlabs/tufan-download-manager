@@ -1,11 +1,11 @@
-// The toolbar button's popup: whether the browser reaches Mister Download Manager (and, when it
+// The toolbar button's popup: whether the browser reaches Tufan Download Manager (and, when it
 // doesn't, a link to the help page's section for why), pausing capture, leaving the current
 // site to the browser, opening the app or its Options, and the media the tab loaded (#38), each
 // to download. background.js does the work.
 const ext = globalThis.browser ?? globalThis.chrome;
-const HELP = "https://misterdownloadmanager.com/help/browser-help.html";
-// The creator's GitHub Sponsors page (the app's Help → Support MDM): a plain link, in a new tab.
-const SPONSORS = "https://github.com/sponsors/anefzaoui";
+const HELP = "https://tufan-download-manager.com/help/browser-help.html";
+// The creator's GitHub Sponsors page (the app's Help → Support TDM): a plain link, in a new tab.
+const SPONSORS = "https://github.com/sponsors/sakimlabs";
 const t = (key, ...subs) => ext.i18n.getMessage(key, subs) || key;
 const $ = (id) => document.getElementById(id);
 const ask = (m) => ext.runtime.sendMessage(m).catch(() => ({ ok: false }));
@@ -53,7 +53,7 @@ async function show() {
   $("take").disabled = !s.connected;
   $("open").disabled = $("options").disabled = !s.connected;
   $("version").textContent = s.version ? `v${s.version}` : "";
-  // Send downloads to: this computer, or another MDM (#157).
+  // Send downloads to: this computer, or another TDM (#157).
   $("to-here").checked = !s.remote && $("remote-form").hidden;
   $("to-remote").checked = Boolean(s.remote) || !$("remote-form").hidden;
   $("open").disabled = $("open").disabled || Boolean(s.remote);
@@ -81,7 +81,7 @@ async function show() {
   if (site) await showMedia(tab, s.connected);
 }
 
-// The last download left to the browser by MDM's Options, and which one (#208); a later one
+// The last download left to the browser by TDM's Options, and which one (#208); a later one
 // taken clears it (background.js noteLeft). A reason this version can't name says no more.
 function showDeclined(d) {
   const box = $("declined");
@@ -275,7 +275,7 @@ $("options").addEventListener("click", async () => {
   window.close();
 });
 
-// Send downloads to (#157): another MDM is paired here with its address and a code it shows.
+// Send downloads to (#157): another TDM is paired here with its address and a code it shows.
 $("to-remote").addEventListener("change", () => {
   $("remote-form").hidden = false;
   $("remote-url").focus();

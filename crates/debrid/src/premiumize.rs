@@ -1,11 +1,11 @@
 //! Premiumize.me's API, as documented at <https://www.premiumize.me/api> (read 2026-11-05). Only
-//! what MDM uses: the account, the supported services, and direct links (`transfer/directdl`).
+//! what TDM uses: the account, the supported services, and direct links (`transfer/directdl`).
 //!
 //! - Every call carries `Authorization: Bearer <API key>` (the docs' recommended way; never the
 //!   legacy `?apikey=`, which ends up in logs).
 //! - Every answer has `status`: `"success"` with its fields, or `"error"` with `message` and
 //!   `code`, with HTTP 200 for business errors too; 500 is a server failure.
-//! - Sign-in by code (OAuth device flow) needs a client registered by MDM's maintainer: until then,
+//! - Sign-in by code (OAuth device flow) needs a client registered by TDM's maintainer: until then,
 //!   the user pastes the API key from the Account page.
 
 use std::collections::HashMap;
@@ -27,9 +27,9 @@ struct Status {
     code: String,
 }
 
-/// What an error code means for MDM (the documentation's list of codes).
+/// What an error code means for TDM (the documentation's list of codes).
 pub(crate) fn fault_of(code: &str, message: &str) -> Fault {
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
     Fault::Service(match code {
         "authentication_failed" => F::SignIn,
         "permission_denied" => F::AccountBlocked,
@@ -49,7 +49,7 @@ fn read<T: serde::de::DeserializeOwned>(
     body: &[u8],
     retry: Option<u64>,
 ) -> Result<T, Fault> {
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
     if status == 429 {
         return Err(Fault::Service(F::TooManyRequests(
             retry.map(std::time::Duration::from_secs),
@@ -59,14 +59,14 @@ fn read<T: serde::de::DeserializeOwned>(
         return Err(Fault::Service(if status >= 500 {
             F::ServiceDown
         } else {
-            F::Other("an answer MDM can't read".into())
+            F::Other("an answer TDM can't read".into())
         }));
     };
     if s.status != "success" {
         return Err(fault_of(&s.code, &s.message));
     }
     serde_json::from_slice(body)
-        .map_err(|_| Fault::Service(F::Other("an answer MDM can't read".into())))
+        .map_err(|_| Fault::Service(F::Other("an answer TDM can't read".into())))
 }
 
 async fn call<T: serde::de::DeserializeOwned>(
@@ -164,7 +164,7 @@ pub(crate) async fn create(http: &Http, key: &str, magnet: &str) -> Result<Strin
     match c.id {
         serde_json::Value::String(s) => Ok(s),
         serde_json::Value::Number(n) => Ok(n.to_string()),
-        _ => Err(Fault::Service(mdm_engine::ServiceFault::ServiceDown)),
+        _ => Err(Fault::Service(tdm_engine::ServiceFault::ServiceDown)),
     }
 }
 
@@ -184,7 +184,7 @@ pub(crate) async fn transfer_status(
     let url = http.services.pm.join("transfer/list").expect("relative");
     let l: List = call(http, http.get(&url).bearer_auth(key)).await?;
     let Some(t) = l.transfers.into_iter().find(|t| t.id == id) else {
-        return Ok(Status::Failed(mdm_engine::ServiceFault::FileUnavailable));
+        return Ok(Status::Failed(tdm_engine::ServiceFault::FileUnavailable));
     };
     if let Some(s) = crate::torrents::pm_working(&t) {
         return Ok(s);
@@ -270,7 +270,7 @@ pub(crate) async fn transfer_delete(http: &Http, key: &str, id: &str) -> Result<
 #[cfg(test)]
 mod tests {
     use super::*;
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
 
     #[test]
     fn the_documented_answers_read() {

@@ -675,7 +675,7 @@ pub async fn tb_requestdl(
         return tb_bad_token();
     }
     if q.get("redirect").map(String::as_str) != Some("false") {
-        // MDM always asks for the link itself: a redirect puts the key in the download's address.
+        // TDM always asks for the link itself: a redirect puts the key in the download's address.
         return tb_error(StatusCode::BAD_REQUEST, "INVALID_OPTION");
     }
     let file: usize = q.get("file_id").and_then(|i| i.parse().ok()).unwrap_or(0);

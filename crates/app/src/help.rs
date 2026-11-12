@@ -12,21 +12,21 @@ use crate::dialogs::{Outcome, window};
 use crate::winui::{self, ButtonKind, r};
 
 /// The repository: problem reports, releases, source, licences.
-pub const REPO: &str = "https://github.com/anefzaoui/misterdownloadmanager";
-/// The creator's GitHub Sponsors page: Help → Support MDM, About's last line. The website, the
+pub const REPO: &str = "https://github.com/sakimlabs/tufan-download-manager";
+/// The creator's GitHub Sponsors page: Help → Support TDM, About's last line. The website, the
 /// extension's popup and the repository's Sponsor button (.github/FUNDING.yml) point there too.
-pub const SPONSORS: &str = "https://github.com/sponsors/anefzaoui";
-const LATEST: &str = "https://api.github.com/repos/anefzaoui/misterdownloadmanager/releases/latest";
+pub const SPONSORS: &str = "https://github.com/sponsors/sakimlabs";
+const LATEST: &str = "https://api.github.com/repos/sakimlabs/tufan-download-manager/releases/latest";
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
-pub const COMMIT: &str = env!("MDM_COMMIT");
-/// While MDM runs, the automatic check comes again this often (it also checks at every start).
+pub const COMMIT: &str = env!("TDM_COMMIT");
+/// While TDM runs, the automatic check comes again this often (it also checks at every start).
 pub const CHECK_EVERY: i64 = 24 * 3600;
 /// The check at start waits this long (the window, the list and the downloads first).
 pub const CHECK_AFTER_START: std::time::Duration = std::time::Duration::from_secs(5);
 
 /// The official website: the home page and the user guide, docs/*.md made into pages by
 /// tools/website/build.py. GitHub (REPO) keeps what is GitHub's: issues, releases, the source.
-pub const SITE: &str = "https://misterdownloadmanager.com";
+pub const SITE: &str = "https://tufan-download-manager.com";
 
 /// The website's languages besides English, its folders (`/de/help/`): tools/website/sitei18n.py's
 /// LANGS, which a test keeps this list equal to. English is at the root.
@@ -68,7 +68,7 @@ pub fn page_url(doc: &str, lang: &str) -> String {
 
 /// Open a page of the user guide on the website, in the interface language when the site has
 /// it (`doc` as page_url takes it: `"video.md"`, `"README.md#tutorials"`, `""` the home page).
-/// Never in an off-screen test run (MDM_OFFSCREEN), whose clicks come from scripts, not from a
+/// Never in an off-screen test run (TDM_OFFSCREEN), whose clicks come from scripts, not from a
 /// person at the browser.
 pub fn open_page(doc: &str) {
     if !crate::offscreen() {
@@ -76,8 +76,8 @@ pub fn open_page(doc: &str) {
     }
 }
 
-/// Help → Support MDM and About's link: the Sponsors page in the browser. Asked for only: MDM
-/// never brings it up by itself, and never in an off-screen test run (MDM_OFFSCREEN), whose
+/// Help → Support TDM and About's link: the Sponsors page in the browser. Asked for only: TDM
+/// never brings it up by itself, and never in an off-screen test run (TDM_OFFSCREEN), whose
 /// clicks come from scripts, not from a person at the browser.
 pub fn support() {
     if !crate::offscreen() {
@@ -86,7 +86,7 @@ pub fn support() {
 }
 
 /// A new GitHub issue on the Bug report form (.github/ISSUE_TEMPLATE/bug.yml), filled with
-/// what MDM knows: its version, the system and its version, how it was installed, the
+/// what TDM knows: its version, the system and its version, how it was installed, the
 /// language. The parameters are the form's field ids (all text fields: GitHub's page drops a
 /// dropdown's value from the address).
 pub fn report_problem() {
@@ -105,7 +105,7 @@ pub fn report_problem() {
         });
 }
 
-/// The Bug report form's fields MDM fills in: (field id, value).
+/// The Bug report form's fields TDM fills in: (field id, value).
 fn report_fields() -> Vec<(&'static str, String)> {
     #[cfg(windows)]
     let os_version = crate::win32::windows_version();
@@ -136,7 +136,7 @@ fn report_fields() -> Vec<(&'static str, String)> {
     ];
     fields.push((
         "install",
-        mdm_tools::update::Install::detect().label().to_owned(),
+        tdm_tools::update::Install::detect().label().to_owned(),
     ));
     fields
 }
@@ -177,14 +177,14 @@ pub fn check(rt: &tokio::runtime::Handle, ctx: &egui::Context) -> Slot {
 }
 
 async fn latest() -> Result<Found, String> {
-    // MDM_UPDATE_FEED: another address for the latest release (tests of Update now, as
-    // MDM_DATA_DIR is for a separate list).
-    let feed = std::env::var("MDM_UPDATE_FEED").unwrap_or_else(|_| LATEST.to_owned());
+    // TDM_UPDATE_FEED: another address for the latest release (tests of Update now, as
+    // TDM_DATA_DIR is for a separate list).
+    let feed = std::env::var("TDM_UPDATE_FEED").unwrap_or_else(|_| LATEST.to_owned());
     let net = crate::settings::own_net();
     // The chosen DNS and network adapter, as downloads have them (#36, #35).
-    let client = mdm_engine::net::client_builder(&net.dns, &net.route, &feed)
+    let client = tdm_engine::net::client_builder(&net.dns, &net.route, &feed)
         .map_err(|e| e.to_string())?
-        .user_agent(concat!("MisterDownloadManager/", env!("CARGO_PKG_VERSION")))
+        .user_agent(concat!("TufanDownloadManager/", env!("CARGO_PKG_VERSION")))
         .timeout(Duration::from_secs(20))
         .build()
         .map_err(|e| e.to_string())?;
@@ -266,7 +266,7 @@ pub struct Updates {
     result: Option<Result<Found, String>>,
     /// Update now: the release file on its way (crate::update).
     job: Option<crate::update::Job>,
-    /// What Update now came to, when it didn't close MDM.
+    /// What Update now came to, when it didn't close TDM.
     status: Option<UpdateStatus>,
     /// Update now pressed by a test (`/show update-now`, feature `test-update`).
     press: bool,
@@ -308,7 +308,7 @@ impl Updates {
     }
 
     /// `weekly`: the automatic check (its switch is here, under the answer). `Done(true)`:
-    /// the update is going in place, MDM closes for it (and starts again).
+    /// the update is going in place, TDM closes for it (and starts again).
     pub fn show(
         &mut self,
         ctx: &egui::Context,
@@ -319,8 +319,8 @@ impl Updates {
             self.result = Some(r);
             self.slot = None;
         }
-        let install = mdm_tools::update::Install::detect();
-        // The release file arrived (checked) and is in place (on the job's thread): MDM closes
+        let install = tdm_tools::update::Install::detect();
+        // The release file arrived (checked) and is in place (on the job's thread): TDM closes
         // once the new copy (or the installer) has started.
         if let Some(res) = self.job.as_ref().and_then(crate::update::Job::result) {
             self.job = None;
@@ -371,7 +371,7 @@ impl Updates {
                     Some(Ok(Found::Latest)) => {
                         let line = crate::i18n::fmt(
                             crate::i18n::t(
-                                "You have the latest version of Mister Download Manager ({version}).",
+                                "You have the latest version of Tufan Download Manager ({version}).",
                             ),
                             &[("version", VERSION)],
                         );
@@ -391,7 +391,7 @@ impl Updates {
                     Some(Ok(Found::Newer(rel))) => {
                         let line = crate::i18n::fmt(
                             crate::i18n::t(
-                                "Mister Download Manager {version} is available (released {date}).",
+                                "Tufan Download Manager {version} is available (released {date}).",
                             ),
                             &[("version", &rel.version), ("date", &rel.date)],
                         );
@@ -406,9 +406,9 @@ impl Updates {
                             "update-line",
                         );
                         // A package of another package manager (pacman, …): that one updates it.
-                        let have = if install == mdm_tools::update::Install::System {
+                        let have = if install == tdm_tools::update::Install::System {
                             crate::i18n::fmt(
-                                // i18n: Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+                                // i18n: Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
                                 crate::i18n::t(
                                     "You have version {version}, from your system's package manager: update it there.",
                                 ),
@@ -464,7 +464,7 @@ impl Updates {
                         .filter(|_| !matches!(self.status, Some(UpdateStatus::Failed(_))))
                 });
                 // Another package manager's copy: no Update now nor Download, the notes only.
-                let managed = install == mdm_tools::update::Install::System;
+                let managed = install == tdm_tools::update::Install::System;
                 let close_label = if self.job.is_some() {
                     // i18n: button: stop downloading the update
                     crate::i18n::mark("Cancel")
@@ -562,7 +562,7 @@ impl Updates {
                         ui,
                         o + vec2(11.0, bottom + 4.0),
                         weekly,
-                        // i18n: check box in the update window: look for a new version every time MDM starts
+                        // i18n: check box in the update window: look for a new version every time TDM starts
                         "Check for updates at every start",
                         true,
                         Some(o.x + status_right),
@@ -713,7 +713,7 @@ impl About {
         window(
             ctx,
             "about",
-            "About Mister Download Manager",
+            "About Tufan Download Manager",
             [420.0, 236.0 + extra],
             false,
             winui::BG(),
@@ -721,15 +721,15 @@ impl About {
                 let p = ui.painter().clone();
                 let ink = winui::TEXT();
                 egui::Image::from_bytes(
-                    "bytes://mdm-48.png",
-                    include_bytes!("../assets/icons/app/mdm-48.png"),
+                    "bytes://tdm-48.png",
+                    include_bytes!("../assets/icons/app/tdm-48.png"),
                 )
                 .paint_at(ui, winui::r(o, 16.0, 16.0, 48.0, 48.0));
                 winui::text(
                     &p,
                     o.x + 80.0,
                     o.y + 28.0,
-                    crate::i18n::t("Mister Download Manager"),
+                    crate::i18n::t("Tufan Download Manager"),
                     ink,
                 );
                 let version = crate::i18n::fmt(
@@ -783,14 +783,14 @@ impl About {
                 ) {
                     crate::launch::open(format!("{REPO}/blob/main/ATTRIBUTION.md"));
                 }
-                // Its own row under them: the creator's Sponsors page (Help → Support MDM).
+                // Its own row under them: the creator's Sponsors page (Help → Support TDM).
                 y += 22.0;
                 if winui::link(
                     ui,
                     &p,
                     o.x + 80.0,
                     y,
-                    "Support MDM on GitHub Sponsors",
+                    "Support TDM on GitHub Sponsors",
                     "support",
                 ) {
                     support();
@@ -948,7 +948,7 @@ impl TellFriend {
     fn message() -> String {
         crate::i18n::fmt(
             crate::i18n::t(
-                "I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}",
+                "I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}",
             ),
             &[("link", SITE)],
         )
@@ -1067,7 +1067,7 @@ impl TellFriend {
                             .collect::<String>()
                             .replace('+', "%20")
                     };
-                    let subject = crate::i18n::t("Mister Download Manager");
+                    let subject = crate::i18n::t("Tufan Download Manager");
                     let opened = open::that_detached(format!(
                         "mailto:?subject={}&body={}",
                         enc(subject),
@@ -1185,7 +1185,7 @@ mod tests {
                 .iter()
                 .any(|s| form.contains(s.as_str()))
         };
-        for install in mdm_tools::update::Install::ALL {
+        for install in tdm_tools::update::Install::ALL {
             assert!(named(install.label()), "{}", install.label());
         }
         for option in [
@@ -1205,22 +1205,22 @@ mod tests {
         let at = |doc, lang| page_url(doc, lang);
         assert_eq!(
             at("README.md", "en"),
-            "https://misterdownloadmanager.com/help/"
+            "https://tufan-download-manager.com/help/"
         );
         assert_eq!(
             at("README.md#tutorials", "en"),
-            "https://misterdownloadmanager.com/help/#tutorials"
+            "https://tufan-download-manager.com/help/#tutorials"
         );
         assert_eq!(
             at("video.md", "de"),
-            "https://misterdownloadmanager.com/de/help/video.html"
+            "https://tufan-download-manager.com/de/help/video.html"
         );
         assert_eq!(
             at("queues-and-scheduler.md#the-scheduler-window", "ar"),
-            "https://misterdownloadmanager.com/ar/help/queues-and-scheduler.html#the-scheduler-window"
+            "https://tufan-download-manager.com/ar/help/queues-and-scheduler.html#the-scheduler-window"
         );
-        assert_eq!(at("", "fr"), "https://misterdownloadmanager.com/fr/");
-        assert_eq!(at("", "en"), "https://misterdownloadmanager.com/");
+        assert_eq!(at("", "fr"), "https://tufan-download-manager.com/fr/");
+        assert_eq!(at("", "en"), "https://tufan-download-manager.com/");
         // The site's folders: its own codes, a region read as its language, else English.
         for (lang, folder) in [
             ("pt-br", "/pt-br"),
@@ -1236,7 +1236,7 @@ mod tests {
         ] {
             assert_eq!(
                 at("options.md", lang),
-                format!("https://misterdownloadmanager.com{folder}/help/options.html"),
+                format!("https://tufan-download-manager.com{folder}/help/options.html"),
                 "{lang}"
             );
         }
@@ -1267,14 +1267,14 @@ mod tests {
     /// extension window's tutorial and help sections, and every website help address written in
     /// a crate or in the browser extension.
     fn linked_docs() -> Vec<String> {
-        let mut docs = vec![mdm_ipc::extension::GUIDE_DOC.to_owned()];
+        let mut docs = vec![tdm_ipc::extension::GUIDE_DOC.to_owned()];
         // The sections Options' Test browser integration opens (extension::checks' reasons).
         for why in ["options", "not-installed"] {
-            docs.push(mdm_ipc::extension::help_doc(why));
+            docs.push(tdm_ipc::extension::help_doc(why));
         }
         let calls = regex::Regex::new(r#"(?:open_page|HelpPage)\(\s*"([^"]+)""#).unwrap();
         let site =
-            regex::Regex::new(r"https://misterdownloadmanager\.com/help/([\w.-]*)(#[\w-]+)?")
+            regex::Regex::new(r"https://tufan-download-manager\.com/help/([\w.-]*)(#[\w-]+)?")
                 .unwrap();
         let mut files = vec![];
         let mut dirs = vec![root().join("crates"), root().join("extension")];
@@ -1348,14 +1348,14 @@ mod tests {
         }
     }
 
-    /// The same pages on a built website: `python tools/website/build.py` (MDM_SITE_PREVIEW=1
-    /// is enough, English), then `MDM_SITE_DIR=target/site cargo test -p mdm-app --
+    /// The same pages on a built website: `python tools/website/build.py` (TDM_SITE_PREVIEW=1
+    /// is enough, English), then `TDM_SITE_DIR=target/site cargo test -p tdm-app --
     /// --ignored linked_help_pages_are_on_the_built_site`: each page is a file there, with its
     /// section's id.
     #[test]
-    #[ignore = "needs the website built, in MDM_SITE_DIR"]
+    #[ignore = "needs the website built, in TDM_SITE_DIR"]
     fn linked_help_pages_are_on_the_built_site() {
-        let out = std::path::PathBuf::from(std::env::var("MDM_SITE_DIR").expect("MDM_SITE_DIR"));
+        let out = std::path::PathBuf::from(std::env::var("TDM_SITE_DIR").expect("TDM_SITE_DIR"));
         for doc in linked_docs() {
             let url = page_url(&doc, "en");
             let path = url.strip_prefix(SITE).unwrap();

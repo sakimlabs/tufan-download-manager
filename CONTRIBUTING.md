@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping with Mister Download Manager. Bug reports, ideas, translation fixes and pull
+Thanks for helping with Tufan Download Manager. Bug reports, ideas, translation fixes and pull
 requests are all welcome.
 
 ## Getting set up
@@ -9,17 +9,17 @@ You need Windows 10 or 11 and Rust stable 1.95 or later (the MSVC toolchain).
 
 ```
 cargo build
-cargo run -p mdm-app
+cargo run -p tdm-app
 ```
 
 To try changes without touching your own downloads, give the app a separate data folder:
 
 ```
-set MDM_DATA_DIR=C:\some\empty\folder
-cargo run -p mdm-app
+set TDM_DATA_DIR=C:\some\empty\folder
+cargo run -p tdm-app
 ```
 
-`cargo run -p mdm-labserver -- --faults "rate=2M"` starts a local test server that serves
+`cargo run -p tdm-labserver -- --faults "rate=2M"` starts a local test server that serves
 generated files with whatever trouble you ask for (slow connections, cuts, busy answers, no
 ranges; `GET /` lists them), so downloads can be tested without the internet.
 
@@ -37,7 +37,7 @@ node tools/extension/test.mjs
 
 Keep changes focused and match the code around them. A few rules hold everywhere:
 
-- **Clean room.** MDM contains no code, binaries, artwork, icons, sounds or text from Internet
+- **Clean room.** TDM contains no code, binaries, artwork, icons, sounds or text from Internet
   Download Manager or any other download manager. Never disassemble, decompile or patch another
   program, and never bypass anyone's licensing. See
   [Not a reverse-engineering project](README.md#not-a-reverse-engineering-project).
@@ -64,8 +64,8 @@ A row without its `#, machine` line is yours from then on: `tools/i18n/translate
 it to machine translation again, and CI (`tools/i18n/reviewed_guard.py`) fails any pull request
 that drops it or marks it `#, machine` again.
 
-`cargo test -p mdm-app every_catalog` checks every catalog. To see whether your texts fit, set
-`MDM_FIT_AUDIT` to a file and take the screenshots in your language
+`cargo test -p tdm-app every_catalog` checks every catalog. To see whether your texts fit, set
+`TDM_FIT_AUDIT` to a file and take the screenshots in your language
 (`tools\lab\docs-shots.ps1 ... -Lang <code>`): every text that runs past its window or over
 another one is listed there. See [Languages](docs/languages.md)
 for how the language list, the installer and the right-to-left layout fit together.
@@ -79,7 +79,7 @@ only that.
 ## Reporting problems
 
 Use **Help → Report a problem** in the app: it opens the bug report form with your version,
-system, how MDM was installed and its language filled in. The form asks for the same when you
+system, how TDM was installed and its language filled in. The form asks for the same when you
 open it yourself. Security problems: see [SECURITY.md](SECURITY.md).
 
 Pull requests are accepted under the project's licence, the

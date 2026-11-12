@@ -2,7 +2,7 @@
 //! the system's. A system without any (a minimal Linux without the `ca-certificates` package,
 //! #264) still gives every client: plain HTTP and FTP work, and each secure connection fails
 //! with [`NO_ROOTS`], which the engine reports as `Error::NoCertificates`. The torrent session's
-//! HTTP clients take the same setup (mdm-torrent), so a session still starts there: DHT, peers
+//! HTTP clients take the same setup (tdm-torrent), so a session still starts there: DHT, peers
 //! and plain HTTP trackers work, HTTPS trackers fail with [`NO_ROOTS`].
 
 use std::sync::Arc;
@@ -18,14 +18,14 @@ use rustls::{DigitallySignedStruct, SignatureScheme};
 pub const NO_ROOTS: &str = "this system has no trusted certificates to check the server with \
                             (install the ca-certificates package)";
 
-/// The crypto provider MDM's own TLS configurations use (the one reqwest uses too).
+/// The crypto provider TDM's own TLS configurations use (the one reqwest uses too).
 pub(crate) fn provider() -> Arc<CryptoProvider> {
     Arc::new(rustls::crypto::aws_lc_rs::default_provider())
 }
 
 /// Whether the system has certificates to check servers with. Windows and macOS always do
 /// (their verifiers ask the system at each connection); Linux reads its CA bundle, which can be
-/// missing. Asked again until it's found, so installing the certificates while MDM runs is seen
+/// missing. Asked again until it's found, so installing the certificates while TDM runs is seen
 /// by the next download.
 pub fn system_has_roots() -> bool {
     static FOUND: AtomicBool = AtomicBool::new(false);
@@ -41,9 +41,9 @@ pub fn system_has_roots() -> bool {
 
 /// `builder` with the TLS it can have here: reqwest's own (the system's verifier) when the
 /// system has certificates, else one whose every secure connection fails with [`NO_ROOTS`]
-/// (reqwest's would refuse to build the client at all, plain HTTP included). MDM's own clients
+/// (reqwest's would refuse to build the client at all, plain HTTP included). TDM's own clients
 /// get it through `net::bind_client`; the torrent session's (trackers, UPnP) through librqbit's
-/// `SessionOptions::configure_http_client` (mdm-torrent).
+/// `SessionOptions::configure_http_client` (tdm-torrent).
 pub fn configure(builder: reqwest::ClientBuilder) -> reqwest::ClientBuilder {
     configure_with(builder, system_has_roots())
 }
@@ -126,7 +126,7 @@ impl ServerCertVerifier for NoRoots {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use mdm_labserver::{Config, LabServer, ftp};
+    use tdm_labserver::{Config, LabServer, ftp};
 
     /// A client of a system without certificates.
     fn without_roots() -> reqwest::Client {

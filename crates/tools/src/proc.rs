@@ -28,20 +28,20 @@ pub enum ProcError {
     Failed { tool: String, message: String },
     /// The chosen network adapter is down, or yt-dlp can't be held to it here (#35).
     #[error(transparent)]
-    Adapter(#[from] mdm_engine::NetError),
+    Adapter(#[from] tdm_engine::NetError),
 }
 
 /// Options → Proxy / Socks → Network adapter (#35) for the helpers and the media-server checks;
 /// the app shares it as it changes ([`set_route`]).
-static ROUTE: std::sync::RwLock<mdm_engine::Route> = std::sync::RwLock::new(mdm_engine::Route::Any);
+static ROUTE: std::sync::RwLock<tdm_engine::Route> = std::sync::RwLock::new(tdm_engine::Route::Any);
 /// Options → Connection → DNS (#36): what the relay looks the helpers' servers up with.
-static DNS: std::sync::RwLock<Option<mdm_engine::DnsChoice>> = std::sync::RwLock::new(None);
+static DNS: std::sync::RwLock<Option<tdm_engine::DnsChoice>> = std::sync::RwLock::new(None);
 /// The relay the helpers go through while an adapter is chosen, started when first needed.
 static RELAY: Mutex<Option<Arc<crate::relay::Relay>>> = Mutex::new(None);
 
 /// The network adapter the helpers and the media-server checks go through (the app's setting).
 /// A change closes what the relay has open (it was held to the old route).
-pub fn set_route(route: mdm_engine::Route) {
+pub fn set_route(route: tdm_engine::Route) {
     if *ROUTE.read().unwrap() != route {
         *ROUTE.write().unwrap() = route;
         if let Some(relay) = RELAY.lock().unwrap().as_ref() {
@@ -50,19 +50,19 @@ pub fn set_route(route: mdm_engine::Route) {
     }
 }
 
-pub fn route() -> mdm_engine::Route {
+pub fn route() -> tdm_engine::Route {
     ROUTE.read().unwrap().clone()
 }
 
 /// The DNS the helpers' servers are looked up with while an adapter is chosen (the app's
 /// setting; the system's until set).
-pub fn set_dns(dns: mdm_engine::DnsChoice) {
+pub fn set_dns(dns: tdm_engine::DnsChoice) {
     if DNS.read().unwrap().as_ref() != Some(&dns) {
         *DNS.write().unwrap() = Some(dns);
     }
 }
 
-fn dns() -> mdm_engine::DnsChoice {
+fn dns() -> tdm_engine::DnsChoice {
     DNS.read().unwrap().clone().unwrap_or_default()
 }
 
@@ -232,12 +232,12 @@ pub fn cookie_trouble(line: &str) -> bool {
 }
 
 /// Options -> Proxy / Socks for the helpers (#363): yt-dlp and gallery-dl go through the same proxy
-/// as MDM's downloads. The app shares it as it changes ([`set_proxy`]).
-static PROXY: std::sync::RwLock<mdm_engine::Proxy> =
-    std::sync::RwLock::new(mdm_engine::Proxy::None);
+/// as TDM's downloads. The app shares it as it changes ([`set_proxy`]).
+static PROXY: std::sync::RwLock<tdm_engine::Proxy> =
+    std::sync::RwLock::new(tdm_engine::Proxy::None);
 
 /// The proxy every helper run goes through (the app's setting).
-pub fn set_proxy(proxy: mdm_engine::Proxy) {
+pub fn set_proxy(proxy: tdm_engine::Proxy) {
     if *PROXY.read().unwrap() != proxy {
         *PROXY.write().unwrap() = proxy;
     }
@@ -259,12 +259,12 @@ enum ProxyGiven {
 /// setting doesn't cover (Manual with its scheme unticked; a script that says DIRECT): nothing,
 /// so the helper does what it did before. A script that gives no usable answer leaves it to the
 /// system's settings, as for a download.
-fn proxy_given(proxy: &mdm_engine::Proxy, url: Option<&url::Url>) -> ProxyGiven {
-    use mdm_engine::{Proxy, pac};
+fn proxy_given(proxy: &tdm_engine::Proxy, url: Option<&url::Url>) -> ProxyGiven {
+    use tdm_engine::{Proxy, pac};
     let system = |url: Option<&url::Url>| {
         // A helper's run with no address known yet (a page's looked-up info) asks for any.
         let any = url::Url::parse("https://example.com/").expect("a valid address");
-        mdm_engine::net::system_proxy(url.unwrap_or(&any))
+        tdm_engine::net::system_proxy(url.unwrap_or(&any))
     };
     let plain = |p: Option<String>| p.map_or(ProxyGiven::Nothing, ProxyGiven::Argument);
     match proxy {
@@ -376,9 +376,9 @@ fn through_adapter(
 ) -> Result<Vec<String>, ProcError> {
     match route() {
         // No adapter: Options -> Proxy / Socks (#363).
-        mdm_engine::Route::Any => Ok(through_proxy(cmd, url)),
-        mdm_engine::Route::Down { label } => Err(mdm_engine::NetError::Down { label }.into()),
-        mdm_engine::Route::Bound(_) => {
+        tdm_engine::Route::Any => Ok(through_proxy(cmd, url)),
+        tdm_engine::Route::Down { label } => Err(tdm_engine::NetError::Down { label }.into()),
+        tdm_engine::Route::Bound(_) => {
             let url = relay()?.url();
             for var in [
                 "HTTP_PROXY",
@@ -423,7 +423,7 @@ const FFMPEG_PROTOCOLS: &str = "file,crypto,data,http,https,tls,tcp,httpproxy";
 /// ones (no configuration file of the person's, never a question on the console), then `--` and
 /// the address. Its output is read as UTF-8, as yt-dlp's is (#79). With an adapter chosen it goes
 /// through the relay (#35, [`through_adapter`]). Only options `tool`'s version accepts
-/// (`gallery::Accepts`, #236: a distribution's may be older than MDM's own copy).
+/// (`gallery::Accepts`, #236: a distribution's may be older than TDM's own copy).
 pub fn gallery_dl(
     tool: &crate::Installed,
     ours: &[String],
@@ -464,7 +464,7 @@ pub struct FromBrowser {
     pub referer: Option<String>,
     pub user_agent: Option<String>,
     pub cookies: Option<String>,
-    pub jar: Vec<mdm_ipc::BrowserCookie>,
+    pub jar: Vec<tdm_ipc::BrowserCookie>,
 }
 
 /// A private cookie file in the Netscape format yt-dlp's `--cookies` reads, removed when
@@ -527,7 +527,7 @@ fn field(s: &str) -> bool {
 /// The browser's cookies (`cookies.getAll`'s), each for its own domain, path and flags: yt-dlp
 /// sends a cookie of `.youtube.com` to www.youtube.com when the page was music.youtube.com, and
 /// one of the page's host alone to that host only.
-fn jar_cookies(jar: &[mdm_ipc::BrowserCookie]) -> String {
+fn jar_cookies(jar: &[tdm_ipc::BrowserCookie]) -> String {
     let flag = |b: bool| if b { "TRUE" } else { "FALSE" };
     let mut text = String::from(NETSCAPE);
     for c in jar {
@@ -611,7 +611,7 @@ fn cookie_file(text: &str) -> std::io::Result<CookieFile> {
     use std::sync::atomic::{AtomicU64, Ordering};
     static N: AtomicU64 = AtomicU64::new(0);
     let path = std::env::temp_dir().join(format!(
-        "mdm-cookies-{}-{}.txt",
+        "tdm-cookies-{}-{}.txt",
         std::process::id(),
         N.fetch_add(1, Ordering::Relaxed)
     ));
@@ -699,14 +699,14 @@ fn js_runtime(dirs: &[PathBuf], home: Option<&Path>) -> Option<(&'static str, Pa
 /// The folders of `path` (a PATH value) a helper can walk, in their order (#508): yt-dlp looks
 /// through the PATH folders, and one Windows refused to open ("[WinError 448] The path cannot be
 /// traversed because it contains an untrusted mount point": a junction Redirection Guard
-/// doesn't trust) ended the look-up. A folder MDM can't open (gone, refused, not a folder) is
+/// doesn't trust) ended the look-up. A folder TDM can't open (gone, refused, not a folder) is
 /// left out; one reached through a junction or link is given as the folder it leads to, so the
 /// helper crosses no mount point on its way, even when Windows holds the helper to stricter
-/// rules than MDM. Every other folder stays as it was written.
+/// rules than TDM. Every other folder stays as it was written.
 ///
 /// On Linux and macOS the package managers' folders follow, when the PATH lacks them (#659): a
 /// helper found there ([`crate::system`]) looks there for its own tools too (yt-dlp for Deno
-/// and ffmpeg), even when MDM was opened from Finder, whose PATH has no Homebrew.
+/// and ffmpeg), even when TDM was opened from Finder, whose PATH has no Homebrew.
 fn usable_dirs(path: &std::ffi::OsStr) -> Vec<PathBuf> {
     #[allow(unused_mut)]
     let mut dirs: Vec<PathBuf> = std::env::split_paths(path)
@@ -767,7 +767,7 @@ fn child_path(path: &std::ffi::OsStr) -> Option<std::ffi::OsString> {
     std::env::join_paths(usable_dirs(path)).ok()
 }
 
-/// Give `cmd` the PATH of [`child_path`]: of the one it was given, else of MDM's own. Every
+/// Give `cmd` the PATH of [`child_path`]: of the one it was given, else of TDM's own. Every
 /// helper starts here ([`spawn`]), and ffmpeg, started by yt-dlp, inherits it.
 fn with_usable_path(cmd: &mut Command) {
     let is_path = |k: &std::ffi::OsStr| {
@@ -854,7 +854,7 @@ pub fn ytdlp_info(
 
 /// A job of its own for one helper and every process it starts (#61): on Windows `yt-dlp.exe`
 /// is a launcher whose child does the work, and ffmpeg runs under that child. Closing the job
-/// (`Spawned::kill`, or MDM ending in any way) ends them all; ending the launcher alone left the
+/// (`Spawned::kill`, or TDM ending in any way) ends them all; ending the launcher alone left the
 /// download running, holding its file and the bandwidth.
 #[cfg(windows)]
 fn new_job() -> Option<win32job::Job> {
@@ -1146,8 +1146,8 @@ mod tests {
         }
     }
 
-    fn cookie(name: &str, domain: &str, host_only: bool) -> mdm_ipc::BrowserCookie {
-        mdm_ipc::BrowserCookie {
+    fn cookie(name: &str, domain: &str, host_only: bool) -> tdm_ipc::BrowserCookie {
+        tdm_ipc::BrowserCookie {
             name: name.into(),
             value: format!("{name}-v"),
             domain: domain.into(),
@@ -1165,7 +1165,7 @@ mod tests {
         let b = FromBrowser {
             cookies: Some("SID=SID-v; pref=pref-v".into()),
             jar: vec![
-                mdm_ipc::BrowserCookie {
+                tdm_ipc::BrowserCookie {
                     secure: true,
                     expires: Some(1893456000.75),
                     path: "/".into(),
@@ -1173,18 +1173,18 @@ mod tests {
                 },
                 cookie("pref", "music.youtube.com", true),
                 // Without a leading dot, as Firefox may name a domain cookie.
-                mdm_ipc::BrowserCookie {
+                tdm_ipc::BrowserCookie {
                     path: "/account".into(),
                     ..cookie("acct", "youtube.com", false)
                 },
                 // A path that isn't one: the whole site.
-                mdm_ipc::BrowserCookie {
+                tdm_ipc::BrowserCookie {
                     path: "account".into(),
                     ..cookie("odd", "youtube.com", true)
                 },
                 // Never a field that would shift the others, an empty name or domain.
                 cookie("tab\tname", ".youtube.com", false),
-                mdm_ipc::BrowserCookie {
+                tdm_ipc::BrowserCookie {
                     value: "a\nb".into(),
                     ..cookie("line", ".youtube.com", false)
                 },
@@ -1227,7 +1227,7 @@ mod tests {
     /// schemes; "no proxy" and a script's DIRECT: nothing added, so yt-dlp's own default stays.
     #[test]
     fn a_helper_is_given_the_proxy_of_the_settings() {
-        use mdm_engine::Proxy;
+        use tdm_engine::Proxy;
         let manual = |login: Option<(&str, &str)>, http, https| Proxy::Manual {
             url: "http://127.0.0.1:10808".into(),
             login: login.map(|(u, p)| (u.to_owned(), p.to_owned())),
@@ -1275,7 +1275,7 @@ mod tests {
     /// #363, the wiring: the setting reaches a real command line.
     #[test]
     fn yt_dlp_runs_through_the_settings_proxy() {
-        use mdm_engine::Proxy;
+        use tdm_engine::Proxy;
         let url = "https://www.youtube.com/watch?v=x";
         let exe = std::path::Path::new("yt-dlp");
         set_proxy(Proxy::Manual {
@@ -1441,7 +1441,7 @@ mod tests {
         );
     }
 
-    /// #659: MDM opened from Finder has no Homebrew on its PATH, yet finds yt-dlp there; the
+    /// #659: TDM opened from Finder has no Homebrew on its PATH, yet finds yt-dlp there; the
     /// helper gets the package folders after its own, once each, so yt-dlp finds Deno and
     /// ffmpeg where Homebrew put them.
     #[cfg(unix)]
@@ -1468,7 +1468,7 @@ mod tests {
     /// #508 as it happened: Windows refuses a junction to a process held to Redirection Guard
     /// ("[WinError 448] ... untrusted mount point"). A stand-in for yt-dlp (PowerShell turning
     /// the guard on for itself, then opening each PATH folder) fails on a PATH through a
-    /// junction made here, and passes once started as MDM starts helpers: given the junction's
+    /// junction made here, and passes once started as TDM starts helpers: given the junction's
     /// real folder, in the same place.
     #[cfg(windows)]
     #[test]

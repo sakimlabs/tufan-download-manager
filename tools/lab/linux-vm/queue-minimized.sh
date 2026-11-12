@@ -1,12 +1,12 @@
 #!/bin/bash
-# #176 on X11: a minimized MDM keeps working. Minimize to the notification area off, the main
+# #176 on X11: a minimized TDM keeps working. Minimize to the notification area off, the main
 # queue set to one file at a time and to start 75 s from now; three lab files (throttled, a few
 # seconds each) added to it, then the window minimized. Prints when the queue started, each
 # file's completion (order, time) and each "Download complete" window, and the main window's state.
 #   queue-minimized.sh <label>     (a build in ~/lab/bin/<label>; the lab server on :8097)
 . ~/lab/env.sh
-app=$HOME/lab/bin/$1/misterdownloadmanager
-data=$HOME/.local/share/misterdownloadmanager
+app=$HOME/lab/bin/$1/tufan-download-manager
+data=$HOME/.local/share/tufan-download-manager
 dir=$HOME/Downloads/Compressed
 tag=q$(date +%H%M%S)
 pkill -x misterdownloadm; sleep 2
@@ -29,7 +29,7 @@ cd ~; setsid -f "$app" >/dev/null 2>&1 </dev/null
 main=""
 for _ in $(seq 60); do
   pid=$(pgrep -f "^$app$" | head -1)
-  [ -n "$pid" ] && main=$(wmctrl -lp | awk -v p="$pid" '$3 == p && /Mister Download Manager 0\./ {print $1}' | head -1)
+  [ -n "$pid" ] && main=$(wmctrl -lp | awk -v p="$pid" '$3 == p && /Tufan Download Manager 0\./ {print $1}' | head -1)
   [ -n "$main" ] && break; sleep 1
 done
 sleep 4

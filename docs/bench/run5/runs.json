@@ -1,7 +1,7 @@
 [
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-w.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-w.bin",
   "ok": true,
   "e2e_ms": 2068.36,
   "t0_ms": 405422140.063,
@@ -54,8 +54,8 @@
   "lingering_before": 6
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-00.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-00.bin",
   "ok": true,
   "e2e_ms": 1020.32,
   "t0_ms": 405527294.558,
@@ -72,8 +72,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-01.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-01.bin",
   "ok": true,
   "e2e_ms": 1091.1,
   "t0_ms": 405558996.357,
@@ -126,8 +126,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-02.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-02.bin",
   "ok": true,
   "e2e_ms": 929.92,
   "t0_ms": 405656953.695,
@@ -144,8 +144,8 @@
   "lingering_before": 6
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-03.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-03.bin",
   "ok": true,
   "e2e_ms": 1009.35,
   "t0_ms": 405691686.411,
@@ -198,8 +198,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-04.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-04.bin",
   "ok": true,
   "e2e_ms": 1036.45,
   "t0_ms": 405794987.057,
@@ -216,8 +216,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-05.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-05.bin",
   "ok": true,
   "e2e_ms": 959.06,
   "t0_ms": 405826699.414,
@@ -270,8 +270,8 @@
   "lingering_before": 6
  },
  {
-  "client": "MDM",
-  "name": "fast-1g-mdm-06.bin",
+  "client": "TDM",
+  "name": "fast-1g-tdm-06.bin",
   "ok": true,
   "e2e_ms": 902.03,
   "t0_ms": 405927779.495,
@@ -288,8 +288,8 @@
   "lingering_before": 6
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-w.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-w.bin",
   "ok": true,
   "e2e_ms": 6315.2,
   "t0_ms": 405961521.248,
@@ -342,8 +342,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-00.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-00.bin",
   "ok": true,
   "e2e_ms": 6318.05,
   "t0_ms": 406077055.277,
@@ -360,8 +360,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-01.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-01.bin",
   "ok": true,
   "e2e_ms": 6308.57,
   "t0_ms": 406113028.943,
@@ -414,8 +414,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-02.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-02.bin",
   "ok": true,
   "e2e_ms": 6315.76,
   "t0_ms": 406265038.125,
@@ -432,8 +432,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-03.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-03.bin",
   "ok": true,
   "e2e_ms": 6319.47,
   "t0_ms": 406301052.165,
@@ -486,8 +486,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-04.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-04.bin",
   "ok": true,
   "e2e_ms": 6332.4,
   "t0_ms": 406422019.758,
@@ -504,8 +504,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-05.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-05.bin",
   "ok": true,
   "e2e_ms": 6328.12,
   "t0_ms": 406461098.184,
@@ -558,8 +558,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "capped-100m-mdm-06.bin",
+  "client": "TDM",
+  "name": "capped-100m-tdm-06.bin",
   "ok": true,
   "e2e_ms": 6330.42,
   "t0_ms": 406578975.079,
@@ -576,8 +576,8 @@
   "lingering_before": 5
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-w.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-w.bin",
   "ok": true,
   "e2e_ms": 3840.09,
   "t0_ms": 406619134.815,
@@ -630,8 +630,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-00.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-00.bin",
   "ok": true,
   "e2e_ms": 3890.57,
   "t0_ms": 406729324.569,
@@ -648,8 +648,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-01.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-01.bin",
   "ok": true,
   "e2e_ms": 3841.8,
   "t0_ms": 406763869.55,
@@ -702,8 +702,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-02.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-02.bin",
   "ok": true,
   "e2e_ms": 3843.75,
   "t0_ms": 406873158.249,
@@ -720,8 +720,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-03.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-03.bin",
   "ok": true,
   "e2e_ms": 3842.33,
   "t0_ms": 406915793.847,
@@ -774,8 +774,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-04.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-04.bin",
   "ok": true,
   "e2e_ms": 4003.76,
   "t0_ms": 407024908.73,
@@ -792,8 +792,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-05.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-05.bin",
   "ok": true,
   "e2e_ms": 3897.94,
   "t0_ms": 407058601.557,
@@ -846,8 +846,8 @@
   "lingering_before": 13
  },
  {
-  "client": "MDM",
-  "name": "latency-100m-mdm-06.bin",
+  "client": "TDM",
+  "name": "latency-100m-tdm-06.bin",
   "ok": true,
   "e2e_ms": 3840.03,
   "t0_ms": 407169930.201,
@@ -864,8 +864,8 @@
   "lingering_before": 13
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-w.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-w.bin",
   "ok": true,
   "e2e_ms": 3901.17,
   "t0_ms": 407203438.488,
@@ -918,8 +918,8 @@
   "lingering_before": 9
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-00.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-00.bin",
   "ok": true,
   "e2e_ms": 3840.71,
   "t0_ms": 407311920.117,
@@ -936,8 +936,8 @@
   "lingering_before": 10
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-01.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-01.bin",
   "ok": true,
   "e2e_ms": 3413.17,
   "t0_ms": 407345406.315,
@@ -990,8 +990,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-02.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-02.bin",
   "ok": true,
   "e2e_ms": 3846.59,
   "t0_ms": 407451018.534,
@@ -1008,8 +1008,8 @@
   "lingering_before": 10
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-03.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-03.bin",
   "ok": true,
   "e2e_ms": 3432.05,
   "t0_ms": 407485530.97,
@@ -1062,8 +1062,8 @@
   "lingering_before": 10
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-04.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-04.bin",
   "ok": true,
   "e2e_ms": 3347.55,
   "t0_ms": 407647837.49,
@@ -1080,8 +1080,8 @@
   "lingering_before": 9
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-05.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-05.bin",
   "ok": true,
   "e2e_ms": 3839.64,
   "t0_ms": 407681841.327,
@@ -1134,8 +1134,8 @@
   "lingering_before": 11
  },
  {
-  "client": "MDM",
-  "name": "slowconn-32m-mdm-06.bin",
+  "client": "TDM",
+  "name": "slowconn-32m-tdm-06.bin",
   "ok": true,
   "e2e_ms": 3418.57,
   "t0_ms": 407786751.579,
@@ -1152,8 +1152,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-w.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-w.bin",
   "ok": true,
   "e2e_ms": 12572.65,
   "t0_ms": 407821877.668,
@@ -1206,8 +1206,8 @@
   "lingering_before": 153
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-00.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-00.bin",
   "ok": true,
   "e2e_ms": 12569.02,
   "t0_ms": 407969533.437,
@@ -1224,8 +1224,8 @@
   "lingering_before": 13
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-01.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-01.bin",
   "ok": true,
   "e2e_ms": 12570.88,
   "t0_ms": 407999623.218,
@@ -1278,8 +1278,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-02.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-02.bin",
   "ok": true,
   "e2e_ms": 12562.02,
   "t0_ms": 408140921.263,
@@ -1296,8 +1296,8 @@
   "lingering_before": 13
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-03.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-03.bin",
   "ok": true,
   "e2e_ms": 12567.65,
   "t0_ms": 408172058.624,
@@ -1350,8 +1350,8 @@
   "lingering_before": 1710
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-04.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-04.bin",
   "ok": true,
   "e2e_ms": 12555.68,
   "t0_ms": 408294639.853,
@@ -1368,8 +1368,8 @@
   "lingering_before": 825
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-05.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-05.bin",
   "ok": true,
   "e2e_ms": 12564.72,
   "t0_ms": 408324722.18,
@@ -1422,8 +1422,8 @@
   "lingering_before": 476
  },
  {
-  "client": "MDM",
-  "name": "maxconns-50m-mdm-06.bin",
+  "client": "TDM",
+  "name": "maxconns-50m-tdm-06.bin",
   "ok": true,
   "e2e_ms": 12591.69,
   "t0_ms": 408469029.987,
@@ -1440,8 +1440,8 @@
   "lingering_before": 1376
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-w.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-w.bin",
   "ok": true,
   "e2e_ms": 1653.83,
   "t0_ms": 408512318.983,
@@ -1494,8 +1494,8 @@
   "lingering_before": 12
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-00.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-00.bin",
   "ok": true,
   "e2e_ms": 1646.52,
   "t0_ms": 408613588.689,
@@ -1512,8 +1512,8 @@
   "lingering_before": 9
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-01.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-01.bin",
   "ok": true,
   "e2e_ms": 1666.76,
   "t0_ms": 408645902.258,
@@ -1566,8 +1566,8 @@
   "lingering_before": 8
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-02.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-02.bin",
   "ok": true,
   "e2e_ms": 1645.41,
   "t0_ms": 408750508.384,
@@ -1584,8 +1584,8 @@
   "lingering_before": 8
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-03.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-03.bin",
   "ok": true,
   "e2e_ms": 1655.29,
   "t0_ms": 408782826.292,
@@ -1638,8 +1638,8 @@
   "lingering_before": 11
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-04.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-04.bin",
   "ok": true,
   "e2e_ms": 1663.73,
   "t0_ms": 408889489.734,
@@ -1656,8 +1656,8 @@
   "lingering_before": 11
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-05.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-05.bin",
   "ok": true,
   "e2e_ms": 1636.52,
   "t0_ms": 408921804.429,
@@ -1710,8 +1710,8 @@
   "lingering_before": 8
  },
  {
-  "client": "MDM",
-  "name": "drops-50m-mdm-06.bin",
+  "client": "TDM",
+  "name": "drops-50m-tdm-06.bin",
   "ok": true,
   "e2e_ms": 1644.64,
   "t0_ms": 409024419.087,
@@ -1728,8 +1728,8 @@
   "lingering_before": 8
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-w.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-w.bin",
   "ok": true,
   "e2e_ms": 25.74,
   "t0_ms": 409056754.227,
@@ -1782,8 +1782,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-00.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-00.bin",
   "ok": true,
   "e2e_ms": 40.71,
   "t0_ms": 409183387.268,
@@ -1800,8 +1800,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-01.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-01.bin",
   "ok": true,
   "e2e_ms": 27.95,
   "t0_ms": 409213094.571,
@@ -1854,8 +1854,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-02.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-02.bin",
   "ok": true,
   "e2e_ms": 22.84,
   "t0_ms": 409307483.722,
@@ -1872,8 +1872,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-03.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-03.bin",
   "ok": true,
   "e2e_ms": 34.13,
   "t0_ms": 409337175.789,
@@ -1926,8 +1926,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-04.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-04.bin",
   "ok": true,
   "e2e_ms": 23.69,
   "t0_ms": 409429441.122,
@@ -1944,8 +1944,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-05.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-05.bin",
   "ok": true,
   "e2e_ms": 22.45,
   "t0_ms": 409459109.52,
@@ -1998,8 +1998,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-06.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-06.bin",
   "ok": true,
   "e2e_ms": 29.8,
   "t0_ms": 409549530.61,
@@ -2016,8 +2016,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-07.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-07.bin",
   "ok": true,
   "e2e_ms": 29.66,
   "t0_ms": 409579234.828,
@@ -2070,8 +2070,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-08.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-08.bin",
   "ok": true,
   "e2e_ms": 27.96,
   "t0_ms": 409674752.402,
@@ -2088,8 +2088,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-09.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-09.bin",
   "ok": true,
   "e2e_ms": 31.77,
   "t0_ms": 409704468.832,
@@ -2142,8 +2142,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-10.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-10.bin",
   "ok": true,
   "e2e_ms": 32.85,
   "t0_ms": 409795840.706,
@@ -2160,8 +2160,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-11.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-11.bin",
   "ok": true,
   "e2e_ms": 31.11,
   "t0_ms": 409825532.93,
@@ -2214,8 +2214,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-12.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-12.bin",
   "ok": true,
   "e2e_ms": 28.43,
   "t0_ms": 409918862.968,
@@ -2232,8 +2232,8 @@
   "lingering_before": 3
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-13.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-13.bin",
   "ok": true,
   "e2e_ms": 30.81,
   "t0_ms": 409949599.103,
@@ -2286,8 +2286,8 @@
   "lingering_before": 2
  },
  {
-  "client": "MDM",
-  "name": "small-256k-mdm-14.bin",
+  "client": "TDM",
+  "name": "small-256k-tdm-14.bin",
   "ok": true,
   "e2e_ms": 27.94,
   "t0_ms": 410013524.677,

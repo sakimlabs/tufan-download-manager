@@ -60,7 +60,7 @@ pub fn rel_path(name: &str, depth: usize) -> Result<PathBuf, &'static str> {
         if part.contains(':') {
             return Err("drive or stream name");
         }
-        let safe = mdm_engine::naming::sanitize(part);
+        let safe = tdm_engine::naming::sanitize(part);
         if safe.is_empty() {
             continue;
         }
@@ -294,7 +294,7 @@ impl Staging {
     pub fn new(dest: &Path) -> Result<Staging, Error> {
         fs::create_dir_all(dest)?;
         let n = NEXT.fetch_add(1, Ordering::Relaxed);
-        let path = dest.join(format!(".mdm-extract-{}-{n}", std::process::id()));
+        let path = dest.join(format!(".tdm-extract-{}-{n}", std::process::id()));
         if fs::symlink_metadata(&path).is_ok() {
             fs::remove_dir_all(&path)?;
         }
@@ -328,7 +328,7 @@ impl Staging {
         let mut report = Report::default();
         let mut placed = 0;
         if together {
-            let name = mdm_engine::naming::sanitize(base);
+            let name = tdm_engine::naming::sanitize(base);
             let name = if name.is_empty() {
                 "extracted".to_owned()
             } else {

@@ -3,8 +3,8 @@ name: Scheduler and queues
 title: Download scheduler and queues
 headline: Queue it today. Download it tonight.
 line: Queues started and stopped by the clock, a few files at a time, the computer off at the end.
-lede: Put downloads in a queue and let the Scheduler start them when nobody needs the connection. When the queue is done, MDM can quit or turn the computer off.
-description: Mister Download Manager's queues and Scheduler: start downloads at night, stop them in the morning, stay under a data cap, turn the computer off.
+lede: Put downloads in a queue and let the Scheduler start them when nobody needs the connection. When the queue is done, TDM can quit or turn the computer off.
+description: Tufan Download Manager's queues and Scheduler: start downloads at night, stop them in the morning, stay under a data cap, turn the computer off.
 group: organising
 order: 110
 since: 0.1.0
@@ -29,19 +29,19 @@ like.
 
 On a queue's **Schedule** tab, tick **Start download at** and choose a time, **Once at** a date
 or **Daily** on the days you tick. **Stop download at** halts whatever is left, for example
-before work in the morning. A queue can also start whenever MDM starts.
+before work in the morning. A queue can also start whenever TDM starts.
 
-MDM has to be running for a schedule to fire. Closing the main window is fine: MDM keeps going
+TDM has to be running for a schedule to fire. Closing the main window is fine: TDM keeps going
 in the notification area.
 
 ## When the queue is done
 
-MDM can open a file, such as a sound or a script, exit, or turn the computer off with **Shut
+TDM can open a file, such as a sound or a script, exit, or turn the computer off with **Shut
 down**, **Sleep** or **Hibernate**. A 30-second countdown comes first, so if you are still at the
 computer, **Cancel** stops it.
 
 ![The Scheduler's choices for when the queue is done, Turn off computer when done among them](images/help/overnight-done.webp)
-*When the queue is done: open a file, quit MDM, or turn the computer off.*
+*When the queue is done: open a file, quit TDM, or turn the computer off.*
 
 ## Woken up for the queue
 
@@ -55,7 +55,7 @@ next wake is, or why there can't be one.
 The computer has to be asleep, not shut down. On Windows the power plan must allow wake timers:
 the Scheduler says when it doesn't, and **Change** opens the setting. On Linux an administrator
 allows it once. On macOS only an administrator can schedule a wake, so the option is greyed
-there. MDM never asks for an administrator's password.
+there. TDM never asks for an administrator's password.
 
 ## Under a data cap
 

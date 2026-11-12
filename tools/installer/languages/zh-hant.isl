@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Chinese (Traditional): tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Chinese (Traditional): tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=正在解除安裝 %1。
 
 [CustomMessages]
 TaskBrowser=設定瀏覽器整合(&B) (Chrome、Edge、Brave、Firefox)
-TaskTorrents=使用 Mister Download Manager 開啟 .&torrent 檔案和磁力連結
-TaskStartup=當 &Windows 啟動時啟動 Mister Download Manager
+TaskTorrents=使用 Tufan Download Manager 開啟 .&torrent 檔案和磁力連結
+TaskStartup=當 &Windows 啟動時啟動 Tufan Download Manager
 TaskGroupOther=其他：
-Launch=啟動 Mister Download Manager
+Launch=啟動 Tufan Download Manager
 KeepData=也要刪除您的下載清單和設定嗎？%n%n無論如何，您的下載檔案都不會受到影響。

@@ -1,4 +1,4 @@
-# Mister Download Manager in Scottish Gaelic (Gàidhlig): tools/i18n/translate.py
+# Tufan Download Manager in Scottish Gaelic (Gàidhlig): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	Gàidhlig
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	A bheil thu cinnteach gu bheil thu airson an luchdachadh a-nuas {n} a sguabadh às bho liosta luchdachaidhean a-nuas Mister Download Manager?|A bheil thu cinnteach gu bheil thu airson na luchdachaidhean a-nuas {n} seo a sguabadh às bho liosta luchdachaidhean a-nuas Mister Download Manager?|A bheil thu cinnteach gu bheil thu airson na luchdachaidhean a-nuas {n} seo a sguabadh às bho liosta luchdachaidhean a-nuas Mister Download Manager?|A bheil thu cinnteach gu bheil thu airson na luchdachaidhean a-nuas {n} seo a sguabadh às bho liosta luchdachaidhean a-nuas Mister Download Manager?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	A bheil thu cinnteach gu bheil thu airson an luchdachadh a-nuas {n} a sguabadh às bho liosta luchdachaidhean a-nuas Tufan Download Manager?|A bheil thu cinnteach gu bheil thu airson na luchdachaidhean a-nuas {n} seo a sguabadh às bho liosta luchdachaidhean a-nuas Tufan Download Manager?|A bheil thu cinnteach gu bheil thu airson na luchdachaidhean a-nuas {n} seo a sguabadh às bho liosta luchdachaidhean a-nuas Tufan Download Manager?|A bheil thu cinnteach gu bheil thu airson na luchdachaidhean a-nuas {n} seo a sguabadh às bho liosta luchdachaidhean a-nuas Tufan Download Manager?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Bidh seirbheis debrid a’ luchdachadh sìos ceangal aoigheachd faidhle leis a’ chunntas pàighte agad fhèin agus a’ toirt ceangal dìreach do MDM. Na cleachd ach do chunntas fhèin: bidh roinneadh cunntais no a cheanglaichean a’ briseadh cumhachan nan seirbheisean agus faodaidh e a bhith air a chur dheth. Bidh luchdachadh sìos a thòisich am brabhsair mar-thà a’ fuireach mar a tha iad.
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Bidh seirbheis debrid a’ luchdachadh sìos ceangal aoigheachd faidhle leis a’ chunntas pàighte agad fhèin agus a’ toirt ceangal dìreach do TDM. Na cleachd ach do chunntas fhèin: bidh roinneadh cunntais no a cheanglaichean a’ briseadh cumhachan nan seirbheisean agus faodaidh e a bhith air a chur dheth. Bidh luchdachadh sìos a thòisich am brabhsair mar-thà a’ fuireach mar a tha iad.
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	Glèidhidh torrent aon-fhaidhle a ainm
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	Cha tèid tracair air a’ choimpiutair seo no air an lìonra ionadail a chur an conaltradh: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	tha tomhas-lìonaidh dheth a dhìth
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Mu Mister Download Manager
+	About Tufan Download Manager	Mu Tufan Download Manager
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Cuir Mister Download Manager ris a’ bhrabhsair agad
+	Add Tufan Download Manager to your browser	Cuir Tufan Download Manager ris a’ bhrabhsair agad
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	Air a chur ris.
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	Air a chur ris. Tha MDM a’ leughadh an torrent: bidh e sa liosta a dh’aithghearr.
+	Added. TDM is reading the torrent: it joins the list in a moment.	Air a chur ris. Tha TDM a’ leughadh an torrent: bidh e sa liosta a dh’aithghearr.
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	Chaidh aithris mu thràth mar chùis #{number}: {title}
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	Ceangail dàta tubaist (.dmp) cuideachd: dh’fhaodadh seòlaidhean, briosgaidean is faclan-faire a bhith ann
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	An-còmhnaidh ann am pasgan air a bheil an t-ainm aige
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	Cuir an Luathadair-cuingeachaidh air an-còmhnaidh nuair a thòisicheas Mister Download Manager
+	Always turn on Speed Limiter on Tufan Download Manager startup	Cuir an Luathadair-cuingeachaidh air an-còmhnaidh nuair a thòisicheas Tufan Download Manager
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	A bheil thu cinnteach gu bheil thu airson “{name}” a sguabadh às liosta nan luchdadh a-nuas aig Mister Download Manager?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	A bheil thu cinnteach gu bheil thu airson “{name}” a sguabadh às liosta nan luchdadh a-nuas aig Tufan Download Manager?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	An Ostair
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	Fèin-obrachail
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	Bosnia is Hearsagobhana
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Tha an dà chuid stòr fosgailte. Gheibh MDM iad bho na fiosan oifigeil aca leis an luchd-luchdaich sìos aige fhèin agus nì e sgrùdadh air ainm-sgrìobhte gach faidhle mus ruith e. Mu 100 MB, aon uair.
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Tha an dà chuid stòr fosgailte. Gheibh TDM iad bho na fiosan oifigeil aca leis an luchd-luchdaich sìos aige fhèin agus nì e sgrùdadh air ainm-sgrìobhte gach faidhle mus ruith e. Mu 100 MB, aon uair.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	Brabhsaich...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	Chan eil amalachadh brabhsair air a stèidheachadh air a’ choimpiutair seo, mar sin chan urrainn do bhrabhsair sam bith Mister Download Manager a ruighinn fhathast.
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	Chan eil amalachadh brabhsair air a stèidheachadh air a’ choimpiutair seo, mar sin chan urrainn do bhrabhsair sam bith Tufan Download Manager a ruighinn fhathast.
 #. page title in the Options window
 #, machine
 	Browser/System Integration	Amalachadh Brabhsair/Siostam
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	Thoir sùil airson ùrachaidhean
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
 	Check for updates at every start	Thoir sùil airson ùrachaidhean gach uair a thòisicheas e
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	Thoir sùil air a’ cheangal agad, an uair sin feuch a-rithist, no faigh iad nas fhaide air adhart bho uinneag a’ bhidio.
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	Ma tha e air a thaghadh, cumaidh dùnadh na h-uinneige MDM a’ dol: falbhaidh e dhan raon fiosrachaidh ma tha sin ri fhaighinn, no thèid a lùghdachadh dhan bhàr-tasg air dhòigh eile, agus cumaidh an luchdadh a-nuas a’ dol; mura h-eil e air a thaghadh, dùinidh MDM.
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	Ma tha e air a thaghadh, cumaidh dùnadh na h-uinneige TDM a’ dol: falbhaidh e dhan raon fiosrachaidh ma tha sin ri fhaighinn, no thèid a lùghdachadh dhan bhàr-tasg air dhòigh eile, agus cumaidh an luchdadh a-nuas a’ dol; mura h-eil e air a thaghadh, dùinidh TDM.
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	Tagh cànan
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	Tagh an cànan anns am bi Mister Download Manager a’ sealltainn nan uinneagan aige:
+	Choose the language Tufan Download Manager shows its windows in:	Tagh an cànan anns am bi Tufan Download Manager a’ sealltainn nan uinneagan aige:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	Congo
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	Ceangailte
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	Gnàthaich còmhradh “Adhartas luchdadh a-nuas”
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	Gnàthaich iuchraichean gus casg a chur air luchdadh a-nuas le MDM no toirt air tachairt
+	Customize keys to prevent or force downloading with TDM	Gnàthaich iuchraichean gus casg a chur air luchdadh a-nuas le TDM no toirt air tachairt
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	Gnàthaich pannalan luchdadh a-nuas MDM ann am brabhsairean
+	Customize TDM Download panels in browsers	Gnàthaich pannalan luchdadh a-nuas TDM ann am brabhsairean
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	Gnàthaich nithean clàr-taice MDM ann an clàr-taice co-theacsa nam brabhsairean
+	Customize TDM menu items in context menu of browsers	Gnàthaich nithean clàr-taice TDM ann an clàr-taice co-theacsa nam brabhsairean
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	Falamh: iad uile. Air a’ mhòr-chuid de làraich, thig an fheadhainn as ùire an toiseach.
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	Cuir crìoch air agus ath-thòisich MDM
+	End and restart TDM	Cuir crìoch air agus ath-thòisich TDM
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	Cuir a-steach ceangal magnet no tagh faidhle .torrent
@@ -1518,7 +1518,7 @@
 	Exit	Fàg
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	Fàg Mister Download Manager nuair a bhios e deiseil
+	Exit Tufan Download Manager when done	Fàg Tufan Download Manager nuair a bhios e deiseil
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	Suim-dearbhaidh ris a bheil dùil (MD5, SHA-1, SHA-256, SHA-512 no CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	Mar eisimpleir: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	Airson do chunntas a-mhàin. Bidh aplacaid eile a chaidh a shuidheachadh mar an aplacaid bunaiteach fhathast sa chiad àite.
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	Cuir an gnìomh pròiseasan gus crìoch a chur air
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	Na dìochuimhnich an t-inneal seo
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	Cobhair
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	Luchd-cuideachaidh
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	Luchd-cuideachaidh...
@@ -1954,7 +1954,7 @@
 	Hide web pages	Falaich duilleagan-lìn
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Cùm Alt fhad ’s a bhriogas tu air ceangal gus am brabhsair a leigeil ga luchdachadh a-nuas an àite Mister Download Manager.
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Cùm Alt fhad ’s a bhriogas tu air ceangal gus am brabhsair a leigeil ga luchdachadh a-nuas an àite Tufan Download Manager.
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	Duilleag-dachaigh
@@ -1990,7 +1990,7 @@
 	Hungary	An Ungair
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	Bidh mi a’ luchdadh a-nuas le Mister Download Manager: luath, saor, agus tha e coltach ris a’ mhanaidsear luchdadh a-nuas air a bheil thu eòlach mu thràth. {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	Bidh mi a’ luchdadh a-nuas le Tufan Download Manager: luath, saor, agus tha e coltach ris a’ mhanaidsear luchdadh a-nuas air a bheil thu eòlach mu thràth. {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	Anns na roinnean: clàr-taice na roinne taghte
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	anns an iuchrach-fhàinne ghlaiste
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	Stàlaich le làimh e
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	Stàlaich na tha a dhìth bho phacaidean an sgaoilidh agad.
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	chan e tasglann a th’ ann a bheir MDM a-mach
+	it is not an archive TDM extracts	chan e tasglann a th’ ann a bheir TDM a-mach
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	Tha e comasach buidheann de dh’ainmean fhaidhlichean leantainneach a chur ris mar img001.jpg, img002.jpg, is mar sin air adhart,\nimg100.jpg ri ciudha luchdadh a-nuas MDM. Cleachd an rionnag mar chàrd-fiadhaich airson pàtran ainm an fhaidhle.
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	Tha e comasach buidheann de dh’ainmean fhaidhlichean leantainneach a chur ris mar img001.jpg, img002.jpg, is mar sin air adhart,\nimg100.jpg ri ciudha luchdadh a-nuas TDM. Cleachd an rionnag mar chàrd-fiadhaich airson pàtran ainm an fhaidhle.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,7 +2186,7 @@
 #, machine
 	KBytes/sec	KB/s
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
 	Keep running when closing the window	Cùm a’ ruith nuair a dhùineas tu an uinneag
 #. checkbox in the Add torrent window
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	Ath-ghoirid meur-chlàir
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	Iuchraichean
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	Làos
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	nas motha na as urrainn do shruth-dàta a bhith
 #. text in the Batch download window
 #, machine
 	Last file:	Faidhle mu dheireadh:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	Air fhaicinn mu dheireadh
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	An Laitbhe
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	Cuir Mister Download Manager air bhog aig àm tòiseachaidh
+	Launch Tufan Download Manager on startup	Cuir Tufan Download Manager air bhog aig àm tòiseachaidh
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	Leig le fònaichean is coimpiutairean air an lìonra ionadail MDM a smachdachadh
+	Let phones and computers on the local network control TDM	Leig le fònaichean is coimpiutairean air an lìonra ionadail TDM a smachdachadh
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	Dèan liostadh air a’ chòrr
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	Èist ri:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	Chan urrainnear MDM a ruighinn air an lìonra an-dràsta: tha Roghainnean → Iomallach ag innse carson.
+	TDM can't be reached on the network now: Options → Remote says why.	Chan urrainnear TDM a ruighinn air an lìonra an-dràsta: tha Roghainnean → Iomallach ag innse carson.
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	Chan urrainn do MDM an seòladh seo a luchdachadh sìos.
+	TDM cannot download this address.	Chan urrainn do TDM an seòladh seo a luchdachadh sìos.
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	Cha b’ urrainn do MDM a chur ris.
+	TDM could not add it.	Cha b’ urrainn do TDM a chur ris.
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	Cha b’ urrainn do MDM a dhèanamh.
+	TDM could not do it.	Cha b’ urrainn do TDM a dhèanamh.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	Chan eil MDM a’ freagairt. Dèan cinnteach gu bheil e a’ ruith agus air an aon lìonra.
+	TDM does not answer. Check that it is running and on the same network.	Chan eil TDM a’ freagairt. Dèan cinnteach gu bheil e a’ ruith agus air an aon lìonra.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	Chan eil MDM a’ freagairt. Ag ath-fheuchainn...
+	TDM does not answer. Trying again...	Chan eil TDM a’ freagairt. Ag ath-fheuchainn...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	Chan eil MDM a’ sealltainn còd an-dràsta. Cliog air Càraich inneal an sin an toiseach.
+	TDM shows no code now. Click Pair a device there first.	Chan eil TDM a’ sealltainn còd an-dràsta. Cliog air Càraich inneal an sin an toiseach.
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	Lùghdaich
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	Lùghdaich dhan raon-fiosrachaidh
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	A dhìth
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Chan urrainn do Mister Download Manager an uinneag aige fhosgladh: tha {libraries} a dhìth air an t-siostam seo.
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Chan urrainn do Tufan Download Manager an uinneag aige fhosgladh: tha {libraries} a dhìth air an t-siostam seo.
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Dhùin Mister Download Manager gun dùil
+	Tufan Download Manager closed unexpectedly	Dhùin Tufan Download Manager gun dùil
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Rèiteachadh Mister Download Manager
+	Tufan Download Manager Configuration	Rèiteachadh Tufan Download Manager
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Aithisg tubaist Mister Download Manager
+	Tufan Download Manager crash report	Aithisg tubaist Tufan Download Manager
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Bhuail Mister Download Manager air mearachd a-staigh
+	Tufan Download Manager hit an internal error	Bhuail Tufan Download Manager air mearachd a-staigh
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Tha Mister Download Manager a' ruith a' chiutha "{queue}"
+	Tufan Download Manager is running the queue "{queue}"	Tha Tufan Download Manager a' ruith a' chiutha "{queue}"
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Sguir Mister Download Manager de fhreagairt
+	Tufan Download Manager stopped responding	Sguir Tufan Download Manager de fhreagairt
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Sguir Mister Download Manager de fhreagairt airson greis
+	Tufan Download Manager stopped responding for a while	Sguir Tufan Download Manager de fhreagairt airson greis
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Bidh Mister Download Manager a’ sgrìobhadh gach ceangal dìreach a-steach don fhaidhle dheireannach\n(faidhle pàirt gann ri thaobh), mar sin chan eil feum air eòlaire sealach no ceum cruinneachaidh.
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Bidh Tufan Download Manager a’ sgrìobhadh gach ceangal dìreach a-steach don fhaidhle dheireannach\n(faidhle pàirt gann ri thaobh), mar sin chan eil feum air eòlaire sealach no ceum cruinneachaidh.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Tha Mister Download Manager {version} ri fhaighinn (air a leigeil ma sgaoil {date}).
+	Tufan Download Manager {version} is available (released {date}).	Tha Tufan Download Manager {version} ri fhaighinn (air a leigeil ma sgaoil {date}).
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Leth-bhreac Mister Download Manager fhèin, tionndadh {version}
+	Tufan Download Manager's own copy, version {version}	Leth-bhreac Tufan Download Manager fhèin, tionndadh {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Feumaidh uinneag X11 Mister Download Manager {libraries}, nach eil aig an t-siostam seo: fosglaidh i air Wayland na àite, far am faod na clàran-bìdh fosgladh air falbh bho na tiotalan aca.
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Feumaidh uinneag X11 Tufan Download Manager {libraries}, nach eil aig an t-siostam seo: fosglaidh i air Wayland na àite, far am faod na clàran-bìdh fosgladh air falbh bho na tiotalan aca.
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	Chan eil seòlaidhean ann fhathast
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	Cha deach brobhsair a lorg ris an urrainn do MDM ceangal a dhèanamh
+	No browser TDM can connect to was found	Cha deach brobhsair a lorg ris an urrainn do TDM ceangal a dhèanamh
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	Chan eil leudachan brabhsair sam bith air ceangal fhathast
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	Gun proxy/socks
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Cha do fhreagair iuchrach-fhàinne an t-siostaim, mar sin tha logaichean is faclan-faire gan cumail ann an roghainnean MDM, nach urrainn ach thusa a leughadh.
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Cha do fhreagair iuchrach-fhàinne an t-siostaim, mar sin tha logaichean is faclan-faire gan cumail ann an roghainnean TDM, nach urrainn ach thusa a leughadh.
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	Dheth: chan urrainn dad air an lìonra MDM a ruighinn.
+	Off: nothing on the network can reach TDM.	Dheth: chan urrainn dad air an lìonra TDM a ruighinn.
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	Tairg luchdachadh sìos cheanglaichean a chaidh a chopaigeadh dhan chlàr-bhòrd
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	Air macOS, chan urrainn ach do rianaire dùsgadh a chlàradh
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	Air a’ choimpiutair, fosgail Roghainnean, an uairsin Iomallach, agus cliog air Càraich inneal. Cuir a-steach an còd a tha e a’ sealltainn.
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	Chan fhaic no atharraich ach innealan càraichte dad. A’ chiad uair, bidh brabhsair an fhòn a’ toirt rabhadh mu theisteanas MDM fhèin: is e an lorgan-meòir aige am fear gu h-àrd.
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	Chan fhaic no atharraich ach innealan càraichte dad. A’ chiad uair, bidh brabhsair an fhòn a’ toirt rabhadh mu theisteanas TDM fhèin: is e an lorgan-meòir aige am fear gu h-àrd.
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	Chan eil ach a’ chiad {n} bhidio air an liostadh.
@@ -3109,10 +3109,10 @@
 	Open folder	Fosgail am pasgan
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	Fosgail ceanglaichean magnet agus faidhlichean .torrent le Mister Download Manager
+	Open magnet links and .torrent files with Tufan Download Manager	Fosgail ceanglaichean magnet agus faidhlichean .torrent le Tufan Download Manager
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	Fosgail Mister Download Manager
+	Open Tufan Download Manager	Fosgail Tufan Download Manager
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	Seòladh na duilleige
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	Càraich
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Pèar le Mister Download Manager
+	Pair with Tufan Download Manager	Pèar le Tufan Download Manager
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	Cuimhnich an t-slighe seo airson roinn "{category}"
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	Iomallach
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	Smachd iomallach
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	Cuir an rionnag an àite
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	Ath-thòisich MDM
+	Restart TDM	Ath-thòisich TDM
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	Aiseag nan roinnean togte
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	Tagh no dì-thaghadh an luchdachadh a-nuas leis an iomall dotagach
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	Tagh fuaimean airson tachartasan Mister Download Manager
+	Select sounds for Tufan Download Manager events	Tagh fuaimean airson tachartasan Tufan Download Manager
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	Tagh na luchdachaidhean a-nuas sa bhogsa
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	Cuir seo gu caraid:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	Cuir toirrentan is ceanglaichean magnait chun a’ chiad chunntais an àite gu co-aoisean
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	Suidhich ceann-latha cruthachaidh faidhle mar a thug am frithealaiche seachad
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	Stèidhich e
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	Logaichean a-steach làraich
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	Cuiridh làraich an càileachd as fheàrr aca mar bhidio is claisneachd air leth, agus ceanglaidh ffmpeg iad. Air an t-siostam seo cleachdaidh MDM an tè agadsa: stàlaich ffmpeg leis a' mhanaidsear pacaid agad.
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	Cuiridh làraich an càileachd as fheàrr aca mar bhidio is claisneachd air leth, agus ceanglaidh ffmpeg iad. Air an t-siostam seo cleachdaidh TDM an tè agadsa: stàlaich ffmpeg leis a' mhanaidsear pacaid agad.
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	Cuiridh làraich an càileachd as fheàrr aca mar bhidio is claisneachd air leth. Cuiridh ffmpeg ri chèile iad ann an aon fhaidhle a chluicheas an àite sam bith.
@@ -4012,7 +4012,7 @@
 	Start download at	Tòisich an luchdadh a-nuas aig
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	Tòisich an luchdadh a-nuas nuair a thòisicheas Mister Download Manager
+	Start download on Tufan Download Manager startup	Tòisich an luchdadh a-nuas nuair a thòisicheas Tufan Download Manager
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	Tòisich a’ luchdadh a-nuas sa bhad fhad ’s a tha an còmhradh “Fiosrachadh faidhle luchdaich a-nuas” air a thaisbeanadh
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	Thòisich le gallery-dl {version}
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	Nuair a thòisicheas e leis a’ choimpiutair, tòisichidh e air a lughdachadh: chan eil raon fiosrachaidh a’ sealltainn an ìomhaigh aige an seo
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	Nuair a thòisicheas e leis a’ choimpiutair, bidh e a’ feitheamh ann an raon nam brathan
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	Didòmhnaich
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	Thoir taic do MDM air GitHub Sponsors
+	Support TDM on GitHub Sponsors	Thoir taic do TDM air GitHub Sponsors
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	Feumaidh na càileachdan as fheàrr, MP3, Opus is FLAC, ffmpeg: stàlaich e le manaidsear phasganan an t-siostaim agad (no Homebrew).
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	tha progsaidh a’ bhrabhsair (leudachan VPN no progsaidh) ag iarraidh logadh a-steach nach eil ach aig an leudachan sin: cleachd aplacaid an VPN fhèin, no tagh an t-adapter lìonraidh aige ann an Roghainnean → Progsaidh / Socks
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	’S urrainn dha na brabhsairean Mister Download Manager a lorg
+	The browsers can find Tufan Download Manager	’S urrainn dha na brabhsairean Tufan Download Manager a lorg
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	Thèid an coimpiutair a dhùsgadh mionaid ron àm tòiseachaidh agus a chumail dùisgte fhad ’s a bhios an ciudha a’ ruith. Feumaidh Mister Download Manager a bhith a’ ruith (faodaidh e feitheamh san raon fiosrachaidh).
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	Thèid an coimpiutair a dhùsgadh mionaid ron àm tòiseachaidh agus a chumail dùisgte fhad ’s a bhios an ciudha a’ ruith. Feumaidh Tufan Download Manager a bhith a’ ruith (faodaidh e feitheamh san raon fiosrachaidh).
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	Cha b’ urrainnear an liosta luchdachadh sìos a shàbhaladh: {error}. Thèid atharrachaidhean a chumail fhad ’s a bhios MDM a’ ruith.
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	Cha b’ urrainnear an liosta luchdachadh sìos a shàbhaladh: {error}. Thèid atharrachaidhean a chumail fhad ’s a bhios TDM a’ ruith.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	Am manaidsear luchdaich sìos air a bheil thu eòlach mu thràth, air ath-thogail gus a bhith nas luaithe. Saor is fosgailte fo GNU GPL, tionndadh 3 no nas fhaide air adhart. Tha bhideothan air an lorg le yt-dlp; tha torrentan a' ruith air librqbit.
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	fhreagair am frithealaiche FTP {code} {reply}
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Tha am prògram-cuideachaidh a thòisicheas na brobhsairean a dhìth
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	Chan eil an luchdadh a-nuas taghte deiseil. A bheil thu cinnteach gu bheil thu airson a sguabadh às\nbho liosta nan luchdadh a-nuas aig Mister Download Manager?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	Chan eil an luchdadh a-nuas taghte deiseil. A bheil thu cinnteach gu bheil thu airson a sguabadh às\nbho liosta nan luchdadh a-nuas aig Tufan Download Manager?
 #. text in errors.rs
 #, machine
 	the server answered {status}	fhreagair am frithealaiche {status}
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	Cha b’ urrainnear na samhlaidhean fhaighinn: tha cuid de loidhnichean na h-aithisge a’ sealltainn seòlaidhean an àite ainmean (faodaidh an luchd-leasachaidh an leughadh fhathast).
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Tha iuchrach-fhàinne an t-siostaim glaiste is cha ghlas MDM i, mar sin tha logaichean is faclan-faire gan cumail ann an roghainnean MDM, nach urrainn ach thusa a leughadh.
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Tha iuchrach-fhàinne an t-siostaim glaiste is cha ghlas TDM i, mar sin tha logaichean is faclan-faire gan cumail ann an roghainnean TDM, nach urrainn ach thusa a leughadh.
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	An duilleag-lìn às an d’ fhuaireadh am faidhle seo:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	Cuspairean is sgeamaichean dhathan
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	Tha an ceann-latha seo air a dhol seachad: cha tòisich an ciudha
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	Ainm an inneil seo
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	Tro {service}: luchdaichidh an t-seirbheis an torrent a-nuas, agus an uair sin nì MDM na faidhlichean aige
+	Through {service}: the service downloads the torrent, then TDM its files	Tro {service}: luchdaichidh an t-seirbheis an torrent a-nuas, agus an uair sin nì TDM na faidhlichean aige
 #. text in the Scheduler window
 #, machine
 	Thursday	Diardaoin
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	Cuir air “Mister Download Manager” agus ceadaich e air a h-uile làrach-lìn.
+	Turn on "Tufan Download Manager" and allow it on all websites.	Cuir air “Tufan Download Manager” agus ceadaich e air a h-uile làrach-lìn.
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	Taidhp an còd seo aig {page} agus leig le MDM; a’ feitheamh riut (thig an còd gu crìch ann an {time}).
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	Taidhp an còd seo aig {page} agus leig le TDM; a’ feitheamh riut (thig an còd gu crìch ann an {time}).
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	Cleachd FTP ann am modh PASV
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	Cleachd leth-bhreac MDM fhèin
+	Use TDM's own copy	Cleachd leth-bhreac TDM fhèin
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	Chan eil Windows a' ceadachadh tìmearan dùsgadh ach fhad 's a tha e air a phlugadh a-steach
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	Cha do fhreagair Manaidsear Teisteanais Windows, mar sin tha logaichean is faclan-faire gan cumail ann an roghainnean MDM, air an crioptachadh airson do chunntas Windows.
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	Cha do fhreagair Manaidsear Teisteanais Windows, mar sin tha logaichean is faclan-faire gan cumail ann an roghainnean TDM, air an crioptachadh airson do chunntas Windows.
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	Còd ceàrr. Seall còd ùr ann an MDM agus feuch a-rithist.
+	Wrong code. Show a new code in TDM and try again.	Còd ceàrr. Seall còd ùr ann an TDM agus feuch a-rithist.
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	Tha an tionndadh as ùire de Mister Download Manager ({version}) agad.
+	You have the latest version of Tufan Download Manager ({version}).	Tha an tionndadh as ùire de Tufan Download Manager ({version}) agad.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	Tha tionndadh {version} agad, bho mhanaidsear pacaid an t-siostaim agad: ùraich e an sin.
@@ -5275,7 +5275,7 @@
 	Your browser	Am brabhsair agad
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	Chan eil am brabhsair bunaiteach agad am measg nam brabhsairean as aithne do MDM: User-Agent Chrome làithreach
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	Chan eil am brabhsair bunaiteach agad am measg nam brabhsairean as aithne do TDM: User-Agent Chrome làithreach
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	chan eil cothrom aig a’ chunntas Google agad air an fhaidhle seo, no chuir an sealbhadair dheth an luchdachadh sìos
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	Tha am prògram agad fhèin ({version}) ro shean: tha feum aig MDM air {oldest} no nas ùire
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	Tha am prògram agad fhèin ({version}) ro shean: tha feum aig TDM air {oldest} no nas ùire
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	Tha {device} air a phèaradh. Faodaidh e smachd a chumail air MDM a-nis.
+	{device} is paired. It can control TDM now.	Tha {device} air a phèaradh. Faodaidh e smachd a chumail air TDM a-nis.
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	’S e tasglann 7z no RAR a th’ ann an {name}. Bheir MDM a-mach na tasglannan sin le 7-Zip, nach eil air a stàladh.
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	’S e tasglann 7z no RAR a th’ ann an {name}. Bheir TDM a-mach na tasglannan sin le 7-Zip, nach eil air a stàladh.
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	Chan eil {name} ri fhaighinn mar {how}.
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	Tha {name} {version} ro shean: tha feum aig MDM air {oldest} no nas ùire
+	{name} {version} is too old: TDM needs {oldest} or newer	Tha {name} {version} ro shean: tha feum aig TDM air {oldest} no nas ùire
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	{n} de {total} air an taghadh
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{percent} aig {service}
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	Tha {service} ag iarraidh gun slaod thu sìos; feuchaidh MDM a-rithist ann am mionaid
+	{service} asks to slow down; TDM will try again in a minute	Tha {service} ag iarraidh gun slaod thu sìos; feuchaidh TDM a-rithist ann am mionaid
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	Chan urrainn do {service} an torrent seo fhaighinn: chan eil duine ga roinneadh, no chan urrainnear an ceangal aige a leughadh
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	Chan urrainn do {service} an t-aoigh faidhle seo a ruigsinn an-dràsta; feuchaidh MDM a-rithist nas fhaide air adhart
+	{service} can't reach this file host right now; TDM will try again later	Chan urrainn do {service} an t-aoigh faidhle seo a ruigsinn an-dràsta; feuchaidh TDM a-rithist nas fhaide air adhart
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: feumaidh seo cunntas prìomhachais
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: cus luchdachadh sìos aig an aon àm tron chunntas agad; feuchaidh MDM a-rithist
+	{service}: too many downloads at once through your account; TDM will try again	{service}: cus luchdachadh sìos aig an aon àm tron chunntas agad; feuchaidh TDM a-rithist
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: sa liosta mu thràth
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: cha deach a chur ris: tha faidhlichean leis na h-ainmean sin ann an {folder} mu thràth
 #. message or event log entry in the main window
@@ -5662,15 +5662,15 @@ column	Transfer rate	Ìre gluasaid
 #, machine
 column	Upload speed	Luaths luchdaidh suas
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	Mister Download Manager eile (frithealaiche)
+extension	Another Tufan Download Manager (a server)	Tufan Download Manager eile (frithealaiche)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	Leudachan brabhsair
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	Roghainnean a' phutan...
@@ -5679,41 +5679,41 @@ extension	Button settings...	Roghainnean a' phutan...
 #, machine
 extension	Can't tell which video this is: open its own page and try there	Chan urrainn dhuinn innse dè am video a tha seo: fosgail an duilleag aige fhèin agus feuch ann an sin e
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	Ceangailte ri Mister Download Manager
+extension	Connected to Tufan Download Manager	Ceangailte ri Tufan Download Manager
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	Ceangailte ri Mister Download Manager {version}
+extension	Connected to Tufan Download Manager {version}	Ceangailte ri Tufan Download Manager {version}
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	Luchdaich sìos
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	Luchdaich a-nuas a h-uile ceangal le Mister Download Manager
+extension	Download all links with Tufan Download Manager	Luchdaich a-nuas a h-uile ceangal le Tufan Download Manager
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	Luchdaich a-nuas ceanglaichean taghte le Mister Download Manager
+extension	Download selected links with Tufan Download Manager	Luchdaich a-nuas ceanglaichean taghte le Tufan Download Manager
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	Luchdaich sìos bhidio
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	Luchdaich sìos le Mister Download Manager
+extension	Download with Tufan Download Manager	Luchdaich sìos le Tufan Download Manager
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	Fanaidh luchdachaidhean a-nuas bho {site} leis a’ bhrabhsair
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	Thèid luchdaidhean sìos gu {address}
 #. text in the browser extension
@@ -5725,9 +5725,9 @@ extension	Drag to move it along the video's edge	Slaod gus a ghluasad air iomall
 #, machine
 extension	Enter its https:// address.	Cuir a-steach an seòladh https:// aige.
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	A’ toirt seachad luchdaidhean bhon bhrobhsair gu Mister Download Manager.
+extension	Hands downloads from the browser to Tufan Download Manager.	A’ toirt seachad luchdaidhean bhon bhrobhsair gu Tufan Download Manager.
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5749,7 +5749,7 @@ extension	How to fix it	Mar a chàraicheas tu e
 #, machine
 extension	It didn't work. Try again.	Cha do dh’obraich e. Feuch ris a-rithist.
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	Chan eil còd aige an-dràsta: cliog air Pair a device an sin an toiseach.
 #. text in the browser extension
@@ -5782,33 +5782,33 @@ extension	Live	Beò
 #, machine
 extension	Media on this page	Meadhanan air an duilleag seo
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Cha do thòisich Mister Download Manager ann an tìde
+extension	Tufan Download Manager didn't start in time	Cha do thòisich Tufan Download Manager ann an tìde
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Chan eil Mister Download Manager a’ gabhail ris an leth-bhreac seo den leudachan
+extension	Tufan Download Manager doesn't accept this copy of the extension	Chan eil Tufan Download Manager a’ gabhail ris an leth-bhreac seo den leudachan
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Chan eil Mister Download Manager air a stàladh no cha do thòisich e
+extension	Tufan Download Manager isn't installed or didn't start	Chan eil Tufan Download Manager air a stàladh no cha do thòisich e
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Chan eil Mister Download Manager air a stàladh, no chan eil amalachadh a’ bhrabhsair air a stèidheachadh
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Chan eil Tufan Download Manager air a stàladh, no chan eil amalachadh a’ bhrabhsair air a stèidheachadh
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	An uairsin, luchdaichidh Mister Download Manager sìos tron aon proxy ris a’ bhrabhsair seo. Iarraidh am brabhsair ort aon turas cead a thoirt dha; ma chuireas tu seo dheth, thèid sin air ais.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	An uairsin, luchdaichidh Tufan Download Manager sìos tron aon proxy ris a’ bhrabhsair seo. Iarraidh am brabhsair ort aon turas cead a thoirt dha; ma chuireas tu seo dheth, thèid sin air ais.
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Luchdaichidh Mister Download Manager a-nuas an uairsin tron aon proxy ris a’ bhrabhsair seo. Fhad ’s a tha seo dheth, cha leugh an leudachan proxy a’ bhrabhsair.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Luchdaichidh Tufan Download Manager a-nuas an uairsin tron aon proxy ris a’ bhrabhsair seo. Fhad ’s a tha seo dheth, cha leugh an leudachan proxy a’ bhrabhsair.
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5828,21 +5828,21 @@ extension	Never take downloads from {site}	Na gabh luchdadh a-nuas bho {site} tu
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	Cha deach bhidio no fuaim a lorg air an duilleag seo fhathast. Cluich e, agus fosgail seo a-rithist.
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	Cha deach a ruighinn. Fosgail an seòladh aige aon turas sa bhrabhsair seo agus gabh ris an teisteanas aige, an uair sin feuch ris a-rithist.
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	Fosgail e
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	Fosgail an seòladh aige aon turas agus gabh ris an teisteanas aige, an uair sin cuir a-steach còd bho na Options, Remote, Pair a device aige (no misterdownloadmanager-cli pair).
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	Fosgail an seòladh aige aon turas agus gabh ris an teisteanas aige, an uair sin cuir a-steach còd bho na Options, Remote, Pair a device aige (no tufan-download-manager-cli pair).
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	Fosgail Mister Download Manager
+extension	Open Tufan Download Manager	Fosgail Tufan Download Manager
 #. shown briefly on the download button over a video in a feed (a social site's home page, a timeline) when nothing in the feed gives that video's own address, so nothing was sent: the user should open the post the video belongs to and click the button on that page; short
 #, machine
 extension	Open the post, then use the button there	Fosgail am post, an uairsin cleachd am putan an sin
@@ -5852,11 +5852,11 @@ extension	Open the post, then use the button there	Fosgail am post, an uairsin c
 #, machine
 extension	Options...	Roghainnean...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	Paidhir
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	Còd paidhir
 #. text in the browser extension
@@ -5884,13 +5884,13 @@ extension	Send downloads through this browser's proxy or VPN extension	Cuir luch
 #, machine
 extension	Send downloads to	Cuir luchdaidhean sìos gu
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	Chaidh a chur gu Mister Download Manager
+extension	Sent to Tufan Download Manager	Chaidh a chur gu Tufan Download Manager
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	Thoir taic do MDM
+extension	Support TDM	Thoir taic do TDM
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5900,9 +5900,9 @@ extension	Take downloads from this browser	Gabh luchdadh a-nuas bhon bhrabhsair 
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	Chan eil riaghailtean Chrome Web Store a’ leigeil leis an lethbhreac seo dhen leudachan obrachadh air videothan na làraich seo. Tha Cobhair ag innse dè as urrainn dhut a dhèanamh.
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	Dh’fhàillig an ceangal ri Mister Download Manager
+extension	The connection to Tufan Download Manager failed	Dh’fhàillig an ceangal ri Tufan Download Manager
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5920,7 +5920,7 @@ extension	The last download was left to the browser.	Chaidh an luchdachadh sìos
 #, machine
 extension	This browser isn't ticked in Options → General.	Chan eil am brabhsair seo air a chomharrachadh ann an Roghainnean → Coitcheann.
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	An coimpiutair seo
 #. text in the browser extension
@@ -5932,9 +5932,9 @@ extension	This download's details were too large to hand over	Bha mion-fhiosrach
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	Bidh cluicheadair na duilleige seo a’ sruthadh a video ann am pìosan, mar sin chan eil faidhle ri liostadh. Dèan puing air a’ video agus cleachd am putan Luchdaich a-nuas video aige.
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	Ùraich Mister Download Manager gus gach rud a tha an leudachan seo a’ tabhann a chleachdadh
+extension	Update Tufan Download Manager to use everything this extension offers	Ùraich Tufan Download Manager gus gach rud a tha an leudachan seo a’ tabhann a chleachdadh
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6050,7 +6050,7 @@ key	Up / Down	Suas / Sìos
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	&About Mister Download Manager	Mu dheidhinn Mister Download Manager(&A)
+menu	&About Tufan Download Manager	Mu dheidhinn Tufan Download Manager(&A)
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6086,7 +6086,7 @@ menu	&Exit	&Fàg
 #, machine
 menu	&Import	&Cuir a-steach
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Interface size	Meud an eadar-&aghaidh
@@ -6203,9 +6203,9 @@ menu	Adwaita	Adwaita
 #, machine
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
 #, machine
-menu	Applies the next time MDM starts	Bidh seo a' buntainn an ath thuras a thòisicheas MDM
+menu	Applies the next time TDM starts	Bidh seo a' buntainn an ath thuras a thòisicheas TDM
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 #, machine
@@ -6280,7 +6280,7 @@ menu	C&ustomize URL List...	Gnàthaich liosta URL(&U)...
 #, machine
 menu	Check for &updates...	Thoir sùil airson &ùrachaidhean...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 #, machine
 menu	Classic	Clasaigeach
 #. menu command in the main window
@@ -6326,7 +6326,7 @@ menu	Download &video from a page...	Luchdaich sìos &bhidio bho dhuilleag...
 #, machine
 menu	Download in order	Luchdaich sìos ann an òrdugh
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 #, machine
 menu	Draw with	Tarraing le
 #. menu command in the main window
@@ -6382,15 +6382,15 @@ menu	Hide drop target	Falaich targaid leigeil sìos
 #, machine
 menu	High contrast	Àrd-chaochlaideachd
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 #, machine
 menu	It couldn't start: the log says why	Cha b’ urrainn dha tòiseachadh: tha an loga ag innse carson
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 #, machine
 menu	Its first frame didn't show within 10 seconds	Cha do nochd a chiad fhrèam taobh a-staigh 10 diogan
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 #, machine
 menu	Its last start ended before its first frame	Thàinig an tòiseachadh mu dheireadh aige gu crìch ron chiad fhrèam aige
 #. menu command in the main window
@@ -6412,7 +6412,7 @@ menu	Metro	Metro
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Mister Download Manager &Home Page	Duilleag-dachaigh &Mister Download Manager
+menu	Tufan Download Manager &Home Page	Duilleag-dachaigh &Tufan Download Manager
 #. menu command in the main window
 #, machine
 menu	Move/Rename (Ctrl-M)	Gluais/Ath-ainmich (Ctrl-M)
@@ -6525,7 +6525,7 @@ menu	Select &all	Tagh &na h-uile
 menu	Show &drop target	Seall &targaid leigeil sìos
 #. menu command in the main window
 #, machine
-menu	Show Mister Download Manager	Seall Mister Download Manager
+menu	Show Tufan Download Manager	Seall Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6547,7 +6547,7 @@ menu	Stop Download	Cuir stad air an luchdadh a-nuas
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Support &MDM	Thoir taic do &MDM
+menu	Support &TDM	Thoir taic do &TDM
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6557,7 +6557,7 @@ menu	Tell a &friend	Innis do &charaid
 #, machine
 menu	The graphics card was lost twice in 10 minutes	Chaidh a' chairt grafaigeachd a chall dà uair ann an 10 mionaidean
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 #, machine
 menu	Theme	Cuspair
 #. menu command in the main window

@@ -44,7 +44,7 @@ fn no_staging(dest: &Path) {
     let left: Vec<_> = std::fs::read_dir(dest)
         .unwrap()
         .filter_map(|e| e.ok())
-        .filter(|e| e.file_name().to_string_lossy().starts_with(".mdm-extract-"))
+        .filter(|e| e.file_name().to_string_lossy().starts_with(".tdm-extract-"))
         .collect();
     assert!(left.is_empty(), "staging left behind: {left:?}");
 }

@@ -1,4 +1,4 @@
-// #155/#167 on Linux with Google Chrome (.deb; Ubuntu's Chromium is a Snap, which can't reach MDM):
+// #155/#167 on Linux with Google Chrome (.deb; Ubuntu's Chromium is a Snap, which can't reach TDM):
 // headless over the DevTools pipe (as tools/extension/e2e.mjs drives it), the unpacked extension
 // loaded, the lab's HLS and DASH player pages; the button over the player and the popup's media
 // list (Chrome's own right-click menu can't be driven). Same checks as streams.mjs.
@@ -73,11 +73,11 @@ const profile = path.join(process.env.HOME, "lab/chrome-streams");
 fs.rmSync(profile, { recursive: true, force: true });
 fs.mkdirSync(path.join(profile, "Default"), { recursive: true });
 // With --user-data-dir, Chrome on Linux reads host manifests from <user-data-dir>/NativeMessagingHosts
-// (not ~/.config/google-chrome/): the one MDM registered, copied there.
+// (not ~/.config/google-chrome/): the one TDM registered, copied there.
 const hosts = path.join(profile, "NativeMessagingHosts");
 fs.mkdirSync(hosts, { recursive: true });
-const registered = path.join(process.env.HOME, ".config/google-chrome/NativeMessagingHosts/com.misterdownloadmanager.host.json");
-fs.copyFileSync(registered, path.join(hosts, "com.misterdownloadmanager.host.json"));
+const registered = path.join(process.env.HOME, ".config/google-chrome/NativeMessagingHosts/com.tufan-download-manager.host.json");
+fs.copyFileSync(registered, path.join(hosts, "com.tufan-download-manager.host.json"));
 const proc = spawn(
   "/usr/bin/google-chrome",
   ["--headless", "--remote-debugging-pipe", "--enable-unsafe-extension-debugging", "--password-store=basic", `--user-data-dir=${profile}`, "--no-first-run", "--no-default-browser-check", "--window-size=1280,900", "about:blank"],
@@ -119,7 +119,7 @@ try {
   };
   const rect = (sel) =>
     evaluate(`(() => { const e = document.querySelector(${JSON.stringify(sel)});
-      if (!e || (e.localName === "mdm-video-button" && e.style.display !== "block")) return null;
+      if (!e || (e.localName === "tdm-video-button" && e.style.display !== "block")) return null;
       const r = e.getBoundingClientRect(); return { l: r.left, t: r.top, r: r.right, b: r.bottom }; })()`);
   const labLog = async () => await (await fetch(`${LAB}/_log`)).json();
   const check = async (what, page, manifest, cookie, trigger) => {
@@ -149,7 +149,7 @@ try {
     const seen = asked.map((e) => `${e.path}${e.query ? "?" + e.query : ""} ${e.status}${(e.cookie || "").includes(cookie) ? " +cookie" : ""}${e.referer === page ? " +referrer" : ""}`);
     const ok = windowAt && given && new URL(given).pathname === manifest && asked.some((e) => e.path === manifest) && !asked.some((e) => e.path === "/page");
     say(
-      `${ok ? "OK  " : "FAIL"} ${what}${r ? ` (${r})` : ""}: MDM's window ${windowAt ? `at ${windowAt} s` : "NOT within 60 s"}; ` +
+      `${ok ? "OK  " : "FAIL"} ${what}${r ? ` (${r})` : ""}: TDM's window ${windowAt ? `at ${windowAt} s` : "NOT within 60 s"}; ` +
         `yt-dlp given ${given || "nothing"}, done at ${done} s; the lab saw ${seen.join(", ") || "nothing"}`,
     );
   };
@@ -165,7 +165,7 @@ try {
       let b = null;
       for (let i = 0; i < 40 && !b; i++) {
         await mouse((v.l + v.r) / 2 + (i % 2), (v.t + v.b) / 2);
-        b = await rect("mdm-video-button");
+        b = await rect("tdm-video-button");
         if (!b) await sleep(200);
       }
       if (!b) return "no button over the player";

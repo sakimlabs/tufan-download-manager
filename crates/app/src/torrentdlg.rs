@@ -9,7 +9,7 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 use egui::{Color32, Pos2, Rect, Stroke, Ui, pos2, vec2};
-use mdm_torrent::{Lookup, LookupStatus, Meta, Source};
+use tdm_torrent::{Lookup, LookupStatus, Meta, Source};
 
 use crate::dialogs::{Outcome, window};
 use crate::model::{Category, category_folder};
@@ -82,7 +82,7 @@ pub struct TorrentDialog {
     /// Asking whether to use files of the torrent's names already in the folder (#40).
     asking_files: Option<(crate::dialogs::ExistingFiles, ())>,
     /// A .torrent on the web (#39, Add URL or the browser): the request it is fetched with
-    /// (the browser's cookies). One typed in the box goes as MDM's own downloads do.
+    /// (the browser's cookies). One typed in the box goes as TDM's own downloads do.
     remote: Option<crate::torrents::Remote>,
     /// The clipboard's magnet link, read off the window's thread (#661).
     clip: crate::clipboard::Prefill,
@@ -312,15 +312,15 @@ impl TorrentDialog {
                         return;
                     }
                 },
-                // At most mdm_torrent::MAX_TORRENT_FILE (#40): a bigger file isn't a torrent.
+                // At most tdm_torrent::MAX_TORRENT_FILE (#40): a bigger file isn't a torrent.
                 (None, None) => match tokio::task::spawn_blocking(move || {
-                    mdm_torrent::read_file(std::path::Path::new(&path))
+                    tdm_torrent::read_file(std::path::Path::new(&path))
                 })
                 .await
                 {
                     Ok(Ok(bytes)) => Source::File(bytes),
                     Ok(Err(e)) if e.kind() == std::io::ErrorKind::InvalidData => {
-                        let e = crate::errors::torrent(&mdm_torrent::TorrentError::NotATorrent);
+                        let e = crate::errors::torrent(&tdm_torrent::TorrentError::NotATorrent);
                         *out.lock().unwrap() = Some(Err(e));
                         ctx.request_repaint();
                         return;
@@ -956,7 +956,7 @@ impl TorrentDialog {
 }
 
 /// Torrent settings (ours, D-018): sharing after a torrent finishes, whether Windows opens
-/// magnet links and .torrent files with MDM (both off by default), and the torrent engine's
+/// magnet links and .torrent files with TDM (both off by default), and the torrent engine's
 /// network (#40: what it does on the network is the person's to choose).
 pub struct TorrentSettings {
     share: bool,
@@ -1146,7 +1146,7 @@ impl TorrentSettings {
                     ui,
                     pos2(o.x + 14.0, o.y + 108.0),
                     &mut self.assoc,
-                    "Open magnet links and .torrent files with Mister Download Manager",
+                    "Open magnet links and .torrent files with Tufan Download Manager",
                     true,
                 );
                 winui::fit(
@@ -1155,13 +1155,13 @@ impl TorrentSettings {
                     o.x + 32.0,
                     o.y + 136.0,
                     // What the switch does is the system's: Windows asks per account, macOS and
-                    // Linux register MDM as the handler.
+                    // Linux register TDM as the handler.
                     if cfg!(windows) {
                         crate::i18n::t(
                             "For your Windows account only. Another app chosen in \"Open with\" stays first.",
                         )
                     } else {
-                        // i18n: Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+                        // i18n: Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
                         crate::i18n::t(
                             "For your account only. Another app set as the default stays first.",
                         )
@@ -1379,7 +1379,7 @@ impl TorrentSettings {
 }
 
 /// Right-click → Torrent → Add trackers… (#39): tracker addresses, one a line, for download `id`.
-/// OK gives them once each is one MDM may contact (`mdm_torrent::trackers::allowed`).
+/// OK gives them once each is one TDM may contact (`tdm_torrent::trackers::allowed`).
 pub struct AddTrackers {
     pub id: u64,
     name: String,
@@ -1416,9 +1416,9 @@ impl AddTrackers {
             }
             // The rule every torrent's trackers follow (#40), told here rather than dropped
             // out of sight.
-            if !mdm_torrent::trackers::allowed(line, false) {
+            if !tdm_torrent::trackers::allowed(line, false) {
                 return Err(crate::i18n::fmt(
-                    // i18n: Add trackers: MDM never contacts a tracker on this computer or the local network
+                    // i18n: Add trackers: TDM never contacts a tracker on this computer or the local network
                     crate::i18n::t(
                         "A tracker on this computer or the local network is never contacted: {line}",
                     ),
@@ -1644,7 +1644,7 @@ fn visible_rows(tree: &[Node], open: &[bool]) -> Vec<usize> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use mdm_torrent::FileEntry;
+    use tdm_torrent::FileEntry;
 
     /// #92: a magnet's wait says what is happening and where the peers came from; after
     /// `HINT_AFTER` without an answer, what may be wrong.
@@ -1831,7 +1831,7 @@ mod tests {
     #[test]
     fn categories_without_their_own_folder_follow_general() {
         // Absolute on every system (a path like "/Volumes/…" is drive-relative on Windows).
-        let root = std::env::temp_dir().join("mdm-554");
+        let root = std::env::temp_dir().join("tdm-554");
         let at = |p: &str| root.join(p).display().to_string();
         let dl = root.join("Users/test/Downloads");
         assert_eq!(

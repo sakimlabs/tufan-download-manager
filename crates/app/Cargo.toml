@@ -1,6 +1,6 @@
 [package]
-name = "mdm-app"
-description = "Mister Download Manager, desktop app (egui)"
+name = "tdm-app"
+description = "Tufan Download Manager, desktop app (egui)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -9,15 +9,15 @@ authors.workspace = true
 publish.workspace = true
 
 [[bin]]
-name = "misterdownloadmanager"
+name = "tufan-download-manager"
 path = "src/main.rs"
 
 [features]
-# Update now's end-to-end tests only, never in a release (see mdm-tools): a test key for a fake
-# release (MDM_TEST_UPDATE_KEY), `/show update-now` (Update now in the window `/show updates`
-# opens), and MDM_TEST_UPDATE_HOLD (seconds the update waits before it's put in place, to see and
+# Update now's end-to-end tests only, never in a release (see tdm-tools): a test key for a fake
+# release (TDM_TEST_UPDATE_KEY), `/show update-now` (Update now in the window `/show updates`
+# opens), and TDM_TEST_UPDATE_HOLD (seconds the update waits before it's put in place, to see and
 # close the window meanwhile). tools/lab/update runs them.
-test-update = ["mdm-tools/test-update"]
+test-update = ["tdm-tools/test-update"]
 
 [dependencies]
 arboard.workspace = true
@@ -31,16 +31,16 @@ egui-winit.workspace = true
 egui_extras.workspace = true
 image.workspace = true
 craft-i18n.workspace = true
-# misterdownloadmanager-cli's commands: its launcher runs this program for them (main.rs).
-mdm-cli.workspace = true
-mdm-engine.workspace = true
-mdm-extract.workspace = true
-mdm-geo.workspace = true
-mdm-ipc.workspace = true
+# tufan-download-manager-cli's commands: its launcher runs this program for them (main.rs).
+tdm-cli.workspace = true
+tdm-engine.workspace = true
+tdm-extract.workspace = true
+tdm-geo.workspace = true
+tdm-ipc.workspace = true
 # The remote control (#141): a paired phone adds and controls downloads over the local network.
-mdm-remote.workspace = true
-mdm-tools.workspace = true
-mdm-torrent.workspace = true
+tdm-remote.workspace = true
+tdm-tools.workspace = true
+tdm-torrent.workspace = true
 open.workspace = true
 reqwest.workspace = true
 serde.workspace = true
@@ -55,8 +55,8 @@ qrcodegen = "1.8.0"
 # Line breaks between characters keep a letter and its marks together (Thai, Khmer, Indic).
 unicode-segmentation = "1.13.3"
 # Crash and freeze reports: the monitor, minidumps, symbolicated stacks, release logs.
-mdm-crash.workspace = true
-mdm-debrid.workspace = true
+tdm-crash.workspace = true
+tdm-debrid.workspace = true
 tracing.workspace = true
 # Unpacks the translation catalogs (i18n.rs, packed by build.rs); already in the tree through
 # reqwest's brotli support.
@@ -136,7 +136,7 @@ tempfile.workspace = true
 # secrets.rs's test that no secret reaches the log.
 tracing-subscriber.workspace = true
 # The command line's tests (tests/cli_*.rs) download from it.
-mdm-labserver.workspace = true
+tdm-labserver.workspace = true
 
 [lints]
 workspace = true

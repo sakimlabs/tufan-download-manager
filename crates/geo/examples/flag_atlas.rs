@@ -1,7 +1,7 @@
 //! The flags of the table's countries drawn into one picture (#140), in the table's order: cell
 //! `i` (row-major, `COLUMNS` a row) is country `i + 1`'s. From lipis/flag-icons' 4x3 SVGs (MIT).
 //!
-//!   cargo run -p mdm-geo --example flag_atlas -- <flag-icons>/flags/4x3
+//!   cargo run -p tdm-geo --example flag_atlas -- <flag-icons>/flags/4x3
 //!
 //! Writes crates/geo/data/flags.png.
 
@@ -9,15 +9,15 @@ use std::path::{Path, PathBuf};
 
 fn main() {
     let dir = PathBuf::from(std::env::args().nth(1).expect("the 4x3 flags folder"));
-    let codes = mdm_geo::countries();
+    let codes = tdm_geo::countries();
     // FLAGS (lib.rs) says how many cells the app may use.
     assert_eq!(
         codes.len() as u32,
-        mdm_geo::FLAGS,
+        tdm_geo::FLAGS,
         "set FLAGS in lib.rs to the table's country count"
     );
-    let (w, h) = (mdm_geo::FLAG_W, mdm_geo::FLAG_H);
-    let cols = mdm_geo::COLUMNS;
+    let (w, h) = (tdm_geo::FLAG_W, tdm_geo::FLAG_H);
+    let cols = tdm_geo::COLUMNS;
     let rows = codes.len().div_ceil(cols as usize) as u32;
     let mut atlas = resvg::tiny_skia::Pixmap::new(w * cols, h * rows).expect("atlas");
     let opts = resvg::usvg::Options::default();

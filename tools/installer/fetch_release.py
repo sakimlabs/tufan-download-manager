@@ -15,7 +15,7 @@ import urllib.request
 
 # Seconds to wait before each new try: about seven minutes in all.
 WAITS = (5, 15, 30, 60, 90, 90, 120)
-UA = "mdm-release-build"
+UA = "tdm-release-build"
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):

@@ -1,35 +1,35 @@
-//! Mister Download Manager's MCP server (Model Context Protocol). An AI assistant (Claude, Cursor,
+//! Tufan Download Manager's MCP server (Model Context Protocol). An AI assistant (Claude, Cursor,
 //! VS Code, …) starts it and, through it, lists the running app's downloads, adds new ones and
 //! pauses, resumes or removes them. A thin bridge to the app's automation API
 //! (docs/command-line.md): nothing here downloads by itself. Guide: docs/ai-assistants.md.
 
 use std::sync::Arc;
 
-use mdm_ipc::Command;
-use mdm_ipc::api::{API_OFF as API_OFF_CODE, DownloadInfo, ErrorAnswer, ListAnswer, STATUSES};
+use tdm_ipc::Command;
+use tdm_ipc::api::{API_OFF as API_OFF_CODE, DownloadInfo, ErrorAnswer, ListAnswer, STATUSES};
 use rmcp::handler::server::{router::tool::ToolRouter, wrapper::Parameters};
 use rmcp::{ServerHandler, tool, tool_handler, tool_router};
 use schemars::JsonSchema;
 use serde::Deserialize;
 
-/// How a tool reaches the app: [`mdm_ipc::request`] in the program, a stand-in in tests.
+/// How a tool reaches the app: [`tdm_ipc::request`] in the program, a stand-in in tests.
 pub type Ask = Arc<dyn Fn(&Command) -> Result<String, String> + Send + Sync>;
 
 /// Downloads listed when the assistant doesn't say how many.
 const DEFAULT_LIMIT: usize = 100;
 
-const NOT_RUNNING: &str = "Mister Download Manager isn't running. Ask the user to start it, then \
+const NOT_RUNNING: &str = "Tufan Download Manager isn't running. Ask the user to start it, then \
                            try again.";
-const API_OFF: &str = "Mister Download Manager's automation API is off. Ask the user to turn it \
-                       on once with `misterdownloadmanager-cli api on` (it stays on), then try \
+const API_OFF: &str = "Tufan Download Manager's automation API is off. Ask the user to turn it \
+                       on once with `tufan-download-manager-cli api on` (it stays on), then try \
                        again.";
 
-const INSTRUCTIONS: &str = "Controls Mister Download Manager, the download manager running on \
+const INSTRUCTIONS: &str = "Controls Tufan Download Manager, the download manager running on \
     this computer. list_downloads shows its downloads with their ids; pause_downloads, \
     resume_downloads and remove_downloads act on those ids; add_download adds an address \
     (http, https, ftp, ftps or a magnet link); start_queue starts the main download queue. \
     Listing and acting on downloads needs the app's automation API, which the user turns on \
-    with `misterdownloadmanager-cli api on`. Sizes and speeds are in bytes and bytes per second.";
+    with `tufan-download-manager-cli api on`. Sizes and speeds are in bytes and bytes per second.";
 
 #[derive(Deserialize, JsonSchema, Default)]
 pub struct ListArgs {
@@ -110,7 +110,7 @@ impl Server {
 #[tool_router]
 impl Server {
     #[tool(
-        description = "Lists Mister Download Manager's downloads, newest first: id, file, url, \
+        description = "Lists Tufan Download Manager's downloads, newest first: id, file, url, \
                        path, status (Queued, Downloading, Stopped, Complete or Error), size and \
                        downloaded (bytes; size null while unknown), speed (bytes per second), \
                        when it was added and, for a failed one, why (error); with the total \
@@ -131,7 +131,7 @@ impl Server {
     }
 
     #[tool(
-        description = "Adds a download to Mister Download Manager and starts it (or only queues \
+        description = "Adds a download to Tufan Download Manager and starts it (or only queues \
                        it, with later). If the list already has the address, the app asks the \
                        user what to do.",
         annotations(
@@ -144,7 +144,7 @@ impl Server {
         let url = args.url.trim().to_owned();
         if !addable(&url) {
             return Err(format!(
-                "{url:?} isn't an address Mister Download Manager downloads: it takes http, \
+                "{url:?} isn't an address Tufan Download Manager downloads: it takes http, \
                  https, ftp and ftps addresses and magnet links."
             ));
         }
@@ -197,7 +197,7 @@ impl Server {
     }
 
     #[tool(
-        description = "Removes downloads from Mister Download Manager's list by id, keeping \
+        description = "Removes downloads from Tufan Download Manager's list by id, keeping \
                        their files, or deleting them from the disk too with delete_files. A \
                        running download must be paused first. Answers {\"done\": [ids], \
                        \"skipped\": [{\"id\", \"why\"}]}.",
@@ -220,7 +220,7 @@ impl Server {
     }
 
     #[tool(
-        description = "Starts Mister Download Manager's main download queue.",
+        description = "Starts Tufan Download Manager's main download queue.",
         annotations(
             read_only_hint = false,
             destructive_hint = false,
@@ -246,7 +246,7 @@ impl ServerHandler for Server {
                 .build(),
         )
         .with_server_info(rmcp::model::Implementation::new(
-            "misterdownloadmanager",
+            "tufan-download-manager",
             env!("CARGO_PKG_VERSION"),
         ))
         .with_instructions(INSTRUCTIONS)
@@ -260,14 +260,14 @@ fn explain(answer: Result<String, String>) -> Result<String, String> {
     match answer.as_str() {
         "timeout" => {
             return Err(
-                "Mister Download Manager didn't answer in time (a dialog may be open \
+                "Tufan Download Manager didn't answer in time (a dialog may be open \
                         in it); try again."
                     .into(),
             );
         }
         "denied" => {
             return Err(
-                "Mister Download Manager refused the request: its channel file \
+                "Tufan Download Manager refused the request: its channel file \
                         (ipc.json) is from another start. Ask the user to restart the app."
                     .into(),
             );
@@ -278,13 +278,13 @@ fn explain(answer: Result<String, String>) -> Result<String, String> {
         return Err(if e.code.as_deref() == Some(API_OFF_CODE) {
             API_OFF.into()
         } else {
-            format!("Mister Download Manager: {}", e.error)
+            format!("Tufan Download Manager: {}", e.error)
         });
     }
     Ok(answer)
 }
 
-/// What the app adds (`mdm_engine::supported`, and magnet links for Add torrent).
+/// What the app adds (`tdm_engine::supported`, and magnet links for Add torrent).
 fn addable(url: &str) -> bool {
     if url
         .get(..7)

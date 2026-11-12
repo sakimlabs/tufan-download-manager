@@ -1,7 +1,7 @@
 //! Where a download's server is (#140): one line, shared by Download File Info, the progress
-//! window and Properties. The country's flag and name (`mdm_geo`: DB-IP's offline table, looked up
+//! window and Properties. The country's flag and name (`tdm_geo`: DB-IP's offline table, looked up
 //! on this computer, never asked of anyone), and the round trip the download's own connections
-//! measured (`mdm_engine::Server`), coloured near / medium / far with the word beside it. Its
+//! measured (`tdm_engine::Server`), coloured near / medium / far with the word beside it. Its
 //! tooltip: the address, a CDN or a proxy said as such, how the time is measured, and DB-IP's
 //! credit.
 
@@ -26,8 +26,8 @@ pub struct Seen {
     pub cdn: Option<String>,
 }
 
-impl From<&mdm_engine::Server> for Seen {
-    fn from(s: &mdm_engine::Server) -> Self {
+impl From<&tdm_engine::Server> for Seen {
+    fn from(s: &tdm_engine::Server) -> Self {
         Seen {
             ip: s.ip,
             rtt_ms: s.rtt.map(|d| d.as_millis().min(u32::MAX as u128) as u32),
@@ -80,7 +80,7 @@ fn flags(ctx: &egui::Context) -> Option<egui::TextureHandle> {
     static FLAGS: OnceLock<Option<egui::TextureHandle>> = OnceLock::new();
     FLAGS
         .get_or_init(|| {
-            let img = image::load_from_memory(mdm_geo::FLAGS_PNG).ok()?.to_rgba8();
+            let img = image::load_from_memory(tdm_geo::FLAGS_PNG).ok()?.to_rgba8();
             let size = [img.width() as usize, img.height() as usize];
             let ci = egui::ColorImage::from_rgba_unmultiplied(size, img.as_raw());
             Some(ctx.load_texture("country-flags", ci, egui::TextureOptions::LINEAR))
@@ -109,7 +109,7 @@ fn is_local(ip: IpAddr) -> bool {
 /// Where a place's picture comes from: its country's flag, or a Tango icon for this computer
 /// and the local network, which have no country.
 enum Mark {
-    Flag(mdm_geo::Country),
+    Flag(tdm_geo::Country),
     Icon(&'static str),
 }
 
@@ -119,11 +119,11 @@ fn place(seen: &Seen) -> Option<(String, Option<Mark>)> {
         // i18n: where a download's server is: not known (no address seen)
         return Some((crate::i18n::t("unknown").to_owned(), None));
     };
-    if !mdm_geo::ready() {
-        mdm_geo::prepare();
+    if !tdm_geo::ready() {
+        tdm_geo::prepare();
         return None;
     }
-    let country = mdm_geo::country(ip);
+    let country = tdm_geo::country(ip);
     let (name, icon) = match &country {
         Some(c) => (
             crate::countries::name(c.code())
@@ -200,8 +200,8 @@ fn tooltip(seen: &Seen) -> String {
     // The data's licence (CC BY 4.0) asks for this credit where its results show.
     lines.push(format!(
         "{} ({})",
-        mdm_geo::ATTRIBUTION,
-        mdm_geo::ATTRIBUTION_URL.trim_start_matches("https://")
+        tdm_geo::ATTRIBUTION,
+        tdm_geo::ATTRIBUTION_URL.trim_start_matches("https://")
     ));
     lines.join("\n")
 }
@@ -245,8 +245,8 @@ pub fn line(ui: &Ui, x: f32, baseline: f32, right: f32, seen: Option<&Seen>, id:
         let uv = Rect::from_min_size(
             pos2(cx as f32 / size.x, cy as f32 / size.y),
             vec2(
-                mdm_geo::FLAG_W as f32 / size.x,
-                mdm_geo::FLAG_H as f32 / size.y,
+                tdm_geo::FLAG_W as f32 / size.x,
+                tdm_geo::FLAG_H as f32 / size.y,
             ),
         );
         let rc = winui::rect(Rect::from_min_size(
@@ -319,7 +319,7 @@ mod tests {
 
     #[test]
     fn what_was_seen_is_kept_in_milliseconds() {
-        let s = mdm_engine::Server {
+        let s = tdm_engine::Server {
             ip: Some("8.8.8.8".parse().unwrap()),
             rtt: Some(std::time::Duration::from_micros(23_400)),
             proxied: false,

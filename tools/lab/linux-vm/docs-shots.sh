@@ -1,16 +1,16 @@
 #!/bin/bash
 # The README's, docs' and site's Linux screenshots, on a real desktop: GNOME, KDE Plasma,
 # Cinnamon or Xfce in a lab VM (docs-shots-host.ps1 runs this from the Windows host and makes the
-# WebP files). The Linux counterpart of tools/lab/docs-shots.ps1: an MDM of its own (its own data
-# folder, MDM_DATA_DIR, and download folders), its own lab server with neutral files, every window
-# opened through MDM's own command line (`/show <window>`), at 1x.
+# WebP files). The Linux counterpart of tools/lab/docs-shots.ps1: an TDM of its own (its own data
+# folder, TDM_DATA_DIR, and download folders), its own lab server with neutral files, every window
+# opened through TDM's own command line (`/show <window>`), at 1x.
 #
 #   docs-shots.sh <label> [out folder] [light,dark] [main,add-url,...]
 #
 # <label>: a build in ~/lab/bin/<label>/ (tools/lab/wsl/deploy.ps1). Shots land in
 # <out folder>/<mode>/<name>.png (default ~/lab/shots/docs-<label>). The list (default: all):
 #   main  add-url  progress  options  scheduler  add-torrent  browser-offer  tray
-# `tray` (light only) is the top right of the screen with MDM's icon in the desktop's tray and its
+# `tray` (light only) is the top right of the screen with TDM's icon in the desktop's tray and its
 # menu open, clicked as a person would: real input inside the VM, never on the host.
 #
 # Captured inside the guest (ImageMagick's `import -window root`, cropped to the window's frame,
@@ -18,7 +18,7 @@
 # the guests' kernel update. A shot is kept once two reads in a row are the same (a progress
 # window, which never settles, after a few tries).
 #
-# MDM_SUDO_PASSWORD (set by the host side): the lab server answers as http://downloads.example on
+# TDM_SUDO_PASSWORD (set by the host side): the lab server answers as http://downloads.example on
 # port 80 (a reserved name added to /etc/hosts, unprivileged ports from 80 for this boot only), so
 # the addresses in the shots are neutral; without it, http://127.0.0.1:8199.
 set -u
@@ -28,17 +28,17 @@ out=${2:-$HOME/lab/shots/docs-$label}
 modes=${3:-light,dark}
 only=${4:-}
 bin=$HOME/lab/bin/$label
-app=$bin/misterdownloadmanager
+app=$bin/tufan-download-manager
 # The run's folder shows in some windows (Add torrent's): short and neutral, as docs-shots.ps1's
 # C:\Demo.
 run=$HOME/Demo
 torrent=$HOME/lab/docs-shots.torrent
 want() { [ -z "$only" ] || [[ ",$only," == *",$1,"* ]]; }
-sudo_() { echo "$MDM_SUDO_PASSWORD" | sudo -S -p '' "$@"; }
+sudo_() { echo "$TDM_SUDO_PASSWORD" | sudo -S -p '' "$@"; }
 
 # ---- The lab server, at a neutral address when it can be
 port=8199; host=127.0.0.1
-if [ -n "${MDM_SUDO_PASSWORD:-}" ] && ! ss -ltn | grep -q '127.0.0.1:80 '; then
+if [ -n "${TDM_SUDO_PASSWORD:-}" ] && ! ss -ltn | grep -q '127.0.0.1:80 '; then
   grep -q 'downloads\.example' /etc/hosts || sudo_ sh -c "echo '127.0.0.1 downloads.example' >> /etc/hosts"
   sudo_ sysctl -q net.ipv4.ip_unprivileged_port_start=80
   port=80; host=downloads.example
@@ -52,8 +52,8 @@ sleep 1
 # closed, the pointer at the screen's right edge (no hover or tooltip).
 banners=$(gsettings get org.gnome.desktop.notifications show-banners 2>/dev/null)
 gsettings set org.gnome.desktop.notifications show-banners false 2>/dev/null
-# The dark shots on a dark desktop, as someone in dark mode sees MDM: the window manager's title
-# bar follows the desktop's theme, not MDM's (GNOME; put back at the end).
+# The dark shots on a dark desktop, as someone in dark mode sees TDM: the window manager's title
+# bar follows the desktop's theme, not TDM's (GNOME; put back at the end).
 gtk_theme=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'")
 scheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null | tr -d "'")
 desktop_mode() {
@@ -109,7 +109,7 @@ opened() {
   for _ in $(seq 40); do
     new=$(comm -13 <(echo "$before") <(mine | sort) | tail -1)
     # Not the main window under a new id (its title: the program's name and version).
-    [ -n "$new" ] && ! wmctrl -l | grep -i "^$new " | grep -q "Mister Download Manager [0-9]" && { echo "$new"; return 0; }
+    [ -n "$new" ] && ! wmctrl -l | grep -i "^$new " | grep -q "Tufan Download Manager [0-9]" && { echo "$new"; return 0; }
     sleep 0.5
   done
   return 1
@@ -123,7 +123,7 @@ for mode in "${mode_list[@]}"; do
   pkill -f "^$app$" 2>/dev/null; sleep 1
   desktop_mode "$mode"
   rm -rf "$work"; mkdir -p "$work/data" "$work/Downloads"
-  export MDM_DATA_DIR=$work/data
+  export TDM_DATA_DIR=$work/data
   # Its own list and settings: the language chosen, light or dark whatever the desktop's mode,
   # every category's folder under the run's own, nothing reaching out (no update check; the
   # torrent engine neither listens nor uses the DHT, UPnP or local discovery).
@@ -149,8 +149,8 @@ PY
     sleep 1
   done
   [ -n "$MAIN" ] || { echo "no main window ($mode)"; tail -5 "$work/mdm.log"; continue; }
-  # MDM_MAIN_AT="x,y": the main window moved there (clear of a desktop's lasting notification).
-  [ -n "${MDM_MAIN_AT:-}" ] && wmctrl -i -r "$MAIN" -e "0,$MDM_MAIN_AT,-1,-1"
+  # TDM_MAIN_AT="x,y": the main window moved there (clear of a desktop's lasting notification).
+  [ -n "${TDM_MAIN_AT:-}" ] && wmctrl -i -r "$MAIN" -e "0,$TDM_MAIN_AT,-1,-1"
   sleep 3
   # A list that looks used: finished files, one still coming in (rate-limited per connection).
   for f in big-buck-bunny-1080p.mp4:180M project-report-2026.pdf:4M holiday-photos.zip:64M \
@@ -176,21 +176,21 @@ PY
     if w=$(opened "$app" "$work/Open Movie Night.torrent"); then sleep 2; shoot "$w" add-torrent; else echo "  add-torrent: no window"; fi
     close_dialogs
   fi
-  # The tray: MDM's icon is the leftmost of the top bar's status icons that appeared with it. Its
-  # menu opens with a click; the shot is the screen's top right (MDM_TRAY_W x MDM_TRAY_H), with
-  # MDM's window hidden to the tray first, so only the desktop is behind the menu.
+  # The tray: TDM's icon is the leftmost of the top bar's status icons that appeared with it. Its
+  # menu opens with a click; the shot is the screen's top right (TDM_TRAY_W x TDM_TRAY_H), with
+  # TDM's window hidden to the tray first, so only the desktop is behind the menu.
   if want tray && [ "$mode" = light ]; then
-    tray=${MDM_TRAY_AT:-}
+    tray=${TDM_TRAY_AT:-}
     if [ -n "$tray" ]; then
       # Banners back (GNOME shows a "do not disturb" bell while they're off), then a moment.
       [ -n "$banners" ] && gsettings set org.gnome.desktop.notifications show-banners "$banners" 2>/dev/null
       "$app" /show tray >/dev/null 2>&1
       sleep 3
       xdotool mousemove ${tray% *} ${tray#* } click 1; sleep 2
-      grab $((SW - ${MDM_TRAY_W:-320})) 0 ${MDM_TRAY_W:-320} ${MDM_TRAY_H:-490} "$dir/tray.png"
+      grab $((SW - ${TDM_TRAY_W:-320})) 0 ${TDM_TRAY_W:-320} ${TDM_TRAY_H:-490} "$dir/tray.png"
       xdotool key Escape; park
     else
-      echo "  tray: MDM_TRAY_AT=\"x y\" (the icon's place in the top bar) not set"
+      echo "  tray: TDM_TRAY_AT=\"x y\" (the icon's place in the top bar) not set"
       import -silent -window root -crop "${SW}x40+0+0" +repage "$dir/topbar.png"
     fi
   fi

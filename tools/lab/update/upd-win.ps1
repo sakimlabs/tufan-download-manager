@@ -1,9 +1,9 @@
 # Update now, end to end, on Windows: the portable zip path (README.md). Off-screen test copies in
-# folders of their own (never the installed MDM), fake 9.9.9 releases signed with a throwaway key
+# folders of their own (never the installed TDM), fake 9.9.9 releases signed with a throwaway key
 # made for this run (mkrel.py), served by the lab server on 127.0.0.1. Needs a release-mode build
 # with the `test-update` feature (Install::detect says "built from source" in debug builds).
 #
-#   tools\lab\update\upd-win.ps1 -Exe target\release\misterdownloadmanager.exe -Server target\release\labserver.exe
+#   tools\lab\update\upd-win.ps1 -Exe target\release\tufan-download-manager.exe -Server target\release\labserver.exe
 #   ... -Only good,bad-hash         some scenarios
 #   ... -Shots -ShotDir <folder>    also Download complete and "Installing the update..." in
 #                                   en, de, ar, light and dark (the scenarios still run first)
@@ -72,7 +72,7 @@ $asset = "MisterDownloadManager-9.9.9-portable.zip"
 function Release([string]$name, [string[]]$more) {
   $out = "$Work\rel-$name"
   & python "$PSScriptRoot\mkrel.py" --keys $keys --out $out --base $base --asset $asset --kind zip `
-    --program $Exe --program-name misterdownloadmanager.exe @more | ForEach-Object { Log "  $_" }
+    --program $Exe --program-name tufan-download-manager.exe @more | ForEach-Object { Log "  $_" }
   if ($LASTEXITCODE) { throw "mkrel.py failed" }
   $out
 }
@@ -90,7 +90,7 @@ function Run([string]$name, [string]$relDir, [int]$hold = 0, [string]$close = ""
              [bool]$dark = $false, [bool]$shots = $false) {
   $w = "$Work\$name"; $copy = "$w\copy"
   New-Item -ItemType Directory -Force "$copy\data", "$w\Downloads" | Out-Null
-  Copy-Item $Exe "$copy\misterdownloadmanager.exe"
+  Copy-Item $Exe "$copy\tufan-download-manager.exe"
   # The settings every run starts from (docs-shots.ps1's), written by Python: exact JSON, no BOM.
   @'
 import json, sys
@@ -108,21 +108,21 @@ json.dump({"next_id": 1, "items": [], "version": 2, "settings": s}, open(path, "
   if ($close -eq "download") {
     $slow = Start-Process -PassThru -WindowStyle Hidden python -ArgumentList "`"$PSScriptRoot\slowserve.py`"", "`"$relDir`"", "$SlowPort", "1000000"
   }
-  $env:MDM_OFFSCREEN = "1"
-  $env:MDM_UPDATE_FEED = "$base/latest.json"
-  $env:MDM_TEST_UPDATE_KEY = $key
-  if ($hold) { $env:MDM_TEST_UPDATE_HOLD = "$hold" } else { Remove-Item Env:MDM_TEST_UPDATE_HOLD -ErrorAction SilentlyContinue }
+  $env:TDM_OFFSCREEN = "1"
+  $env:TDM_UPDATE_FEED = "$base/latest.json"
+  $env:TDM_TEST_UPDATE_KEY = $key
+  if ($hold) { $env:TDM_TEST_UPDATE_HOLD = "$hold" } else { Remove-Item Env:TDM_TEST_UPDATE_HOLD -ErrorAction SilentlyContinue }
   $r = @{ started = $false; oldEnded = $false; marker = $false }
   try {
-    $app = Start-Process -PassThru "$copy\misterdownloadmanager.exe"
+    $app = Start-Process -PassThru "$copy\tufan-download-manager.exe"
     $main = $null
     for ($i = 0; $i -lt 200 -and -not $main; $i++) { Start-Sleep -Milliseconds 100; $main = [UW]::Of([uint32]$app.Id) | Select-Object -First 1 }
-    if (-not $main) { throw "$name`: MDM showed no window" }
+    if (-not $main) { throw "$name`: TDM showed no window" }
     Start-Sleep 2
     $suffix = "$lang-" + $(if ($dark) { "dark" } else { "light" })
     if ($shots) {
       $before = [UW]::Of([uint32]$app.Id) | ForEach-Object { $_.Key }
-      & "$copy\misterdownloadmanager.exe" /d "http://127.0.0.1:$Port/gen/2M/holiday-photos.zip" /p "$w\Downloads" /n | Out-Null
+      & "$copy\tufan-download-manager.exe" /d "http://127.0.0.1:$Port/gen/2M/holiday-photos.zip" /p "$w\Downloads" /n | Out-Null
       Start-Sleep 4
       $dc = [UW]::Of([uint32]$app.Id) | Where-Object { $before -notcontains $_.Key } | Select-Object -Last 1
       & "$root\tools\lab\cap-own.ps1" -ProcessId $app.Id -Title $dc.Value -Out "$ShotDir\download-complete-$suffix.png" | Out-Null
@@ -131,12 +131,12 @@ json.dump({"next_id": 1, "items": [], "version": 2, "settings": s}, open(path, "
       Start-Sleep 1
     }
     $before = [UW]::Of([uint32]$app.Id) | ForEach-Object { $_.Key }
-    & "$copy\misterdownloadmanager.exe" /show updates | Out-Null
+    & "$copy\tufan-download-manager.exe" /show updates | Out-Null
     $upd = $null
     for ($i = 0; $i -lt 150 -and -not $upd; $i++) { Start-Sleep -Milliseconds 100; $upd = [UW]::Of([uint32]$app.Id) | Where-Object { $before -notcontains $_.Key } | Select-Object -First 1 }
     if (-not $upd) { throw "$name`: no update window" }
     Start-Sleep 2
-    & "$copy\misterdownloadmanager.exe" /show update-now | Out-Null
+    & "$copy\tufan-download-manager.exe" /show update-now | Out-Null
     Log "  Update now pressed ($($upd.Value))"
     if ($close -eq "download") {
       Start-Sleep -Milliseconds 1500
@@ -159,7 +159,7 @@ json.dump({"next_id": 1, "items": [], "version": 2, "settings": s}, open(path, "
     while ((Get-Date) -lt $deadline) {
       if (-not $r.oldEnded -and $app.HasExited) { $r.oldEnded = $true; Log "  the old copy ended" }
       if (-not $r.started) {
-        $new = Get-CimInstance Win32_Process -Filter "Name='misterdownloadmanager.exe'" | Where-Object { $_.CommandLine -like "*$copy*" -and $_.CommandLine -like "*/updated*" }
+        $new = Get-CimInstance Win32_Process -Filter "Name='tufan-download-manager.exe'" | Where-Object { $_.CommandLine -like "*$copy*" -and $_.CommandLine -like "*/updated*" }
         if ($new) { $r.started = $true; Log "  a new copy started: $($new.CommandLine)" }
       }
       if ($r.oldEnded -and $r.started) { break }
@@ -173,12 +173,12 @@ json.dump({"next_id": 1, "items": [], "version": 2, "settings": s}, open(path, "
     Log "  folder: $((Get-ChildItem $copy -Name) -join ', ')"
     return $r
   } finally {
-    Get-CimInstance Win32_Process -Filter "Name='misterdownloadmanager.exe'" | Where-Object { $_.CommandLine -like "*$copy*" } |
+    Get-CimInstance Win32_Process -Filter "Name='tufan-download-manager.exe'" | Where-Object { $_.CommandLine -like "*$copy*" } |
       ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
     if ($app -and -not $app.HasExited) { Stop-Process -Id $app.Id -Force -ErrorAction SilentlyContinue }
     Stop-Process -Id $srv.Id -Force -ErrorAction SilentlyContinue
     if ($slow) { Stop-Process -Id $slow.Id -Force -ErrorAction SilentlyContinue }
-    Remove-Item Env:MDM_OFFSCREEN, Env:MDM_UPDATE_FEED, Env:MDM_TEST_UPDATE_KEY, Env:MDM_TEST_UPDATE_HOLD -ErrorAction SilentlyContinue
+    Remove-Item Env:TDM_OFFSCREEN, Env:TDM_UPDATE_FEED, Env:TDM_TEST_UPDATE_KEY, Env:TDM_TEST_UPDATE_HOLD -ErrorAction SilentlyContinue
     Start-Sleep 1
   }
 }

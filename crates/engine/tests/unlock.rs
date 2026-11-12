@@ -7,10 +7,10 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
 use futures::future::BoxFuture;
-use mdm_engine::{
+use tdm_engine::{
     Destination, Download, Error, Options, Refusal, Request, ServiceFault, Unlocked, Unlocker,
 };
-use mdm_labserver::{Config, LabServer, content};
+use tdm_labserver::{Config, LabServer, content};
 use reqwest::header::{COOKIE, HeaderMap, HeaderValue};
 use tokio_util::sync::CancellationToken;
 use url::Url;
@@ -193,7 +193,7 @@ async fn an_expired_direct_link_is_unlocked_again_and_the_download_completes() {
         );
         if matches!(
             s.state,
-            mdm_engine::download::State::Done | mdm_engine::download::State::Failed
+            tdm_engine::download::State::Done | tdm_engine::download::State::Failed
         ) {
             break;
         }
@@ -271,7 +271,7 @@ async fn the_look_names_and_sizes_the_file_through_the_service() {
             chunks: None,
         },
     );
-    let info = mdm_engine::probe(
+    let info = tdm_engine::probe(
         "http://hoster.test/file/xyz/name.bin".parse().unwrap(),
         HeaderMap::new(),
         &options(u),
@@ -325,7 +325,7 @@ async fn a_download_begun_directly_continues_through_the_service_once_set_to() {
         hosts,
         ..options(u.clone())
     };
-    let state = mdm_engine::state::state_path(&file);
+    let state = tdm_engine::state::state_path(&file);
     let out = Download::resume(state, HeaderMap::new(), opts)
         .unwrap()
         .wait()

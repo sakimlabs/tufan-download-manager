@@ -1,9 +1,9 @@
 //! The end-to-end test's program (tests/e2e.rs): `crashy <freeze|panic|crash> <data dir>` starts
-//! its monitor (itself with `--crash-monitor`), attaches the crash handler as MDM does, and then
+//! its monitor (itself with `--crash-monitor`), attaches the crash handler as TDM does, and then
 //! freezes its main thread, panics, or crashes. The monitor writes the dump and the report
 //! (`<data>/crashes/*.txt`) and exits when this process is gone.
 //!
-//! Test code: it may use `unsafe` (the crash handler, a null write, the thread id), MDM's own code
+//! Test code: it may use `unsafe` (the crash handler, a null write, the thread id), TDM's own code
 //! keeps that in win32.rs / unix.rs.
 #![allow(unsafe_code)]
 
@@ -11,14 +11,14 @@ use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use mdm_crash::client::Reporter;
-use mdm_crash::crash_handler::{CrashEventResult, CrashHandler, make_crash_event};
-use mdm_crash::monitor::{self, Event};
-use mdm_crash::protocol::{Freeze, Panic, Session};
+use tdm_crash::client::Reporter;
+use tdm_crash::crash_handler::{CrashEventResult, CrashHandler, make_crash_event};
+use tdm_crash::monitor::{self, Event};
+use tdm_crash::protocol::{Freeze, Panic, Session};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    if let Some(m) = mdm_crash::MonitorArgs::parse(&args) {
+    if let Some(m) = tdm_crash::MonitorArgs::parse(&args) {
         run_monitor(m);
         return;
     }
@@ -125,7 +125,7 @@ fn os_thread_id() -> u32 {
     0
 }
 
-fn run_monitor(m: mdm_crash::MonitorArgs) {
+fn run_monitor(m: tdm_crash::MonitorArgs) {
     let (tx, rx) = std::sync::mpsc::channel();
     let (socket, data) = (m.socket.clone(), m.data.clone());
     let failed = tx.clone();
@@ -138,7 +138,7 @@ fn run_monitor(m: mdm_crash::MonitorArgs) {
         match e {
             Event::Dump { path, kind, notes } => {
                 // The example's own debug info is beside it (no .sym store needed).
-                mdm_crash::report::make(Some(&path), kind, notes, &m.data, &[]);
+                tdm_crash::report::make(Some(&path), kind, notes, &m.data, &[]);
             }
             Event::DumpFailed { error, .. } => eprintln!("monitor: dump failed: {error}"),
             Event::Recovered => {}

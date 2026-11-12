@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Kazakh: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Kazakh: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 жойылуда.
 
 [CustomMessages]
 TaskBrowser=Шолушы интеграциясын орнату (&Chrome, Edge, Brave, Firefox)
-TaskTorrents=.&torrent файлдарын және магниттік сілтемелерді Mister Download Manager арқылы ашу
-TaskStartup=&Windows іске қосылғанда Mister Download Manager іске қосу
+TaskTorrents=.&torrent файлдарын және магниттік сілтемелерді Tufan Download Manager арқылы ашу
+TaskStartup=&Windows іске қосылғанда Tufan Download Manager іске қосу
 TaskGroupOther=Басқа:
-Launch=Mister Download Manager іске қосу
+Launch=Tufan Download Manager іске қосу
 KeepData=Жүктеп алу тізіміңіз бен параметрлеріңізді де жою керек пе?%n%nЖүктеп алынған файлдарыңызға ешқандай жағдайда қол тигізілмейді.

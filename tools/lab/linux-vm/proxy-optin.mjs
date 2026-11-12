@@ -8,7 +8,7 @@ import path from "node:path";
 import { spawn, execFileSync } from "node:child_process";
 
 const xpi = path.resolve(process.argv[2]);
-const ID = "integration@misterdownloadmanager.com";
+const ID = "integration@tufan-download-manager.com";
 const UUID = "5d0c3b8e-7a51-4c1e-9f0a-38e2c4a1d7b6";
 const NL = String.fromCharCode(10);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -42,7 +42,7 @@ class Bidi {
   }
 }
 
-const profile = path.join(process.env.HOME, "snap/firefox/common/mdm-proxy-optin");
+const profile = path.join(process.env.HOME, "snap/firefox/common/tdm-proxy-optin");
 // A Firefox left from an earlier run would keep the profile locked.
 try {
   execFileSync("pkill", ["-f", "--", `-profile ${profile}`]);

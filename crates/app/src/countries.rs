@@ -1,4 +1,4 @@
-//! Country names (#140, `mdm_geo`): each country of the IP table, in the interface's
+//! Country names (#140, `tdm_geo`): each country of the IP table, in the interface's
 //! language. Written by tools/geo/countries.py (names from lipis/flag-icons, MIT).
 
 /// The name of the country with ISO 3166-1 code `code` (upper case), or None.

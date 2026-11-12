@@ -1,39 +1,39 @@
 <#
-A build from mdm-lab (WSL2) into a VirtualBox lab machine's ~/lab/bin/<label>/, so a check on a
+A build from tdm-lab (WSL2) into a VirtualBox lab machine's ~/lab/bin/<label>/, so a check on a
 real desktop (GNOME or KDE portals, the tray, real browsers) never waits for the VM to build.
 
-  tools/lab/wsl/deploy.ps1 <label> [<vm>] [-DryRun]     e.g. deploy.ps1 main mdm-ubuntu
+  tools/lab/wsl/deploy.ps1 <label> [<vm>] [-DryRun]     e.g. deploy.ps1 main tdm-ubuntu
 
-The programs are read straight from the distribution's disk (\\wsl$\mdm-lab\home\lab\lab\bin\<label>)
+The programs are read straight from the distribution's disk (\\wsl$\tdm-lab\home\lab\lab\bin\<label>)
 and copied with VBoxManage guestcontrol into a folder beside the target, then renamed into place
 (a running program or script is never overwritten half-way). The VM must be running; nothing else
-of it changes. Its account: MDM_VM_USER / MDM_VM_PASSWORD, never printed. -DryRun: what it would copy, and
+of it changes. Its account: TDM_VM_USER / TDM_VM_PASSWORD, never printed. -DryRun: what it would copy, and
 where, without calling VBoxManage (its guestcontrol copyto has no dry run of its own).
 #>
 param(
     [Parameter(Position = 0, Mandatory)] [string] $Label,
-    [Parameter(Position = 1)] [string] $Vm = 'mdm-ubuntu',
-    [string] $Distro = 'mdm-lab',
+    [Parameter(Position = 1)] [string] $Vm = 'tdm-ubuntu',
+    [string] $Distro = 'tdm-lab',
     [switch] $DryRun
 )
 $ErrorActionPreference = 'Stop'
 $vbox = Join-Path $env:ProgramFiles 'Oracle\VirtualBox\VBoxManage.exe'
 if ($Label -notmatch '^[A-Za-z0-9._-]+$') { throw "label: letters, digits, '.', '_' and '-' only" }
 
-$user = $env:MDM_VM_USER; $pass = $env:MDM_VM_PASSWORD
-# Or a local file outside the repository, like the other developer keys (%USERPROFILE%\.mdm-dev).
-$keys = Join-Path $env:USERPROFILE '.mdm-dev\vm-account.txt'
+$user = $env:TDM_VM_USER; $pass = $env:TDM_VM_PASSWORD
+# Or a local file outside the repository, like the other developer keys (%USERPROFILE%\.tdm-dev).
+$keys = Join-Path $env:USERPROFILE '.tdm-dev\vm-account.txt'
 if ((-not $user -or -not $pass) -and (Test-Path $keys)) {
     foreach ($line in Get-Content $keys) {
         if (-not $user -and $line -match '^\s*user:\s*(\S+)') { $user = $Matches[1] }
         if (-not $pass -and $line -match '^\s*password:\s*(\S+)') { $pass = $Matches[1] }
     }
 }
-if (-not $user -or -not $pass) { throw "no VM account: set MDM_VM_USER and MDM_VM_PASSWORD" }
+if (-not $user -or -not $pass) { throw "no VM account: set TDM_VM_USER and TDM_VM_PASSWORD" }
 $auth = @('--username', $user, '--password', $pass)
 
 $src = "\\wsl$\$Distro\home\lab\lab\bin\$Label"
-if (-not (Test-Path "$src\misterdownloadmanager")) { throw "no build $Label in $Distro (tools/lab/wsl/build.sh)" }
+if (-not (Test-Path "$src\tufan-download-manager")) { throw "no build $Label in $Distro (tools/lab/wsl/build.sh)" }
 
 function Invoke-Guest([string] $Command) {
     & $vbox guestcontrol $Vm run --exe /bin/bash @auth --wait-stdout --wait-stderr -- -c $Command

@@ -1,12 +1,12 @@
 #!/bin/bash
-# A torrent in MDM's list without any network: a .torrent made here for a local file (no trackers),
+# A torrent in TDM's list without any network: a .torrent made here for a local file (no trackers),
 # the torrent network off (no DHT, UPnP, local discovery, incoming connections), added through a
 # second launch; Add torrent shows, then is confirmed. For the torrent windows' and menus' checks.
-#   torrent-menu.sh <label> add       start MDM, open Add torrent for the lab torrent (prints its frame)
+#   torrent-menu.sh <label> add       start TDM, open Add torrent for the lab torrent (prints its frame)
 #   torrent-menu.sh <label> confirm   press Add torrent's default button
 . ~/lab/env.sh
-app=$HOME/lab/bin/$1/misterdownloadmanager
-data=$HOME/.local/share/misterdownloadmanager
+app=$HOME/lab/bin/$1/tufan-download-manager
+data=$HOME/.local/share/tufan-download-manager
 dir=$HOME/lab/t177
 frame() {
   local w=$1

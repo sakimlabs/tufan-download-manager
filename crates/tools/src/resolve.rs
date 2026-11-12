@@ -350,7 +350,7 @@ pub const MP3: &str = "mp3:";
 pub const MP3_RATES: [u32; 4] = [320, 256, 192, 128];
 
 /// yt-dlp's `--audio-quality` for an MP3 choice's `<kbps>` (`MP3`): `0` (the best variable
-/// bitrate) or a bitrate MDM offers, written exactly (`192`, not `+192` or `0192`); none for
+/// bitrate) or a bitrate TDM offers, written exactly (`192`, not `+192` or `0192`); none for
 /// anything else.
 pub fn mp3_quality(selector: &str) -> Option<String> {
     let kbps = selector.strip_prefix(MP3)?;
@@ -676,7 +676,7 @@ mod tests {
         assert_eq!(plain[0].selector, "b[height=360]");
     }
 
-    /// Live (#352): `MDM_LIVE_YTDLP=<yt-dlp> MDM_LIVE_PAGE=<video page> cargo test -p mdm-tools
+    /// Live (#352): `TDM_LIVE_YTDLP=<yt-dlp> TDM_LIVE_PAGE=<video page> cargo test -p tdm-tools
     /// live_look_up -- --ignored --nocapture`. A look-up given cookies; with a yt-dlp that fails
     /// the way a signed-in session does (a wrapper forcing `web_embedded,tv_samsung,web` when it
     /// sees `--cookies`), the second look-up, without them, lists the page's videos.
@@ -684,8 +684,8 @@ mod tests {
     #[ignore]
     fn live_look_up_with_cookies() {
         let exe =
-            std::path::PathBuf::from(std::env::var("MDM_LIVE_YTDLP").expect("MDM_LIVE_YTDLP"));
-        let page = std::env::var("MDM_LIVE_PAGE").expect("MDM_LIVE_PAGE");
+            std::path::PathBuf::from(std::env::var("TDM_LIVE_YTDLP").expect("TDM_LIVE_YTDLP"));
+        let page = std::env::var("TDM_LIVE_PAGE").expect("TDM_LIVE_PAGE");
         let browser = proc::FromBrowser {
             cookies: Some("YSC=test".into()),
             ..Default::default()

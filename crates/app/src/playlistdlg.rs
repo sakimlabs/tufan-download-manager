@@ -1,5 +1,5 @@
 //! A playlist's or a channel's videos in Download video from a page (#69): listed as they come
-//! (mdm_tools::playlist, streamed and bounded), shown as a checklist, one quality for all, added
+//! (tdm_tools::playlist, streamed and bounded), shown as a checklist, one quality for all, added
 //! as one download each, in a folder named after the list.
 //!
 //! Built for lists of six and of six thousand alike: the entries arrive in the background and
@@ -10,8 +10,8 @@
 use std::path::{Path, PathBuf};
 
 use egui::{Pos2, Ui, pos2};
-use mdm_tools::playlist::{Entry, Listing, PAGE};
-use mdm_tools::resolve::ListPage;
+use tdm_tools::playlist::{Entry, Listing, PAGE};
+use tdm_tools::resolve::ListPage;
 
 use crate::dialogs::{Confirm, Outcome};
 use crate::winui::{self, ButtonKind, r};
@@ -33,7 +33,7 @@ pub struct PlaylistAdd {
     pub category: crate::model::Category,
     pub start_now: bool,
     /// What the browser's request for the page carried, for each look-up.
-    pub context: mdm_ipc::Command,
+    pub context: tdm_ipc::Command,
 }
 
 /// One of the qualities offered for a whole list (its videos aren't looked up one by one).
@@ -45,7 +45,7 @@ struct Pick {
 
 impl Pick {
     fn sound_only(&self) -> bool {
-        mdm_tools::resolve::sound_only(&self.selector, self.ext)
+        tdm_tools::resolve::sound_only(&self.selector, self.ext)
     }
 }
 
@@ -84,7 +84,7 @@ fn picks(merge: bool) -> Vec<Pick> {
     });
     // MP3 (ffmpeg converts it), as a single video offers it: VBR, then each bitrate.
     if merge {
-        use mdm_tools::resolve::{AUDIO_ONLY, MP3, MP3_RATES};
+        use tdm_tools::resolve::{AUDIO_ONLY, MP3, MP3_RATES};
         let vbr = std::iter::once((format!("{AUDIO_ONLY} MP3 VBR"), 0));
         let rates = MP3_RATES
             .into_iter()
@@ -98,7 +98,7 @@ fn picks(merge: bool) -> Vec<Pick> {
         }
         // Opus (YouTube's own moved into an .opus file) and FLAC, as a single video offers
         // them (#70).
-        use mdm_tools::resolve::{FLAC, OPUS};
+        use tdm_tools::resolve::{FLAC, OPUS};
         for (label, selector, ext) in [
             (format!("{AUDIO_ONLY} OPUS"), OPUS, "opus"),
             (format!("{AUDIO_ONLY} FLAC"), FLAC, "flac"),
@@ -116,7 +116,7 @@ fn picks(merge: bool) -> Vec<Pick> {
 pub struct PlaylistView {
     exe: PathBuf,
     page: String,
-    browser: mdm_tools::proc::FromBrowser,
+    browser: tdm_tools::proc::FromBrowser,
     title: String,
     /// The list's size, when the site says.
     total: Option<u64>,
@@ -145,7 +145,7 @@ impl PlaylistView {
     pub fn start(
         exe: &Path,
         page: &str,
-        browser: mdm_tools::proc::FromBrowser,
+        browser: tdm_tools::proc::FromBrowser,
         list: ListPage,
     ) -> Self {
         let mut v = PlaylistView {
@@ -268,9 +268,9 @@ impl PlaylistView {
             let n = self.entries.len();
             self.capped |= p.capped;
             // More to list: a channel's page that came full (or broke off), a list short of the
-            // size the site says (yt-dlp failed part-way). Never past MDM's most.
+            // size the site says (yt-dlp failed part-way). Never past TDM's most.
             let page_full = self.taken as u64 >= PAGE && self.total.is_none_or(|t| (n as u64) < t);
-            self.more = n < mdm_tools::playlist::MAX_ENTRIES
+            self.more = n < tdm_tools::playlist::MAX_ENTRIES
                 && if self.paged {
                     page_full || p.error.is_some()
                 } else {
@@ -395,18 +395,18 @@ impl PlaylistView {
         winui::readable(ui, rc, "playlist-status", &status);
     }
 
-    /// Why nothing is listed, or that the list was cut at the most MDM lists.
+    /// Why nothing is listed, or that the list was cut at the most TDM lists.
     fn notes(&self, ui: &mut Ui, o: Pos2) {
         let p = ui.painter().clone();
         let (text, color) = if let Some(e) = &self.error {
             (e.clone(), winui::ERROR())
         } else if self.capped {
             let text = crate::i18n::fmt(
-                // i18n: in Download video, a list longer than MDM lists: only its first {n} videos are shown
+                // i18n: in Download video, a list longer than TDM lists: only its first {n} videos are shown
                 crate::i18n::t("Only the first {n} videos are listed."),
                 &[(
                     "n",
-                    &crate::i18n::integer(mdm_tools::playlist::MAX_ENTRIES as u64),
+                    &crate::i18n::integer(tdm_tools::playlist::MAX_ENTRIES as u64),
                 )],
             );
             (text, winui::MUTED())
@@ -448,7 +448,7 @@ impl PlaylistView {
                 let mut on = checked[i];
                 let len = e
                     .duration
-                    .map(mdm_tools::playlist::clock)
+                    .map(tdm_tools::playlist::clock)
                     .unwrap_or_default();
                 look.name = if len.is_empty() {
                     e.title.clone()
@@ -564,7 +564,7 @@ impl PlaylistView {
             {
                 l.cancel();
                 // Those listed stay, and the listing can go on from there.
-                self.more = self.entries.len() < mdm_tools::playlist::MAX_ENTRIES
+                self.more = self.entries.len() < tdm_tools::playlist::MAX_ENTRIES
                     && (self.paged || self.short());
             }
         } else if self.more
@@ -651,7 +651,7 @@ impl PlaylistView {
         folder: &Path,
         merge: bool,
         start_now: bool,
-        context: &mdm_ipc::Command,
+        context: &tdm_ipc::Command,
         category: crate::model::Category,
     ) -> PlaylistAdd {
         let picks = picks(merge);
@@ -667,7 +667,7 @@ impl PlaylistView {
             entries,
             selector: pick.selector.clone(),
             ext: pick.ext,
-            folder: folder.join(mdm_engine::naming::sanitize(&self.title)),
+            folder: folder.join(tdm_engine::naming::sanitize(&self.title)),
             category,
             start_now,
             context: context.clone(),

@@ -25,8 +25,8 @@
         "default_popup": "popup.html",
         "default_title": "__MSG_name__",
         "default_icon": {
-            "16": "icons/icon-16.png",
-            "32": "icons/icon-32.png"
+            "16": "icons/tdm-icon-16.png",
+            "32": "icons/tdm-icon-32.png"
         }
     },
     "content_scripts": [
@@ -52,10 +52,10 @@
         }
     ],
     "icons": {
-        "16": "icons/icon-16.png",
-        "32": "icons/icon-32.png",
-        "48": "icons/icon-48.png",
-        "128": "icons/icon-128.png"
+        "16": "icons/tdm-icon-16.png",
+        "32": "icons/tdm-icon-32.png",
+        "48": "icons/tdm-icon-48.png",
+        "128": "icons/tdm-icon-128.png"
     },
     "browser_specific_settings": {
         "safari": {

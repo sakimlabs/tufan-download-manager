@@ -9,7 +9,7 @@ use crate::{
 
 pub struct TorrentFiles {
     pub id: u64,
-    rows: Vec<(usize, mdm_torrent::FileEntry, bool, u64)>,
+    rows: Vec<(usize, tdm_torrent::FileEntry, bool, u64)>,
     base: PathBuf,
     complete: bool,
     pending: Option<(Vec<usize>, bool, u64)>,
@@ -39,7 +39,7 @@ impl TorrentFiles {
         } else {
             let bytes = std::fs::read(crate::torrents::torrent_file(&spec.hash)?).ok()?;
             (
-                mdm_torrent::files_from_bytes(&bytes).ok()?,
+                tdm_torrent::files_from_bytes(&bytes).ok()?,
                 spec.files.clone(),
                 None,
             )
@@ -67,7 +67,7 @@ impl TorrentFiles {
             .collect();
         let total: u64 = rows
             .iter()
-            .map(|r: &(usize, mdm_torrent::FileEntry, bool, u64)| r.1.size)
+            .map(|r: &(usize, tdm_torrent::FileEntry, bool, u64)| r.1.size)
             .sum();
         let heading = format!(
             "{}  ({}, {})",

@@ -1,13 +1,13 @@
 //! AllDebrid's real API with its public demo key (`staticDemoApikeyPrem`, from its documentation:
 //! "The endpoints will respond with demo static data when called with the following static
 //! apikeys"). No account, nothing bought, nothing downloaded from a file host: it checks that
-//! MDM reads the real service's answers. Run by hand:
-//! `cargo test -p mdm-debrid --test alldebrid_real -- --ignored --nocapture`.
+//! TDM reads the real service's answers. Run by hand:
+//! `cargo test -p tdm-debrid --test alldebrid_real -- --ignored --nocapture`.
 
 use std::sync::Arc;
 
-use mdm_debrid::{Account, Credential, Debrid, Http, ServiceKind, Services, check, signin};
-use mdm_engine::Options;
+use tdm_debrid::{Account, Credential, Debrid, Http, ServiceKind, Services, check, signin};
+use tdm_engine::Options;
 use tokio_util::sync::CancellationToken;
 
 const DEMO: &str = "staticDemoApikeyPrem";

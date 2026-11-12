@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Malayalam: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Malayalam: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 അൺഇൻസ്റ്റാൾ ചെ�
 
 [CustomMessages]
 TaskBrowser=ബ്രൗസർ സംയോജനം (&B) സജ്ജീകരിക്കുക (Chrome, Edge, Brave, Firefox)
-TaskTorrents=.&torrent ഫയലുകളും മാഗ്നറ്റ് ലിങ്കുകളും Mister Download Manager ഉപയോഗിച്ച് തുറക്കുക
-TaskStartup=&Windows ആരംഭിക്കുമ്പോൾ Mister Download Manager ആരംഭിക്കുക
+TaskTorrents=.&torrent ഫയലുകളും മാഗ്നറ്റ് ലിങ്കുകളും Tufan Download Manager ഉപയോഗിച്ച് തുറക്കുക
+TaskStartup=&Windows ആരംഭിക്കുമ്പോൾ Tufan Download Manager ആരംഭിക്കുക
 TaskGroupOther=മറ്റുള്ളവ:
-Launch=Mister Download Manager ആരംഭിക്കുക
+Launch=Tufan Download Manager ആരംഭിക്കുക
 KeepData=നിങ്ങളുടെ ഡൗൺലോഡ് ലിസ്റ്റും ക്രമീകരണങ്ങളും ഇല്ലാതാക്കണോ?%n%nനിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ ഒരു തരത്തിലും സ്പർശിക്കില്ല.

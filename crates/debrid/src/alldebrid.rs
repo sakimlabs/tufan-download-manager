@@ -1,5 +1,5 @@
 //! AllDebrid's API v4 / v4.1, as documented at <https://docs.alldebrid.com/> (read 2026-11-05).
-//! Only what MDM uses: the account, the supported domains, unlocking a link (and its delayed
+//! Only what TDM uses: the account, the supported domains, unlocking a link (and its delayed
 //! flow), and sign-in by PIN.
 //!
 //! - Every call carries `Authorization: Bearer <apikey>`; no `agent` parameter (the changelog of
@@ -32,9 +32,9 @@ struct ErrorBody {
     message: String,
 }
 
-/// What an error code means for MDM (the documentation's list of codes).
+/// What an error code means for TDM (the documentation's list of codes).
 pub(crate) fn fault_of(code: &str, message: &str) -> Fault {
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
     Fault::Service(match code {
         "AUTH_MISSING_APIKEY" | "AUTH_BAD_APIKEY" | "AUTH_MISSING_AGENT" | "AUTH_BAD_AGENT" => {
             F::SignIn
@@ -66,7 +66,7 @@ fn read<T: serde::de::DeserializeOwned>(
     body: &[u8],
     retry: Option<u64>,
 ) -> Result<T, Fault> {
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
     if status == 429 || status == 503 {
         return Err(Fault::Service(F::TooManyRequests(
             retry.map(std::time::Duration::from_secs),
@@ -76,7 +76,7 @@ fn read<T: serde::de::DeserializeOwned>(
         return Err(Fault::Service(if status >= 500 {
             F::ServiceDown
         } else {
-            F::Other("an answer MDM can't read".into())
+            F::Other("an answer TDM can't read".into())
         }));
     };
     match (e.status.as_str(), e.data, e.error) {
@@ -223,7 +223,7 @@ pub(crate) async fn add_magnet(http: &Http, key: &str, magnet: &str) -> Result<S
     match u.magnets.into_iter().next() {
         Some(One { id: Some(id), .. }) => Ok(id.to_string()),
         Some(One { error: Some(e), .. }) => Err(fault_of(&e.code, &e.message)),
-        _ => Err(Fault::Service(mdm_engine::ServiceFault::ServiceDown)),
+        _ => Err(Fault::Service(tdm_engine::ServiceFault::ServiceDown)),
     }
 }
 
@@ -256,7 +256,7 @@ pub(crate) async fn magnet_status(
         OneOrMany::Many(v) => v
             .into_iter()
             .next()
-            .ok_or(Fault::Service(mdm_engine::ServiceFault::FileUnavailable))?,
+            .ok_or(Fault::Service(tdm_engine::ServiceFault::FileUnavailable))?,
     };
     if let Some(s) = crate::torrents::ad_status(&m) {
         return Ok(s);
@@ -275,7 +275,7 @@ pub(crate) async fn magnet_status(
     let url = http.services.ad.join("v4/magnet/files").expect("relative");
     let f: Files = call(http, http.post_form(&url, &[("id[]", id)]).bearer_auth(key)).await?;
     let Some(of) = f.magnets.into_iter().next() else {
-        return Err(Fault::Service(mdm_engine::ServiceFault::FileUnavailable));
+        return Err(Fault::Service(tdm_engine::ServiceFault::FileUnavailable));
     };
     if let Some(e) = of.error {
         return Err(fault_of(&e.code, &e.message));
@@ -300,7 +300,7 @@ pub(crate) async fn magnet_delete(http: &Http, key: &str, id: &str) -> Result<()
 #[cfg(test)]
 mod tests {
     use super::*;
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
 
     #[test]
     fn the_documented_envelopes_read() {

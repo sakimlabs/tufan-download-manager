@@ -1,4 +1,4 @@
-//! The only Windows FFI in Mister Download Manager (D-008): IDM's dialog frame for our dialog windows, and the
+//! The only Windows FFI in Tufan Download Manager (D-008): IDM's dialog frame for our dialog windows, and the
 //! shell's own small file-type icons (the ones Explorer and IDM show — Windows' artwork, not IDM's),
 //! and the drop target's OLE `IDropTarget` (`ole`).
 #![allow(unsafe_code)]
@@ -174,8 +174,8 @@ fn own_window(title: &str, known: Option<HWND>) -> Option<HWND> {
 
 /// The address a connection to `dst` would leave from (PAC's `myIpAddress`), asked of the
 /// routing table (GetBestRoute2). No socket is opened: a UDP socket, the usual way to ask, is a
-/// listening socket to Windows' firewall, which would ask the user about MDM. Installed as the
-/// engine's lookup at start (`mdm_engine::net::set_source_lookup`); unix.rs has none (the
+/// listening socket to Windows' firewall, which would ask the user about TDM. Installed as the
+/// engine's lookup at start (`tdm_engine::net::set_source_lookup`); unix.rs has none (the
 /// engine's UDP way raises no prompt there).
 pub fn source_address(dst: std::net::IpAddr) -> Option<std::net::IpAddr> {
     use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
@@ -219,7 +219,7 @@ pub fn source_address(dst: std::net::IpAddr) -> Option<std::net::IpAddr> {
     }
 }
 
-/// Off-screen test runs (MDM_OFFSCREEN=1): every top-level window of ours gets WS_EX_NOACTIVATE,
+/// Off-screen test runs (TDM_OFFSCREEN=1): every top-level window of ours gets WS_EX_NOACTIVATE,
 /// so Windows never makes it the foreground window, whatever asks (a click, a dialog coming to
 /// the front, an accessibility client): the user's keystrokes stay in their own window while
 /// tests run. UI Automation still works on them (Select, Invoke, Toggle need no activation).
@@ -1373,7 +1373,7 @@ mod caption_less_tests {
             let wide: Vec<u16> = title.encode_utf16().chain(Some(0)).collect();
             // A class of its own whose procedure is the system's (a STATIC control answers
             // every hit test as transparent).
-            let class: Vec<u16> = "mdm-caption-less-test\0".encode_utf16().collect();
+            let class: Vec<u16> = "tdm-caption-less-test\0".encode_utf16().collect();
             // SAFETY: a class registered with the system's own procedure, and a hidden window
             // of it on this thread, destroyed below; the strings are NUL-terminated; plain
             // queries and messages to it.
@@ -1504,7 +1504,7 @@ mod find_own_window_tests {
     /// after its file, #540), and never by a title that only starts the same.
     #[test]
     fn a_window_is_found_by_its_whole_title_however_long() {
-        let class: Vec<u16> = "mdm-find-own-window-test\0".encode_utf16().collect();
+        let class: Vec<u16> = "tdm-find-own-window-test\0".encode_utf16().collect();
         // SAFETY: a class registered with the system's own procedure, and hidden windows of it
         // on this thread, destroyed below; the strings are NUL-terminated.
         unsafe {
@@ -1549,7 +1549,7 @@ mod find_own_window_tests {
 
     /// A hidden test window of this thread titled `title`, destroyed by the caller.
     fn test_window(title: &str) -> HWND {
-        let class: Vec<u16> = "mdm-find-own-window-test-2\0".encode_utf16().collect();
+        let class: Vec<u16> = "tdm-find-own-window-test-2\0".encode_utf16().collect();
         let t: Vec<u16> = title.encode_utf16().chain(Some(0)).collect();
         // SAFETY: a class registered with the system's own procedure (again: a no-op), and a
         // hidden window of it on this thread; the strings are NUL-terminated.
@@ -1673,7 +1673,7 @@ mod come_forward_tests {
     fn above_others_lifts_a_real_window_and_changes_nothing_else() {
         const WINIT_PROGRESS: u32 = 0x04CE_0000;
         const WINIT_EX: u32 = 0x0004_0100;
-        let class: Vec<u16> = "mdm-come-forward-test\0".encode_utf16().collect();
+        let class: Vec<u16> = "tdm-come-forward-test\0".encode_utf16().collect();
         // SAFETY: a class registered with the system's own procedure, and hidden windows of it on
         // this thread, destroyed below; the strings are NUL-terminated; plain queries, and
         // z-order changes of our own windows.
@@ -1743,7 +1743,7 @@ mod main_window_tests {
     /// the search by title still answers.
     #[test]
     fn the_known_window_wins_over_its_namesake() {
-        let class: Vec<u16> = "mdm-main-window-test ".encode_utf16().collect();
+        let class: Vec<u16> = "tdm-main-window-test ".encode_utf16().collect();
         let name = format!("mdm main window test {}", std::process::id());
         let title: Vec<u16> = name.encode_utf16().chain(Some(0)).collect();
         // SAFETY: a class registered with the system's own procedure, and hidden windows of it
@@ -1831,7 +1831,7 @@ unsafe extern "system" fn main_minimize_proc(
 }
 
 /// Keep the main window's minimize command in step with "Minimize to the notification area"
-/// (`enabled`: the option is on and a tray shows MDM's icon). Call every frame (cheap once the
+/// (`enabled`: the option is on and a tray shows TDM's icon). Call every frame (cheap once the
 /// window is found). True once after the command came: hide the window now.
 pub fn main_minimize_to_tray(ctx: &egui::Context, enabled: bool) -> bool {
     MAIN_MINIMIZE.with(|m| {
@@ -1861,7 +1861,7 @@ const TRAY_ICON_IDS: u32 = 16;
 /// empty `NIM_MODIFY` changes nothing and succeeds only for an icon the shell has, wherever it
 /// shows it: in the taskbar or in the hidden icons behind ^. Shell_NotifyIconGetRect isn't
 /// enough: it can fail for an icon behind ^ (#545, #534, #527: Windows 10 and 11, the icon
-/// there and MDM sure it had none; Windows 11 build 26200 gives such an icon the rect of ^
+/// there and TDM sure it had none; Windows 11 build 26200 gives such an icon the rect of ^
 /// itself). This fails, as that does, when Explorer isn't running or the icon was refused or
 /// lost.
 pub fn tray_icon_held(hwnd: HWND, known: Option<u32>) -> Option<u32> {
@@ -2155,8 +2155,8 @@ pub fn popup_window(title: &str, kind: Popup) -> bool {
     // SAFETY: our own window, on its thread; the subclass proc lives as long as the program;
     // the DWM attributes are read from locals during the calls.
     unsafe {
-        // Done once (comctl32 5.8, which MDM links, has no GetWindowSubclass to ask by).
-        let done: Vec<u16> = "MDM.popup\0".encode_utf16().collect();
+        // Done once (comctl32 5.8, which TDM links, has no GetWindowSubclass to ask by).
+        let done: Vec<u16> = "TDM.popup\0".encode_utf16().collect();
         if !GetPropW(hwnd, done.as_ptr()).is_null() {
             return false;
         }
@@ -2309,7 +2309,7 @@ pub fn caption_dark(title: &str, dark: bool) -> bool {
 }
 
 /// The popup menus Windows draws for us — the notification-area icon's (tray-icon's), the
-/// window menu of a drawn title bar — in MDM's mode, not Windows' (#682): dark on a dark surface
+/// window menu of a drawn title bar — in TDM's mode, not Windows' (#682): dark on a dark surface
 /// (dark mode, a dark theme), light otherwise, whatever Windows' own app mode says. Windows has
 /// no documented way: uxtheme's SetPreferredAppMode (ordinal 135, ForceDark 2 / ForceLight 3)
 /// sets the process's mode and FlushMenuThemes (ordinal 136) makes menus read it again, as the
@@ -2389,7 +2389,7 @@ fn menu_mode_fns() -> Option<MenuModeFns> {
 
 #[cfg(test)]
 mod menus_dark_tests {
-    /// #682: uxtheme has the menu mode functions on every Windows MDM is tested on (10 1903 and
+    /// #682: uxtheme has the menu mode functions on every Windows TDM is tested on (10 1903 and
     /// later, Server 2022's runner included), and setting the mode either way returns.
     #[test]
     fn the_menu_mode_functions_are_found_and_answer() {
@@ -3006,9 +3006,9 @@ pub fn windows_version() -> String {
 
 /// The default browser (#668): the program https links open with (the user's choice in Default
 /// apps, `UserChoice`'s ProgId, and that ProgId's `shell\open\command`), and its file's version.
-/// None when it isn't a browser MDM knows (MDM then speaks as Chrome).
-pub fn default_browser() -> Option<mdm_engine::agent::Found> {
-    use mdm_engine::agent::{Browser, Found};
+/// None when it isn't a browser TDM knows (TDM then speaks as Chrome).
+pub fn default_browser() -> Option<tdm_engine::agent::Found> {
+    use tdm_engine::agent::{Browser, Found};
     use windows_sys::Win32::System::Registry::HKEY_CLASSES_ROOT;
     const HTTPS: &str = r"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\https";
     // Windows 11 keeps the choice in UserChoiceLatest since 2025, its ProgId in a key of its
@@ -3164,10 +3164,10 @@ pub fn play_sound(file: &str) {
 }
 
 /// Options → General → "Launch … on startup": our entry under HKCU\…\Run (set or removed).
-/// Make MDM (on) or stop it being (off) what Windows opens magnet links and .torrent files
+/// Make TDM (on) or stop it being (off) what Windows opens magnet links and .torrent files
 /// with, for the current user (HKCU\Software\Classes; no admin). Off removes only what points
 /// at us. Windows keeps a choice the user made in "Open with" above this (it can't be set by
-/// programs), so another app chosen there stays in charge until the user picks MDM.
+/// programs), so another app chosen there stays in charge until the user picks TDM.
 pub fn set_torrent_handlers(on: bool) {
     use windows_sys::Win32::System::Registry::{
         HKEY_CURRENT_USER, REG_SZ, RRF_RT_REG_SZ, RegDeleteKeyValueW, RegDeleteTreeW, RegGetValueW,
@@ -3259,12 +3259,12 @@ pub fn set_torrent_handlers(on: bool) {
     }
 }
 
-/// The Run key's value MDM keeps its startup entry in (Options → "Launch on startup", the
+/// The Run key's value TDM keeps its startup entry in (Options → "Launch on startup", the
 /// installer's "Start when Windows starts"). An off-screen test copy never touches the user's:
-/// it uses `MDM_TEST_RUN_VALUE`'s name when given one, else none at all (#226's checks).
+/// it uses `TDM_TEST_RUN_VALUE`'s name when given one, else none at all (#226's checks).
 fn run_value() -> Option<String> {
     if crate::offscreen() {
-        return std::env::var("MDM_TEST_RUN_VALUE")
+        return std::env::var("TDM_TEST_RUN_VALUE")
             .ok()
             .filter(|v| v.starts_with("MisterDownloadManagerTest"));
     }
@@ -3273,14 +3273,14 @@ fn run_value() -> Option<String> {
 
 const RUN_KEY: &str = r"Software\Microsoft\Windows\CurrentVersion\Run";
 
-/// The startup entry's command for the program `exe`: started with the session, MDM waits in
+/// The startup entry's command for the program `exe`: started with the session, TDM waits in
 /// the notification area (`/startup`, #226).
 fn startup_command(exe: &std::path::Path) -> String {
-    format!("\"{}\" {}", exe.display(), mdm_ipc::STARTUP)
+    format!("\"{}\" {}", exe.display(), tdm_ipc::STARTUP)
 }
 
 /// A startup entry `value` (a command line) written before #226 for the program `exe`: the same
-/// program, without the argument. Another program's entry (a copy of MDM elsewhere) is not this
+/// program, without the argument. Another program's entry (a copy of TDM elsewhere) is not this
 /// one's to rewrite.
 fn startup_outdated(value: &str, exe: &std::path::Path) -> bool {
     // The program compared as Windows compares paths: in any case, either slash.
@@ -3304,10 +3304,10 @@ fn startup_outdated(value: &str, exe: &std::path::Path) -> bool {
     };
     !args
         .split_whitespace()
-        .any(|a| a.eq_ignore_ascii_case(mdm_ipc::STARTUP))
+        .any(|a| a.eq_ignore_ascii_case(tdm_ipc::STARTUP))
 }
 
-/// Is Mister Download Manager in the user's Run key (set by Options or by the installer's
+/// Is Tufan Download Manager in the user's Run key (set by Options or by the installer's
 /// "Start when Windows starts")? The registry is the truth for Options → "Launch on startup".
 pub fn run_at_startup() -> bool {
     run_value().is_some_and(|name| {
@@ -3378,24 +3378,24 @@ mod startup_tests {
     use super::{startup_command, startup_outdated};
     use std::path::Path;
 
-    const EXE: &str = r"C:\Program Files\Mister Download Manager\misterdownloadmanager.exe";
+    const EXE: &str = r"C:\Program Files\Tufan Download Manager\tufan-download-manager.exe";
 
     /// The entry Options and the installer write (#226): the program, quoted, then `/startup`.
     #[test]
-    fn the_startup_entry_starts_mdm_in_the_tray() {
+    fn the_startup_entry_starts_tdm_in_the_tray() {
         let cmd = startup_command(Path::new(EXE));
         assert_eq!(
             cmd,
             format!("\"{EXE}\" /startup"),
             "as tools/installer/mdm.iss writes it too"
         );
-        let args = mdm_ipc::parse_args(&["/startup".to_owned()]).unwrap();
+        let args = tdm_ipc::parse_args(&["/startup".to_owned()]).unwrap();
         assert!(args.startup);
         assert!(!startup_outdated(&cmd, Path::new(EXE)));
     }
 
     /// An entry of a version before 0.5.0, or of its installer, is written again; one for another
-    /// copy of MDM, or one already up to date, is left alone.
+    /// copy of TDM, or one already up to date, is left alone.
     #[test]
     fn old_startup_entries_are_rewritten() {
         let exe = Path::new(EXE);
@@ -3416,7 +3416,7 @@ mod startup_tests {
         assert!(!startup_outdated(&format!("\"{EXE}\" /STARTUP"), exe));
         // Another copy's (a portable one, a build elsewhere).
         assert!(!startup_outdated(
-            r#""D:\mdm\misterdownloadmanager.exe""#,
+            r#""D:\mdm\tufan-download-manager.exe""#,
             exe
         ));
         assert!(!startup_outdated("", exe));
@@ -4051,7 +4051,7 @@ pub mod ole {
             Some(Registration { hwnd, target })
         }
 
-        /// Off-screen test copies only (MDM_TEST_DROP, droptarget.rs): `text` dropped on the
+        /// Off-screen test copies only (TDM_TEST_DROP, droptarget.rs): `text` dropped on the
         /// window as a browser drops a link, without a mouse: a data object holding it as
         /// "UniformResourceLocatorW" goes to the drop target OLE has registered for the window
         /// (DragEnter, then Drop), as OLE's drag loop hands it. False when the window holds no
@@ -4187,15 +4187,15 @@ pub fn mark_running() {
     }
 }
 
-// ---- Crash reports (crash.rs, mdm-crash) -------------------------------------------------------
+// ---- Crash reports (crash.rs, tdm-crash) -------------------------------------------------------
 
-static CRASH_HANDLER: std::sync::OnceLock<mdm_crash::crash_handler::CrashHandler> =
+static CRASH_HANDLER: std::sync::OnceLock<tdm_crash::crash_handler::CrashHandler> =
     std::sync::OnceLock::new();
 
 /// Catch native crashes (access violations, stack overflows, … : Windows' structured exceptions)
 /// and have `reporter`'s monitor dump this process when one comes. False when it can't attach.
-pub fn attach_crash_handler(reporter: std::sync::Arc<mdm_crash::client::Reporter>) -> bool {
-    use mdm_crash::crash_handler::{CrashEventResult, CrashHandler, make_crash_event};
+pub fn attach_crash_handler(reporter: std::sync::Arc<tdm_crash::client::Reporter>) -> bool {
+    use tdm_crash::crash_handler::{CrashEventResult, CrashHandler, make_crash_event};
     // SAFETY: the closure runs in the exception's context; it only sends the dump request over
     // the already-open socket (no allocation needed by minidumper's request).
     let event = unsafe { make_crash_event(move |cc| CrashEventResult::Handled(reporter.dump(cc))) };
@@ -4214,7 +4214,7 @@ pub fn dump_now() -> bool {
     CRASH_HANDLER.get().is_some_and(|h| {
         matches!(
             h.simulate_exception(None),
-            mdm_crash::crash_handler::CrashEventResult::Handled(true)
+            tdm_crash::crash_handler::CrashEventResult::Handled(true)
         )
     })
 }
@@ -4326,7 +4326,7 @@ pub fn process_alive(pid: u32) -> bool {
     }
 }
 
-/// The command line in this windowed program (main.rs, `misterdownloadmanager-cli`'s
+/// The command line in this windowed program (main.rs, `tufan-download-manager-cli`'s
 /// launcher started it): the console it was started from, for what it prints and reads and for
 /// Ctrl+C. Input and output the launcher handed over stay as they are (a file, a pipe, the console
 /// itself); only those it didn't have get the console's. With the launcher's process id, this
@@ -4407,7 +4407,7 @@ pub fn gl_driver(gl: &eframe::glow::Context) -> String {
     format!("{renderer} ({version})")
 }
 
-/// End process `pid` (a frozen MDM the user chose to close from the crash report).
+/// End process `pid` (a frozen TDM the user chose to close from the crash report).
 pub fn end_process(pid: u32) -> bool {
     use windows_sys::Win32::Foundation::CloseHandle;
     use windows_sys::Win32::System::Threading::{OpenProcess, PROCESS_TERMINATE, TerminateProcess};
@@ -4423,7 +4423,7 @@ pub fn end_process(pid: u32) -> bool {
     }
 }
 
-/// The crash test's access violation (MDM_CRASH_TEST=1, `/show crash-test:crash`).
+/// The crash test's access violation (TDM_CRASH_TEST=1, `/show crash-test:crash`).
 pub fn crash_now() {
     // SAFETY: none: a write through a null pointer, on purpose, to test the crash reports.
     unsafe { std::ptr::write_volatile(std::ptr::null_mut::<u32>(), 1) };
@@ -4469,11 +4469,11 @@ fn reg_subkeys(root: windows_sys::Win32::System::Registry::HKEY, key: &str) -> V
 
 /// The browsers installed, by name, with their program: those Windows lists for "default
 /// browser" (StartMenuInternet, this user's then everyone's), named by their program
-/// (mdm_ipc::browsers::windows_named: Helium's chrome.exe isn't Chrome) or else by their own
+/// (tdm_ipc::browsers::windows_named: Helium's chrome.exe isn't Chrome) or else by their own
 /// display name; then the known programs registered only under the shell's App Paths (a zip or
 /// portable install). The browser extension's offer (extension.rs) opens its page in each.
 pub fn browsers() -> Vec<(String, std::path::PathBuf)> {
-    use mdm_ipc::browsers::{command_program, windows_can_run_extension, windows_named};
+    use tdm_ipc::browsers::{command_program, windows_can_run_extension, windows_named};
     use windows_sys::Win32::System::Registry::{HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE};
     const CLIENTS: &str = r"Software\Clients\StartMenuInternet";
     const APP_PATHS: &str = r"Software\Microsoft\Windows\CurrentVersion\App Paths";
@@ -4505,7 +4505,7 @@ pub fn browsers() -> Vec<(String, std::path::PathBuf)> {
             add(name.unwrap_or(sub), std::path::PathBuf::from(program));
         }
     }
-    for (exe, _, _) in mdm_ipc::browsers::WINDOWS_PROGRAMS {
+    for (exe, _, _) in tdm_ipc::browsers::WINDOWS_PROGRAMS {
         let key = format!(r"{APP_PATHS}\{exe}");
         let Some(path) = reg_string_in(HKEY_CURRENT_USER, &key, "")
             .or_else(|| reg_string_in(HKEY_LOCAL_MACHINE, &key, ""))
@@ -4579,8 +4579,8 @@ pub fn host_registration() -> crate::extension::Registration {
     use windows_sys::Win32::System::Registry::{HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE};
     let mut broken = None;
     for key in [
-        r"Software\Google\Chrome\NativeMessagingHosts\com.misterdownloadmanager.host",
-        r"Software\Mozilla\NativeMessagingHosts\com.misterdownloadmanager.host",
+        r"Software\Google\Chrome\NativeMessagingHosts\com.tufan-download-manager.host",
+        r"Software\Mozilla\NativeMessagingHosts\com.tufan-download-manager.host",
     ] {
         for root in [HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE] {
             let Some(manifest) = reg_string_in(root, key, "") else {
@@ -4590,7 +4590,7 @@ pub fn host_registration() -> crate::extension::Registration {
             if !manifest.is_file() {
                 continue;
             }
-            match mdm_ipc::browsers::manifest_program(&manifest) {
+            match tdm_ipc::browsers::manifest_program(&manifest) {
                 Some(p) if p.is_file() => return Registration::Ready,
                 Some(p) => broken = broken.or(Some(p)),
                 None => {}
@@ -4673,7 +4673,7 @@ fn blob_bytes(
 }
 
 // Sign-in secrets in Windows Credential Manager (#44, secrets.rs): generic credentials named
-// `<service>/<account>`, for this Windows user, roaming with the profile as MDM's data folder
+// `<service>/<account>`, for this Windows user, roaming with the profile as TDM's data folder
 // (%APPDATA%) does. Credential Manager (Control Panel → Credential Manager → Windows
 // Credentials) shows them, the label as their user name, and can remove them.
 
@@ -4705,7 +4705,7 @@ fn cred_not_found() -> bool {
     unsafe { GetLastError() == ERROR_NOT_FOUND }
 }
 
-/// Whether Credential Manager answers (listing MDM's own entries).
+/// Whether Credential Manager answers (listing TDM's own entries).
 pub fn keychain_probe(service: &str) -> Result<(), crate::secrets::Fault> {
     keychain_list(service).map(|_| ())
 }
@@ -4796,7 +4796,7 @@ pub fn keychain_delete(service: &str, account: &str) -> Result<(), crate::secret
     Ok(())
 }
 
-/// The accounts of `service`'s generic credentials (the filter `<service>/*`: only MDM's; the
+/// The accounts of `service`'s generic credentials (the filter `<service>/*`: only TDM's; the
 /// others' blobs are never read).
 #[allow(unsafe_code)]
 pub fn keychain_list(service: &str) -> Result<Vec<String>, crate::secrets::Fault> {
@@ -4919,16 +4919,16 @@ struct WakeCmd {
 
 /// Wake the computer at `at` (seconds since 1970, UTC; for the queue named), or cancel the wake
 /// (None). A waitable timer set to resume the computer (SetWaitableTimer, fResume): it lives in
-/// MDM's process (Windows cancels it if the thread that set it ends, so one thread of its own
-/// keeps it), lists in `powercfg /waketimers`, and goes with MDM: nothing is left behind when
-/// MDM quits or is uninstalled.
+/// TDM's process (Windows cancels it if the thread that set it ends, so one thread of its own
+/// keeps it), lists in `powercfg /waketimers`, and goes with TDM: nothing is left behind when
+/// TDM quits or is uninstalled.
 pub fn wake_at(at: Option<(i64, &str)>) -> Result<(), String> {
     use std::sync::{Mutex, OnceLock, mpsc};
     static THREAD: OnceLock<Mutex<mpsc::Sender<WakeCmd>>> = OnceLock::new();
     let tx = THREAD.get_or_init(|| {
         let (tx, rx) = mpsc::channel();
         let _ = std::thread::Builder::new()
-            .name("mdm-wake".into())
+            .name("tdm-wake".into())
             .spawn(move || wake_thread(rx));
         Mutex::new(tx)
     });

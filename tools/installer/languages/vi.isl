@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Vietnamese: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Vietnamese: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Đang gỡ cài đặt %1.
 
 [CustomMessages]
 TaskBrowser=Thiết lập tích hợp &trình duyệt (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Mở tệp .&torrent và liên kết magnet bằng Mister Download Manager
-TaskStartup=Khởi động Mister Download Manager khi &Windows khởi động
+TaskTorrents=Mở tệp .&torrent và liên kết magnet bằng Tufan Download Manager
+TaskStartup=Khởi động Tufan Download Manager khi &Windows khởi động
 TaskGroupOther=Khác:
-Launch=Khởi động Mister Download Manager
+Launch=Khởi động Tufan Download Manager
 KeepData=Bạn cũng muốn xóa danh sách tải xuống và cài đặt của mình không?%n%nCác tệp đã tải xuống của bạn sẽ không bị ảnh hưởng.

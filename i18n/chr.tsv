@@ -1,4 +1,4 @@
-# Mister Download Manager in Cherokee (ᏣᎳᎩ): tools/i18n/translate.py
+# Tufan Download Manager in Cherokee (ᏣᎳᎩ): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	ᏣᎳᎩ
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	ᏣᎪᏩᏛᏗᏍᎪ ᏣᏚᎵᎭ {n} ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Mister Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ?|ᏣᎪᏩᏛᏗᏍᎪ ᏣᏚᎵᎭ {n} ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Mister Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	ᏣᎪᏩᏛᏗᏍᎪ ᏣᏚᎵᎭ {n} ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Tufan Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ?|ᏣᎪᏩᏛᏗᏍᎪ ᏣᏚᎵᎭ {n} ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Tufan Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᎦᎶᏁᏛ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Debrid service ᏓвантаᎭ ᏗᎦᎪᏗ ᏗᏍᏆᏂᎪᏗᏍᎩ ᎤᏤᎵ ᑲᏕᎬ ᏣᏤᎵ ᎠᎫᏴᏛ ᏗᏣᏙᎳᎥᏍᏙᏗ ᎬᏗ, ᎠᎴ MDM ᎦᏯᎳᏗᏍᏗ ᑲᏕᎬ ᎠძლᎰ. ᏣᏤᎵ ᎤᏩᏒ ᏗᏣᏙᎳᎥᏍᏙᏗ ᏕᏣᏙᏔᏅᎭ: ᏗᏣᏙᎳᎥᏍᏙᏗ ᎠᎴ ᎤᏤᎵ ᑲᏕᎬᎢ ᎠᏂᏐᎢ ᏗᏁᏗ ᏗᎦᎸᏫᏍᏓᏁᏗ ᎤᏤᎵ ᏗᎧᏃᏩᏛᏍᏗ ᎠᏲᏍᏗᎭ ᎠᎴ ᎤᏂᏑᎳᎪᏙᏗ ᏱᎩ. ᏗᏓвантаᏗ ᏗᏟᎶᏍᏙᏗ ᎦᏳᎳ ᎤᎴᏅᎲᎢ ᎾᏍᎩᏯᏉ ᎨᏒᎢ.
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Debrid service ᏓвантаᎭ ᏗᎦᎪᏗ ᏗᏍᏆᏂᎪᏗᏍᎩ ᎤᏤᎵ ᑲᏕᎬ ᏣᏤᎵ ᎠᎫᏴᏛ ᏗᏣᏙᎳᎥᏍᏙᏗ ᎬᏗ, ᎠᎴ TDM ᎦᏯᎳᏗᏍᏗ ᑲᏕᎬ ᎠძლᎰ. ᏣᏤᎵ ᎤᏩᏒ ᏗᏣᏙᎳᎥᏍᏙᏗ ᏕᏣᏙᏔᏅᎭ: ᏗᏣᏙᎳᎥᏍᏙᏗ ᎠᎴ ᎤᏤᎵ ᑲᏕᎬᎢ ᎠᏂᏐᎢ ᏗᏁᏗ ᏗᎦᎸᏫᏍᏓᏁᏗ ᎤᏤᎵ ᏗᎧᏃᏩᏛᏍᏗ ᎠᏲᏍᏗᎭ ᎠᎴ ᎤᏂᏑᎳᎪᏙᏗ ᏱᎩ. ᏗᏓвантаᏗ ᏗᏟᎶᏍᏙᏗ ᎦᏳᎳ ᎤᎴᏅᎲᎢ ᎾᏍᎩᏯᏉ ᎨᏒᎢ.
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	ᏌᏉ ᎪᏪᎵ torrent ᏚᏙᎥ ᎠᏍᏆᏂᎪᏗ
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	ᏗᎦᏙᎯ ᎯᎠ ᎢᏗᏓᏟᏌᏅᎢ ᎠᎴ ᎾᎥᎢ ᏚᎾᏓᏟᏌᏅᎢ ᎥᏝ ᎢᎸᎯᏳ ᏱᏚᎾᏓᏟᏌᏅ: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	ᎤᏓᎦᎵᏍᏔᏅᎯ ᎤᏓᎷᎸᎢ
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Mister Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ
+	About Tufan Download Manager	Tufan Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Mister Download Manager ᎢᏣᎳᎩᏍᎩ ᏗᏟᎶᏍᏔᏅᎯ ᏗᎪᏪᎵ
+	Add Tufan Download Manager to your browser	Tufan Download Manager ᎢᏣᎳᎩᏍᎩ ᏗᏟᎶᏍᏔᏅᎯ ᏗᎪᏪᎵ
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	ᏃᎮᏛ.
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	ᏃᎮᏛ. MDM ᏓᎪᎵᏰᎠ ᎤᏃᎴᎢ: ᏂᎪᎯᎸᎾ ᏓᎪᏢᏂ.
+	Added. TDM is reading the torrent: it joins the list in a moment.	ᏃᎮᏛ. TDM ᏓᎪᎵᏰᎠ ᎤᏃᎴᎢ: ᏂᎪᎯᎸᎾ ᏓᎪᏢᏂ.
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	ᎢᎬᏱ ᎦᎴᏴᏍᏔᏅᎯ ᎾᏍᎩ ᎤᎾᏕᏯᏔᏛᎢ #{number}: {title}
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	ᎠᎴ ᎦᎸᎳᏗᏢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ (.dmp): ᎾᏍᎩ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ, ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ, ᎠᎴ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	ᏂᎪᎯᎸᎢ ᎢᏗᎦᎴᏴᏔᏅᎯ ᏚᏙᎥ ᎢᏗᎦᎴᏴᏔᏅᎯ
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	ᏂᎪᎯᎸ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Mister Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ
+	Always turn on Speed Limiter on Tufan Download Manager startup	ᏂᎪᎯᎸ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Tufan Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	ᏣᎪᏩᏛᏗᏍᎪ ᏣᏚᎵᎭ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ "{name}" ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Mister Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	ᏣᎪᏩᏛᏗᏍᎪ ᏣᏚᎵᎭ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ "{name}" ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ Tufan Download Manager ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎦᎸᎠᏗ?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	ᎠᏍᏟᏯ
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	ᎪᎯᎨ
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	ᏉᏍᏂᎠ ᎠᎴ ᎲᏤᎪᏫᎾ
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	ᎢᏧᎳ ᏂᏚᎾᏓᏁᎸᎾ. MDM ᏚᎾᏓᏁᎸᎢ ᏗᏓᏂᏱᏍᎩ ᏕᎬᏔᏗᏍᎪᎢ ᎠᎴ ᏕᎦᏁᎷᎩᏍᎪᎢ ᏂᏓᏓᏁᎸᎢ ᏚᏙᎥᎢ ᎢᎬᏱ ᏂᏚᎾᏓᏁᎸᎾ. 100 MB ᎢᏴᏛ, ᏌᏉ.
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	ᎢᏧᎳ ᏂᏚᎾᏓᏁᎸᎾ. TDM ᏚᎾᏓᏁᎸᎢ ᏗᏓᏂᏱᏍᎩ ᏕᎬᏔᏗᏍᎪᎢ ᎠᎴ ᏕᎦᏁᎷᎩᏍᎪᎢ ᏂᏓᏓᏁᎸᎢ ᏚᏙᎥᎢ ᎢᎬᏱ ᏂᏚᎾᏓᏁᎸᎾ. 100 MB ᎢᏴᏛ, ᏌᏉ.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	ᏗᏯᏛᎯᏍᏗ...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᎥᏝ ᏱᏚᎾᏙᏢᏒᎢ ᎯᎠ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ, ᎾᏍᎩ ᎢᏳᏍᏗ ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ Mister Download Manager ᎢᏯᏍᏗ.
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᎥᏝ ᏱᏚᎾᏙᏢᏒᎢ ᎯᎠ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ, ᎾᏍᎩ ᎢᏳᏍᏗ ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ Tufan Download Manager ᎢᏯᏍᏗ.
 #. page title in the Options window
 #, machine
 	Browser/System Integration	ᏗᏃᏔᏍᎩ/ᎠᏍᏆᏗᏍᏗ ᏗᏙᏯᏅᎯᏍᏗ
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	ᏗᎦᏃᏍᏓᏅᎢ ᏚᎾᏓᏁᏟᏴᏒᎢ
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
 	Check for updates at every start	ᎠᏓᎴᏂᏍᎬᎢ ᏂᎦᎥ ᎢᏳᏩᎪᏗ ᎢᏥᎧᏃᏗᏱ ᎢᏤᎢᏳᏍᏗ.
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	ᎢᏣᏙᎴᎰᎯ ᎢᏣᏓᏚᏓᏢᏒᎢ, ᎿᏉᏃ ᏔᎵᏁ ᎢᏣᏛᏅᎢᏍᏓ, ᎠᎴ ᎣᏂᏱ ᎢᏥᏩᏛᏗ ᎤᏃᎴᎢ ᏗᎧᏃᎩᏍᏗ ᏗᏓᏟᎶᏍᏗ ᎨᏒᎢ.
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	ᎢᏳᏃ ᎯᎠ ᎾᏍᎩ ᎧᏁᏌᎢ ᏚᏓᎷᏢᏔᏅᎯ ᎨᏎᏍᏗ, ᎿᏉ MDM ᏙᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎬᎾ ᎨᏎᏍᏗ ᎢᏳᏃ ᎾᏍᎩ ᎧᏁᏌᎢ ᎢᏍᏚᏢᏍᎨᏍᏗ: ᎾᏍᎩ ᎤᏕᎵᏛ ᎨᏎᏍᏗ ᎾᎿ ᎢᏳᏃ ᎾᏍᎩ ᎢᎬᏩᏛᏁᏗ ᎨᏎᏍᏗ, ᎠᎴ ᎢᏳᏃ ᎾᏍᎩ ᎢᎬᏩᏛᏁᏗ ᏂᎨᏒᎾ ᎨᏎᏍᏗ, ᎿᏉ ᎾᏍᎩ ᎤᏍᏗᎨᏍᏗ ᎨᏎᏍᏗ ᎾᎿ taskbar, ᎠᎴ downloads ᎢᎬᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎨᏍᏗ; ᎢᏳᏃ ᎯᎠ ᎾᏍᎩ ᎧᏁᏌᎢ ᏚᏓᎷᏢᏔᏅᎯ ᏂᎨᏒᎾ ᎨᏎᏍᏗ, ᎿᏉ ᎾᏍᎩ ᎧᏁᏌᎢ ᎢᏍᏚᏢᏍᎨᏍᏗ ᎿᏉ MDM ᏙᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎨᏍᏗ.
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	ᎢᏳᏃ ᎯᎠ ᎾᏍᎩ ᎧᏁᏌᎢ ᏚᏓᎷᏢᏔᏅᎯ ᎨᏎᏍᏗ, ᎿᏉ TDM ᏙᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎬᎾ ᎨᏎᏍᏗ ᎢᏳᏃ ᎾᏍᎩ ᎧᏁᏌᎢ ᎢᏍᏚᏢᏍᎨᏍᏗ: ᎾᏍᎩ ᎤᏕᎵᏛ ᎨᏎᏍᏗ ᎾᎿ ᎢᏳᏃ ᎾᏍᎩ ᎢᎬᏩᏛᏁᏗ ᎨᏎᏍᏗ, ᎠᎴ ᎢᏳᏃ ᎾᏍᎩ ᎢᎬᏩᏛᏁᏗ ᏂᎨᏒᎾ ᎨᏎᏍᏗ, ᎿᏉ ᎾᏍᎩ ᎤᏍᏗᎨᏍᏗ ᎨᏎᏍᏗ ᎾᎿ taskbar, ᎠᎴ downloads ᎢᎬᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎨᏍᏗ; ᎢᏳᏃ ᎯᎠ ᎾᏍᎩ ᎧᏁᏌᎢ ᏚᏓᎷᏢᏔᏅᎯ ᏂᎨᏒᎾ ᎨᏎᏍᏗ, ᎿᏉ ᎾᏍᎩ ᎧᏁᏌᎢ ᎢᏍᏚᏢᏍᎨᏍᏗ ᎿᏉ TDM ᏙᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎨᏍᏗ.
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	ᎦᎴᏴᏍᏗ ᎦᏬᏂᎯᏍᏗ
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	ᎦᎴᏴᏍᏗ ᎦᏬᏂᎯᏍᏗ Mister Download Manager ᏧᎾᏄᎪᏫᏍᏗ ᏚᎾ finestra ᎾᎿ:
+	Choose the language Tufan Download Manager shows its windows in:	ᎦᎴᏴᏍᏗ ᎦᏬᏂᎯᏍᏗ Tufan Download Manager ᏧᎾᏄᎪᏫᏍᏗ ᏚᎾ finestra ᎾᎿ:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	ᎪᏂᎪ
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	ᏚᎾᏙᏢᏒᎢ
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	ᏗᎪᏢᏍᏗ "ᏗᎦᏃᏍᏓᏅᎢ ᎤᎾᏓᏟᏌᏅᎢ" ᏗᏓᏃᎮᏗ
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	ᏗᎪᏢᏍᏗ ᏗᏍᏚᎢᏍᏗ ᏗᎦᏘᎴᏍᏗ ᎠᎴ ᏗᎦᏃᏍᏓᏅᎢ ᎤᎾᏓᏟᏌᏅᎢ MDM ᎢᎬᏗ
+	Customize keys to prevent or force downloading with TDM	ᏗᎪᏢᏍᏗ ᏗᏍᏚᎢᏍᏗ ᏗᎦᏘᎴᏍᏗ ᎠᎴ ᏗᎦᏃᏍᏓᏅᎢ ᎤᎾᏓᏟᏌᏅᎢ TDM ᎢᎬᏗ
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	ᏗᎪᏢᏍᏗ MDM ᏗᎦᏃᏍᏓᏅᎢ ᏗᏓᏁᏟᏴᏍᏗ ᏗᏃᏔᏍᎩ ᎾᎿ
+	Customize TDM Download panels in browsers	ᏗᎪᏢᏍᏗ TDM ᏗᎦᏃᏍᏓᏅᎢ ᏗᏓᏁᏟᏴᏍᏗ ᏗᏃᏔᏍᎩ ᎾᎿ
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	ᏗᎪᏢᏍᏗ MDM ᏗᏓᏁᏟᏴᏍᏗ ᏗᏓᏁᏟᏴᏍᏗ ᏗᏃᏔᏍᎩ ᎾᎿ
+	Customize TDM menu items in context menu of browsers	ᏗᎪᏢᏍᏗ TDM ᏗᏓᏁᏟᏴᏍᏗ ᏗᏓᏁᏟᏴᏍᏗ ᏗᏃᏔᏍᎩ ᎾᎿ
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	ᎤᏃᏒᎯ: ᏂᎦᏛ. ᎤᏟ ᎢᏤᎢᏍᏗ ᎢᎬᏱ ᎨᏐᎢ.
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	ᎠᎴᏅᏗ ᎠᎴ ᏔᎵᏁ ᎤᎴᏅᏗ MDM
+	End and restart TDM	ᎠᎴᏅᏗ ᎠᎴ ᏔᎵᏁ ᎤᎴᏅᏗ TDM
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	ᎪᏪᎶᏗ magnet link ᎾᏍᎩᎾᏃ ᎦᏑᏰᏍᏗ .torrent ᎢᏗᏢ
@@ -1518,7 +1518,7 @@
 	Exit	ᎠᏯᏙᎯᏍᏗ
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	ᎤᏓᏅᏍᏗ Mister Download Manager ᎿᏉ ᎤᏍᏆᏛᎯ
+	Exit Tufan Download Manager when done	ᎤᏓᏅᏍᏗ Tufan Download Manager ᎿᏉ ᎤᏍᏆᏛᎯ
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	ᎤᏚᎩ ᎢᎬᏒᎯ checksum (MD5, SHA-1, SHA-256, SHA-512 ᎾᏍᎩᎾᏃ CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	ᎾᏍᎩᏯ: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	ᏣᏤᎵ ᎠᏎᏍᏗᏉ. ᏅᏩᏓᎴ ᎢᏗᎬᏔᏅᎯ ᎢᎬᏱᏱ ᎨᏐᎢ.
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	ᏗᏓᎴᏂᏍᏗ ᏗᏓᎴᏂᏍᏗ ᏗᏓᎴᏂᏍᏗ
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	ᎤᏅᏓᏗᏍᏗ ᎯᎠ ᎠᏓᏁᏟᏴᏍᏗ
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	ᏗᏓᎴᏂᏍᏗ
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	ᏗᏓᏍᏕᎵᏍᎩ
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	ᎢᎬᎾᎯᏍᏗᏍᎩ...
@@ -1954,7 +1954,7 @@
 	Hide web pages	ᎠᏍᏚᎢᏍᏔᏅᎯ ᎢᏗᎦᎴᏴᏔᏅᎯ
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Alt ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Mister Download Manager.
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Alt ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Tufan Download Manager.
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	ᏗᏓᎴᏂᏍᏗ ᏗᏓᎴᏂᏍᏗ
@@ -1990,7 +1990,7 @@
 	Hungary	ᎲᏂᎦᎵ
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	ᎠᏴ ᏕᎦᏥᏃᎯᏍᏗᎭ Mister Download Manager ᎢᎬᏗᏍᎬ: ᎾᏞᎬ, ឥតᎨᎶᏗ, ᎠᎴ ᎾᏍᎩᏯᏉ ᏗᎧᏃᎩᏍᏗ ᏗᎦᏘᏂᏙᎯ ᎾᏍᎩ ᎦᏳᎳ ᏥᎦᏔᎭ. {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	ᎠᏴ ᏕᎦᏥᏃᎯᏍᏗᎭ Tufan Download Manager ᎢᎬᏗᏍᎬ: ᎾᏞᎬ, ឥតᎨᎶᏗ, ᎠᎴ ᎾᏍᎩᏯᏉ ᏗᎧᏃᎩᏍᏗ ᏗᎦᏘᏂᏙᎯ ᎾᏍᎩ ᎦᏳᎳ ᏥᎦᏔᎭ. {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	ᏗᎦᏃᏍᏓᏗᏍᏗ ᎢᎬᎾᏗ: ᎢᏳᏍᏗ ᏗᎦᏃᏍᏓᏗᏍᏗ ᎤᏤᎵ ᎢᎬᎾᏗ
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	ᎤᏍᏚᏢᏛ ᏗᏟᎶᏍᏔᏅᎢ
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	ᎤᏩᏒᎢ ᏗᎧᏃᎩᏍᏗ
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	ᏣᏁᎳᏗᏍᎩ ᎾᏍᎩ ᏂᎨᏒᎾ ᎨᏒᎢ.
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	ᎥᏝ ᎢᏗᎦᎴᏴᏔᏅᎯ ᎢᏗᎦᎴᏴᏔᏅᎯ MDM ᎢᏗᎦᎴᏴᏔᏅᎯ
+	it is not an archive TDM extracts	ᎥᏝ ᎢᏗᎦᎴᏴᏔᏅᎯ ᎢᏗᎦᎴᏴᏔᏅᎯ TDM ᎢᏗᎦᎴᏴᏔᏅᎯ
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	ᎢᎦᎢ ᏗᏓᏟᎶᏍᏗ ᏚᏙᎥ ᎢᏳᏍᏗ img001.jpg, img002.jpg, ᎢᏳᏍᏗ,\nimg100.jpg MDM ᎦᏴᏍᏗ ᏗᏓᏟᎶᏍᏗ ᏗᏙᎳᎩ ᎨᏒᎢ. ផ្ᏈᏍᏗ ᎤᏍᏓᎦᎶᏗ ᏗᏓᏟᎶᏍᏗ ᏚᏙᎥ ᎢᏳᏍᏗ ᎢᏗᏴᏍᏗ.
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	ᎢᎦᎢ ᏗᏓᏟᎶᏍᏗ ᏚᏙᎥ ᎢᏳᏍᏗ img001.jpg, img002.jpg, ᎢᏳᏍᏗ,\nimg100.jpg TDM ᎦᏴᏍᏗ ᏗᏓᏟᎶᏍᏗ ᏗᏙᎳᎩ ᎨᏒᎢ. ផ្ᏈᏍᏗ ᎤᏍᏓᎦᎶᏗ ᏗᏓᏟᎶᏍᏗ ᏚᏙᎥ ᎢᏳᏍᏗ ᎢᏗᏴᏍᏗ.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,7 +2186,7 @@
 #, machine
 	KBytes/sec	KB/ᎠᏏᎬᏅ
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
 	Keep running when closing the window	ᎢᎬᏱᏗᏢ ᏂᎦᎵᏍᏗᏍᎨᏍᏗ ᎢᏳᏃ ᎾᏍᎩ ᎧᏁᏌᎢ ᎢᏍᏚᏢᏍᎨᏍᏗ
 #. checkbox in the Add torrent window
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	ᏗᏙᎳᎩ ᏗᏓᏟᎶᏍᏗ
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	ᎳᎣᏍ
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	ᎤᏟ ᎠᏔᎴᏒᎢ ᎡᏍᎦᏉ ᎤᎾᎵᏍᏓᏴᏗ ᏰᎵ ᎢᎬᏩᎵᏍᏙᏗ
 #. text in the Batch download window
 #, machine
 	Last file:	ᎤᎵᏍᏆᏛ ᏗᏓᏟᎶᏍᏗ:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	ᎤᎵᏍᏆᎸᏗ ᎢᏗᏢ
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	ᎳᏘᏫᏯ
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	Mister Download Manager ᎢᎬᏱᏱ ᎢᏗᏴᏍᏗ
+	Launch Tufan Download Manager on startup	Tufan Download Manager ᎢᎬᏱᏱ ᎢᏗᏴᏍᏗ
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	ᎤᎾᏕᏗ ᏗᏓᏚᎪᏗ ᎠᎴ ᏗᏓᏚᎪᏗ ᎢᏗᏢ ᎤᏃᎴᎢ ᎢᏗᏢ MDM
+	Let phones and computers on the local network control TDM	ᎤᎾᏕᏗ ᏗᏓᏚᎪᏗ ᎠᎴ ᏗᏓᏚᎪᏗ ᎢᏗᏢ ᎤᏃᎴᎢ ᎢᏗᏢ TDM
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	ᎤᏓᎷᎸ ᎢᎬᎾᏗ
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	ᎢᏗᏢ ᎢᏗᏢ:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	MDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ ᎤᏃᎴᎢ ᎢᏗᏢ: ᎢᏗᏢ → ᎢᏗᏢ ᎢᏗᏢ.
+	TDM can't be reached on the network now: Options → Remote says why.	TDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ ᎤᏃᎴᎢ ᎢᏗᏢ: ᎢᏗᏢ → ᎢᏗᏢ ᎢᏗᏢ.
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	MDM ᎥᏝ ᎢᏗᏢ ᎯᎠ ᎤᏃᎴᎢ.
+	TDM cannot download this address.	TDM ᎥᏝ ᎢᏗᏢ ᎯᎠ ᎤᏃᎴᎢ.
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	MDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ.
+	TDM could not add it.	TDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ.
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	MDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ.
+	TDM could not do it.	TDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	MDM ᎥᏝ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ.
+	TDM does not answer. Check that it is running and on the same network.	TDM ᎥᏝ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	MDM ᎥᏝ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ...
+	TDM does not answer. Trying again...	TDM ᎥᏝ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	MDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ.
+	TDM shows no code now. Click Pair a device there first.	TDM ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ.
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	ᎤᏍᏗ
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	Minimize ᏫᎦᏅᏁᎸ notification area
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	ᎤᎵᏍᏆᏛ
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Mister Download Manager ᎥᏝ ᏰᎵ Ꭴ Fenster ᏱᏂᎬᏂᏏ: ᎯᎠ ᎢᎬᎾᏗ ᎥᏝ {libraries} ᏱᏂᎬᏂᏏ.
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Tufan Download Manager ᎥᏝ ᏰᎵ Ꭴ Fenster ᏱᏂᎬᏂᏏ: ᎯᎠ ᎢᎬᎾᏗ ᎥᏝ {libraries} ᏱᏂᎬᏂᏏ.
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Mister Download Manager ᎤᎾᏕᏯᏔᏛᎢ
+	Tufan Download Manager closed unexpectedly	Tufan Download Manager ᎤᎾᏕᏯᏔᏛᎢ
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Mister Download Manager ᏗᏓᏟᎶᏍᏗ
+	Tufan Download Manager Configuration	Tufan Download Manager ᏗᏓᏟᎶᏍᏗ
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Mister Download Manager ᎤᎾᏕᏯᏔᏛᎢ ᏗᏟᎶᏍᏔᏅᎯ
+	Tufan Download Manager crash report	Tufan Download Manager ᎤᎾᏕᏯᏔᏛᎢ ᏗᏟᎶᏍᏔᏅᎯ
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Mister Download Manager ᎤᎾᏕᏯᏔᏛᎢ ᎾᎿᎢ ᎤᎾᏕᏯᏔᏛᎢ
+	Tufan Download Manager hit an internal error	Tufan Download Manager ᎤᎾᏕᏯᏔᏛᎢ ᎾᎿᎢ ᎤᎾᏕᏯᏔᏛᎢ
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Mister Download Manager ᎤᎾᏛᏁᏗ ᎨᏒᎢ "{queue}"
+	Tufan Download Manager is running the queue "{queue}"	Tufan Download Manager ᎤᎾᏛᏁᏗ ᎨᏒᎢ "{queue}"
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Mister Download Manager ᎤᎾᏕᏯᏔᏛᎢ
+	Tufan Download Manager stopped responding	Tufan Download Manager ᎤᎾᏕᏯᏔᏛᎢ
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Mister Download Manager ᎤᎾᏕᏯᏔᏛᎢ ᎾᎿᎢ ᎤᎾᏕᏯᏔᏛᎢ
+	Tufan Download Manager stopped responding for a while	Tufan Download Manager ᎤᎾᏕᏯᏔᏛᎢ ᎾᎿᎢ ᎤᎾᏕᏯᏔᏛᎢ
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Mister Download Manager ᏂᎦᏛ ᏗᏓᏟᎶᏍᏗ ᎢᏗᏴᏍᏗ ᎢᏗᏴᏍᏗ\nᏗᏓᏟᎶᏍᏗ ᎢᏗᏴᏍᏗ ᎢᏗᏴᏍᏗ.
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Tufan Download Manager ᏂᎦᏛ ᏗᏓᏟᎶᏍᏗ ᎢᏗᏴᏍᏗ ᎢᏗᏴᏍᏗ\nᏗᏓᏟᎶᏍᏗ ᎢᏗᏴᏍᏗ ᎢᏗᏴᏍᏗ.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Mister Download Manager {version} ᎢᏗᏴᏍᏗ (ᎤᎵᏍᏆᏛ {date}).
+	Tufan Download Manager {version} is available (released {date}).	Tufan Download Manager {version} ᎢᏗᏴᏍᏗ (ᎤᎵᏍᏆᏛ {date}).
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Mister Download Manager ᎤᏤᎵᎦ, ᎤᏃᎴ {version}
+	Tufan Download Manager's own copy, version {version}	Tufan Download Manager ᎤᏤᎵᎦ, ᎤᏃᎴ {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Mister Download Manager Ꭴ X11 Fenster ᎤᏚᎵ {libraries}, ᎾᏍᎩ ᎯᎠ ᎢᎬᎾᏗ ᎥᏝ ᏱᏂᎬᏂᏏ: ᎾᏍᎩ Wayland ᎤᎷᎪᎢ, ᎾᎿ Ꭴ Fenster ᎥᏝ ᏰᎵ Ꭴ தலைப்புகள் ᏱᏂᎬᏂᏏ.
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Tufan Download Manager Ꭴ X11 Fenster ᎤᏚᎵ {libraries}, ᎾᏍᎩ ᎯᎠ ᎢᎬᎾᏗ ᎥᏝ ᏱᏂᎬᏂᏏ: ᎾᏍᎩ Wayland ᎤᎷᎪᎢ, ᎾᎿ Ꭴ Fenster ᎥᏝ ᏰᎵ Ꭴ தலைப்புகள் ᏱᏂᎬᏂᏏ.
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	ᎪᏢᏒᎢ ᎢᏗᏢ ᏂᎨᏒᎾ
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	MDM-ᎠᏗᏍᏓᎷᎩᏍᏗ ᏂᏓᏩᏛᎲᎾ
+	No browser TDM can connect to was found	TDM-ᎠᏗᏍᏓᎷᎩᏍᏗ ᏂᏓᏩᏛᎲᎾ
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	ᎥᏝ proxy/socks
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	ᎥᏝ ᎪᎱᏍᏗ ᏱᏚᏁᏤᎴ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᎢᏳᏍᏗ ᏗᏙᎳᏅᏍᏗᏱ ᎠᎴ ᏗᏍᎦᎶᏗᏱ ᏚᏍᏆᏂᎪᏔᏅ MDM ᎤᏤᎵᎦ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᏂᎯᏉ ᎢᎬᏩᏰᎵᏗ ᎨᏒᎢ.
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	ᎥᏝ ᎪᎱᏍᏗ ᏱᏚᏁᏤᎴ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᎢᏳᏍᏗ ᏗᏙᎳᏅᏍᏗᏱ ᎠᎴ ᏗᏍᎦᎶᏗᏱ ᏚᏍᏆᏂᎪᏔᏅ TDM ᎤᏤᎵᎦ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᏂᎯᏉ ᎢᎬᏩᏰᎵᏗ ᎨᏒᎢ.
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	ᎢᏗᏢ: ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ MDM.
+	Off: nothing on the network can reach TDM.	ᎢᏗᏢ: ᎥᏝ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ TDM.
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	ᎠᎵᏍᎪᎸᏔᏅᏗᏱ ᏗᎦᏁᏟᏴᏍᏗ ᏗᏕᏃᏗ ᏗᏟᎶᏍᏔᏅᎯ ᏗᏕᏃᏗ ᏗᏟᎶᏍᏔᏅᎯ ᏗᏕᏃᏗ ᏗᏟᎶᏍᏔᏅᎯ
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	macOS ᎢᎬᏁᏗ, ᎤᎬᏫᏳᎯ ᎤᎾᏓᏁᎶᏗ ᎤᏩᏒ ᎤᎾᎴᏗᏱ ᎤᎾᏓᎾᏅᏓᏗᏍᏗ ᎢᎬᏁᏗ
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	ᎢᏗᏢ ᎢᏗᏢ, ᎢᏗᏢ ᎢᏗᏢ, ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ. ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ ᎢᏗᏢ.
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	ᎢᏗᎾᏓᏟᏃᏅᎯᏉ ᎢᎬᏩᏃᎷᎩ ᎠᎴ ᎢᎬᏩᏁᏟᏴᏍᎩ ᏂᎦᎥᎢ. ᎢᎬᏱᏱ, ᎢᎦᎷᎨᏍᏗ ᎤᏃᎴ-ᎠᏂᏃᏔᏅᎯ MDM ᎤᏩᏒ ᎤᏤᎵᎦ ᎪᏪᎵ ᎤᏃᎯᏳᏓᏁᎯ ᎤᏃᏍᏕᏍᏗ: ᎤᏃᏰᏂ-ᎤᏃᎴᏍᏙᏗ ᎦᎸᎳᏗᏢ ᏥᎩ.
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	ᎢᏗᎾᏓᏟᏃᏅᎯᏉ ᎢᎬᏩᏃᎷᎩ ᎠᎴ ᎢᎬᏩᏁᏟᏴᏍᎩ ᏂᎦᎥᎢ. ᎢᎬᏱᏱ, ᎢᎦᎷᎨᏍᏗ ᎤᏃᎴ-ᎠᏂᏃᏔᏅᎯ TDM ᎤᏩᏒ ᎤᏤᎵᎦ ᎪᏪᎵ ᎤᏃᎯᏳᏓᏁᎯ ᎤᏃᏍᏕᏍᏗ: ᎤᏃᏰᏂ-ᎤᏃᎴᏍᏙᏗ ᎦᎸᎳᏗᏢ ᏥᎩ.
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	ᎤᏓᎷᎸ {n} ᏗᏟᎶᏍᏔᏅᎯ ᏕᎭᏢᏍᎬᎢ.
@@ -3109,10 +3109,10 @@
 	Open folder	ᏗᏟᎶᏍᏔᏅᎯ ᏗᎦᎴᏴᏍᏗ
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	ᎤᏍᏚᎢᏓ magnet links ᎠᎴ .torrent ᏗᎪᏪᎵ Mister Download Manager ᎢᏗᏙᎯ
+	Open magnet links and .torrent files with Tufan Download Manager	ᎤᏍᏚᎢᏓ magnet links ᎠᎴ .torrent ᏗᎪᏪᎵ Tufan Download Manager ᎢᏗᏙᎯ
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	ᎤᏍᏚᎢᏓ Mister Download Manager
+	Open Tufan Download Manager	ᎤᏍᏚᎢᏓ Tufan Download Manager
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	ᎦᏃᎴᏍᏗ ᎤᏤᎵᎦ ᏗᎦᏛᏗ
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	ᎢᏗᏢ
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Mister Download Manager ᎤᎾᏓᏟᏍᏗ
+	Pair with Tufan Download Manager	Tufan Download Manager ᎤᎾᏓᏟᏍᏗ
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	ᏗᏓᏁᏟᏴᏗ ᎾᏍᎩᏯ ᏗᏓᏁᏟᏴᏗ "{category}" ᏗᏓᏁᏟᏴᏗ
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	ᎢᏅᎯᏓ
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	ᎢᏅᎯᏓ ᏗᏟᎶᏍᏔᏅ
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	ᏗᏓᏁᏟᏴᏗ ᏗᏓᏁᏟᏴᏗ
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	ᏔᎵᏁ ᎤᎴᏅᏗ MDM
+	Restart TDM	ᏔᎵᏁ ᎤᎴᏅᏗ TDM
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	ᏙᎴᎰᏍᏗ ᏗᏓᏟᎶᏍᏔᏅᎢ
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	ᏗᎦᏃᏍᏓᏁᏗ ᏘᏅᎦ ᎤᏍᎪᏍᏛ ᎤᏓᎷᎸᎢ
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	ᏚᏃᏴᎬ ᏘᏅᎦ Mister Download Manager ᏚᏓᎴᏅᏔᏅᎢ
+	Select sounds for Tufan Download Manager events	ᏚᏃᏴᎬ ᏘᏅᎦ Tufan Download Manager ᏚᏓᎴᏅᏔᏅᎢ
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	ᏗᎦᏃᏍᏓᏁᏗ ᏘᏅᎦ ᎤᏍᎪᏍᏛ ᎤᏓᎷᎸᎢ
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	ᎯᎠ ᎯᏅᎦᎸᏓ ᎢᎦᎵᎢ:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	ᎤᎾᎴᏃᏅᎯ ᎠᎴ ᎢᎾᎨᎢ ᏚᎾᏓᎴᏅᏔᏅᎯ ᎢᎬᏱᏱ ᎠᏓᏁᏟᏴᏍᏗ ᎨᏒᎢ ᏩᎾᎷᎯᏍᏗ, ᎥᏝ ᎢᏗᎾᏓᎴᏅᏔᏅᎯ ᎨᏒᎢ
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	ᏗᏟᎶᏍᏔᏅᎯ ᎤᏓᎴᏅᏔᏅᎯ ᎢᎪᎯᏓᏍᏗ ᏗᎦᏃᏍᏓᏁᎯ ᎤᏓᏁᎸᎯ
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	ᏚᎾᏙᏢᏒᎢ
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	ᎦᏟᏗ ᏗᏙᎳᏅᏍᎩ
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	ᏂᏚᎾᏓᏁᎸᎢ ᏓᏓᏁᏟᏴᏍᎪᎢ ᎤᏟᏍᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎠᎴ ᏗᎧᏃᎩᏍᏗ, ᎠᎴ ffmpeg ᏓᏓᏁᏟᏴᏍᎪᎢ. ᎯᎠ ᎢᏗᎬᏔᏅᎯ MDM ᏕᎭᏔᏍᎪᎢ: ຕິດຕັ້ງ ffmpeg ᏕᎭᏔᏍᎪᎢ ᏕᎭᏔᏍᎪᎢ.
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	ᏂᏚᎾᏓᏁᎸᎢ ᏓᏓᏁᏟᏴᏍᎪᎢ ᎤᏟᏍᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎠᎴ ᏗᎧᏃᎩᏍᏗ, ᎠᎴ ffmpeg ᏓᏓᏁᏟᏴᏍᎪᎢ. ᎯᎠ ᎢᏗᎬᏔᏅᎯ TDM ᏕᎭᏔᏍᎪᎢ: ຕິດຕັ້ງ ffmpeg ᏕᎭᏔᏍᎪᎢ ᏕᎭᏔᏍᎪᎢ.
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	ᏂᏚᎾᏓᏁᎸᎢ ᏓᏓᏁᏟᏴᏍᎪᎢ ᎤᏟᏍᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎠᎴ ᏗᎧᏃᎩᏍᏗ. ffmpeg ᏓᏓᏁᏟᏴᏍᎪᎢ ᎢᏧᎳ ᏌᏉ ᏗᏓᏂᏱᏍᎩ ᏗᏟᎶᏍᏔᏅᎯ ᏂᎦᎥ ᎢᏗᎬᏔᏅᎯ.
@@ -4012,7 +4012,7 @@
 	Start download at	ᏗᏗᏍᎪᏗ ᎤᎾᎴᏅᏗ
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	ᏗᏗᏍᎪᏗ ᎤᎾᎴᏅᏗ Mister Download Manager ᎤᎾᎴᏅᏗ
+	Start download on Tufan Download Manager startup	ᏗᏗᏍᎪᏗ ᎤᎾᎴᏅᏗ Tufan Download Manager ᎤᎾᎴᏅᏗ
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	ᏗᏗᏍᎪᏗ ᎤᎾᎴᏅᏗ ᎢᎬᏱ ᎢᏳᏃ "ᏗᏗᏍᎪᏗ ᎦᏟᏗ ᎧᏃᎮᏍᎩ" ᎦᏟᏗ ᏱᎬᏂᎨᏒᎢ
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	ᏗᏓᎴᏅᏔᏅᎯ gallery-dl {version}
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	ᎢᎬᏱ ᎤᎾᎴᏅᎲᎯ, ᎤᏍᏗᎨᏴ ᎢᎬᏱ ᎤᎾᎴᏅᎲᎯ: ᎥᏝ ᎪᎯ ᎢᎦᎨᏛ ᎢᎬᏱ ᎤᎾᎴᏅᎲᎯ ᏱᎩ
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	ᎢᎬᏱ ᎤᎾᎴᏅᎲᎯ, ᎢᎦᎨᏛ ᎢᎬᏱ ᎤᎾᎴᏅᎲᎯ
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	ᎤᎾᏙᏓᏆᏍᎬ
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	MDM GitHub Sponsors-Ꭲ ᎠᎵᏍᏕᎸᏙᏗ
+	Support TDM on GitHub Sponsors	TDM GitHub Sponsors-Ꭲ ᎠᎵᏍᏕᎸᏙᏗ
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	ᎣᏍᏛᎢ, MP3, Opus ᎠᎴ FLAC ᎤᏚᎳ ffmpeg: ᏗᎧᏃᎩᏍᏗ ᎾᎿ ᏗᏟᎶᏍᏔᏅᎯ ᏗᏟᎶᏍᏔᏅᎯ (ᎠᎴ Homebrew).
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	ᏗᎦᎳᎥᏙᏗ ᎤᏤᎵ proxy (VPN ᎠᎴ proxy ᏗᎧᏅᏍᏙᏗ) ᎤᏤᎵᏉ ᏗᏴᏍᏙᏗ ᎤᏔᏲᎭ: VPN ᎤᏤᎵ ᏗᏟᎶᏍᏔᏅᎯ ᎢᏨᏗ, ᎠᎴ ᎤᏤᎵ ᏓᎦwiązᏗ ᏗᎦᏁᏟᏴᏍᏗ ᎢመርᎦ ᎾᎿ Options → Proxy / Socks
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Mister Download Manager
+	The browsers can find Tufan Download Manager	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Tufan Download Manager
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	ᎤᏓᎾᏅᏓᏗᏍᏗ ᎤᎾᎴᏗ ᎨᏒᎢ ᏌᏉ ᎢᏯᏗᏔᏍᏗ ᎢᎬᏱ ᎤᎾᎴᏅᏗᏱ ᎢᏳᎵᏍᏙᏗᏱ ᎠᎴ ᎤᎾᎴᏗ ᎨᏒᎢ ᎢᎪᎯᏛ ᎤᎾᏛᏁᏗ ᎨᏒᎢ ᎤᎾᏛᏁᏗ. Mister Download Manager ᎤᎾᏛᏁᏗ ᎨᏒᎢ (ᎤᎾᎦᏘᏗᏍᏗ ᎨᏒᎢ ᎤᎾᏓᎾᏅᏓᏗᏍᏗ ᎨᏒᎢ).
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	ᎤᏓᎾᏅᏓᏗᏍᏗ ᎤᎾᎴᏗ ᎨᏒᎢ ᏌᏉ ᎢᏯᏗᏔᏍᏗ ᎢᎬᏱ ᎤᎾᎴᏅᏗᏱ ᎢᏳᎵᏍᏙᏗᏱ ᎠᎴ ᎤᎾᎴᏗ ᎨᏒᎢ ᎢᎪᎯᏛ ᎤᎾᏛᏁᏗ ᎨᏒᎢ ᎤᎾᏛᏁᏗ. Tufan Download Manager ᎤᎾᏛᏁᏗ ᎨᏒᎢ (ᎤᎾᎦᏘᏗᏍᏗ ᎨᏒᎢ ᎤᎾᏓᎾᏅᏓᏗᏍᏗ ᎨᏒᎢ).
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	ᎠᏗᏰᏍᏗ ᏗᏓᏟᎶᏍᏗ ᏂᎨᏒᎾ ᎢᏗᎬᏔᏅᎯ: {error}. ᏗᎦᏁᏟᏴᏍᏗ MDM ᎢᏗᎬᏔᏅᎯ ᎢᏗᎬᏔᏅᎯ.
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	ᎠᏗᏰᏍᏗ ᏗᏓᏟᎶᏍᏗ ᏂᎨᏒᎾ ᎢᏗᎬᏔᏅᎯ: {error}. ᏗᎦᏁᏟᏴᏍᏗ TDM ᎢᏗᎬᏔᏅᎯ ᎢᏗᎬᏔᏅᎯ.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	ᎾᏍᎩ ᏗᎦᏁᏟᏴᏍᏗ ᏗᎦᏘᏯ ᏂᎯ ᎿᏉ ᎯᎦᏔᎭ, ᎤᎵᏍᏔᏅᎯ ᎤᏟ ᎢᏯᎵᏍᏗᏱ. ᎬᏩᎾᏝᎢ ᎠᎴ ᎤᏍᏚᎢᏛ GNU GPL ᎤᎾᏙᏢᏒ ᎭᏫᏂᏗᏢ, 3 ᎠᎴ ᎤᏟ ᎢᎦᎢ. ᏗᏟᎶᏍᏔᏅᎯ yt-dlp ᎤᎾᏙᏢᏒ ᎤᎾᏕᎶᎥᏍᏗ; torrents librqbit ᎤᎾᏙᏢᏒ ᎤᎾᏕᎶᎥᏍᏗ.
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	FTP ᏗᎦᏁᎶᎯ ᎤᏁᏤᎴ {code} {reply}
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	ᎠᎵᏍᏕᎸᏗ ᎢᏗᏢ ᎾᏍᎩ ᏗᏓᎴᏅᏗᏍᎩ ᎤᎵᏛᏔᏅ
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	ᎾᏍᎩ ᎤᎾᏙᏢᏒ ᏗᎦᏁᏟᏴᏍᏗ ᎥᏝ ᏱᏚᎵᏍᏆᏗᏒ. ᎯᏍᎦᏚᎩᏍᎪ ᎯᏚᎵᎭ ᎯᎠ ᎯᏲᏍᏗᏱ\nMister Download Manager ᏗᎦᏁᏟᏴᏍᏗ ᏗᎦᏁᏟᏴᏍᏗ ᎤᎾᏙᏢᏒ?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	ᎾᏍᎩ ᎤᎾᏙᏢᏒ ᏗᎦᏁᏟᏴᏍᏗ ᎥᏝ ᏱᏚᎵᏍᏆᏗᏒ. ᎯᏍᎦᏚᎩᏍᎪ ᎯᏚᎵᎭ ᎯᎠ ᎯᏲᏍᏗᏱ\nTufan Download Manager ᏗᎦᏁᏟᏴᏍᏗ ᏗᎦᏁᏟᏴᏍᏗ ᎤᎾᏙᏢᏒ?
 #. text in errors.rs
 #, machine
 	the server answered {status}	ᎤᎾᏓᏅᏏᏍᎩ ᎤᏁᏨ {status}
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	ᎾᏍᎩ ᏗᏟᎶᏍᏔᏅᎯ ᎥᏝ ᏱᏗᎦᎴᏴᏍᏗ: ᎾᏍᎩ ᏗᏟᎶᏍᏔᏅᎯ ᎾᎿᎢ ᏗᎦᎴᏴᏍᏗ ᎾᏍᎩ ᎤᎾᏕᏯᏔᏛᎢ (ᎾᏍᎩ ᏗᏂᏟᏍᏔᏅᎯ ᎾᏍᎩ ᏗᎦᎴᏴᏍᏗ).
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	ᏗᏟᎶᏍᏔᏅᎯ ᎤᏍᏚᏢᏛ ᎠᎴ MDM ᎥᏝ ᏱᏚᏍᏚᎢᏍᏗ, ᎾᏍᎩᏃ ᎢᏳᏍᏗ ᏗᏙᎳᏅᏍᏗᏱ ᎠᎴ ᏗᏍᎦᎶᏗᏱ ᏚᏍᏆᏂᎪᏔᏅ MDM ᎤᏤᎵᎦ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᏂᎯᏉ ᎢᎬᏩᏰᎵᏗ ᎨᏒᎢ.
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	ᏗᏟᎶᏍᏔᏅᎯ ᎤᏍᏚᏢᏛ ᎠᎴ TDM ᎥᏝ ᏱᏚᏍᏚᎢᏍᏗ, ᎾᏍᎩᏃ ᎢᏳᏍᏗ ᏗᏙᎳᏅᏍᏗᏱ ᎠᎴ ᏗᏍᎦᎶᏗᏱ ᏚᏍᏆᏂᎪᏔᏅ TDM ᎤᏤᎵᎦ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᏂᎯᏉ ᎢᎬᏩᏰᎵᏗ ᎨᏒᎢ.
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	ᎾᏍᎩ ᎤᎾᏙᏢᏒ ᏗᏟᎶᏍᏔᏅᎯ ᎾᏍᎩ ᎯᎠ ᏗᏟᎶᏍᏔᏅᎯ ᎤᎾᏕᎶᎥᏍᏗ:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	ᎤᎾᏙᏢᏒ ᎠᏍᏓᏢᏍᎩ ᎠᎴ ᏗᎦᏃᎸᏗ ᏗᏙᏟᏍᏗ
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	ᎾᏍᎩ ᎯᎠ ᎢᎦ ᎤᎶᏐᏅ: ᎤᎾᏓᏟᏌᏅᎯ ᎥᏝ ᏱᎦᎴᏅᏔᏂ
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	ᎪᎯ ᏗᏟᎶᏍᏔᏅ ᏚᏙᎥ
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	{service} ᎢᏗᏢ: ᎠᏓᏁᏟᏴᏍᏗ ᎨᏒ ᎤᎾᎴᏃᏅᎯ ᏓᎦᏁᏍᏓᏅ, ᎿᏉᏃ MDM ᎾᏍᎩ ᏧᏓᎴᏅᏛ
+	Through {service}: the service downloads the torrent, then TDM its files	{service} ᎢᏗᏢ: ᎠᏓᏁᏟᏴᏍᏗ ᎨᏒ ᎤᎾᎴᏃᏅᎯ ᏓᎦᏁᏍᏓᏅ, ᎿᏉᏃ TDM ᎾᏍᎩ ᏧᏓᎴᏅᏛ
 #. text in the Scheduler window
 #, machine
 	Thursday	ᏅᎩᏁᎢᎦ
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	"Mister Download Manager" ᎠᎴᏅᏗ ᎠᎴ ᏂᎦᏓ ᏩᏈᏌᏘ ᎤᏁᎳᏅᏗ.
+	Turn on "Tufan Download Manager" and allow it on all websites.	"Tufan Download Manager" ᎠᎴᏅᏗ ᎠᎴ ᏂᎦᏓ ᏩᏈᏌᏘ ᎤᏁᎳᏅᏗ.
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	ᎯᎠ ລະຫັດ ᎰᏪᎳᎦ ᎾᎿ {page} ᎠᎴ MDM ᎭፍቀᏗ; ᎬᎦᏘᏴᎢ (ᎯᎠ ລະຫັດ ᎤᎵᏍᏆᏗ {time}).
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	ᎯᎠ ລະຫັດ ᎰᏪᎳᎦ ᎾᎿ {page} ᎠᎴ TDM ᎭፍቀᏗ; ᎬᎦᏘᏴᎢ (ᎯᎠ ລະຫັດ ᎤᎵᏍᏆᏗ {time}).
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	ᎬᏔᏅᎢ FTP PASV ᎢᏯᏓᏛᏁᏗ
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	MDM ᎤᏤᎵᎦ ᎭᏚᎢᏍᏓ
+	Use TDM's own copy	TDM ᎤᏤᎵᎦ ᎭᏚᎢᏍᏓ
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	Windows ᎤᎾᎴᏗᏱ ᎤᎾᏓᎾᏅᏓᏗᏍᏗ ᎤᏩᏒ ᎢᎪᎯᏛ ᎤᎾᏓᎾᏅᏓᏗᏍᏗ ᎨᏒᎢ
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	Windows Credential Manager ᎥᏝ ᏱᏚᏁᏤᎴ, ᎾᏍᎩᏃ ᎢᏳᏍᏗ ᏗᏙᎳᏅᏍᏗᏱ ᎠᎴ ᏗᏍᎦᎶᏗᏱ ᏚᏍᏆᏂᎪᏔᏅ MDM ᎤᏤᎵᎦ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᎤᏕᎵᏛ ᏂᎯ Windows ᎢᏣᏤᎵᎦ ᎢᎬᏩᏰᎵᏗ ᎨᏒᎢ.
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	Windows Credential Manager ᎥᏝ ᏱᏚᏁᏤᎴ, ᎾᏍᎩᏃ ᎢᏳᏍᏗ ᏗᏙᎳᏅᏍᏗᏱ ᎠᎴ ᏗᏍᎦᎶᏗᏱ ᏚᏍᏆᏂᎪᏔᏅ TDM ᎤᏤᎵᎦ ᏗᏟᎶᏍᏔᏅᎢ, ᎾᏍᎩᏃ ᎤᏕᎵᏛ ᏂᎯ Windows ᎢᏣᏤᎵᎦ ᎢᎬᏩᏰᎵᏗ ᎨᏒᎢ.
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	ᎤᏅᏔᏅᎯ ᏗᎪᏪᎵ. ᎢᏤ ᏗᎪᏪᎵ ᎭᎾᏄᎪᏫᏏ MDM ᎭᏛᏁᏗ.
+	Wrong code. Show a new code in TDM and try again.	ᎤᏅᏔᏅᎯ ᏗᎪᏪᎵ. ᎢᏤ ᏗᎪᏪᎵ ᎭᎾᏄᎪᏫᏏ TDM ᎭᏛᏁᏗ.
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	Mister Download Manager ({version}) ᎤᎵᏍᏆᎸᏗ ᎢᏤᎢᏳᏍᏗ ᎢᏣᎭ.
+	You have the latest version of Tufan Download Manager ({version}).	Tufan Download Manager ({version}) ᎤᎵᏍᏆᎸᏗ ᎢᏤᎢᏳᏍᏗ ᎢᏣᎭ.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	ᏂᎯ {version} ᎢᏣᎭ, ᎢᏣᏤᎵᎦ ᏚᏓᏟᎶᏍᏔᏅᎢ ᏗᏓᏟᎶᏍᏔᏅᎯ: ᎾᎿᏂ ᎢᏤᎢᏍᏗ.
@@ -5275,7 +5275,7 @@
 	Your browser	ᎢᏣᎳᎩᏍᎩ ᏗᏟᎶᏍᏔᏅᎯ ᏗᎪᏪᎵ
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	ᎢᏣᏤᎵ ᎢᎬᏱᏱ ᏗᎪᏪᎵᏍᎩ MDM ᎥᏝ ᏱᎦᏔᎭ: ᎪᎯ Chrome ᎤᏤᎵ User-Agent
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	ᎢᏣᏤᎵ ᎢᎬᏱᏱ ᏗᎪᏪᎵᏍᎩ TDM ᎥᏝ ᏱᎦᏔᎭ: ᎪᎯ Chrome ᎤᏤᎵ User-Agent
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	ᏣᏤᎵ Google ᎢᏗᏟᏴᏔᏅᎯ ᎥᏝ ᎯᎠ ᎢᏗᏟᏴᏔᏅᎯ ᏫᎬᎾᏄᎪᏫᏍᏗ ᏱᎩ, ᎠᎴᏃ ᎤᏤᎵᎦ ᎤᏲᏍᏔᏅ ᏗᏗᏴᏔᏅᎯ
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	ᏂᎯ ᎢᏣᏤᎵᎦ ᎢᏗᏓᏛᏁᎯ ({version}) ᎤᏪᏘᏳ, MDM {oldest} ᎠᎴ ᎢᏤᎢᏳᏍᏗ ᎤᏚᎵᎭ
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	ᏂᎯ ᎢᏣᏤᎵᎦ ᎢᏗᏓᏛᏁᎯ ({version}) ᎤᏪᏘᏳ, TDM {oldest} ᎠᎴ ᎢᏤᎢᏳᏍᏗ ᎤᏚᎵᎭ
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	{device} ᎤᎾᏓᏟᏍᏔᏅ. ᎢᏗᏢᏗᏍᏗ MDM ᎪᎯ ᎨᏒ.
+	{device} is paired. It can control TDM now.	{device} ᎤᎾᏓᏟᏍᏔᏅ. ᎢᏗᏢᏗᏍᏗ TDM ᎪᎯ ᎨᏒ.
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	{name} 7z ᎠᎴ RAR ᏗᎪᏪᎵ ᏚᏓᏟᎶᏔᏅᎢ. MDM ᎾᏍᎩ ᎦᏄᎪᏫᏍᎪᎢ 7-Zip ᎤᏅᏗᏍᎬᎢ, ᎾᏍᎩᏃ ᎥᏝ ᏱᏚᏔᏅ.
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	{name} 7z ᎠᎴ RAR ᏗᎪᏪᎵ ᏚᏓᏟᎶᏔᏅᎢ. TDM ᎾᏍᎩ ᎦᏄᎪᏫᏍᎪᎢ 7-Zip ᎤᏅᏗᏍᎬᎢ, ᎾᏍᎩᏃ ᎥᏝ ᏱᏚᏔᏅ.
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	{name} ᎥᏝ {how} ᎢᎬᏁᏗ ᎨᏒ.
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	{name} {version} ᎤᏪᏘᏳ: MDM {oldest} ᎠᎴ ᎢᏤᎢᏳᏍᏗ ᎤᏚᎵᎭ
+	{name} {version} is too old: TDM needs {oldest} or newer	{name} {version} ᎤᏪᏘᏳ: TDM {oldest} ᎠᎴ ᎢᏤᎢᏳᏍᏗ ᎤᏚᎵᎭ
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	{n} ᎤᏓᎴᏅᏔᏅᎯ {total} ᏚᎾᏑᏰᏒᎢ
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{percent} {service} -Ꭲ
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	{service} ᎤᏍᎦᏃᎵ ᏣᏔᏲᏎᎭ; MDM ᏏᏊ ᏌᏊ ᎢᏯᏔᏬᏍᏔᏅ ᏙᏓᏳᎪᎵᏰᏏ.
+	{service} asks to slow down; TDM will try again in a minute	{service} ᎤᏍᎦᏃᎵ ᏣᏔᏲᏎᎭ; TDM ᏏᏊ ᏌᏊ ᎢᏯᏔᏬᏍᏔᏅ ᏙᏓᏳᎪᎵᏰᏏ.
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	{service} ᎥᏝ ᎯᎠ ᎢᎬᏁᏗ ᏱᏓᏩᏛᏓ: ᎥᏝ ᎩᎶ ᏱᏓᏙᎳᏤ, ᎠᎴ ᎤᏚᏓᏛ ᎥᏝ ᏱᎪᎵᎦ
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	{service} ᎥᏝ ᏰᎵ ᎯᎠ ᏗᎪᏪᎵ ᏗᎦᎾᏢᏗ ᏫᎦᎷᎩ ᏰᎵ ᏱᎩ ᎪᎯ; MDM ᎣᏂ ᏙᏓᏳᎪᎵᏰᏏ.
+	{service} can't reach this file host right now; TDM will try again later	{service} ᎥᏝ ᏰᎵ ᎯᎠ ᏗᎪᏪᎵ ᏗᎦᎾᏢᏗ ᏫᎦᎷᎩ ᏰᎵ ᏱᎩ ᎪᎯ; TDM ᎣᏂ ᏙᏓᏳᎪᎵᏰᏏ.
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: ᎯᎠ premium ᏗᎦᏚᎩ ᎤᏚᎵ.
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: ᎤᏂᎪᏗ ᏗᎦᎳᎥᏙᏗ ᎭᏫᎾᏗᏢ ᏣᏤᎵ ᏗᎦᏚᎩ; MDM ᏔᎵᏁ ᏙᏓᏳᎪᎵᏰᏏ.
+	{service}: too many downloads at once through your account; TDM will try again	{service}: ᎤᏂᎪᏗ ᏗᎦᎳᎥᏙᏗ ᎭᏫᎾᏗᏢ ᏣᏤᎵ ᏗᎦᏚᎩ; TDM ᏔᎵᏁ ᏙᏓᏳᎪᎵᏰᏏ.
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: ᎢᏯᏛᏁᏗ ᎢᏯᏛᏁᏗ
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: ᎥᏝ ᎢᏯᏛᏁᏗ: ᏗᎦᎴᏴᏔᏅ ᎢᏯᏛᏁᏗ ᎢᏯᏛᏁᏗ {folder}
 #. message or event log entry in the main window
@@ -5662,15 +5662,15 @@ column	Transfer rate	ᎤᎾᏓᏁᏟᏴᏍᏗ ᎢᎬᏁᏗ
 #, machine
 column	Upload speed	ᏗᎦᏅᏍᎪᏂᏙᎲ ᏗᏟᎶᏍᏗ
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	ᏅᏩᏓᎴ Mister Download Manager (ᎤᎾᏗᏱᏍᎩ)
+extension	Another Tufan Download Manager (a server)	ᏅᏩᏓᎴ Tufan Download Manager (ᎤᎾᏗᏱᏍᎩ)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	ᎤᏃᎴ-ᎠᏂᏃᏔᏅᎯ ᎤᏅᎯᏓᏍᏗ
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	ปุ่ม ᏗᏓᏟᎶᏍᏗ ᏗᏙᏢᏍᏔᏅᎢ...
@@ -5679,41 +5679,41 @@ extension	Button settings...	ปุ่ม ᏗᏓᏟᎶᏍᏗ ᏗᏙᏢᏍᏔᏅ�
 #, machine
 extension	Can't tell which video this is: open its own page and try there	ᎥᏝ ᏲᏒᎦ ᎦᏙ ᎤᏍᏗ ᏫᏗᎣ ᎾᏍᎩ: ᎤᏩᏒ ᎤᏤᎵ ᎪᏪᎵ ᎠᏍᏚᎢᏍᏗ ᎠᎴ ᎾᎿ ᏂᏑᎵᎪᎦ
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	ᏚᎾᏙᏢᏒᎢ Mister Download Manager
+extension	Connected to Tufan Download Manager	ᏚᎾᏙᏢᏒᎢ Tufan Download Manager
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	ᏚᎾᏙᏢᏒᎢ Mister Download Manager {version}
+extension	Connected to Tufan Download Manager {version}	ᏚᎾᏙᏢᏒᎢ Tufan Download Manager {version}
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	ᎠᏠᏯᏍᏗ
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏂᎦᎥ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Mister Download Manager
+extension	Download all links with Tufan Download Manager	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏂᎦᎥ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Tufan Download Manager
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Mister Download Manager
+extension	Download selected links with Tufan Download Manager	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ Tufan Download Manager
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	ᏗᏓᏃᏍᏙᏗ ᏗᏓᏟᎶᏍᏗ
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	ᏗᏓᏃᏍᏙᏗ Mister Download Manager ᎢᎬᏁᏗ
+extension	Download with Tufan Download Manager	ᏗᏓᏃᏍᏙᏗ Tufan Download Manager ᎢᎬᏁᏗ
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ {site} ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	ᎠᎾᏗᏒᏍᎬᎢ {address} ᏩᏂᎷᎪᎢ
 #. text in the browser extension
@@ -5725,9 +5725,9 @@ extension	Drag to move it along the video's edge	ᎠᏌᎳᏗᏍᏗ ᎤᏓᎷᎪ
 #, machine
 extension	Enter its https:// address.	https:// ᎤᏃᎴ-ᎠᏂᏃᏔᏅᎯ ᎤᏃᎴᏍᏙᏗ ᎰᏪᎸᎦ.
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	ᏗᏓᏃᏍᏙᏗ ᏗᎦᏃᏍᏙᏗ ᏗᏓᏃᏍᏙᏗ ᏗᏓᏃᏍᏙᏗ Mister Download Manager ᎢᎬᏁᏗ.
+extension	Hands downloads from the browser to Tufan Download Manager.	ᏗᏓᏃᏍᏙᏗ ᏗᎦᏃᏍᏙᏗ ᏗᏓᏃᏍᏙᏗ ᏗᏓᏃᏍᏙᏗ Tufan Download Manager ᎢᎬᏁᏗ.
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5749,7 +5749,7 @@ extension	How to fix it	ᎢᏳᏍᏗ ᎢᏯᏛᏁᏗ
 #, machine
 extension	It didn't work. Try again.	ᎥᏝ ᏳᎵᏍᏔᏁᎢ. ᏔᎵᏁ ᎢᏣᏢᏓᎳ.
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	ᎥᏝ ᎪᏪᎵ ᏳᎾᏄᎪᏥᎭ ᎪᎯ ᎢᏳᎢ: ᎢᎬᏱ ᎾᎿ ᎢᏣᏢᏓᎳ ᎪᏪᎵ ᎢᏣᏛᏅᎢᏍᏓ.
 #. text in the browser extension
@@ -5782,33 +5782,33 @@ extension	Live	ᎬᏃᏛ
 #, machine
 extension	Media on this page	ᎠᏰᎵ ᎢᏗᏓᏛᏗ ᎯᎠ ᎢᏗᏓᏛᏗ
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Mister Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
+extension	Tufan Download Manager didn't start in time	Tufan Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Mister Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᎯᎠ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ
+extension	Tufan Download Manager doesn't accept this copy of the extension	Tufan Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᎯᎠ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Mister Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
+extension	Tufan Download Manager isn't installed or didn't start	Tufan Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Mister Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ, ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Tufan Download Manager ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ, ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ ᏱᏚᎾᏙᏢᏒᎢ
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Mister Download Manager ᎿᏉ ᏚᎾᏕᎦᏍᎪ ᎾᏍᎩᏉ ᎢᏳᏍᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎢᏗᏢ ᎾᏍᎩ ᎯᎠ ᎢᏗᏢ ᎢᏯᏛᏁᎯ ᏥᏚᏓᏁᎶᏔᏅ. ᎯᎠ ᎢᏗᏢ ᎢᏯᏛᏁᎯ ᏌᏉ ᎢᏳᏩᎫᏗ ᎨᏣᏛᏛᎲᏍᎪ ᎾᏍᎩ ᎯᎠ ᏂᎯ ᎢᏣᏁᎳᏗᏍᏗᏱ; ᎯᎠ ᎢᏳᏍᏗ ᎢᏣᏓᏅᏍᎬᎾ ᏂᏨᏁᎲᎾ ᎾᏍᎩ ետᏗᎭ.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Tufan Download Manager ᎿᏉ ᏚᎾᏕᎦᏍᎪ ᎾᏍᎩᏉ ᎢᏳᏍᏗ ᏗᏟᎶᏍᏔᏅᎯ ᎢᏗᏢ ᎾᏍᎩ ᎯᎠ ᎢᏗᏢ ᎢᏯᏛᏁᎯ ᏥᏚᏓᏁᎶᏔᏅ. ᎯᎠ ᎢᏗᏢ ᎢᏯᏛᏁᎯ ᏌᏉ ᎢᏳᏩᎫᏗ ᎨᏣᏛᏛᎲᏍᎪ ᎾᏍᎩ ᎯᎠ ᏂᎯ ᎢᏣᏁᎳᏗᏍᏗᏱ; ᎯᎠ ᎢᏳᏍᏗ ᎢᏣᏓᏅᏍᎬᎾ ᏂᏨᏁᎲᎾ ᎾᏍᎩ ետᏗᎭ.
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Mister Download Manager ᎿᏉ ᏕᎦᏅᏗᎭ ᎾᏍᎩᏯᏉ ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎤᏤᎵ ᏗᏓᏟᎶᏍᏗ ᎢᏗᎬᏔᏅᎯ. ᎯᎠ ᎢᎬᏁᎸᎯ ᏂᎨᏒᎾ ᏥᎨᏐᎢ, ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎥᏝ ᏯᏓᏁᏟᏴᏍᎦ ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎤᏤᎵ ᏗᏓᏟᎶᏍᏗ.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Tufan Download Manager ᎿᏉ ᏕᎦᏅᏗᎭ ᎾᏍᎩᏯᏉ ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎤᏤᎵ ᏗᏓᏟᎶᏍᏗ ᎢᏗᎬᏔᏅᎯ. ᎯᎠ ᎢᎬᏁᎸᎯ ᏂᎨᏒᎾ ᏥᎨᏐᎢ, ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎥᏝ ᏯᏓᏁᏟᏴᏍᎦ ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎤᏤᎵ ᏗᏓᏟᎶᏍᏗ.
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5828,32 +5828,32 @@ extension	Never take downloads from {site}	ᎥᏝ ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔ�
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	ᎥᏝ ᏗᎧᏃᎩᏍᏗ ᎠᎴ ᏗᎧᏃᎩᏍᏗ ᎯᎠ ᎢᏗᏓᏛᏗ. ᎢᏴᏓᏛᏗ, ᎿᏉ ᎯᎠ ᏔᎵᏁ ᎤᏍᏚᎢᏓ.
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	ᎥᏝ ᏳᎾᎷᏤᎢ. ᎢᎬᏱ ᎾᏍᎩ ᎤᏃᎴᏍᏙᏗ ᎢᏣᏍᏚᎢᏓ ᎯᎠ ᎤᏃᎴ-ᎠᏂᏃᏔᏅᎯ ᎠᎴ ᎢᏣᏓᏂᎸᎦ ᎤᏤᎵᎦ ᎪᏪᎵ ᎤᏃᎯᏳᏓᏁᎯ, ᎿᏉᏃ ᏔᎵᏁ ᎢᏣᏢᏓᎳ.
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	ᎢᏣᏍᏚᎢᏓ
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	ᎢᎬᏱ ᎾᏍᎩ ᎤᏃᎴᏍᏙᏗ ᎢᏣᏍᏚᎢᏓ ᎠᎴ ᎢᏣᏓᏂᎸᎦ ᎤᏤᎵᎦ ᎪᏪᎵ ᎤᏃᎯᏳᏓᏁᎯ, ᎿᏉᏃ ᎢᏣᎰᏪᎸᎦ ᎪᏪᎵ ᎾᎿ ᎤᏤᎵᎦ ᎢᏯᏓᏅᏖᏗ, ᎢᏅᎯᏳ, ᎢᏣᏢᏓᎳ ᎪᏪᎵ (ᎠᎴ misterdownloadmanager-cli pair).
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	ᎢᎬᏱ ᎾᏍᎩ ᎤᏃᎴᏍᏙᏗ ᎢᏣᏍᏚᎢᏓ ᎠᎴ ᎢᏣᏓᏂᎸᎦ ᎤᏤᎵᎦ ᎪᏪᎵ ᎤᏃᎯᏳᏓᏁᎯ, ᎿᏉᏃ ᎢᏣᎰᏪᎸᎦ ᎪᏪᎵ ᎾᎿ ᎤᏤᎵᎦ ᎢᏯᏓᏅᏖᏗ, ᎢᏅᎯᏳ, ᎢᏣᏢᏓᎳ ᎪᏪᎵ (ᎠᎴ tufan-download-manager-cli pair).
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	ᎤᏍᏚᎢᏛ Mister Download Manager
+extension	Open Tufan Download Manager	ᎤᏍᏚᎢᏛ Tufan Download Manager
 #. text in the browser extension
 #. button in the toolbar button's popup: open the app's Options
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Options...	ᏗᏓᏂᏴᏗ ᏗᏕᎬᏔᏅᎢ...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	ᎢᏣᏢᏓᎳ
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	ᎢᏣᏢᏓᎳ ᎪᏪᎵ
 #. text in the browser extension
@@ -5881,13 +5881,13 @@ extension	Send downloads through this browser's proxy or VPN extension	ᏕᎦᏅ
 #, machine
 extension	Send downloads to	ᎠᎾᏗᏒᏍᎬᎢ ᏩᏂᎷᎪᎢ
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	ᎦᎴᏅᏔᏅᎢ Mister Download Manager ᎢᎬᏁᏗ
+extension	Sent to Tufan Download Manager	ᎦᎴᏅᏔᏅᎢ Tufan Download Manager ᎢᎬᏁᏗ
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	MDM ᎠᎵᏍᏕᎸᏙᏗ
+extension	Support TDM	TDM ᎠᎵᏍᏕᎸᏙᏗ
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5897,9 +5897,9 @@ extension	Take downloads from this browser	ᎯᎠ ᎠᎾᏓᏛᏗᏍᎩ ᎯᎠ �
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	Chrome Web Store ᏗᎧᎿᏩᏛᏍᏗ ᎯᎠ ᎤᏁᏉᏤᏗ ᎠᏂ ᏩᏈᏌᏘ ᏫᏗᎣ ᎤᏁᎳᏅᏗ ᎥᏝ ᏱᏙᎬᏩᏚᎵᏍᎦ. Help ᎾᏍᎩ ᎦᏙ ᏰᎵ ᏱᏣᏛᏁᎭ ᎠᏎᏍᏗ.
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	ᎤᎾᏕᎳᎰᏒᎢ Mister Download Manager ᎤᏲᏒᎢ
+extension	The connection to Tufan Download Manager failed	ᎤᎾᏕᎳᎰᏒᎢ Tufan Download Manager ᎤᏲᏒᎢ
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5917,7 +5917,7 @@ extension	The last download was left to the browser.	ᎤᎵᏍᏆᎸᏗ ᏗᎦ�
 #, machine
 extension	This browser isn't ticked in Options → General.	ᎯᎠ ᏗᏓᏟᎶᏍᏗ ᎨᏒ ᎥᏝ ᎤᎵᏍᎪᎸᏔᏅᎯ ᏱᎩ ᎾᎿ ᎪᎯᏍᏗ → ᎦᎸᎳᏗᏢ.
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	ᎯᎠ ᎢᏗᎾᏓᏟᏃᏅᎯ
 #. text in the browser extension
@@ -5929,9 +5929,9 @@ extension	This download's details were too large to hand over	ᎯᎠ ᎠᎾᏓ�
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	ᎯᎠ ᎪᏪᎵ ᏫᏗᎣ ᏗᎪᏢᏔᏅ ᎠᏰᎵ ᎢᏯᏛᏁᎵ ᎠᏁᎭ, ᎾᏍᎩᏃ ᎥᏝ ᎠᏍᏆᏂᎪᏙᏗ ᏱᎩ ᎪᏪᎵ. ᏫᏗᎣ ᏂᏗᎦᎶᏍᏗ ᎠᎴ ᎤᏤᎵ Download video ᎠᏍᏗᏰᏗ ᎠᏂᏴᏫ.
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	ᎤᎾᏕᎳᎰᏒᎢ Mister Download Manager ᎤᎾᏕᎳᎰᏒᎢ ᎯᎠ ᎾᎿᏉ ᎤᎾᏕᎳᎰᏒᎢ
+extension	Update Tufan Download Manager to use everything this extension offers	ᎤᎾᏕᎳᎰᏒᎢ Tufan Download Manager ᎤᎾᏕᎳᎰᏒᎢ ᎯᎠ ᎾᎿᏉ ᎤᎾᏕᎳᎰᏒᎢ
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6047,7 +6047,7 @@ key	Up / Down	ᎦᎸᎳᏗ / ᎦᏁᎳ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	&About Mister Download Manager	&Mister Download Manager ᎤᎬᏩᎵ
+menu	&About Tufan Download Manager	&Tufan Download Manager ᎤᎬᏩᎵ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6083,7 +6083,7 @@ menu	&Exit	&ᎢᏗᎦᎴᏴᏗ
 #, machine
 menu	&Import	&ᎠᏴᏍᏗ
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Interface size	ᎤᏙᏢᏒ ᎤᏓᎷᎪᏗᏱ(&I)
@@ -6200,9 +6200,9 @@ menu	Adwaita	Adwaita
 #, machine
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
 #, machine
-menu	Applies the next time MDM starts	ᎠᎴᏅᏗᏍᎪᎢ ᎢᏓᎵᏍᎪᎸᏓᏁᎸᎭ ᏔᎵᏁ MDM ᎤᎴᏅᎲᎢ
+menu	Applies the next time TDM starts	ᎠᎴᏅᏗᏍᎪᎢ ᎢᏓᎵᏍᎪᎸᏓᏁᎸᎭ ᏔᎵᏁ TDM ᎤᎴᏅᎲᎢ
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 #, machine
@@ -6277,7 +6277,7 @@ menu	C&ustomize URL List...	Ꮥ&ᎪᏢᏒᏅ URL ᎤᎾᏓᏟᎶᏍᏔᏅ...
 #, machine
 menu	Check for &updates...	Ꮧ&ᏓᏟᏍᏔᏅᎯ ᎢᏗᏁᏟᏴᏍᏗ...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 #, machine
 menu	Classic	ᏗᏕᏲᎲᏍᎩ
 #. menu command in the main window
@@ -6323,7 +6323,7 @@ menu	Download &video from a page...	Ꮧ&ᏓᏟᏍᏔᏅᎯ ᎢᏗᏁᏟᏴᏍᏗ
 #, machine
 menu	Download in order	ᎠᏓᎴᏂᏍᎬᎢ ᏗᎦᏁᏟᏴᏍᏗ
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 #, machine
 menu	Draw with	ᏕᎪᏪᎵᏍᎬᎢ
 #. menu command in the main window
@@ -6379,15 +6379,15 @@ menu	Hide drop target	ᏗᏓᏟᏍᏔᏅᎯ ᎢᏗᏁᏟᏴᏍᏗ
 #, machine
 menu	High contrast	ᎦᎸᎳᏗᏢ ᎬᏂᎨᏒᎢ
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 #, machine
 menu	It couldn't start: the log says why	ᎠᎴᏅᏗᏱ ᎢᎬᏩᏁᎸᎯ ᎥᏝ: ᏗᎪᏪᎵ ᎦᏛᎬᏍᏗᎭ
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 #, machine
 menu	Its first frame didn't show within 10 seconds	ᎢᎬᏱᏱ ᏗᏟᎶᏍᏔᏅᎯ ᎥᏝ ᎬᏂᎨᏒ ᏱᏄᎵᏍᏔᏁ 10 ᎢᏯᏗᏔᏍᏗ ᎨᏒᎢ
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 #, machine
 menu	Its last start ended before its first frame	ᎤᎵᏍᏆᎸᏗ ᎤᏓᎴᏅᏗ ᎤᎵᏍᏆᏗᏍᏔᏁ ᎢᎬᏱᏱ ᏗᏟᎶᏍᏔᏅᎯ ᏂᎬᏂᏍᎬᎾ
 #. menu command in the main window
@@ -6409,7 +6409,7 @@ menu	Metro	ᎺᏦ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Mister Download Manager &Home Page	Mister Download Manager &ᎤᎾᏕᏘᏴᏗ
+menu	Tufan Download Manager &Home Page	Tufan Download Manager &ᎤᎾᏕᏘᏴᏗ
 #. menu command in the main window
 #, machine
 menu	Move/Rename (Ctrl-M)	ᏗᏓᏟᏍᏔᏅᎯ ᎢᏗᏁᏟᏴᏍᏗ (Ctrl-M)
@@ -6522,7 +6522,7 @@ menu	Select &all	ᏂᎦᏗᏳ &ᎠᏑᏰᏍᏗ
 menu	Show &drop target	ᎬᏂᎨᏒ &ᎢᎬᏁᏗ ᏗᎦᏁᏟᏴᏍᏗ
 #. menu command in the main window
 #, machine
-menu	Show Mister Download Manager	ᎬᏂᎨᏒ ᎢᎬᏁᏗ Mister Download Manager
+menu	Show Tufan Download Manager	ᎬᏂᎨᏒ ᎢᎬᏁᏗ Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6544,7 +6544,7 @@ menu	Stop Download	ᎠᏠᏯᏍᏗ ᎤᎵᏍᏛ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Support &MDM	MDM &ᎠᎵᏍᏕᎸᏙᏗ
+menu	Support &TDM	TDM &ᎠᎵᏍᏕᎸᏙᏗ
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6554,7 +6554,7 @@ menu	Tell a &friend	Ꭿ&ᎵᏥᏙᏅᏗ ᎢᎦᎵᎢ
 #, machine
 menu	The graphics card was lost twice in 10 minutes	ᎪᏪᎵ ᏗᏟᎶᏍᏙᏗ ᏔᎵ ᎢᏳᏩᎫᏍᏗ ᎤᏃᏴᏔᏁ 10 ᎢᏯᏗᏔᏍᏗ ᎨᏒᎢ
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 #, machine
 menu	Theme	ᏗᏟᎶᏍᏔᏅᎢ
 #. menu command in the main window

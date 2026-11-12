@@ -2,8 +2,8 @@
 // .xpi as a temporary add-on over WebDriver BiDi, as about:debugging loads one, since the Snap
 // Firefox wants signed add-ons for a normal install; Google Chrome: the unpacked folder over the
 // DevTools pipe), its version read back, its popup captured (PNG beside the output), and an
-// ordinary download handed to MDM: the browser asked for a lab file, MDM's Download File Info
-// window must open and the browser must not keep the download itself. MDM and the lab server must
+// ordinary download handed to TDM: the browser asked for a lab file, TDM's Download File Info
+// window must open and the browser must not keep the download itself. TDM and the lab server must
 // be running.
 //   node store-check.mjs firefox <file.xpi> [lab] [out folder]
 //   node store-check.mjs chrome <unpacked folder> [lab] [out folder]
@@ -14,7 +14,7 @@ import { spawn, execFileSync } from "node:child_process";
 const [browser, pkg] = [process.argv[2], path.resolve(process.argv[3])];
 const LAB = process.argv[4] || "http://127.0.0.1:8097";
 const OUT = path.resolve(process.argv[5] || path.join(process.env.HOME, "lab/store-check"));
-const ID = "integration@misterdownloadmanager.com";
+const ID = "integration@tufan-download-manager.com";
 const UUID = "5d0c3b8e-7a51-4c1e-9f0a-38e2c4a1d7b6";
 const NL = String.fromCharCode(10);
 const NUL = String.fromCharCode(0);
@@ -39,18 +39,18 @@ const windows = () => run("wmctrl", ["-l"]);
 fs.mkdirSync(OUT, { recursive: true });
 const say = (s) => console.log(s);
 
-// The ordinary download: a lab file of its own name, MDM's window looked for, then closed.
+// The ordinary download: a lab file of its own name, TDM's window looked for, then closed.
 async function ordinary(navigate, downloadsDir) {
   run("wmctrl", ["-c", "Download File Info"]);
   await sleep(1000);
   const name = `store-${browser}-${Date.now() % 100000}.zip`;
   const t0 = Date.now();
   await navigate(`${LAB}/gen/1M/${name}`).catch(() => {});
-  const at = await until("MDM's Download File Info", 30000, async () => windows().includes("Download File Info") && ((Date.now() - t0) / 1000).toFixed(1)).catch(() => null);
+  const at = await until("TDM's Download File Info", 30000, async () => windows().includes("Download File Info") && ((Date.now() - t0) / 1000).toFixed(1)).catch(() => null);
   await sleep(2000);
   const kept = downloadsDir && fs.existsSync(downloadsDir) ? fs.readdirSync(downloadsDir).filter((f) => f.startsWith(name.replace(".zip", ""))) : [];
   run("wmctrl", ["-c", "Download File Info"]);
-  say(`${at ? "OK  " : "FAIL"} ordinary download ${name}: MDM's Download File Info ${at ? `at ${at} s` : "NOT within 30 s"}; ` + `the browser kept ${kept.length ? kept.join(", ") : "nothing"}`);
+  say(`${at ? "OK  " : "FAIL"} ordinary download ${name}: TDM's Download File Info ${at ? `at ${at} s` : "NOT within 30 s"}; ` + `the browser kept ${kept.length ? kept.join(", ") : "nothing"}`);
 }
 
 if (browser === "firefox") {
@@ -75,7 +75,7 @@ if (browser === "firefox") {
     }
   }
   // The Snap Firefox reads profiles under its own ~/snap folder only.
-  const profile = path.join(process.env.HOME, "snap/firefox/common/mdm-store-check");
+  const profile = path.join(process.env.HOME, "snap/firefox/common/tdm-store-check");
   try {
     execFileSync("pkill", ["-f", "--", `-profile ${profile}`]);
     execFileSync("sleep", ["2"]);
@@ -184,8 +184,8 @@ if (browser === "firefox") {
   // there is one (with the .deb or .rpm installed there is none, #266, and everyone's is read).
   const hosts = path.join(profile, "NativeMessagingHosts");
   fs.mkdirSync(hosts, { recursive: true });
-  const mine = path.join(process.env.HOME, ".config/google-chrome/NativeMessagingHosts/com.misterdownloadmanager.host.json");
-  if (fs.existsSync(mine)) fs.copyFileSync(mine, path.join(hosts, "com.misterdownloadmanager.host.json"));
+  const mine = path.join(process.env.HOME, ".config/google-chrome/NativeMessagingHosts/com.tufan-download-manager.host.json");
+  if (fs.existsSync(mine)) fs.copyFileSync(mine, path.join(hosts, "com.tufan-download-manager.host.json"));
   say(`host manifest: ${fs.existsSync(mine) ? mine : "/etc/opt/chrome/native-messaging-hosts (none in the home folder)"}`);
   const proc = spawn(
     "/usr/bin/google-chrome",

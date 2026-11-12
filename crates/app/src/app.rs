@@ -7,8 +7,8 @@ use std::time::{Duration, Instant};
 
 use base64::Engine as _;
 use egui::{Pos2, Ui, pos2};
-use mdm_engine::state::state_path;
-use mdm_engine::{Destination, Download, Options, Request};
+use tdm_engine::state::state_path;
+use tdm_engine::{Destination, Download, Options, Request};
 use reqwest::header::{AUTHORIZATION, HeaderMap, HeaderValue};
 
 use crate::chrome::{
@@ -24,7 +24,7 @@ use crate::queue::{self, Member, Queue};
 use crate::settings::Settings;
 use crate::store;
 use crate::winui;
-use mdm_ipc as ipc;
+use tdm_ipc as ipc;
 
 /// A node of the Categories tree, what the list shows (saved: the last one comes back).
 #[derive(Clone, Copy, PartialEq, Eq, Debug, serde::Serialize, serde::Deserialize)]
@@ -56,7 +56,7 @@ enum Cmd {
     CheckUpdates,
     About,
     TellFriend,
-    /// Help → Support MDM: the creator's GitHub Sponsors page in the browser.
+    /// Help → Support TDM: the creator's GitHub Sponsors page in the browser.
     Support,
     Exit,
     Stop,
@@ -193,7 +193,7 @@ enum RssEvent {
         rule: u64,
         feed: u64,
         title: String,
-        res: Result<mdm_torrent::Meta, String>,
+        res: Result<tdm_torrent::Meta, String>,
     },
 }
 
@@ -246,10 +246,10 @@ fn place_in(
         Some(i) if i > 0 => (&name[..i], &name[i..]),
         _ => (name, ""),
     };
-    let mut at = mdm_engine::naming::destination(dir, name);
+    let mut at = tdm_engine::naming::destination(dir, name);
     let mut n = 1u32;
     while !taken.insert(at.clone()) {
-        at = mdm_engine::naming::destination(dir, &format!("{stem} ({n}){ext}"));
+        at = tdm_engine::naming::destination(dir, &format!("{stem} ({n}){ext}"));
         n += 1;
     }
     at
@@ -405,7 +405,7 @@ fn folder_has_untracked_item_files(item: &Item) -> bool {
     {
         let manifest = crate::torrents::torrent_file(&spec.hash)
             .and_then(|f| std::fs::read(f).ok())
-            .and_then(|b| mdm_torrent::files_from_bytes(&b).ok());
+            .and_then(|b| tdm_torrent::files_from_bytes(&b).ok());
         if let Some(entries) = manifest {
             let allowed: Vec<PathBuf> = entries
                 .into_iter()
@@ -484,7 +484,7 @@ fn place_to_take(item: &Item, items: &[Item]) -> Option<PathBuf> {
         others()
             .any(|o| stem(o) == stem(item) && o.holds_place())
             .then(|| {
-                mdm_engine::naming::stem_destination(dir, &item.file_name, |s| {
+                tdm_engine::naming::stem_destination(dir, &item.file_name, |s| {
                     let s = s.to_lowercase();
                     others().any(|o| stem(o).as_ref() == Some(&s) && o.holds_place())
                 })
@@ -556,10 +556,10 @@ fn next_trim(done: u32) -> Duration {
 }
 
 /// Started with the session (#226), the window waits hidden until the notification area is
-/// known: MDM's own tray icon created and a tray there to show it. A desktop's tray can come
-/// after MDM (GNOME's AppIndicator extension at sign-in answered 11.5 s after MDM's icon, on
-/// the lab's VM), and MDM's icon after its own first look: this long they are waited for,
-/// counted from MDM's icon (from the start while it has none), the window still hidden,
+/// known: TDM's own tray icon created and a tray there to show it. A desktop's tray can come
+/// after TDM (GNOME's AppIndicator extension at sign-in answered 11.5 s after TDM's icon, on
+/// the lab's VM), and TDM's icon after its own first look: this long they are waited for,
+/// counted from TDM's icon (from the start while it has none), the window still hidden,
 /// before it shows minimized.
 const TRAY_GRACE: Duration = Duration::from_secs(30);
 
@@ -593,15 +593,15 @@ fn tray_toggle_hide(
 enum AtLogin {
     /// Not known yet: hidden, looked at again in a second.
     Wait,
-    /// MDM's icon is in a notification area: the window stays hidden there.
+    /// TDM's icon is in a notification area: the window stays hidden there.
     Tray,
     /// No notification area within [`TRAY_GRACE`]: shown, minimized.
     Minimize,
 }
 
-/// `since` the start, and since MDM's tray `icon` was created (None: not yet): whether a tray
+/// `since` the start, and since TDM's tray `icon` was created (None: not yet): whether a tray
 /// `host` shows it (Windows, macOS: always one; Linux: a StatusNotifierWatcher, #59). The
-/// grace counts from the icon, so a slow start of MDM's own doesn't eat the desktop's time.
+/// grace counts from the icon, so a slow start of TDM's own doesn't eat the desktop's time.
 fn at_login(since: Duration, icon: Option<Duration>, host: bool) -> AtLogin {
     if icon.is_some() && host {
         AtLogin::Tray
@@ -662,7 +662,7 @@ pub struct App {
     file_info_waiting: std::collections::VecDeque<(dialogs::NewUrl, ipc::Command)>,
     /// Download File Info's open answers, for the download each was given to (by id) to start
     /// from (#28: a one-time link refuses a second request).
-    kept_answers: std::collections::HashMap<u64, mdm_engine::KeptAnswer>,
+    kept_answers: std::collections::HashMap<u64, tdm_engine::KeptAnswer>,
     /// Help menu windows.
     about: Option<crate::help::About>,
     updates: Option<crate::help::Updates>,
@@ -685,7 +685,7 @@ pub struct App {
     /// Options was asked for from outside (the extension's Button settings..., `/show`): it comes
     /// to the front once shown, or it would open behind the browser (#77).
     raise_options: bool,
-    /// When MDM started (the update check waits a few seconds after it).
+    /// When TDM started (the update check waits a few seconds after it).
     started: Instant,
     /// When this run last checked for updates by itself (seconds since the epoch).
     update_checked_this_run: Option<i64>,
@@ -769,7 +769,7 @@ pub struct App {
     /// The torrent session, started on first use (D-014).
     torrent_host: crate::torrents::Host,
     /// The remote control (#141): paired phones and computers on the local network.
-    pub remote: Option<mdm_remote::Remote>,
+    pub remote: Option<tdm_remote::Remote>,
     /// Torrents a paired device sent, their files being looked up (`remote::poll_torrents`).
     pub remote_torrents: Vec<crate::remote::Lookup>,
     /// Free space where downloads go, and when it was last looked up (`free_space`).
@@ -779,9 +779,9 @@ pub struct App {
     netwatch: crate::netwatch::NetWatch,
     /// Options → Accounts (#44): the debrid accounts downloads go through, and what they were
     /// set up from (so they are set up again only when that changes).
-    debrid: mdm_debrid::Debrid,
+    debrid: tdm_debrid::Debrid,
     debrid_from: u64,
-    route: mdm_engine::Route,
+    route: tdm_engine::Route,
     adapter_paused: Vec<u64>,
     find: Option<crate::find::Find>,
     /// The last search, for Find Next.
@@ -807,9 +807,9 @@ pub struct App {
     /// A finished queue asked to exit.
     exit_requested: bool,
     /// The global speed cap shared by every download (Speed Limiter settings).
-    global: std::sync::Arc<mdm_engine::limiter::Limiter>,
+    global: std::sync::Arc<tdm_engine::limiter::Limiter>,
     /// Connection caps learned per host, shared by every download.
-    host_limits: std::sync::Arc<mdm_engine::hosts::HostLimits>,
+    host_limits: std::sync::Arc<tdm_engine::hosts::HostLimits>,
     /// Scheduler → Download limits: traffic in the window, and what the limit holds back.
     quota: crate::quota::Quota,
     /// "Show warning before stopping downloads": the notice, while open.
@@ -829,7 +829,7 @@ pub struct App {
     trim_when_hidden: Option<Instant>,
     trims_since_hidden: u32,
     /// Started with the session, the window hidden until the notification area is known
-    /// (#226, [`at_login`]): when, when MDM's tray icon was first seen, and when it was last
+    /// (#226, [`at_login`]): when, when TDM's tray icon was first seen, and when it was last
     /// looked at.
     at_login: Option<Instant>,
     at_login_icon: Option<Instant>,
@@ -997,10 +997,10 @@ pub(crate) fn mark_finished(
 /// Marks each file the engine starts writing as downloaded from the web (Mark-of-the-Web, macOS'
 /// quarantine: win32 / unix `mark_downloaded`), as browsers mark theirs. Only http(s) addresses
 /// (an FTP address may carry its login).
-pub(crate) fn mark_hook(url: &url::Url, referrer: Option<&str>) -> mdm_engine::FileHook {
+pub(crate) fn mark_hook(url: &url::Url, referrer: Option<&str>) -> tdm_engine::FileHook {
     let web = matches!(url.scheme(), "http" | "https");
     let (url, referrer) = (url.to_string(), referrer.map(str::to_owned));
-    mdm_engine::FileHook::new(move |path: &std::path::Path| {
+    tdm_engine::FileHook::new(move |path: &std::path::Path| {
         if !web {
             return;
         }
@@ -1015,7 +1015,7 @@ pub(crate) fn mark_hook(url: &url::Url, referrer: Option<&str>) -> mdm_engine::F
 /// page itself when it is a Drive file's (`video_page`), or, when the button sent the player's
 /// own stream (on Google's hosts), the page it came from (`referer`). None for any other video.
 fn drive_file_behind_player(cmd: &ipc::Command) -> Option<String> {
-    use mdm_engine::sites::gdrive;
+    use tdm_engine::sites::gdrive;
     let drive_file = |s: &str| {
         url::Url::parse(s)
             .ok()
@@ -1060,7 +1060,7 @@ pub fn auth_headers(login: Option<&(String, String)>) -> HeaderMap {
 /// complete (a Stop-then-remove of a download that finished meanwhile).
 fn remove_files_of(dest: &std::path::Path, complete: bool) {
     let _ = std::fs::remove_file(state_path(dest));
-    let _ = std::fs::remove_file(mdm_engine::naming::part_path(dest));
+    let _ = std::fs::remove_file(tdm_engine::naming::part_path(dest));
     if complete {
         let _ = std::fs::remove_file(dest);
     }
@@ -1183,7 +1183,7 @@ impl App {
         // leaves the value; take it so an upgrade's can't override a later choice); a portable
         // copy writes nothing to the registry. With neither, the first start asks.
         #[cfg(windows)]
-        let installer = mdm_ipc::portable_dir()
+        let installer = tdm_ipc::portable_dir()
             .is_none()
             .then(crate::win32::take_install_language)
             .flatten();
@@ -1205,24 +1205,24 @@ impl App {
         }
         // "Launch on startup" is whatever the Run key says (the installer may have set it); on
         // Linux and macOS, the autostart entry / LaunchAgent.
-        // An entry written before #226 (by versions before 0.5.0, or by their installer) starts MDM
+        // An entry written before #226 (by versions before 0.5.0, or by their installer) starts TDM
         // with its window in front: written again, with the argument that starts it in the
         // notification area. Only an entry for this very program (not one a copy elsewhere
         // wrote), and never by a portable copy, which writes nothing outside its folder.
         #[cfg(windows)]
         {
             settings.launch_on_startup = crate::win32::run_at_startup();
-            if settings.launch_on_startup && mdm_ipc::portable_dir().is_none() {
+            if settings.launch_on_startup && tdm_ipc::portable_dir().is_none() {
                 crate::win32::update_run_at_startup();
             }
         }
         #[cfg(unix)]
         {
             settings.launch_on_startup = crate::unix::run_at_startup();
-            if settings.launch_on_startup && mdm_ipc::portable_dir().is_none() {
+            if settings.launch_on_startup && tdm_ipc::portable_dir().is_none() {
                 crate::unix::update_run_at_startup();
             }
-            if mdm_ipc::portable_dir().is_none() && !crate::offscreen() {
+            if tdm_ipc::portable_dir().is_none() && !crate::offscreen() {
                 crate::unix::register_browsers();
             }
         }
@@ -1369,7 +1369,7 @@ impl App {
             netwatch: Default::default(),
             debrid: Default::default(),
             debrid_from: 0,
-            route: mdm_engine::Route::Any,
+            route: tdm_engine::Route::Any,
             adapter_paused: Vec::new(),
             find: None,
             last_find: None,
@@ -1380,7 +1380,7 @@ impl App {
             deferred_torrent_queue,
             turn_off: None,
             exit_requested: false,
-            global: std::sync::Arc::new(mdm_engine::limiter::Limiter::new(None)),
+            global: std::sync::Arc::new(tdm_engine::limiter::Limiter::new(None)),
             host_limits: Default::default(),
             quota: Default::default(),
             limit_notice: None,
@@ -1952,7 +1952,7 @@ impl App {
     /// everything running stops (its connections were held to the route before, or to none;
     /// sockets that are bound can't leak, this is so they don't wait for a timeout) and the
     /// torrent session with it; what was stopped so starts again once the route lets it.
-    /// Each frame (#44): the debrid accounts set up again when they, or MDM's network settings
+    /// Each frame (#44): the debrid accounts set up again when they, or TDM's network settings
     /// (the API calls take the same proxy, DNS and adapter), changed; then the services' host
     /// lists read, off the window's thread. No account: no request at all.
     fn debrid_tick(&mut self) {
@@ -1969,7 +1969,7 @@ impl App {
             return;
         }
         self.debrid_from = from;
-        let accounts: Vec<mdm_debrid::Account> = self
+        let accounts: Vec<tdm_debrid::Account> = self
             .settings
             .debrid_accounts
             .iter()
@@ -2003,7 +2003,7 @@ impl App {
             let before = std::mem::replace(&mut self.route, route.clone());
             self.route_changed(&before);
         }
-        if matches!(self.route, mdm_engine::Route::Down { .. }) || self.adapter_paused.is_empty() {
+        if matches!(self.route, tdm_engine::Route::Down { .. }) || self.adapter_paused.is_empty() {
             return;
         }
         // Started again once their jobs have ended.
@@ -2020,9 +2020,9 @@ impl App {
         }
     }
 
-    fn route_changed(&mut self, before: &mdm_engine::Route) {
+    fn route_changed(&mut self, before: &tdm_engine::Route) {
         let note = match &self.route {
-            mdm_engine::Route::Down { label } => crate::i18n::fmt(
+            tdm_engine::Route::Down { label } => crate::i18n::fmt(
                 // i18n: event log entry: the download stopped because the chosen network adapter (a VPN's, usually) went away; {adapter} its name
                 crate::i18n::t("Stopped: {adapter} is not connected; it goes on when it is back"),
                 &[("adapter", label)],
@@ -2090,7 +2090,7 @@ impl App {
             };
             // Keep the session's in-memory checking progress visible for stopped/complete
             // torrents too; normal download progress is restored when initialization ends.
-            i.torrent_check = (st.phase == mdm_torrent::Phase::Checking)
+            i.torrent_check = (st.phase == tdm_torrent::Phase::Checking)
                 .then_some((st.checked.unwrap_or(st.done), st.total));
             let sent = self.accountant.sent(&spec.hash, st.uploaded);
             if sent > 0 {
@@ -2101,14 +2101,14 @@ impl App {
             // it changes as peers come and go, and the next tick brings the list up to date.
             spec.peers = st.peers_live;
             spec.up_speed = st.up_speed;
-            if st.phase == mdm_torrent::Phase::Finished && dt > 0 {
+            if st.phase == tdm_torrent::Phase::Finished && dt > 0 {
                 spec.seeded_secs += dt;
                 changed = true;
             }
             // Torrent settings' seeding limits: a finished torrent over one stops being shared
             // (paused; it stays so after a restart, `complete_torrents`), with or without a Run.
             let mut stopped = None;
-            if st.phase == mdm_torrent::Phase::Finished
+            if st.phase == tdm_torrent::Phase::Finished
                 && let Some(why) = crate::torrents::sharing_limit_reached(spec, st.done, limits)
             {
                 let (t2, hash) = (t.clone(), spec.hash.clone());
@@ -2131,7 +2131,7 @@ impl App {
             // checked it: the list's numbers are the session's. One not running in the list
             // takes its standing from them; one no longer complete is held paused (shared, it
             // would fetch what is missing out of sight).
-            if st.phase != mdm_torrent::Phase::Checking
+            if st.phase != tdm_torrent::Phase::Checking
                 && !self.torrent_host.busy(&hash)
                 && let Some(report) = self.torrent_resync.remove(&hash)
             {
@@ -2223,7 +2223,7 @@ impl App {
         }
     }
 
-    /// `/show <window>` (mdm_ipc::Command::show): open one of the windows by name, as its menu
+    /// `/show <window>` (tdm_ipc::Command::show): open one of the windows by name, as its menu
     /// command does. Unknown names do nothing.
     fn show_named(&mut self, name: &str, ctx: &egui::Context) {
         self.show_window(ctx);
@@ -2232,14 +2232,14 @@ impl App {
         let (window, tab) = name.split_once(':').unwrap_or((name, ""));
         match window {
             "addurl" => self.run(Cmd::AddUrl, None, ctx),
-            // MDM_CRASH_TEST=1 only (crash.rs): the crash reports' own check.
+            // TDM_CRASH_TEST=1 only (crash.rs): the crash reports' own check.
             "crash-test" => crate::crash::test(tab),
             "batch" => self.run(Cmd::Batch(false), None, ctx),
             "find" => self.run(Cmd::Find, None, ctx),
             "scheduler" => self.run(Cmd::Scheduler, None, ctx),
             "about" => self.run(Cmd::About, None, ctx),
             // Update now's end-to-end tests (feature `test-update`, never in a release): Update
-            // now pressed in the window `/show updates` opened (against MDM_UPDATE_FEED).
+            // now pressed in the window `/show updates` opened (against TDM_UPDATE_FEED).
             #[cfg(feature = "test-update")]
             "update-now" => {
                 if let Some(u) = &mut self.updates {
@@ -2266,7 +2266,7 @@ impl App {
                     ctx.set_zoom_factor(z);
                 }
             }
-            // The system's graphics API's device lost on purpose (Direct3D, Vulkan, Metal); MDM
+            // The system's graphics API's device lost on purpose (Direct3D, Vulkan, Metal); TDM
             // starts again (renderer.rs).
             #[cfg(gpu)]
             "renderer-lost" if crate::offscreen() => crate::renderer::test_device_lost(),
@@ -2298,7 +2298,7 @@ impl App {
             "category" | "category-delete" | "category-remove" => {
                 if let Some(c) = Category::all()
                     .into_iter()
-                    // `/show` arrives in lower case (mdm_ipc::parse_args).
+                    // `/show` arrives in lower case (tdm_ipc::parse_args).
                     .find(|c| c.key().eq_ignore_ascii_case(tab) || c.shown().to_lowercase() == tab)
                 {
                     let cmd = if window == "category" {
@@ -2450,7 +2450,7 @@ impl App {
                     .find(|i| {
                         i.status == Status::Complete
                             && crate::extractq::archive_name(&i.file_name)
-                            && mdm_extract::volume_key(&i.file_name).is_none_or(|v| v.is_first())
+                            && tdm_extract::volume_key(&i.file_name).is_none_or(|v| v.is_first())
                     })
                     .or(self.items.last())
                     .map(|i| i.id);
@@ -2518,7 +2518,7 @@ impl App {
             }
             return;
         }
-        // The startup entry's (#226): this start began in the tray (main.rs), or MDM already
+        // The startup entry's (#226): this start began in the tray (main.rs), or TDM already
         // ran; either way the window stays where it is.
         if cmd.startup {
             return;
@@ -2547,7 +2547,7 @@ impl App {
         // Its menu: never on this site.
         if let Some(host) = cmd.panel_hide_site.as_deref() {
             self.settings.video_panel_sites =
-                mdm_ipc::capture::add_site(&self.settings.video_panel_sites, host);
+                tdm_ipc::capture::add_site(&self.settings.video_panel_sites, host);
             self.dirty = true;
             return;
         }
@@ -2573,7 +2573,7 @@ impl App {
         // The browser's toolbar button: this site's downloads stay with the browser.
         if let Some(host) = cmd.exclude_site.as_deref() {
             self.settings.excluded_sites =
-                mdm_ipc::capture::add_site(&self.settings.excluded_sites, host);
+                tdm_ipc::capture::add_site(&self.settings.excluded_sites, host);
             self.dirty = true;
             return;
         }
@@ -2583,7 +2583,7 @@ impl App {
         // A magnet link or a .torrent file (browser, command line, file association): Add
         // torrent shows what it holds.
         if let Some(m) = cmd.url.as_deref().filter(|u| {
-            mdm_torrent::Source::magnet(u).is_some()
+            tdm_torrent::Source::magnet(u).is_some()
                 || (u.to_ascii_lowercase().ends_with(".torrent")
                     && std::path::Path::new(u.trim_matches('"')).is_file())
         }) {
@@ -2596,7 +2596,7 @@ impl App {
             .url
             .as_deref()
             .and_then(|u| url::Url::parse(u.trim()).ok())
-            .filter(mdm_engine::supported);
+            .filter(tdm_engine::supported);
         let Some(url) = url else {
             if !cmd.start_queue {
                 // A plain second launch brings the window to the front, as IDM does.
@@ -2634,8 +2634,8 @@ impl App {
             let name = cmd
                 .name
                 .clone()
-                .unwrap_or_else(|| mdm_engine::naming::file_name(None, &url));
-            let name = mdm_engine::naming::sanitize(&name);
+                .unwrap_or_else(|| tdm_engine::naming::file_name(None, &url));
+            let name = tdm_engine::naming::sanitize(&name);
             // The automation API's `category` (by its key) and `queue` (by name), when given.
             let category = cmd
                 .category
@@ -2652,7 +2652,7 @@ impl App {
                 .clone()
                 .map(PathBuf::from)
                 .unwrap_or_else(|| self.settings.category_dir(category, &self.downloads));
-            let dest = mdm_engine::naming::destination(&dir, &name);
+            let dest = tdm_engine::naming::destination(&dir, &name);
             let later = cmd.later || (skip_dialog && self.settings.only_add_to_queue);
             let source = if cmd.referer.is_some() || cmd.cookies.is_some() {
                 crate::i18n::mark("from the browser")
@@ -2687,7 +2687,7 @@ impl App {
         direct: bool,
     ) -> RequestParts {
         let site_login = self.settings.site_login(url);
-        let url_login = mdm_engine::ftp::is_ftp(url)
+        let url_login = tdm_engine::ftp::is_ftp(url)
             .then(|| url_login(url))
             .flatten();
         let mut headers = auth_headers(login.or(site_login.as_ref()).or(url_login.as_ref()));
@@ -2721,15 +2721,15 @@ impl App {
             ignore_mtime: self.settings.ignore_mtime,
             server_time: self.settings.set_creation_date,
             ftp_passive: self.settings.ftp_passive,
-            user_agent: given.map_or_else(mdm_engine::agent::automatic, str::to_owned),
+            user_agent: given.map_or_else(tdm_engine::agent::automatic, str::to_owned),
             automatic_agent: given.is_none(),
             // A browser's User-Agent (handed over, or the automatic one) may be refused on this
-            // connection (#372): the one set in Options, else MDM's former one (Internet
+            // connection (#372): the one set in Options, else TDM's former one (Internet
             // Explorer 11's, which such bot checks let through), is tried once then. One the
             // user set is the user's choice: no other.
             agent_fallback: match (context.user_agent.is_some(), own) {
                 (true, Some(own)) => Some(own.to_owned()),
-                (_, None) => Some(mdm_engine::agent::IE11_USER_AGENT.to_owned()),
+                (_, None) => Some(tdm_engine::agent::IE11_USER_AGENT.to_owned()),
                 (false, Some(_)) => None,
             },
             // Where the browser's own download of it ended: asked when the link itself is
@@ -2738,7 +2738,7 @@ impl App {
                 .final_url
                 .as_deref()
                 .and_then(|u| url::Url::parse(u).ok())
-                .filter(|f| f != url && mdm_engine::supported(f)),
+                .filter(|f| f != url && tdm_engine::supported(f)),
             post: context.post.clone().map(|body| body.into_bytes().into()),
             on_file_created: Some(mark_hook(url, context.referer.as_deref())),
             // The browser's own download's type: a web page instead is an error (#533).
@@ -2998,7 +2998,7 @@ impl App {
                         ),
                     );
                 }
-                let _ = std::fs::remove_file(mdm_engine::naming::part_path(&i.dest));
+                let _ = std::fs::remove_file(tdm_engine::naming::part_path(&i.dest));
                 let _ = std::fs::remove_file(state_path(&i.dest));
             }
             self.items.retain(|i| i.id != id);
@@ -3276,10 +3276,10 @@ impl App {
 
     /// The tray icon: created once, its commands run, and closing the window hides it there.
     fn tray(&mut self, ctx: &egui::Context) {
-        // Off-screen test copies have none, but for MDM_TEST_TRAY=1 (#226's check: a start with
+        // Off-screen test copies have none, but for TDM_TEST_TRAY=1 (#226's check: a start with
         // the session shows the icon, and no window).
         let wanted =
-            !crate::offscreen() || std::env::var_os("MDM_TEST_TRAY").is_some_and(|v| v == "1");
+            !crate::offscreen() || std::env::var_os("TDM_TEST_TRAY").is_some_and(|v| v == "1");
         if self.tray.is_none() && self.tray_limiter.is_none() && wanted {
             self.tray = crate::tray::Tray::new(ctx, self.settings.speed_limit_on);
             self.tray_limiter = Some(self.settings.speed_limit_on);
@@ -3506,8 +3506,8 @@ impl App {
         let Ok(url) = url::Url::parse(&text) else {
             return;
         };
-        let name = mdm_engine::naming::file_name(None, &url);
-        if mdm_engine::supported(&url) && self.settings.clipboard_type(&name) {
+        let name = tdm_engine::naming::file_name(None, &url);
+        if tdm_engine::supported(&url) && self.settings.clipboard_type(&name) {
             let cmd = ipc::Command {
                 url: Some(text),
                 ..Default::default()
@@ -3544,8 +3544,8 @@ impl App {
         // still have to match.
         if let Some(direct) = c.direct {
             item.direct = direct;
-            let state = mdm_engine::state::state_path(&item.dest);
-            if let Ok(mut saved) = mdm_engine::state::ResumeState::load(&state) {
+            let state = tdm_engine::state::state_path(&item.dest);
+            if let Ok(mut saved) = tdm_engine::state::ResumeState::load(&state) {
                 saved.final_url = saved.url.clone();
                 let _ = saved.write(&state);
             }
@@ -3561,8 +3561,8 @@ impl App {
         if let Some(url) = c.address {
             // Refresh download address: the resume state follows, so the download continues
             // from the new address (its size and validators still have to match).
-            let state = mdm_engine::state::state_path(&item.dest);
-            if let Ok(mut saved) = mdm_engine::state::ResumeState::load(&state) {
+            let state = tdm_engine::state::state_path(&item.dest);
+            if let Ok(mut saved) = tdm_engine::state::ResumeState::load(&state) {
                 saved.url = url.clone();
                 saved.final_url = url.clone();
                 let _ = saved.write(&state);
@@ -3583,7 +3583,7 @@ impl App {
         let move_to = c
             .move_to
             .filter(|dir| item.dest.parent() != Some(dir.as_path()))
-            .map(|dir| mdm_engine::naming::destination(&dir, &item.file_name));
+            .map(|dir| tdm_engine::naming::destination(&dir, &item.file_name));
         self.dirty = true;
         if let Some(target) = move_to {
             self.start_move(c.id, target);
@@ -3784,7 +3784,7 @@ impl App {
                 Err(hold) => {
                     drop(hold);
                     // Keep `item.rename_on_complete` persisted in `downloads.json` while waiting
-                    // for `torrent_host` so quitting MDM before it starts does not lose it.
+                    // for `torrent_host` so quitting TDM before it starts does not lose it.
                     if !self.deferred_torrent_queue.contains(&id) {
                         self.deferred_torrent_queue.push(id);
                     }
@@ -3958,7 +3958,7 @@ impl App {
     /// Download video from a page, opened for a page (looked up at once) or from the menu: Save
     /// to is the Video category's folder, the Music category's while a sound-only choice is
     /// chosen (#611; not when the user deleted Music).
-    fn video_dialog(&self, page: Option<(&str, mdm_ipc::Command)>) -> crate::videodlg::VideoDialog {
+    fn video_dialog(&self, page: Option<(&str, tdm_ipc::Command)>) -> crate::videodlg::VideoDialog {
         crate::videodlg::refresh_ytdlp(&self.rt);
         let dir = self.settings.category_dir(Category::Video, &self.downloads);
         let music = (!Category::Music.deleted())
@@ -3986,7 +3986,7 @@ impl App {
         // yt-dlp takes any `<stem>.*` there as its own: a stem no file and no other download
         // in the folder has, whatever the extension (#32).
         let items = &self.items;
-        let dest = mdm_engine::naming::stem_destination(&folder, &name, |stem| {
+        let dest = tdm_engine::naming::stem_destination(&folder, &name, |stem| {
             items.iter().any(|i| {
                 i.dest.parent() == Some(folder.as_path())
                     && i.dest
@@ -4036,11 +4036,11 @@ impl App {
             .filter_map(|i| i.dest.file_stem())
             .map(|s| s.to_string_lossy().into_owned())
             .collect::<Vec<_>>();
-        let mut stems = mdm_engine::naming::Stems::new(&folder, in_use);
+        let mut stems = tdm_engine::naming::Stems::new(&folder, in_use);
         self.items.reserve(add.entries.len());
         let mut ids = Vec::with_capacity(add.entries.len());
         for (page, title) in add.entries {
-            let stem = mdm_engine::naming::sanitize(&title);
+            let stem = tdm_engine::naming::sanitize(&title);
             let dest = stems.pick(&format!("{stem}.{}", add.ext));
             let id = self.push_item(
                 page,
@@ -4081,9 +4081,9 @@ impl App {
     /// Start a video item: yt-dlp (installed and verified) downloads it.
     fn start_video(&mut self, id: u64, show: bool) {
         self.claim_place(id);
-        let tools = mdm_tools::tools_dir();
-        let tool = tools.as_deref().and_then(mdm_tools::installed);
-        let ffmpeg = tools.as_deref().and_then(mdm_tools::ffmpeg::installed);
+        let tools = tdm_tools::tools_dir();
+        let tool = tools.as_deref().and_then(tdm_tools::installed);
+        let ffmpeg = tools.as_deref().and_then(tdm_tools::ffmpeg::installed);
         let rate = self.settings.speed_limit();
         // A stream in pieces (HLS, DASH): as many at once as a file's connections (#531).
         let fragments = self
@@ -4113,7 +4113,7 @@ impl App {
             .map(|s| s.to_string_lossy().into_owned())
             .unwrap_or_else(|| "video".into());
         let _ = std::fs::create_dir_all(&folder);
-        let started = mdm_tools::video::VideoJob::start(
+        let started = tdm_tools::video::VideoJob::start(
             &tool.exe,
             item.url.as_str(),
             &spec.selector,
@@ -4181,9 +4181,9 @@ impl App {
 
     /// Start (or start again) a gallery: gallery-dl, installed and verified, or the person's.
     fn start_gallery(&mut self, id: u64, show: bool) {
-        let tool = mdm_tools::tools_dir()
+        let tool = tdm_tools::tools_dir()
             .as_deref()
-            .and_then(mdm_tools::gallery::installed);
+            .and_then(tdm_tools::gallery::installed);
         let rate = self.settings.speed_limit();
         let Some(item) = self.item(id) else { return };
         let Some(spec) = item.gallery.clone() else {
@@ -4201,11 +4201,11 @@ impl App {
             self.dirty = true;
             return;
         };
-        let ask = mdm_tools::gallery::Ask {
+        let ask = tdm_tools::gallery::Ask {
             limit: spec.limit,
             rate,
         };
-        let started = mdm_tools::gallery::GalleryJob::start(
+        let started = tdm_tools::gallery::GalleryJob::start(
             &tool,
             item.url.as_str(),
             &item.dest,
@@ -4296,10 +4296,10 @@ impl App {
             && self.torrent_account().is_some()
             && let Some(magnet) = source
                 .as_deref()
-                .and_then(mdm_torrent::Source::magnet)
+                .and_then(tdm_torrent::Source::magnet)
                 .and_then(|s| match s {
-                    mdm_torrent::Source::Magnet(m) => url::Url::parse(&m).ok(),
-                    mdm_torrent::Source::File(_) => None,
+                    tdm_torrent::Source::Magnet(m) => url::Url::parse(&m).ok(),
+                    tdm_torrent::Source::File(_) => None,
                 })
         {
             let dir = self
@@ -4338,7 +4338,7 @@ impl App {
 
     /// The debrid account torrents go to (#44): Options → Accounts' "Torrents and magnet links
     /// through the first account", with an account there.
-    fn torrent_account(&self) -> Option<(u64, mdm_debrid::ServiceKind)> {
+    fn torrent_account(&self) -> Option<(u64, tdm_debrid::ServiceKind)> {
         (self.settings.debrid_on && self.settings.debrid_torrents)
             .then(|| self.debrid.torrent_account())
             .flatten()
@@ -4359,7 +4359,7 @@ impl App {
         let name = magnet
             .query_pairs()
             .find(|(k, _)| k == "dn")
-            .map(|(_, v)| mdm_engine::naming::sanitize(&v))
+            .map(|(_, v)| tdm_engine::naming::sanitize(&v))
             .filter(|n| !n.is_empty())
             .unwrap_or_else(|| "torrent".to_owned());
         let target = dir.join(&name);
@@ -4379,7 +4379,7 @@ impl App {
             item.note(crate::i18n::fmt(
                 // i18n: event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
                 crate::i18n::t(
-                    "Through {service}: the service downloads the torrent, then MDM its files",
+                    "Through {service}: the service downloads the torrent, then TDM its files",
                 ),
                 &[("service", service.name())],
             ));
@@ -4415,9 +4415,9 @@ impl App {
         net.speed_limit = own.or(limit);
         let rt = self.rt.clone();
         let _guard = rt.enter();
-        let job = mdm_debrid::torrents::RemoteTorrent::start(
+        let job = tdm_debrid::torrents::RemoteTorrent::start(
             &self.debrid,
-            mdm_debrid::torrents::Order {
+            tdm_debrid::torrents::Order {
                 account: spec.account,
                 magnet: url,
                 transfer: spec.transfer.clone(),
@@ -4448,7 +4448,7 @@ impl App {
     fn add_torrent(&mut self, add: crate::torrentdlg::TorrentAdd) {
         if self.torrent_account().is_some()
             && let Some(magnet) =
-                mdm_torrent::magnet_link(&add.meta.torrent).and_then(|m| url::Url::parse(&m).ok())
+                tdm_torrent::magnet_link(&add.meta.torrent).and_then(|m| url::Url::parse(&m).ok())
         {
             self.add_remote_torrent(magnet, add.dir.clone(), add.category, add.start_now);
             return;
@@ -4643,7 +4643,7 @@ impl App {
         }
     }
 
-    /// Fetch feed `id` in the background (once at a time), with MDM's own connection settings.
+    /// Fetch feed `id` in the background (once at a time), with TDM's own connection settings.
     fn rss_fetch(&mut self, id: u64) {
         let Some(feed) = self.rss.feeds.iter().find(|f| f.id == id) else {
             return;
@@ -4665,7 +4665,7 @@ impl App {
                     };
                     match crate::torrents::fetch_small(remote, crate::rss::MAX_FEED).await {
                         Ok(Some(bytes)) => crate::rss::parse(&String::from_utf8_lossy(&bytes)),
-                        // i18n: RSS: a feed bigger than MDM reads (5 MB)
+                        // i18n: RSS: a feed bigger than TDM reads (5 MB)
                         Ok(None) => Err(crate::i18n::t("larger than a feed can be").to_owned()),
                         Err(e) => Err(e),
                     }
@@ -4686,7 +4686,7 @@ impl App {
         );
         self.rt.spawn(async move {
             let res = async {
-                let src = match mdm_torrent::Source::magnet(&article.torrent) {
+                let src = match tdm_torrent::Source::magnet(&article.torrent) {
                     Some(m) => m,
                     None => {
                         let url =
@@ -4698,7 +4698,7 @@ impl App {
                                 opts: crate::settings::own_net(),
                             },
                         };
-                        mdm_torrent::Source::File(crate::torrents::fetch_torrent(remote).await?)
+                        tdm_torrent::Source::File(crate::torrents::fetch_torrent(remote).await?)
                     }
                 };
                 let t = host.session(known).await?;
@@ -4724,7 +4724,7 @@ impl App {
         rule: u64,
         feed: u64,
         title: &str,
-        res: Result<mdm_torrent::Meta, String>,
+        res: Result<tdm_torrent::Meta, String>,
     ) {
         let Some(r) = self.rss.rules.iter().find(|r| r.id == rule).cloned() else {
             return;
@@ -4776,7 +4776,7 @@ impl App {
             self.rss.note(
                 now,
                 crate::i18n::fmt(
-                    // i18n: RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+                    // i18n: RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
                     crate::i18n::t(
                         "{title}: not added: files of its names are already in {folder}",
                     ),
@@ -4954,10 +4954,10 @@ impl App {
     fn add_batch(&mut self, added: crate::batch::Added) {
         let mut ids = Vec::new();
         for url in added.urls {
-            let name = mdm_engine::naming::file_name(None, &url);
+            let name = tdm_engine::naming::file_name(None, &url);
             let category = Category::of(&name);
             let dir = self.settings.category_dir(category, &self.downloads);
-            let dest = mdm_engine::naming::destination(&dir, &name);
+            let dest = tdm_engine::naming::destination(&dir, &name);
             let id = self.push_item(
                 url,
                 dest,
@@ -5002,7 +5002,7 @@ impl App {
             return line(&ApiAnswer { api: on });
         } else if !self.settings.automation_api {
             return line(&ErrorAnswer {
-                error: "the automation API is off (misterdownloadmanager-cli api on)".into(),
+                error: "the automation API is off (tufan-download-manager-cli api on)".into(),
                 code: Some(ipc::api::API_OFF.into()),
             });
         }
@@ -5099,7 +5099,7 @@ impl App {
         }
     }
 
-    /// `{"pair": true}` (`misterdownloadmanager-cli pair`, #157): a new pairing code, the
+    /// `{"pair": true}` (`tufan-download-manager-cli pair`, #157): a new pairing code, the
     /// page's addresses and a QR code for a terminal; an error while the remote control is off
     /// or not listening.
     pub fn pair_answer(&mut self) -> String {
@@ -5121,7 +5121,7 @@ impl App {
         line(&PairAnswer {
             qr: crate::remote::qr_text(&format!("{first}#pair={code}")),
             code,
-            minutes: (mdm_remote::pairing::VALID.as_secs() / 60) as u32,
+            minutes: (tdm_remote::pairing::VALID.as_secs() / 60) as u32,
             urls,
         })
     }
@@ -5143,7 +5143,7 @@ impl App {
                     .find(|d| d.is_dir())
                     .map(std::path::Path::to_owned);
                 let free = at
-                    .and_then(|d| mdm_engine::disk::volume_of(&d))
+                    .and_then(|d| tdm_engine::disk::volume_of(&d))
                     .map(|v| v.free);
                 slot.lock().unwrap().1 = free;
             });
@@ -5181,8 +5181,8 @@ impl App {
         let queue = cmd.later.then(|| queue.unwrap_or(0));
         let text = cmd.url.clone().unwrap_or_default();
         let torrent = match cmd.torrent_file.take() {
-            Some(bytes) => Some((mdm_torrent::Source::File(bytes), false)),
-            None => mdm_torrent::Source::magnet(text.trim()).map(|m| (m, true)),
+            Some(bytes) => Some((tdm_torrent::Source::File(bytes), false)),
+            None => tdm_torrent::Source::magnet(text.trim()).map(|m| (m, true)),
         };
         if let Some((source, from_magnet)) = torrent {
             let slot: crate::remote::Slot = Default::default();
@@ -5214,9 +5214,9 @@ impl App {
         }
         let Some(url) = url::Url::parse(text.trim())
             .ok()
-            .filter(mdm_engine::supported)
+            .filter(tdm_engine::supported)
         else {
-            return fail("unsupported", "not an address MDM downloads");
+            return fail("unsupported", "not an address TDM downloads");
         };
         // Already in the list: no one at the computer to ask, so Options' choice, with "ask"
         // taken as "add it again" (under a numbered name).
@@ -5232,10 +5232,10 @@ impl App {
                 _ => {}
             }
         }
-        let name = mdm_engine::naming::sanitize(&mdm_engine::naming::file_name(None, &url));
+        let name = tdm_engine::naming::sanitize(&tdm_engine::naming::file_name(None, &url));
         let category = category.unwrap_or_else(|| Category::of(&name));
         let dir = self.settings.category_dir(category, &self.downloads);
-        let dest = mdm_engine::naming::destination(&dir, &name);
+        let dest = tdm_engine::naming::destination(&dir, &name);
         cmd.remote = false;
         let id = self.push_item(
             url,
@@ -5371,7 +5371,7 @@ impl App {
         new.publish_categories();
         // Portable mode writes nothing outside its folder (the option is off there).
         if new.launch_on_startup != self.settings.launch_on_startup
-            && mdm_ipc::portable_dir().is_none()
+            && tdm_ipc::portable_dir().is_none()
         {
             #[cfg(windows)]
             crate::win32::set_run_at_startup(new.launch_on_startup);
@@ -5787,7 +5787,7 @@ impl App {
             Cmd::AddThemeFile => {
                 // i18n: title of the file dialog of View → Theme → Add a theme file
                 let title = crate::i18n::t("Add a theme file").to_owned();
-                // i18n: the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+                // i18n: the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
                 let kinds = crate::i18n::t("Themes and colour schemes").to_owned();
                 let all = crate::i18n::t("All files").to_owned();
                 // Where pywal writes its colours, when it has: the first place to look.
@@ -6237,10 +6237,10 @@ impl App {
                 Err(e) => {
                     if self.save_failed.as_ref() != Some(&e) {
                         self.notice = Some((
-                            crate::i18n::mark("Mister Download Manager"),
+                            crate::i18n::mark("Tufan Download Manager"),
                             crate::i18n::fmt(
                                 crate::i18n::t(
-                                    "The download list could not be saved: {error}. Changes are kept while MDM runs.",
+                                    "The download list could not be saved: {error}. Changes are kept while TDM runs.",
                                 ),
                                 &[("error", &e)],
                             ),
@@ -6416,7 +6416,7 @@ impl App {
                     true,
                     self.settings.dark_mode_support,
                 ),
-                // MDM's (#60): dark whatever the system says (a desktop that reports nothing).
+                // TDM's (#60): dark whatever the system says (a desktop that reports nothing).
                 I(
                     // i18n: View menu: a check item; dark mode on, whatever the system's setting
                     "Always dark",
@@ -6452,7 +6452,7 @@ impl App {
                 I("&Keyboard shortcuts", Cmd::Shortcuts, true, false),
                 Sep,
                 I(
-                    "Mister Download Manager &Home Page",
+                    "Tufan Download Manager &Home Page",
                     Cmd::HelpPage(""),
                     true,
                     false,
@@ -6461,13 +6461,13 @@ impl App {
                 Sep,
                 I("Check for &updates...", Cmd::CheckUpdates, true, false),
                 Sep,
-                I("&About Mister Download Manager", Cmd::About, true, false),
+                I("&About Tufan Download Manager", Cmd::About, true, false),
                 I("Tell a &friend", Cmd::TellFriend, true, false),
-                // MDM's, not IDM's: the creator's GitHub Sponsors page, asked for only.
-                I("Support &MDM", Cmd::Support, true, false),
+                // TDM's, not IDM's: the creator's GitHub Sponsors page, asked for only.
+                I("Support &TDM", Cmd::Support, true, false),
             ],
         };
-        // View → Theme (MDM's, #45), after Always dark; then Draw with (#89, #206), where wgpu is
+        // View → Theme (TDM's, #45), after Always dark; then Draw with (#89, #206), where wgpu is
         // built (Windows, Linux, macOS: renderer.rs).
         if let Some(at) = menu
             .iter()
@@ -6494,7 +6494,7 @@ impl App {
         let mut items = Vec::new();
         let mut files = false;
         let on = |id: &str| chosen == id;
-        // i18n: View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+        // i18n: View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
         items.push(Radio("Classic", Cmd::Theme("classic"), true, on("classic")));
         // i18n: View → Theme: the system's own colours (its accent colour, its high contrast)
         items.push(Radio("Native", Cmd::Theme("native"), true, on("native")));
@@ -6541,12 +6541,12 @@ impl App {
         items.push(I("Add a theme file…", Cmd::AddThemeFile, true, false));
         // i18n: View → Theme: opens the folder where theme files go (TOML or JSON)
         items.push(I("Open themes folder", Cmd::OpenThemesFolder, true, false));
-        // i18n: View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+        // i18n: View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
         Sub("Theme", true, items)
     }
 
     /// View → Interface size (#262): every window larger, as a browser zooms (Ctrl + / Ctrl − /
-    /// Ctrl 0 too). The size shown is the zoom drawn now, a test run's MDM_ZOOM too.
+    /// Ctrl 0 too). The size shown is the zoom drawn now, a test run's TDM_ZOOM too.
     fn interface_size_menu(&self) -> MenuEntry<Cmd> {
         let now = crate::scale::of_zoom(self.zoom);
         let items = crate::scale::STEPS
@@ -6557,7 +6557,7 @@ impl App {
                 MenuEntry::Radio(label, Cmd::InterfaceSize(p), true, p == now)
             })
             .collect();
-        // i18n: View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+        // i18n: View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
         MenuEntry::Sub("&Interface size", true, items)
     }
 
@@ -6629,22 +6629,22 @@ impl App {
                     match why {
                         // i18n: View → Draw with: a greyed note under "… didn't start here"; why: no graphics card here has a driver for that graphics system ("it")
                         Why::NoAdapter => off("No graphics card here has a driver for it"),
-                        // i18n: View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+                        // i18n: View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
                         Why::NoFirstFrame => off("Its first frame didn't show within 10 seconds"),
-                        // i18n: View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+                        // i18n: View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
                         Why::EndedEarly => off("Its last start ended before its first frame"),
                         // i18n: View → Draw with: a greyed note under "… didn't start here"; why: the graphics card stopped working twice (a driver update or reset)
                         Why::LostTwice => off("The graphics card was lost twice in 10 minutes"),
-                        // i18n: View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+                        // i18n: View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
                         Why::Other => off("It couldn't start: the log says why"),
                     }
                 }
-                // i18n: View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
-                None => off("Applies the next time MDM starts"),
+                // i18n: View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
+                None => off("Applies the next time TDM starts"),
             };
             items.push(last);
         }
-        // i18n: View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+        // i18n: View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
         Sub("Draw with", true, items)
     }
 
@@ -6854,7 +6854,7 @@ impl App {
                 .is_some_and(|s| {
                     matches!(
                         s.phase,
-                        mdm_torrent::Phase::Downloading | mdm_torrent::Phase::Finished
+                        tdm_torrent::Phase::Downloading | tdm_torrent::Phase::Finished
                     )
                 });
             let at = entries
@@ -7637,7 +7637,7 @@ impl App {
                 Popup::Node(node) => (self.node_entries(node), None),
                 Popup::DropTarget => (
                     vec![
-                        MenuEntry::Item("Show Mister Download Manager", Cmd::ShowMain, true, false),
+                        MenuEntry::Item("Show Tufan Download Manager", Cmd::ShowMain, true, false),
                         MenuEntry::Item("&Add new download", Cmd::AddUrl, true, false),
                         MenuEntry::Sep,
                         MenuEntry::Item("Hide drop target", Cmd::ToggleDropTarget, true, false),
@@ -7826,7 +7826,7 @@ impl App {
             let _ = std::fs::remove_file(&dest);
         }
         let _ = std::fs::remove_file(state_path(&dest));
-        let _ = std::fs::remove_file(mdm_engine::naming::part_path(&dest));
+        let _ = std::fs::remove_file(tdm_engine::naming::part_path(&dest));
         self.delete(id);
     }
 
@@ -7873,7 +7873,7 @@ impl App {
         let dt = self
             .drop_target
             .get_or_insert_with(|| crate::droptarget::DropTarget::new(pos));
-        let icon = egui::include_image!("../assets/icons/app/mdm-48.png");
+        let icon = egui::include_image!("../assets/icons/app/tdm-48.png");
         for ev in dt.show(ctx, &icon) {
             use crate::droptarget::Event;
             match ev {
@@ -7961,7 +7961,7 @@ impl App {
             (s.show_categories, s.branches, s.view) = pane;
             self.dirty = true;
         }
-        // Not a test instance's off-screen window, nor one zoomed for screenshots (MDM_ZOOM).
+        // Not a test instance's off-screen window, nor one zoomed for screenshots (TDM_ZOOM).
         if crate::offscreen() || crate::scale::test_zoom().is_some() {
             return;
         }
@@ -8076,7 +8076,7 @@ impl App {
         }
         let (links, other): (Vec<String>, Vec<String>) = items
             .into_iter()
-            .partition(|s| url::Url::parse(s.trim()).is_ok_and(|u| mdm_engine::supported(&u)));
+            .partition(|s| url::Url::parse(s.trim()).is_ok_and(|u| tdm_engine::supported(&u)));
         if links.len() > 1 {
             self.show_window(ctx);
             let found = links
@@ -8104,7 +8104,7 @@ impl App {
             }
         }
         for s in other {
-            let torrent = mdm_torrent::Source::magnet(&s).is_some()
+            let torrent = tdm_torrent::Source::magnet(&s).is_some()
                 || (s.to_ascii_lowercase().ends_with(".torrent")
                     && std::path::Path::new(&s).is_file());
             if torrent {
@@ -8116,9 +8116,9 @@ impl App {
                     ctx,
                 );
             } else {
-                // A file MDM can't download or import (a picture, a program).
+                // A file TDM can't download or import (a picture, a program).
                 self.notice = Some((
-                    crate::i18n::mark("Mister Download Manager"),
+                    crate::i18n::mark("Tufan Download Manager"),
                     crate::i18n::fmt(
                         crate::i18n::t(
                             "Nothing to download in {item}: drop links, a .torrent file, or a list of addresses (.txt, .ef2).",
@@ -8281,7 +8281,7 @@ impl App {
                 } else {
                     pk.folder.clone()
                 };
-                let dest = mdm_engine::naming::destination(&dir, &name);
+                let dest = tdm_engine::naming::destination(&dir, &name);
                 let context = ipc::Command {
                     referer: d.referer,
                     cookies: d.cookies,
@@ -8335,7 +8335,7 @@ impl App {
             let slot: std::sync::Arc<std::sync::Mutex<Option<_>>> = Default::default();
             let (out, ctx) = (slot.clone(), ctx.clone());
             self.rt.spawn(async move {
-                let res = mdm_engine::probe(url, parts.headers, &parts.opts)
+                let res = tdm_engine::probe(url, parts.headers, &parts.opts)
                     .await
                     .map_err(|e| crate::grabber::state_of(&e));
                 *out.lock().unwrap() = Some(res);
@@ -8364,7 +8364,7 @@ impl App {
         }
         let Some(item) = self.item(id) else { return };
         let _ = std::fs::remove_file(state_path(&item.dest));
-        let _ = std::fs::remove_file(mdm_engine::naming::part_path(&item.dest));
+        let _ = std::fs::remove_file(tdm_engine::naming::part_path(&item.dest));
         item.downloaded = 0;
         item.status = Status::Stopped;
         item.error = None;
@@ -8421,7 +8421,7 @@ impl App {
         self.move_many_for = ids;
         winui::start_pick(&self.ui_ctx, "app-move-many", move || {
             // Off-screen test runs have no folder dialog to answer.
-            if let Some(dir) = std::env::var_os("MDM_TEST_MOVE_TO") {
+            if let Some(dir) = std::env::var_os("TDM_TEST_MOVE_TO") {
                 return Some(PathBuf::from(dir));
             }
             rfd::FileDialog::new()
@@ -8475,7 +8475,7 @@ impl App {
 
     /// IDM looks for a new version once a week; so do we (off: the switch in Check for updates). Found: the
     /// update window says so; otherwise nothing shows.
-    /// The automatic update check: a few seconds after every start, then once a day while MDM
+    /// The automatic update check: a few seconds after every start, then once a day while TDM
     /// runs (it was at most once a week). A new version's window comes to the front, as apps
     /// announce theirs. Not in off-screen test runs (their windows stay as asked).
     fn auto_update_check(&mut self, ctx: &egui::Context) {
@@ -8487,8 +8487,8 @@ impl App {
             .is_some_and(|t| now - t >= crate::help::CHECK_EVERY);
         if self.auto_update.is_none()
             && self.settings.update_check
-            // Off-screen test runs check only when told where (MDM_UPDATE_FEED: their own feed).
-            && (!crate::offscreen() || std::env::var_os("MDM_UPDATE_FEED").is_some())
+            // Off-screen test runs check only when told where (TDM_UPDATE_FEED: their own feed).
+            && (!crate::offscreen() || std::env::var_os("TDM_UPDATE_FEED").is_some())
             && (first || again)
         {
             self.update_checked_this_run = Some(now);
@@ -8573,17 +8573,17 @@ impl App {
         {
             self.shown_existing = None;
         }
-        // Then the browser extension, once per start until a browser has it (extension.rs).
-        if self.lang_picker.is_none()
-            && self.helpers.is_none()
-            && self.settings.language_asked
-            && !self.extension_weighed
-        {
-            self.extension_weighed = true;
-            if crate::extension::worth_asking(&self.settings) {
-                self.extension = Some(crate::extension::Extension::new());
-            }
-        }
+        // [REMOVED] Browser extension popup (disabled for clean install)
+        // Previously: if self.lang_picker.is_none()
+        //             && self.helpers.is_none()
+        //             && self.settings.language_asked
+        //             && !self.extension_weighed
+        //         {
+        //             self.extension_weighed = true;
+        //             if crate::extension::worth_asking(&self.settings) {
+        //                 self.extension = Some(crate::extension::Extension::new());
+        //             }
+        //         }
         if let Some(d) = &mut self.extension {
             match d.show(ctx) {
                 Outcome::Open => {}
@@ -8605,7 +8605,7 @@ impl App {
         if let Some(d) = &mut self.updates {
             match d.show(ctx, &self.rt, &mut weekly) {
                 Outcome::Open => {}
-                // Update now: the new copy is going in place; MDM saves and closes for it.
+                // Update now: the new copy is going in place; TDM saves and closes for it.
                 Outcome::Done(true) => {
                     self.updates = None;
                     close_for_update = true;
@@ -8791,13 +8791,13 @@ impl App {
                     self.open_torrent_dialog_with(Some(new.url.to_string()), Some(remote), ctx);
                 }
                 // A video's page, not a file (YouTube, Vimeo…): the video window looks it up.
-                Outcome::Done(new) if mdm_tools::pages::is_video_page(&new.url) => {
+                Outcome::Done(new) if tdm_tools::pages::is_video_page(&new.url) => {
                     self.add_url = None;
                     self.video_dlg =
                         Some(self.video_dialog(Some((new.url.as_str(), Default::default()))));
                 }
                 // An image gallery's page (Wikimedia Commons, Flickr…): gallery-dl (#58).
-                Outcome::Done(new) if mdm_tools::pages::is_gallery_page(&new.url) => {
+                Outcome::Done(new) if tdm_tools::pages::is_gallery_page(&new.url) => {
                     self.add_url = None;
                     let dir = self
                         .settings
@@ -9386,7 +9386,7 @@ impl eframe::App for App {
     /// (#162). A command that opens a window gets the UI pass that creates it, minimized or not
     /// (no window is raised or focused for it beyond what the command itself does).
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // MDM's own work: not counted as the graphics API's time to its first frame (#280).
+        // TDM's own work: not counted as the graphics API's time to its first frame (#280).
         crate::renderer::own_work_begin();
         self.tick(ctx);
         crate::renderer::own_work_end();
@@ -9449,7 +9449,7 @@ impl App {
             .is_none_or(|t| t.elapsed() > Duration::from_secs(2))
         {
             self.ticked = Some(Instant::now());
-            // For a crash report: what MDM has open and running (sent when it changes).
+            // For a crash report: what TDM has open and running (sent when it changes).
             crate::crash::state(
                 self.items.len(),
                 self.items.iter().filter(|i| i.live.is_some()).count(),
@@ -9584,7 +9584,7 @@ impl App {
                     .url
                     .as_deref()
                     .and_then(|u| url::Url::parse(u.trim()).ok())
-                    .filter(mdm_engine::supported)
+                    .filter(tdm_engine::supported)
             {
                 unseen.push((url, None, inc.cmd));
             }
@@ -9594,11 +9594,11 @@ impl App {
             let name = context
                 .name
                 .clone()
-                .unwrap_or_else(|| mdm_engine::naming::file_name(None, &url));
-            let name = mdm_engine::naming::sanitize(&name);
+                .unwrap_or_else(|| tdm_engine::naming::file_name(None, &url));
+            let name = tdm_engine::naming::sanitize(&name);
             let category = Category::of(&name);
             let dir = self.settings.category_dir(category, &self.downloads);
-            let dest = mdm_engine::naming::destination(&dir, &name);
+            let dest = tdm_engine::naming::destination(&dir, &name);
             let size = context.size;
             let id = self.push_item(
                 url,
@@ -9628,7 +9628,7 @@ impl Drop for App {
         }
         // An archive being extracted stops; its staging folder goes with it.
         self.extracts.stop();
-        // No wake for a queue MDM won't be there to start (Linux's alarm would outlive it).
+        // No wake for a queue TDM won't be there to start (Linux's alarm would outlive it).
         self.wake.clear();
         self.keep_unseen();
         // The feeds as last handed to their saver.
@@ -9754,10 +9754,10 @@ mod same_name_tests {
 
         // A crash left the list's count at nothing, but the resume state says whose the pieces
         // are: that row stays and resumes, the other leaves.
-        let state = mdm_engine::state::state_path(&at);
+        let state = tdm_engine::state::state_path(&at);
         let mut items = [waiting(1), waiting(2)];
         let url = items[0].url.clone();
-        mdm_engine::state::ResumeState::new(url.clone(), url, at.clone(), 9, Default::default())
+        tdm_engine::state::ResumeState::new(url.clone(), url, at.clone(), 9, Default::default())
             .write(&state)
             .unwrap();
         assert_eq!(place_to_take(&items[0], &items), None);
@@ -9803,10 +9803,10 @@ mod at_login_tests {
     fn the_window_waits_for_the_tray_then_stays_there_or_shows_minimized() {
         let s = Duration::from_secs;
         let icon = |d| Some(s(d));
-        // The tray first (Windows, KDE): MDM's icon registered, the window stays hidden.
+        // The tray first (Windows, KDE): TDM's icon registered, the window stays hidden.
         assert_eq!(at_login(s(0), icon(0), true), AtLogin::Tray);
-        // The decision first (XFCE: MDM looked before its own icon had registered; GNOME: the
-        // AppIndicator extension's tray came 11.5 s after MDM's icon): waited for, hidden, then
+        // The decision first (XFCE: TDM looked before its own icon had registered; GNOME: the
+        // AppIndicator extension's tray came 11.5 s after TDM's icon): waited for, hidden, then
         // the tray.
         assert_eq!(at_login(s(0), None, false), AtLogin::Wait);
         assert_eq!(at_login(s(0), icon(0), false), AtLogin::Wait);
@@ -9815,7 +9815,7 @@ mod at_login_tests {
             at_login(s(60), TRAY_GRACE.checked_sub(s(1)), true),
             AtLogin::Tray
         );
-        // The grace counts from MDM's icon: a slow start of its own leaves the desktop its time.
+        // The grace counts from TDM's icon: a slow start of its own leaves the desktop its time.
         assert_eq!(at_login(TRAY_GRACE + s(5), icon(5), false), AtLogin::Wait);
         // No tray within the grace period (a desktop without one, #59; Windows' taskbar not
         // there to take the icon): shown, minimized.
@@ -10008,8 +10008,8 @@ mod window_thread_tests {
     fn a_stopped_downloads_files_are_removed_together() {
         let dir = tempfile::tempdir().unwrap();
         let dest = dir.path().join("file.bin");
-        let part = mdm_engine::naming::part_path(&dest);
-        let state = mdm_engine::state::state_path(&dest);
+        let part = tdm_engine::naming::part_path(&dest);
+        let state = tdm_engine::state::state_path(&dest);
         for f in [&dest, &part, &state] {
             std::fs::write(f, b"x").unwrap();
         }

@@ -1,4 +1,4 @@
-//! misterdownloadmanager-mcp: Mister Download Manager's MCP server. An AI assistant starts it and
+//! tufan-download-manager-mcp: Tufan Download Manager's MCP server. An AI assistant starts it and
 //! speaks MCP with it on stdin and stdout; it hands what the assistant asks to the running app
 //! (docs/ai-assistants.md).
 
@@ -10,18 +10,18 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     if let Some(arg) = std::env::args().nth(1) {
         match arg.as_str() {
             "--version" | "-V" => {
-                println!("misterdownloadmanager-mcp {}", env!("CARGO_PKG_VERSION"))
+                println!("tufan-download-manager-mcp {}", env!("CARGO_PKG_VERSION"))
             }
             _ => println!(
-                "misterdownloadmanager-mcp: Mister Download Manager's MCP server, for AI \
+                "tufan-download-manager-mcp: Tufan Download Manager's MCP server, for AI \
                  assistants. The assistant starts it (no arguments) and talks to it on stdin and \
                  stdout. Setup: \
-                 https://misterdownloadmanager.com/help/ai-assistants.html"
+                 https://tufan-download-manager.com/help/ai-assistants.html"
             ),
         }
         return Ok(());
     }
-    let server = mdm_mcp::Server::new(std::sync::Arc::new(mdm_ipc::request));
+    let server = tdm_mcp::Server::new(std::sync::Arc::new(tdm_ipc::request));
     server
         .serve(rmcp::transport::stdio())
         .await?

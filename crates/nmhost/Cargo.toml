@@ -1,6 +1,6 @@
 [package]
-name = "mdm-nmhost"
-description = "Browser native messaging host: hands captured downloads to MDM"
+name = "tdm-nmhost"
+description = "Browser native messaging host: hands captured downloads to TDM"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -9,14 +9,14 @@ authors.workspace = true
 publish.workspace = true
 
 [[bin]]
-name = "misterdownloadmanager-nmhost"
+name = "tufan-download-manager-nmhost"
 path = "src/main.rs"
 
 [dependencies]
-mdm-ipc.workspace = true
+tdm-ipc.workspace = true
 serde.workspace = true
 serde_json.workspace = true
-# The date on its lines in MDM's log, written as the app's own (crates/crash/src/logs.rs).
+# The date on its lines in TDM's log, written as the app's own (crates/crash/src/logs.rs).
 chrono.workspace = true
 
 # Letting the app come to the front (AllowSetForegroundWindow, src/win32.rs).

@@ -5,7 +5,7 @@ primary_target: "website/index.html"
 related_targets: ["website/download.html","website/idm-alternative.html","website/benchmark.html","tools/website/build.py"]
 ---
 
-# Website: misterdownloadmanager.com
+# Website: tufan-download-manager.com
 
 Scope: every page `tools/website/build.py` makes. Home, download, IDM alternative and
 benchmark are Persuade; help, FAQ, news and legal pages are Read and take the same world with
@@ -16,7 +16,7 @@ Action: Download (Windows installer from GitHub Releases). Proof: the real app w
 public benchmark, the price of nothing. Constraint: clean room, no IDM artwork; no invented
 claims; every image is the real app.
 
-Memorable moment: the real MDM window as the parcel, with its waybill stuck on it.
+Memorable moment: the real TDM window as the parcel, with its waybill stuck on it.
 
 ## Direction contract
 

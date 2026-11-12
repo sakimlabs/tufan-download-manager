@@ -1,6 +1,6 @@
-//! `misterdownloadmanager-cli`'s commands. The app's program carries them (#25: one download
-//! engine shipped, not two): `misterdownloadmanager-cli` (main.rs) is a small launcher that runs
-//! `misterdownloadmanager --cli <arguments>`, and the app's `main` hands those to [`main`].
+//! `tufan-download-manager-cli`'s commands. The app's program carries them (#25: one download
+//! engine shipped, not two): `tufan-download-manager-cli` (main.rs) is a small launcher that runs
+//! `tufan-download-manager --cli <arguments>`, and the app's `main` hands those to [`main`].
 
 use std::ffi::OsString;
 use std::io::Write;
@@ -10,18 +10,18 @@ use std::time::{Duration, Instant};
 
 use anyhow::Context;
 use clap::{Parser, Subcommand};
-use mdm_engine::download::{ConnStatus, MAX_CONNECTIONS_UNLOCKED, State};
-use mdm_engine::{Destination, Download, Options, Proxy, Request};
+use tdm_engine::download::{ConnStatus, MAX_CONNECTIONS_UNLOCKED, State};
+use tdm_engine::{Destination, Download, Options, Proxy, Request};
 use reqwest::header::{HeaderMap, HeaderName, HeaderValue};
 use serde_json::json;
 
 #[derive(Parser)]
 #[command(
     version,
-    about = "Mister Download Manager command line",
-    long_about = "Mister Download Manager command line: downloads, videos and torrents without the \
+    about = "Tufan Download Manager command line",
+    long_about = "Tufan Download Manager command line: downloads, videos and torrents without the \
                   window, and the running app's automation API. Guide: \
-                  https://misterdownloadmanager.com/help/command-line.html"
+                  https://tufan-download-manager.com/help/command-line.html"
 )]
 struct Cli {
     /// Print JSON for programs: one object per line (`progress` events, then `done`, `paused`
@@ -51,13 +51,13 @@ enum Cmd {
         /// The finished file must have this hash: hex MD5 / SHA-1 / SHA-256 / SHA-512 / CRC32,
         /// optionally named ("sha256:…").
         #[arg(long, value_parser = parse_checksum)]
-        checksum: Option<mdm_engine::verify::Hash>,
+        checksum: Option<tdm_engine::verify::Hash>,
         /// The DNS that looks the names up: "system" (the default); a service and how to ask it,
         /// "cloudflare-https", "quad9-tls", "google-plain", "adguard-https", "nextdns-tls"; DNS
         /// servers' addresses, "9.9.9.9,149.112.112.112"; or a DNS-over-HTTPS address,
         /// "https://dns.example/dns-query". No falling back to the system's DNS.
         #[arg(long, default_value = "system", value_parser = parse_dns)]
-        dns: mdm_engine::DnsChoice,
+        dns: tdm_engine::DnsChoice,
         /// The network adapter every connection goes through (#35): its name ("Ethernet",
         /// "wg0") or one of its addresses. When it isn't there or has no address, nothing is
         /// sent and the download fails.
@@ -252,7 +252,7 @@ enum Cmd {
 pub type Unlocking<'a> = std::pin::Pin<
     Box<
         dyn std::future::Future<
-                Output = Result<Option<std::sync::Arc<dyn mdm_engine::Unlocker>>, String>,
+                Output = Result<Option<std::sync::Arc<dyn tdm_engine::Unlocker>>, String>,
             > + Send
             + 'a,
     >,
@@ -319,11 +319,11 @@ impl std::error::Error for Reported {}
 
 /// Ask the running app (automation API) and print its answer, which is JSON already; an
 /// `{"error"}` answer fails the command.
-fn ask(cmd: mdm_ipc::Command) -> anyhow::Result<()> {
-    let answer = mdm_ipc::request(&cmd)
-        .map_err(|e| anyhow::anyhow!("Mister Download Manager isn't running ({e})"))?;
+fn ask(cmd: tdm_ipc::Command) -> anyhow::Result<()> {
+    let answer = tdm_ipc::request(&cmd)
+        .map_err(|e| anyhow::anyhow!("Tufan Download Manager isn't running ({e})"))?;
     println!("{answer}");
-    if serde_json::from_str::<mdm_ipc::api::ErrorAnswer>(&answer).is_ok() {
+    if serde_json::from_str::<tdm_ipc::api::ErrorAnswer>(&answer).is_ok() {
         return Err(Reported.into());
     }
     Ok(())
@@ -331,12 +331,12 @@ fn ask(cmd: mdm_ipc::Command) -> anyhow::Result<()> {
 
 /// `pair`: a new pairing code from the running app, printed for a person.
 fn pair() -> anyhow::Result<()> {
-    let answer = mdm_ipc::request(&mdm_ipc::Command {
+    let answer = tdm_ipc::request(&tdm_ipc::Command {
         pair: true,
         ..Default::default()
     })
-    .map_err(|e| anyhow::anyhow!("Mister Download Manager isn't running ({e})"))?;
-    match mdm_ipc::api::parse::<mdm_ipc::api::PairAnswer>(&answer).map_err(anyhow::Error::msg)? {
+    .map_err(|e| anyhow::anyhow!("Tufan Download Manager isn't running ({e})"))?;
+    match tdm_ipc::api::parse::<tdm_ipc::api::PairAnswer>(&answer).map_err(anyhow::Error::msg)? {
         Ok(a) => {
             println!("{}", a.qr);
             println!(
@@ -360,7 +360,7 @@ fn pair() -> anyhow::Result<()> {
 
 /// An automation API action on the running app's downloads; prints its answer.
 fn act(action: &str, ids: Vec<u64>) -> anyhow::Result<()> {
-    ask(mdm_ipc::Command {
+    ask(tdm_ipc::Command {
         action: Some(action.into()),
         ids,
         ..Default::default()
@@ -372,7 +372,7 @@ fn act(action: &str, ids: Vec<u64>) -> anyhow::Result<()> {
 pub const FLAG: &str = "--cli";
 
 /// The launcher's name, which the commands' help and messages show.
-pub const NAME: &str = "misterdownloadmanager-cli";
+pub const NAME: &str = "tufan-download-manager-cli";
 
 /// The app's program, started for the command line.
 pub struct Launch {
@@ -418,14 +418,14 @@ pub fn launched(args: Vec<OsString>) -> Option<Launch> {
     })
 }
 
-/// Run the command line `args` (without the program's name): what `misterdownloadmanager-cli`
+/// Run the command line `args` (without the program's name): what `tufan-download-manager-cli`
 /// does, its output, and its exit code (1 when a command fails).
 pub fn main(args: Vec<OsString>) -> ExitCode {
     main_with(args, None)
 }
 
 /// [`main`], downloading through the app's debrid `accounts` (#44).
-/// Does the command line `args` (as [`main_with`] takes them) download a link with MDM's own
+/// Does the command line `args` (as [`main_with`] takes them) download a link with TDM's own
 /// User-Agent (`get`, `resume`)? The app waits for the default browser's (#668) only for these.
 pub fn downloads(args: &[OsString]) -> bool {
     Cli::try_parse_from(std::iter::once(OsString::from(NAME)).chain(args.iter().cloned()))
@@ -472,8 +472,8 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                 checksum,
                 dns,
                 // Worked out once, as the app does each second (a missing adapter: Down).
-                route: adapter.map_or(mdm_engine::Route::Any, |a| {
-                    mdm_engine::net::route_for(&a, &mdm_engine::net::adapters())
+                route: adapter.map_or(tdm_engine::Route::Any, |a| {
+                    tdm_engine::net::route_for(&a, &tdm_engine::net::adapters())
                 }),
                 ..opts(connections)
             };
@@ -482,8 +482,8 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             watch(Download::start(req, opts), json).await
         }
         Cmd::InstallYtdlp => {
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let i = mdm_tools::install_latest(&dir, &mdm_tools::net(Proxy::System), None).await?;
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let i = tdm_tools::install_latest(&dir, &tdm_tools::net(Proxy::System), None).await?;
             if json {
                 emit(json!({ "tool": "yt-dlp", "version": i.version, "path": i.exe }));
             } else {
@@ -496,8 +496,8 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             Ok(())
         }
         Cmd::InstallFfmpeg => {
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let i = mdm_tools::ffmpeg::install_latest(&dir, &mdm_tools::net(Proxy::System), None)
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let i = tdm_tools::ffmpeg::install_latest(&dir, &tdm_tools::net(Proxy::System), None)
                 .await?;
             if json {
                 emit(json!({ "tool": "ffmpeg", "version": i.version, "path": i.exe }));
@@ -511,8 +511,8 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             Ok(())
         }
         Cmd::InstallGalleryDl => {
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let i = mdm_tools::gallery::install_latest(&dir, &mdm_tools::net(Proxy::System), None)
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let i = tdm_tools::gallery::install_latest(&dir, &tdm_tools::net(Proxy::System), None)
                 .await?;
             if json {
                 emit(json!({ "tool": "gallery-dl", "version": i.version, "path": i.exe }));
@@ -531,41 +531,41 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             limit,
             adapter,
         } => {
-            use mdm_tools::video::State;
+            use tdm_tools::video::State;
             if let Some(a) = adapter {
-                mdm_tools::proc::set_route(mdm_engine::net::route_for(
+                tdm_tools::proc::set_route(tdm_engine::net::route_for(
                     &a,
-                    &mdm_engine::net::adapters(),
+                    &tdm_engine::net::adapters(),
                 ));
             }
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            // A gallery-dl of the person's too old for MDM is passed over (#236), said plainly.
-            let old = mdm_tools::gallery::chosen_too_old(&dir).map(|old| {
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            // A gallery-dl of the person's too old for TDM is passed over (#236), said plainly.
+            let old = tdm_tools::gallery::chosen_too_old(&dir).map(|old| {
                 format!(
-                    "your gallery-dl {} ({}) is too old: MDM needs {} or newer",
+                    "your gallery-dl {} ({}) is too old: TDM needs {} or newer",
                     old.version,
                     old.exe.display(),
-                    mdm_tools::gallery::OLDEST
+                    tdm_tools::gallery::OLDEST
                 )
             });
-            let tool = mdm_tools::gallery::installed(&dir).ok_or_else(|| match &old {
-                Some(why) => anyhow::anyhow!("{why}; run install-gallery-dl for MDM's own copy"),
+            let tool = tdm_tools::gallery::installed(&dir).ok_or_else(|| match &old {
+                Some(why) => anyhow::anyhow!("{why}; run install-gallery-dl for TDM's own copy"),
                 None => anyhow::anyhow!("gallery-dl is not installed: run install-gallery-dl"),
             })?;
             if let Some(why) = &old {
                 if tool.is_system() {
                     eprintln!("{why}: using the system's, {}", tool.exe.display());
                 } else {
-                    eprintln!("{why}: using MDM's own copy, {}", tool.version);
+                    eprintln!("{why}: using TDM's own copy, {}", tool.version);
                 }
             }
-            if !mdm_tools::gallery::handles(&tool, &url)? {
+            if !tdm_tools::gallery::handles(&tool, &url)? {
                 anyhow::bail!("gallery-dl can't read this address");
             }
-            let name = mdm_tools::gallery::name_of(&url::Url::parse(&url)?);
+            let name = tdm_tools::gallery::name_of(&url::Url::parse(&url)?);
             let folder = output.join(name);
-            let ask = mdm_tools::gallery::Ask { limit, rate: None };
-            let job = mdm_tools::gallery::GalleryJob::start(
+            let ask = tdm_tools::gallery::Ask { limit, rate: None };
+            let job = tdm_tools::gallery::GalleryJob::start(
                 &tool,
                 &url,
                 &folder,
@@ -602,12 +602,12 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             }
         }
         Cmd::VideoInfo { url } => {
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let tool = mdm_tools::installed(&dir)
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let tool = tdm_tools::installed(&dir)
                 .ok_or_else(|| anyhow::anyhow!("yt-dlp is not installed (install-ytdlp)"))?;
-            let v = match mdm_tools::resolve::look_up(&tool.exe, &url, &Default::default())? {
-                mdm_tools::resolve::Looked::Video(v) => v,
-                mdm_tools::resolve::Looked::List(l) => {
+            let v = match tdm_tools::resolve::look_up(&tool.exe, &url, &Default::default())? {
+                tdm_tools::resolve::Looked::Video(v) => v,
+                tdm_tools::resolve::Looked::List(l) => {
                     let size = l.total.map_or(String::new(), |n| format!(", {n} videos"));
                     if json {
                         emit(json!({ "list": l.title, "total": l.total }));
@@ -617,11 +617,11 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                     return Ok(());
                 }
             };
-            let merge = mdm_tools::ffmpeg::installed(&dir).is_some();
-            let choices = mdm_tools::resolve::choices(&v, merge);
+            let merge = tdm_tools::ffmpeg::installed(&dir).is_some();
+            let choices = tdm_tools::resolve::choices(&v, merge);
             // The subtitles a person would be offered (the automatic ones: the spoken
             // language's and English).
-            let subs = mdm_tools::resolve::sub_choices(&v, "en");
+            let subs = tdm_tools::resolve::sub_choices(&v, "en");
             if json {
                 let choices: Vec<_> = choices
                     .iter()
@@ -651,11 +651,11 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             Ok(())
         }
         Cmd::PlaylistInfo { url, from, count } => {
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let tool = mdm_tools::installed(&dir)
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let tool = tdm_tools::installed(&dir)
                 .ok_or_else(|| anyhow::anyhow!("yt-dlp is not installed (install-ytdlp)"))?;
             let to = count.map(|c| from + c.max(1) - 1);
-            let listing = mdm_tools::playlist::Listing::start(
+            let listing = tdm_tools::playlist::Listing::start(
                 &tool.exe,
                 &url,
                 &Default::default(),
@@ -676,7 +676,7 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                     } else {
                         let len = e
                             .duration
-                            .map_or("--:--".into(), mdm_tools::playlist::clock);
+                            .map_or("--:--".into(), tdm_tools::playlist::clock);
                         let gone = if e.unavailable { "  (unavailable)" } else { "" };
                         println!("{:>6}  {len:>8}  {}  {}{gone}", e.index, e.title, e.url);
                     }
@@ -710,12 +710,12 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             from,
             count,
         } => {
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let tool = mdm_tools::installed(&dir)
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let tool = tdm_tools::installed(&dir)
                 .ok_or_else(|| anyhow::anyhow!("yt-dlp is not installed (install-ytdlp)"))?;
-            let ffmpeg = mdm_tools::ffmpeg::installed(&dir).map(|f| f.exe);
+            let ffmpeg = tdm_tools::ffmpeg::installed(&dir).map(|f| f.exe);
             let to = count.map(|c| from + c.max(1) - 1);
-            let listing = mdm_tools::playlist::Listing::start(
+            let listing = tdm_tools::playlist::Listing::start(
                 &tool.exe,
                 &url,
                 &Default::default(),
@@ -735,21 +735,21 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                 .filter(|e| !e.unavailable)
                 .collect();
             // A folder named after the list, as the window makes it.
-            let folder = output.join(mdm_engine::naming::sanitize(
+            let folder = output.join(tdm_engine::naming::sanitize(
                 p.title.as_deref().unwrap_or("playlist"),
             ));
             std::fs::create_dir_all(&folder)?;
-            let ext = mdm_tools::resolve::mp3_quality(&format).map_or("mp4", |_| "mp3");
+            let ext = tdm_tools::resolve::mp3_quality(&format).map_or("mp4", |_| "mp3");
             let n = entries.len();
             let mut failed = 0;
             for (i, e) in entries.iter().enumerate() {
-                let name = format!("{}.{ext}", mdm_engine::naming::sanitize(&e.title));
-                let free = mdm_engine::naming::stem_destination(&folder, &name, |_| false);
+                let name = format!("{}.{ext}", tdm_engine::naming::sanitize(&e.title));
+                let free = tdm_engine::naming::stem_destination(&folder, &name, |_| false);
                 let stem = free
                     .file_stem()
                     .map(|s| s.to_string_lossy().into_owned())
                     .unwrap_or_else(|| "video".into());
-                let job = mdm_tools::video::VideoJob::start(
+                let job = tdm_tools::video::VideoJob::start(
                     &tool.exe,
                     &e.url,
                     &format,
@@ -765,12 +765,12 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                 let state = loop {
                     tokio::time::sleep(std::time::Duration::from_millis(500)).await;
                     let s = job.progress().state;
-                    if s != mdm_tools::video::State::Running {
+                    if s != tdm_tools::video::State::Running {
                         break s;
                     }
                 };
                 match state {
-                    mdm_tools::video::State::Done(f) => {
+                    tdm_tools::video::State::Done(f) => {
                         if json {
                             emit(json!({ "event": "done", "index": e.index, "path": f }));
                         } else {
@@ -795,10 +795,10 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             Ok(())
         }
         Cmd::TorrentCreate { path, output } => {
-            let spawner = mdm_torrent::librqbit::spawn_utils::BlockingSpawner::new(1);
-            let made = mdm_torrent::librqbit::create_torrent(
+            let spawner = tdm_torrent::librqbit::spawn_utils::BlockingSpawner::new(1);
+            let made = tdm_torrent::librqbit::create_torrent(
                 &path,
-                mdm_torrent::librqbit::CreateTorrentOptions {
+                tdm_torrent::librqbit::CreateTorrentOptions {
                     name: None,
                     trackers: Vec::new(),
                     piece_length: None,
@@ -890,7 +890,7 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                         s.peers_seen
                     );
                 }
-                if s.phase == mdm_torrent::Phase::Finished {
+                if s.phase == tdm_torrent::Phase::Finished {
                     if json {
                         emit(json!({ "event": "done", "path": folder, "size": s.total }));
                     } else {
@@ -928,27 +928,27 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
             adapter,
         } => {
             if let Some(a) = adapter {
-                mdm_tools::proc::set_route(mdm_engine::net::route_for(
+                tdm_tools::proc::set_route(tdm_engine::net::route_for(
                     &a,
-                    &mdm_engine::net::adapters(),
+                    &tdm_engine::net::adapters(),
                 ));
             }
             let subs = subs_arg(&subs, auto_subs, embed_subs);
-            let dir = mdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
-            let tool = mdm_tools::installed(&dir)
+            let dir = tdm_tools::tools_dir().ok_or_else(|| anyhow::anyhow!("no data folder"))?;
+            let tool = tdm_tools::installed(&dir)
                 .ok_or_else(|| anyhow::anyhow!("yt-dlp is not installed (install-ytdlp)"))?;
-            let v = mdm_tools::resolve::resolve(&tool.exe, &url, &Default::default())?;
+            let v = tdm_tools::resolve::resolve(&tool.exe, &url, &Default::default())?;
             // A stem no file in the folder has, whatever the extension: yt-dlp takes any
             // `<stem>.*` there as its own (#32). The extension only sizes the name.
-            let ext = mdm_tools::resolve::audio_conversion(&format).map_or("mp4", |a| a.format);
-            let name = format!("{}.{ext}", mdm_engine::naming::sanitize(&v.title));
-            let free = mdm_engine::naming::stem_destination(&output, &name, |_| false);
+            let ext = tdm_tools::resolve::audio_conversion(&format).map_or("mp4", |a| a.format);
+            let name = format!("{}.{ext}", tdm_engine::naming::sanitize(&v.title));
+            let free = tdm_engine::naming::stem_destination(&output, &name, |_| false);
             let stem = free
                 .file_stem()
                 .map(|s| s.to_string_lossy().into_owned())
                 .unwrap_or_else(|| "video".into());
-            let ffmpeg = mdm_tools::ffmpeg::installed(&dir).map(|f| f.exe);
-            let job = mdm_tools::video::VideoJob::start(
+            let ffmpeg = tdm_tools::ffmpeg::installed(&dir).map(|f| f.exe);
+            let job = tdm_tools::video::VideoJob::start(
                 &tool.exe,
                 &url,
                 &format,
@@ -981,18 +981,18 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                     );
                 }
                 match p.state {
-                    mdm_tools::video::State::Running => {}
-                    mdm_tools::video::State::Done(f) => {
+                    tdm_tools::video::State::Running => {}
+                    tdm_tools::video::State::Done(f) => {
                         // Subtitles the site refused: the video is saved all the same (#68).
                         let problems: Vec<(String, String, String, bool)> = p
                             .sub_problems
                             .iter()
                             .map(|s| {
                                 let why = match &s.reason {
-                                    mdm_tools::video::SubReason::TooManyRequests => {
+                                    tdm_tools::video::SubReason::TooManyRequests => {
                                         "the site refused (too many requests)".to_owned()
                                     }
-                                    mdm_tools::video::SubReason::Other(w) => w.clone(),
+                                    tdm_tools::video::SubReason::Other(w) => w.clone(),
                                 };
                                 (s.code.clone(), s.name.clone(), why, s.beside)
                             })
@@ -1034,7 +1034,7 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
                 }
             }
         }
-        Cmd::Status => ask(mdm_ipc::Command {
+        Cmd::Status => ask(tdm_ipc::Command {
             query: Some("list".into()),
             ..Default::default()
         }),
@@ -1043,7 +1043,7 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
         Cmd::Remove { ids } => act("remove", ids),
         Cmd::Delete { ids } => act("delete", ids),
         Cmd::Pair => pair(),
-        Cmd::Api { state } => ask(mdm_ipc::Command {
+        Cmd::Api { state } => ask(tdm_ipc::Command {
             api: Some(state == "on"),
             ..Default::default()
         }),
@@ -1055,7 +1055,7 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
         } => {
             // Through the account its address goes through (#44): the link a service gave
             // expires, and the service gives a new one.
-            let opts = match mdm_engine::state::ResumeState::load(&state) {
+            let opts = match tdm_engine::state::ResumeState::load(&state) {
                 Ok(saved) => {
                     through_account(accounts, &saved.url, direct, opts(connections), json).await?
                 }
@@ -1069,40 +1069,40 @@ async fn run(cmd: Cmd, json: bool, accounts: Option<&dyn Accounts>) -> anyhow::R
 }
 
 /// `video-get --subs` (#68): "none" (or nothing), "all", or language codes separated by commas.
-fn subs_arg(langs: &str, automatic: bool, embed: bool) -> mdm_tools::video::Subs {
+fn subs_arg(langs: &str, automatic: bool, embed: bool) -> tdm_tools::video::Subs {
     let langs: Vec<String> = langs
         .split(',')
         .map(str::trim)
         .filter(|l| !l.is_empty() && !l.eq_ignore_ascii_case("none"))
         .map(|l| {
-            if l.eq_ignore_ascii_case(mdm_tools::video::ALL_UPLOADERS) {
-                mdm_tools::video::ALL_UPLOADERS.to_owned()
+            if l.eq_ignore_ascii_case(tdm_tools::video::ALL_UPLOADERS) {
+                tdm_tools::video::ALL_UPLOADERS.to_owned()
             } else {
                 l.to_owned()
             }
         })
         .collect();
-    mdm_tools::video::Subs {
+    tdm_tools::video::Subs {
         langs,
         automatic,
         embed,
     }
 }
 
-/// A download's options: the app's defaults (the default browser's User-Agent, #668, and MDM's
+/// A download's options: the app's defaults (the default browser's User-Agent, #668, and TDM's
 /// former one once if a site refuses it, #372).
 fn opts(connections: u32) -> Options {
     Options {
         max_connections: connections,
-        agent_fallback: Some(mdm_engine::agent::IE11_USER_AGENT.to_owned()),
+        agent_fallback: Some(tdm_engine::agent::IE11_USER_AGENT.to_owned()),
         ..Options::default()
     }
 }
 
 /// `--dns`: see [`Cmd::Get`].
-fn parse_dns(s: &str) -> Result<mdm_engine::DnsChoice, String> {
-    use mdm_engine::DnsChoice;
-    use mdm_engine::dns::{Dns, Mode, Preset, parse_servers};
+fn parse_dns(s: &str) -> Result<tdm_engine::DnsChoice, String> {
+    use tdm_engine::DnsChoice;
+    use tdm_engine::dns::{Dns, Mode, Preset, parse_servers};
     let s = s.trim();
     if s.is_empty() || s.eq_ignore_ascii_case("system") {
         return Ok(DnsChoice::default());
@@ -1141,8 +1141,8 @@ fn parse_dns(s: &str) -> Result<mdm_engine::DnsChoice, String> {
     })
 }
 
-fn parse_checksum(s: &str) -> Result<mdm_engine::verify::Hash, String> {
-    mdm_engine::verify::Hash::parse(s)
+fn parse_checksum(s: &str) -> Result<tdm_engine::verify::Hash, String> {
+    tdm_engine::verify::Hash::parse(s)
         .ok_or_else(|| "not a checksum (hex MD5, SHA-1, SHA-256, SHA-512 or CRC32)".into())
 }
 
@@ -1240,8 +1240,8 @@ async fn watch(dl: Download, json: bool) -> anyhow::Result<()> {
             }
             Ok(())
         }
-        Err(mdm_engine::Error::Cancelled) => {
-            let state = file.map(|f| mdm_engine::state::state_path(&f));
+        Err(tdm_engine::Error::Cancelled) => {
+            let state = file.map(|f| tdm_engine::state::state_path(&f));
             if json {
                 emit(json!({ "event": "paused", "state": state }));
             } else if let Some(state) = state {
@@ -1261,16 +1261,16 @@ fn mb(b: u64) -> String {
 }
 
 /// A throwaway torrent session for the command line (its own state folder, nothing kept).
-async fn torrents() -> anyhow::Result<(mdm_torrent::Torrents, tempfile::TempDir)> {
+async fn torrents() -> anyhow::Result<(tdm_torrent::Torrents, tempfile::TempDir)> {
     let dir = tempfile::tempdir()?;
-    let t = mdm_torrent::Torrents::start(mdm_torrent::Config::new(dir.path().to_owned())).await?;
+    let t = tdm_torrent::Torrents::start(tdm_torrent::Config::new(dir.path().to_owned())).await?;
     Ok((t, dir))
 }
 
-fn torrent_source(s: &str) -> anyhow::Result<mdm_torrent::Source> {
-    match mdm_torrent::Source::magnet(s) {
+fn torrent_source(s: &str) -> anyhow::Result<tdm_torrent::Source> {
+    match tdm_torrent::Source::magnet(s) {
         Some(m) => Ok(m),
-        None => Ok(mdm_torrent::Source::File(mdm_torrent::read_file(
+        None => Ok(tdm_torrent::Source::File(tdm_torrent::read_file(
             std::path::Path::new(s),
         )?)),
     }
@@ -1306,7 +1306,7 @@ mod tests {
     #[derive(Debug)]
     struct Service;
 
-    impl mdm_engine::Unlocker for Service {
+    impl tdm_engine::Unlocker for Service {
         fn name(&self) -> &str {
             "Fake-Debrid"
         }
@@ -1319,7 +1319,7 @@ mod tests {
         ) -> std::pin::Pin<
             Box<
                 dyn std::future::Future<
-                        Output = Result<Option<mdm_engine::Unlocked>, mdm_engine::ServiceFault>,
+                        Output = Result<Option<tdm_engine::Unlocked>, tdm_engine::ServiceFault>,
                     > + Send
                     + 'a,
             >,
@@ -1339,7 +1339,7 @@ mod tests {
                     return Err("Fake-Debrid didn't say".into());
                 }
                 Ok((url.host_str() == Some("hoster.test")).then(|| {
-                    std::sync::Arc::new(Service) as std::sync::Arc<dyn mdm_engine::Unlocker>
+                    std::sync::Arc::new(Service) as std::sync::Arc<dyn tdm_engine::Unlocker>
                 }))
             })
         }
@@ -1390,7 +1390,7 @@ mod tests {
         assert!(launched(args(&["mdm", "--cli=x"])).is_none());
         assert!(launched(args(&["mdm", "--client"])).is_none());
         // A link named as the launcher (Linux and macOS).
-        let named = launched(args(&["/usr/bin/misterdownloadmanager-cli", "status"]));
+        let named = launched(args(&["/usr/bin/tufan-download-manager-cli", "status"]));
         assert_eq!(named.is_some(), cfg!(unix));
     }
 }

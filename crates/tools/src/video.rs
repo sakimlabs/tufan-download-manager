@@ -56,10 +56,10 @@ pub enum SubReason {
 }
 
 /// How long to wait before asking once more for the subtitles a site refused. A site that
-/// answers "too many requests" wants a pause, not a quick retry. `MDM_SUBS_RETRY_SECS`
+/// answers "too many requests" wants a pause, not a quick retry. `TDM_SUBS_RETRY_SECS`
 /// shortens it for the tests (tests/fake_ytdlp.rs).
 fn subs_retry_delay() -> std::time::Duration {
-    let secs = std::env::var("MDM_SUBS_RETRY_SECS")
+    let secs = std::env::var("TDM_SUBS_RETRY_SECS")
         .ok()
         .and_then(|v| v.parse().ok())
         .unwrap_or(20);
@@ -227,7 +227,7 @@ fn info_file() -> PathBuf {
     use std::sync::atomic::{AtomicU64, Ordering};
     static N: AtomicU64 = AtomicU64::new(0);
     std::env::temp_dir().join(format!(
-        "mdm-video-{}-{}.json",
+        "tdm-video-{}-{}.json",
         std::process::id(),
         N.fetch_add(1, Ordering::Relaxed)
     ))
@@ -422,7 +422,7 @@ fn supervise(
 /// stay what they are.
 pub const MAX_WHILE_RUNNING: f64 = 0.999;
 
-/// yt-dlp's progress lines (`MDMP <downloaded> <total> <estimate> <speed>`) made into one
+/// yt-dlp's progress lines (`TDMP <downloaded> <total> <estimate> <speed>`) made into one
 /// steady figure. Each stream of a merged download (video, then audio) reports from 0 with its
 /// own total, and a fragmented stream's total (HLS, DASH) is an estimate that moves with every
 /// fragment: the streams are added up, the total never falls below the size the video window
@@ -518,9 +518,9 @@ impl Meter {
 /// How one yt-dlp run on the looked-up page ended.
 struct Ran {
     status: std::io::Result<std::process::ExitStatus>,
-    /// Where it said it saved the file (`MDMF`).
+    /// Where it said it saved the file (`TDMF`).
     saved: Option<PathBuf>,
-    /// The quality it chose (`MDMQ`).
+    /// The quality it chose (`TDMQ`).
     quality: Option<String>,
     warnings: Vec<String>,
     /// What it said when it failed.
@@ -570,11 +570,11 @@ fn run(
         }
         let text = String::from_utf8_lossy(&buf);
         let line = text.trim_end_matches(['\r', '\n']);
-        if let Some(rest) = line.strip_prefix("MDMF ") {
+        if let Some(rest) = line.strip_prefix("TDMF ") {
             saved = Some(PathBuf::from(rest.trim()));
-        } else if let Some(rest) = line.strip_prefix("MDMQ ") {
+        } else if let Some(rest) = line.strip_prefix("TDMQ ") {
             quality = Some(rest.trim().to_owned());
-        } else if let Some(rest) = line.strip_prefix("MDMP ")
+        } else if let Some(rest) = line.strip_prefix("TDMP ")
             && let Some(m) = meter.as_deref_mut()
         {
             m.line(rest, &mut progress.lock().unwrap());
@@ -907,13 +907,13 @@ pub fn pace_args(rate: Option<u64>, fragments: u32) -> Vec<String> {
     }
 }
 
-/// Our progress line: `MDMP <downloaded> <total> <estimate> <speed>` (`NA` when unknown).
-const PROGRESS: &str = "download:MDMP %(progress.downloaded_bytes)s %(progress.total_bytes)s %(progress.total_bytes_estimate)s %(progress.speed)s";
-/// The final file: `MDMF <path>`.
-const FINAL: &str = "after_move:MDMF %(filepath)s";
-/// The quality yt-dlp chose, before it downloads: `MDMQ <format id> <resolution>` (the log names
+/// Our progress line: `TDMP <downloaded> <total> <estimate> <speed>` (`NA` when unknown).
+const PROGRESS: &str = "download:TDMP %(progress.downloaded_bytes)s %(progress.total_bytes)s %(progress.total_bytes_estimate)s %(progress.speed)s";
+/// The final file: `TDMF <path>`.
+const FINAL: &str = "after_move:TDMF %(filepath)s";
+/// The quality yt-dlp chose, before it downloads: `TDMQ <format id> <resolution>` (the log names
 /// it when it isn't the one asked for, #94).
-const QUALITY: &str = "video:MDMQ %(format_id)s %(resolution)s";
+const QUALITY: &str = "video:TDMQ %(format_id)s %(resolution)s";
 
 impl VideoJob {
     /// Download `url` in format `selector` to `dir/<stem>.<ext>`, at most `rate` bytes/s, a
@@ -1139,17 +1139,17 @@ mod tests {
         assert_eq!(s(pace_args(Some(524_288), 8)), "--limit-rate 524288");
     }
 
-    /// Live (network, yt-dlp): `MDM_LIVE_YTDLP=<yt-dlp.exe> MDM_LIVE_PAGE=<video page>
-    /// cargo test -p mdm-tools live_download -- --ignored --nocapture`. Downloads the smallest
+    /// Live (network, yt-dlp): `TDM_LIVE_YTDLP=<yt-dlp.exe> TDM_LIVE_PAGE=<video page>
+    /// cargo test -p tdm-tools live_download -- --ignored --nocapture`. Downloads the smallest
     /// audio and prints the log (a swapped server shows there).
     #[test]
     #[ignore]
     fn live_download() {
-        let exe = PathBuf::from(std::env::var("MDM_LIVE_YTDLP").expect("MDM_LIVE_YTDLP"));
-        let page = std::env::var("MDM_LIVE_PAGE").expect("MDM_LIVE_PAGE");
+        let exe = PathBuf::from(std::env::var("TDM_LIVE_YTDLP").expect("TDM_LIVE_YTDLP"));
+        let page = std::env::var("TDM_LIVE_PAGE").expect("TDM_LIVE_PAGE");
         let dir = tempfile::tempdir().unwrap();
-        let format = std::env::var("MDM_LIVE_FORMAT").unwrap_or_else(|_| "worstaudio".into());
-        let ffmpeg = std::env::var("MDM_LIVE_FFMPEG").ok().map(PathBuf::from);
+        let format = std::env::var("TDM_LIVE_FORMAT").unwrap_or_else(|_| "worstaudio".into());
+        let ffmpeg = std::env::var("TDM_LIVE_FFMPEG").ok().map(PathBuf::from);
         let job = VideoJob::start(
             &exe,
             &page,
@@ -1183,15 +1183,15 @@ mod tests {
         );
     }
 
-    /// Live (#61): `MDM_LIVE_YTDLP=<yt-dlp.exe> MDM_LIVE_SLOW=<a slow file's address>
-    /// cargo test -p mdm-tools live_stop -- --ignored --nocapture` (the lab server:
+    /// Live (#61): `TDM_LIVE_YTDLP=<yt-dlp.exe> TDM_LIVE_SLOW=<a slow file's address>
+    /// cargo test -p tdm-tools live_stop -- --ignored --nocapture` (the lab server:
     /// `/gen/20M/clip.mp4?rate=50K`). Stopping a video download ends every yt-dlp process it
     /// started (Windows: the launcher and its child), and the part file stops growing.
     #[test]
     #[ignore]
     fn live_stop_ends_every_process() {
-        let exe = PathBuf::from(std::env::var("MDM_LIVE_YTDLP").expect("MDM_LIVE_YTDLP"));
-        let url = std::env::var("MDM_LIVE_SLOW").expect("MDM_LIVE_SLOW");
+        let exe = PathBuf::from(std::env::var("TDM_LIVE_YTDLP").expect("TDM_LIVE_YTDLP"));
+        let url = std::env::var("TDM_LIVE_SLOW").expect("TDM_LIVE_SLOW");
         let dir = tempfile::tempdir().unwrap();
         let job = VideoJob::start(
             &exe,

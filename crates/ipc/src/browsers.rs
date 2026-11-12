@@ -31,7 +31,7 @@ pub enum Family {
     Gecko,
 }
 
-/// A browser MDM knows by name.
+/// A browser TDM knows by name.
 #[derive(Debug)]
 pub struct Browser {
     /// Its name in the app (the offer window, Options).
@@ -126,7 +126,7 @@ const MOZILLA: [&str; 2] = [
 ];
 
 /// Linux: every folder for everyone a browser reads host manifests from, with the family whose
-/// manifest goes there: where the .deb and .rpm put theirs (`misterdownloadmanager-nmhost
+/// manifest goes there: where the .deb and .rpm put theirs (`tufan-download-manager-nmhost
 /// --package-manifests`), and `--register --all-users` too.
 pub const LINUX_SYSTEM_HOST_DIRS: &[(&str, Family)] = &[
     (ETC_CHROME, Family::Chromium),
@@ -160,7 +160,7 @@ const fn gecko(
     }
 }
 
-/// Every browser MDM names, Chromium's first.
+/// Every browser TDM names, Chromium's first.
 pub const BROWSERS: &[Browser] = &[
     // Each channel keeps its own folder (Chromium's chrome_paths_linux.cc and chrome_paths_mac.mm).
     chromium(
@@ -415,7 +415,7 @@ pub fn windows_can_run_extension(program: &str) -> bool {
 }
 
 /// The host manifest's file name, in every folder.
-pub const HOST_MANIFEST: &str = "com.misterdownloadmanager.host.json";
+pub const HOST_MANIFEST: &str = "com.tufan-download-manager.host.json";
 
 /// Linux and macOS (`mac`): the folders to write the host manifest into, each with the family
 /// whose manifest goes there, for this user (`home`, `config` = $XDG_CONFIG_HOME) or for
@@ -935,7 +935,7 @@ mod tests {
         ] {
             std::fs::create_dir_all(home.join(d)).unwrap();
         }
-        let helper = root.join("usr/bin/misterdownloadmanager-nmhost");
+        let helper = root.join("usr/bin/tufan-download-manager-nmhost");
         std::fs::create_dir_all(helper.parent().unwrap()).unwrap();
         std::fs::write(&helper, "#!/bin/sh\n").unwrap();
         std::fs::set_permissions(&helper, std::fs::Permissions::from_mode(0o755)).unwrap();
@@ -972,7 +972,7 @@ mod tests {
         std::fs::remove_dir(home.join(".zen")).unwrap();
 
         // Another helper (an AppImage's copy) isn't covered by the package's.
-        let other = t.path().join("copy/misterdownloadmanager-nmhost");
+        let other = t.path().join("copy/tufan-download-manager-nmhost");
         std::fs::create_dir_all(other.parent().unwrap()).unwrap();
         std::fs::copy(&helper, &other).unwrap();
         assert_eq!(dirs(Some(&other)), all(&[chrome, brave, opera, mozilla]));
@@ -982,7 +982,7 @@ mod tests {
     }
 
     /// #685: Helium alone, on Linux, reads the package's manifest for everyone in Chromium's
-    /// folder (or Chrome's): no file of MDM's left in its own folder in the home.
+    /// folder (or Chrome's): no file of TDM's left in its own folder in the home.
     #[cfg(unix)]
     #[test]
     fn a_manifest_for_everyone_covers_helium() {
@@ -990,7 +990,7 @@ mod tests {
         let t = tempfile::tempdir().unwrap();
         let (root, home) = (t.path().join("root"), t.path().join("home"));
         std::fs::create_dir_all(home.join(".config/net.imput.helium")).unwrap();
-        let helper = root.join("usr/bin/misterdownloadmanager-nmhost");
+        let helper = root.join("usr/bin/tufan-download-manager-nmhost");
         std::fs::create_dir_all(helper.parent().unwrap()).unwrap();
         std::fs::write(&helper, "#!/bin/sh\n").unwrap();
         std::fs::set_permissions(&helper, std::fs::Permissions::from_mode(0o755)).unwrap();

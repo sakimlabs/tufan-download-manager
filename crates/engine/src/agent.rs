@@ -1,8 +1,8 @@
-//! The User-Agent MDM sends for the links it is given by hand (#668): the one the default browser
+//! The User-Agent TDM sends for the links it is given by hand (#668): the one the default browser
 //! of this computer sends today, at the version installed, so a site sees the browser its user
 //! has rather than a program or a browser from years ago. The app finds that browser once, off
 //! the interface's thread (win32.rs, unix.rs), and hands it here (`set_automatic`); until then,
-//! or when none is found, MDM speaks as a current Chrome on this system (`fallback`).
+//! or when none is found, TDM speaks as a current Chrome on this system (`fallback`).
 //!
 //! A User-Agent typed in Options, or the one a browser hands over with its download (the
 //! extension's), always wins over this one: the download's `Options::automatic_agent` says which.
@@ -10,13 +10,13 @@
 use std::sync::RwLock;
 use std::time::{SystemTime, UNIX_EPOCH};
 
-/// MDM's User-Agent before #668: Internet Explorer 11's, as IDM 6.42 sends it (lab S1, D-007).
-/// Still asked with once when a site turns a browser's User-Agent away on MDM's connection
+/// TDM's User-Agent before #668: Internet Explorer 11's, as IDM 6.42 sends it (lab S1, D-007).
+/// Still asked with once when a site turns a browser's User-Agent away on TDM's connection
 /// (#372: a bot check that sees a browser's name on a connection that isn't a browser's lets
 /// this one through), and a setting saved with it means "automatic" (it was the default).
 pub const IE11_USER_AGENT: &str = "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko";
 
-/// A browser whose User-Agent MDM knows how to write.
+/// A browser whose User-Agent TDM knows how to write.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Browser {
     Chrome,
@@ -28,7 +28,7 @@ pub enum Browser {
     Chromium,
     Firefox,
     /// LibreWolf counts as Firefox does; Waterfox, Floorp and Zen count their own versions but
-    /// send Firefox's User-Agent (at the Firefox they are built on: MDM's estimate of today's).
+    /// send Firefox's User-Agent (at the Firefox they are built on: TDM's estimate of today's).
     FirefoxFork,
     Safari,
 }
@@ -51,7 +51,7 @@ impl Browser {
     /// The browser `name` is: an executable's file name without its extension (`msedge`), a
     /// `.desktop` file's ID (`com.google.Chrome.desktop`, `firefox_firefox.desktop`), a program
     /// (`google-chrome-stable`) or a macOS bundle ID (`com.brave.Browser`); case ignored. None
-    /// for anything else (an unknown browser: MDM then speaks as Chrome).
+    /// for anything else (an unknown browser: TDM then speaks as Chrome).
     pub fn named(name: &str) -> Option<Browser> {
         let n = name.to_ascii_lowercase();
         let has = |w: &str| n.contains(w);
@@ -129,7 +129,7 @@ pub fn this_arch() -> &'static str {
 pub struct Found {
     pub browser: Browser,
     /// Its version as installed ("157.0.8103.39", Brave's "157.1.99.55", Opera's "122.0.5643.24",
-    /// Firefox's "160.0", Safari's "26.1"); None when it couldn't be read (MDM's estimate then).
+    /// Firefox's "160.0", Safari's "26.1"); None when it couldn't be read (TDM's estimate then).
     pub version: Option<String>,
     /// Firefox built by Ubuntu (its snap) names Ubuntu in its platform: "X11; Ubuntu; Linux …".
     pub ubuntu: bool,
@@ -160,7 +160,7 @@ const FOUR_WEEKS: u64 = 28 * 24 * 3600;
 const A_YEAR: u64 = 365 * 24 * 3600;
 
 /// A browser's current stable major version at `now` (seconds since 1970), counted from one
-/// known release in its rhythm: what MDM says when it can't read the installed version. Never
+/// known release in its rhythm: what TDM says when it can't read the installed version. Never
 /// before the known one, never more than two years past it (a clock far off).
 fn estimate(known: (u32, u64), every: u64, now: u64) -> u32 {
     let steps = now.saturating_sub(known.1) / every;
@@ -193,8 +193,8 @@ fn safari_version(v: &str) -> String {
 }
 
 /// The User-Agent `found` sends on `os` (`arch`: this processor, `this_arch`), at `now` (seconds
-/// since 1970, for the versions MDM estimates): the reduced User-Agents browsers send today,
-/// whose minor version numbers are zeros. Nothing found, or a browser MDM doesn't know: a
+/// since 1970, for the versions TDM estimates): the reduced User-Agents browsers send today,
+/// whose minor version numbers are zeros. Nothing found, or a browser TDM doesn't know: a
 /// current Chrome's on this system.
 pub fn user_agent(found: Option<&Found>, os: Os, arch: &str, now: u64) -> String {
     let browser = found.map_or(Browser::Chrome, |f| f.browser);
@@ -257,14 +257,14 @@ fn now() -> u64 {
 /// looked for yet.
 static AUTOMATIC: RwLock<Option<(Option<String>, String)>> = RwLock::new(None);
 
-/// The default browser the app found (None: none, or one MDM doesn't know): from now on the
+/// The default browser the app found (None: none, or one TDM doesn't know): from now on the
 /// automatic User-Agent is the one it sends.
 pub fn set_automatic(found: Option<Found>) {
     let agent = user_agent(found.as_ref(), Os::this(), this_arch(), now());
     *AUTOMATIC.write().unwrap() = Some((found.map(|f| f.label()), agent));
 }
 
-/// The User-Agent MDM sends for a link given by hand when the user set none: the default
+/// The User-Agent TDM sends for a link given by hand when the user set none: the default
 /// browser's (`set_automatic`), else a current Chrome's on this system (`fallback`).
 pub fn automatic() -> String {
     match &*AUTOMATIC.read().unwrap() {

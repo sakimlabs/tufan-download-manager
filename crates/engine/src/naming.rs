@@ -568,10 +568,10 @@ mod tests {
 
     #[test]
     fn one_destination_one_download() {
-        let p = std::env::temp_dir().join("mdm-reserve-test.bin");
+        let p = std::env::temp_dir().join("tdm-reserve-test.bin");
         let a = reserve(&p).expect("free");
         assert!(reserve(&p).is_none(), "second download refused");
-        let other = unique_path(&std::env::temp_dir(), "mdm-reserve-test.bin");
+        let other = unique_path(&std::env::temp_dir(), "tdm-reserve-test.bin");
         assert_ne!(other, p, "unique_path skips reserved names");
         drop(a);
         assert!(reserve(&p).is_some(), "released when dropped");

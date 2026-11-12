@@ -1,6 +1,6 @@
 //! The proxy auto-config script of Options → Proxy / Socks ("Use automatic configuration
 //! script"): fetched from its address (http, https, file or a path) when the settings are
-//! loaded or changed, and kept for the engine to run (mdm_engine::pac). Until it has arrived,
+//! loaded or changed, and kept for the engine to run (tdm_engine::pac). Until it has arrived,
 //! or when it can't be had, downloads use the system's proxy settings.
 
 use std::collections::HashMap;
@@ -41,12 +41,12 @@ async fn fetch(address: &str) -> Result<String, String> {
         // Directly: the script says which proxy to use, it isn't fetched through one. Through
         // the chosen network adapter (#35): a script on the local network can't be reached
         // through a VPN's, and the one saved last stays in use.
-        let local = mdm_engine::net::is_this_computer(url.host_str().unwrap_or(""));
+        let local = tdm_engine::net::is_this_computer(url.host_str().unwrap_or(""));
         let route = crate::settings::own_route();
-        mdm_engine::net::check_url(&route, &url).map_err(|e| e.to_string())?;
+        tdm_engine::net::check_url(&route, &url).map_err(|e| e.to_string())?;
         // The system's DNS (local network names), only the addresses the adapter reaches.
-        let resolver = mdm_engine::dns::client_resolver(&Default::default(), &route);
-        let client = mdm_engine::net::bind_client(
+        let resolver = tdm_engine::dns::client_resolver(&Default::default(), &route);
+        let client = tdm_engine::net::bind_client(
             reqwest::Client::builder().no_proxy().dns_resolver(resolver),
             &route,
             local,

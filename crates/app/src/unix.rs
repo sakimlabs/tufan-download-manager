@@ -31,13 +31,13 @@ fn spawn(cmd: &mut Command) {
 fn startup_file() -> Option<PathBuf> {
     let home = PathBuf::from(std::env::var_os("HOME")?);
     if cfg!(target_os = "macos") {
-        Some(home.join("Library/LaunchAgents/io.github.anefzaoui.misterdownloadmanager.plist"))
+        Some(home.join("Library/LaunchAgents/io.github.sakimlabs.tufan-download-manager.plist"))
     } else {
         let config = std::env::var_os("XDG_CONFIG_HOME")
             .map(PathBuf::from)
             .filter(|p| p.is_absolute())
             .unwrap_or_else(|| home.join(".config"));
-        Some(config.join("autostart/misterdownloadmanager.desktop"))
+        Some(config.join("autostart/tufan-download-manager.desktop"))
     }
 }
 
@@ -64,12 +64,12 @@ pub fn run_at_startup() -> bool {
     startup_file().is_some_and(|f| f.is_file())
 }
 
-/// The startup entry for the program `exe`: started with the session, MDM waits in the
+/// The startup entry for the program `exe`: started with the session, TDM waits in the
 /// notification area (`/startup`, #226). A LaunchAgent on macOS, an XDG autostart entry on
 /// Linux.
 fn startup_entry(exe: &Path, macos: bool) -> String {
     let exe = exe.display().to_string();
-    let arg = mdm_ipc::STARTUP;
+    let arg = tdm_ipc::STARTUP;
     if macos {
         let exe = exe
             .replace('&', "&amp;")
@@ -80,7 +80,7 @@ fn startup_entry(exe: &Path, macos: bool) -> String {
              <!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \
              \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n\
              <plist version=\"1.0\">\n<dict>\n\
-             \x20 <key>Label</key><string>io.github.anefzaoui.misterdownloadmanager</string>\n\
+             \x20 <key>Label</key><string>io.github.sakimlabs.tufan-download-manager</string>\n\
              \x20 <key>ProgramArguments</key><array><string>{exe}</string>\
              <string>{arg}</string></array>\n\
              \x20 <key>RunAtLoad</key><true/>\n\
@@ -96,8 +96,8 @@ fn startup_entry(exe: &Path, macos: bool) -> String {
             })
             .collect();
         format!(
-            "[Desktop Entry]\nType=Application\nName=Mister Download Manager\n\
-             Exec=\"{quoted}\" {arg}\nIcon=misterdownloadmanager\nTerminal=false\n\
+            "[Desktop Entry]\nType=Application\nName=Tufan Download Manager\n\
+             Exec=\"{quoted}\" {arg}\nIcon=tufan-download-manager\nTerminal=false\n\
              X-GNOME-Autostart-enabled=true\n"
         )
     }
@@ -106,7 +106,7 @@ fn startup_entry(exe: &Path, macos: bool) -> String {
 /// A startup entry written before #226 for the program `exe`: it names that program but passes
 /// no `/startup`. Another copy's entry (an AppImage elsewhere) is not this one's to rewrite.
 fn startup_outdated(text: &str, exe: &Path, macos: bool) -> bool {
-    !text.contains(mdm_ipc::STARTUP)
+    !text.contains(tdm_ipc::STARTUP)
         && entry_program(text, macos).is_some_and(|p| Path::new(&p) == exe)
 }
 
@@ -170,9 +170,9 @@ pub fn update_run_at_startup() {
 }
 
 /// The browsers' helper program (crates/nmhost), beside this one.
-const HOST: &str = "misterdownloadmanager-nmhost";
+const HOST: &str = "tufan-download-manager-nmhost";
 /// The manifest it writes in each browser's folder.
-const MANIFEST: &str = "com.misterdownloadmanager.host.json";
+const MANIFEST: &str = "com.tufan-download-manager.host.json";
 /// How long the helper's `--register` has at a start (it writes a few small files).
 const REGISTER_LIMIT: std::time::Duration = std::time::Duration::from_secs(20);
 /// Why the last registration failed, in the system's words (Test browser integration says it);
@@ -185,7 +185,7 @@ static REGISTER_ERROR: std::sync::Mutex<Option<String>> = std::sync::Mutex::new(
 ///
 /// From an AppImage, whose programs sit in a mount that is gone once it quits, the host is first
 /// copied to the data folder with the AppImage's path beside it (`app-path`: the host starts
-/// that when MDM isn't running), and registered from there (#253).
+/// that when TDM isn't running), and registered from there (#253).
 pub fn register_browsers() {
     let started = std::thread::Builder::new()
         .name("register-browsers".into())
@@ -226,7 +226,7 @@ fn host_program() -> Result<PathBuf, String> {
             Err(format!("{}: not found", host.display()))
         };
     };
-    let data = mdm_ipc::data_dir().ok_or("no data folder to copy the helper to")?;
+    let data = tdm_ipc::data_dir().ok_or("no data folder to copy the helper to")?;
     install_host_copy(&host, &data.join("browser-host"), Path::new(&image))
 }
 
@@ -315,7 +315,7 @@ fn run_register(host: &Path, limit: std::time::Duration) -> Result<String, Strin
 }
 
 /// Where browser integration stands (Options → General → Test browser integration): the
-/// manifests in the folders the browsers here read (mdm_ipc::browsers), for this user, or for
+/// manifests in the folders the browsers here read (tdm_ipc::browsers), for this user, or for
 /// everyone when no browser is there for this user, and the helper each names. A browser that
 /// reads the package's manifest for everyone naming this helper (#266) needs none of its own.
 pub fn host_registration() -> crate::extension::Registration {
@@ -326,10 +326,10 @@ pub fn host_registration() -> crate::extension::Registration {
         .unwrap_or_else(|| home.join(".config"));
     let mac = cfg!(target_os = "macos");
     let host = registered_host();
-    let user = mdm_ipc::browsers::host_dirs(&home, &config, mac, false, host.as_deref());
+    let user = tdm_ipc::browsers::host_dirs(&home, &config, mac, false, host.as_deref());
     if user.is_empty() {
         registration_in(
-            mdm_ipc::browsers::host_dirs(&home, &config, mac, true, None),
+            tdm_ipc::browsers::host_dirs(&home, &config, mac, true, None),
             true,
         )
     } else {
@@ -341,14 +341,14 @@ pub fn host_registration() -> crate::extension::Registration {
 /// from an AppImage its copy in the data folder.
 fn registered_host() -> Option<PathBuf> {
     if std::env::var_os("APPIMAGE").is_some_and(|i| !i.is_empty()) {
-        return mdm_ipc::data_dir().map(|d| d.join("browser-host").join(HOST));
+        return tdm_ipc::data_dir().map(|d| d.join("browser-host").join(HOST));
     }
     std::env::current_exe().ok().map(|e| e.with_file_name(HOST))
 }
 
 /// `host_registration` for the host folders `dirs`, everyone's (`all_users`) or one user's.
 fn registration_in(
-    dirs: Vec<(PathBuf, mdm_ipc::browsers::Family)>,
+    dirs: Vec<(PathBuf, tdm_ipc::browsers::Family)>,
     all_users: bool,
 ) -> crate::extension::Registration {
     use crate::extension::Registration;
@@ -364,7 +364,7 @@ fn registration_in(
             missing += 1;
             continue;
         }
-        match mdm_ipc::browsers::manifest_program(&manifest) {
+        match tdm_ipc::browsers::manifest_program(&manifest) {
             Some(p) if runs(&p) => ready += 1,
             Some(p) => broken = broken.or(Some(p)),
             None => missing += 1,
@@ -431,12 +431,12 @@ fn printed_within(cmd: &mut Command, secs: u64) -> Option<String> {
 /// The default browser (#668): the desktop's choice for web links (`xdg-settings`, else
 /// `mimeapps.list`), the program its `.desktop` file runs, and that program's version (Firefox's
 /// `application.ini` beside it, else its `--version`, on this thread, bounded in time). None when
-/// it isn't a browser MDM knows (MDM then speaks as Chrome).
+/// it isn't a browser TDM knows (TDM then speaks as Chrome).
 #[cfg(target_os = "linux")]
-pub fn default_browser() -> Option<mdm_engine::agent::Found> {
+pub fn default_browser() -> Option<tdm_engine::agent::Found> {
     use crate::defaultbrowser::{exec_program, mimeapps_https, version_in};
     use crate::xdgicons::{Dirs, ini_value};
-    use mdm_engine::agent::{Browser, Found};
+    use tdm_engine::agent::{Browser, Found};
     let var = |n: &str| std::env::var(n).ok().filter(|v| !v.is_empty());
     let home = var("HOME");
     let desktop = printed_within(
@@ -484,7 +484,7 @@ pub fn default_browser() -> Option<mdm_engine::agent::Found> {
     let browser = Browser::named(&desktop).or_else(|| base.as_deref().and_then(Browser::named))?;
     let firefox = matches!(browser, Browser::Firefox | Browser::FirefoxFork);
     // A Flatpak's launcher would start its sandbox, and its files are inside it: its version
-    // stays unknown (MDM's estimate of today's).
+    // stays unknown (TDM's estimate of today's).
     let program = program.filter(|_| base.as_deref() != Some("flatpak"));
     let install = program
         .as_deref()
@@ -542,11 +542,11 @@ fn firefox_install(program: &str, plain: bool) -> Option<PathBuf> {
 }
 
 /// The default browser (#668): the app macOS opens https links with (LaunchServices' handlers;
-/// none set is Safari), and its version (its Info.plist's). None when it isn't a browser MDM
-/// knows (MDM then speaks as Chrome).
+/// none set is Safari), and its version (its Info.plist's). None when it isn't a browser TDM
+/// knows (TDM then speaks as Chrome).
 #[cfg(target_os = "macos")]
-pub fn default_browser() -> Option<mdm_engine::agent::Found> {
-    use mdm_engine::agent::{Browser, Found};
+pub fn default_browser() -> Option<tdm_engine::agent::Found> {
+    use tdm_engine::agent::{Browser, Found};
     let handlers = printed_within(
         Command::new("defaults").args([
             "read",
@@ -651,7 +651,7 @@ pub fn show_in_folder(path: &Path) {
     });
 }
 
-/// Options → Downloads → open magnet links and .torrent files with Mister Download Manager:
+/// Options → Downloads → open magnet links and .torrent files with Tufan Download Manager:
 /// Linux records it with xdg-mime for the desktop entry the packages install (turning it off
 /// leaves the choice to the desktop's settings). Not on macOS yet: it hands links to an app as
 /// open-URL events, which the app doesn't receive.
@@ -659,7 +659,7 @@ pub fn set_torrent_handlers(on: bool) {
     if on && !cfg!(target_os = "macos") {
         spawn(Command::new("xdg-mime").args([
             "default",
-            "misterdownloadmanager.desktop",
+            "tufan-download-manager.desktop",
             "x-scheme-handler/magnet",
             "application/x-bittorrent",
         ]));
@@ -1402,7 +1402,7 @@ const WAYLAND_LIBS: &[WindowLib] = &[
     },
 ];
 
-/// Linux: the display system MDM's windows use, decided once (`window_system`), and what the
+/// Linux: the display system TDM's windows use, decided once (`window_system`), and what the
 /// system lacks for it.
 #[cfg(target_os = "linux")]
 #[derive(Debug, Default, PartialEq, Eq)]
@@ -1411,14 +1411,14 @@ pub struct WindowSystem {
     pub wayland: bool,
     /// X11 is chosen in a Wayland session (XWayland): winit is told so.
     x11_over_wayland: bool,
-    /// X11 was MDM's choice, but these are missing: Wayland's windows instead.
+    /// X11 was TDM's choice, but these are missing: Wayland's windows instead.
     pub x11_missing: Vec<&'static WindowLib>,
     /// The chosen system lacks these: no window can open (#265).
     pub missing: Vec<&'static WindowLib>,
 }
 
 /// The windows run through X11 (XWayland, in a Wayland session) when there is one, unless
-/// `MDM_WAYLAND=1` (#50). Wayland lets no program place its own windows, and MDM's menus and drop
+/// `TDM_WAYLAND=1` (#50). Wayland lets no program place its own windows, and TDM's menus and drop
 /// lists are windows it places under what was clicked: Wayland put them in the middle of the
 /// screen. Without the libraries X11's windows need, Wayland's when there is one (#265).
 /// `loads`: whether a library can be loaded.
@@ -1449,7 +1449,7 @@ fn choose_window_system(
     ws
 }
 
-/// Linux: the display system MDM's windows use (see `choose_window_system`), decided at the
+/// Linux: the display system TDM's windows use (see `choose_window_system`), decided at the
 /// first question.
 #[cfg(target_os = "linux")]
 pub fn window_system() -> &'static WindowSystem {
@@ -1459,7 +1459,7 @@ pub fn window_system() -> &'static WindowSystem {
         choose_window_system(
             set("WAYLAND_DISPLAY"),
             set("DISPLAY"),
-            std::env::var_os("MDM_WAYLAND").is_some_and(|v| v == "1"),
+            std::env::var_os("TDM_WAYLAND").is_some_and(|v| v == "1"),
             |lib| lib.names.iter().any(|n| loads(n)),
         )
     })
@@ -1504,20 +1504,20 @@ pub fn event_loop_hook() -> Option<eframe::EventLoopBuilderHook> {
     }
 }
 
-/// Linux: MDM's windows are Wayland's (not X11's or XWayland's), as `window_system` decided.
+/// Linux: TDM's windows are Wayland's (not X11's or XWayland's), as `window_system` decided.
 #[cfg(target_os = "linux")]
 pub fn on_wayland() -> bool {
     window_system().wayland
 }
 
-/// Linux, X11 and XWayland (MDM's default): a menu's window as X11 menus are (GTK's, Qt's).
+/// Linux, X11 and XWayland (TDM's default): a menu's window as X11 menus are (GTK's, Qt's).
 /// Override-redirect: no window manager manages it, so it opens exactly where it's placed (a
 /// tiling compositor, sway, centred a managed one, #267), and compositors treat it as a menu:
 /// Hyprland gives it no border and doesn't slide or pop it in as it does a new window (it only
 /// fades it, as any X11 menu), where a managed one came down from the top of the screen (#277).
 /// Its type says which menu it is (`menu_window_type`), for the compositors that style each.
 /// Never activated either way: the main window keeps the keyboard, and the menu's keys reach it
-/// (chrome::popup). Native Wayland (`MDM_WAYLAND=1`) ignores both: winit 0.30 has no popup
+/// (chrome::popup). Native Wayland (`TDM_WAYLAND=1`) ignores both: winit 0.30 has no popup
 /// windows (xdg_popup) there, so a menu is a window the compositor places and animates as any.
 #[cfg(target_os = "linux")]
 pub fn menu_window(
@@ -1570,7 +1570,7 @@ fn installer(os_release: &str) -> Option<(usize, &'static str)> {
 }
 
 /// The command that installs `libs` on the distribution /etc/os-release (`os_release`) names;
-/// None for one MDM doesn't know.
+/// None for one TDM doesn't know.
 #[cfg(target_os = "linux")]
 fn install_command(libs: &[&WindowLib], os_release: &str) -> Option<String> {
     let (family, command) = installer(os_release)?;
@@ -1592,11 +1592,11 @@ pub fn missing_text(libs: &[&WindowLib], opening: bool) -> String {
     let names = ltr(&names.join(", "));
     let what = if opening {
         // i18n: Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
-        t("Mister Download Manager can't open its window: this system lacks {libraries}.")
+        t("Tufan Download Manager can't open its window: this system lacks {libraries}.")
     } else {
         // i18n: Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
         t(
-            "Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.",
+            "Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.",
         )
     };
     let what = fmt(what, &[("libraries", &names)]);
@@ -1607,19 +1607,19 @@ pub fn missing_text(libs: &[&WindowLib], opening: bool) -> String {
             t("To install what's missing: {command}"),
             &[("command", &ltr(&command))],
         ),
-        // i18n: Linux, after a missing library's name, on a distribution MDM doesn't know
+        // i18n: Linux, after a missing library's name, on a distribution TDM doesn't know
         None => t("Install what's missing from your distribution's packages.").to_owned(),
     };
     format!("{what}\n{how}")
 }
 
 /// Says `text` on the terminal, in the log and, when a display is there, in a message box
-/// (zenity or kdialog, the first there): MDM's own window can't open.
+/// (zenity or kdialog, the first there): TDM's own window can't open.
 #[cfg(target_os = "linux")]
 pub fn tell_window_failed(text: &str) {
     eprintln!("{text}");
     tracing::error!("{text}");
-    let title = "Mister Download Manager";
+    let title = "Tufan Download Manager";
     let boxes: [(&str, Vec<&str>); 2] = [
         (
             "zenity",
@@ -1641,7 +1641,7 @@ pub fn tell_window_failed(text: &str) {
     }
 }
 
-/// Linux: a tray host is there to show MDM's icon (a StatusNotifierWatcher on the session bus:
+/// Linux: a tray host is there to show TDM's icon (a StatusNotifierWatcher on the session bus:
 /// KDE, waybar's tray, GNOME's AppIndicator extension), #59. Without one (MangoWC, plain
 /// window managers), closing the window would hide it where nothing can bring it back.
 ///
@@ -1833,17 +1833,17 @@ pub fn file_icon(what: &crate::fileicons::What, px: u32) -> Option<crate::fileic
     })
 }
 
-// ---- Crash reports (crash.rs, mdm-crash) -------------------------------------------------------
+// ---- Crash reports (crash.rs, tdm-crash) -------------------------------------------------------
 
-static CRASH_HANDLER: std::sync::OnceLock<mdm_crash::crash_handler::CrashHandler> =
+static CRASH_HANDLER: std::sync::OnceLock<tdm_crash::crash_handler::CrashHandler> =
     std::sync::OnceLock::new();
 
 /// Catch native crashes (SIGSEGV, SIGBUS, SIGILL, SIGFPE, SIGABRT on Linux; Mach exceptions on
 /// macOS) and have `reporter`'s monitor dump this process when one comes. On Linux only the
 /// monitor may read this process (ptrace).
 #[allow(unsafe_code)]
-pub fn attach_crash_handler(reporter: std::sync::Arc<mdm_crash::client::Reporter>) -> bool {
-    use mdm_crash::crash_handler::{CrashEventResult, CrashHandler, make_crash_event};
+pub fn attach_crash_handler(reporter: std::sync::Arc<tdm_crash::client::Reporter>) -> bool {
+    use tdm_crash::crash_handler::{CrashEventResult, CrashHandler, make_crash_event};
     #[cfg(target_os = "linux")]
     let monitor = reporter.monitor_pid();
     // SAFETY: the closure runs in the signal / exception handler; it only sends the dump request
@@ -1865,7 +1865,7 @@ pub fn attach_crash_handler(reporter: std::sync::Arc<mdm_crash::client::Reporter
 /// Have the monitor dump this process now (a panic, a freeze): every thread, this one asking.
 /// The process goes on.
 pub fn dump_now() -> bool {
-    use mdm_crash::crash_handler::CrashEventResult;
+    use tdm_crash::crash_handler::CrashEventResult;
     CRASH_HANDLER.get().is_some_and(|h| {
         #[cfg(target_os = "linux")]
         return matches!(
@@ -1949,7 +1949,7 @@ pub fn to_trash(files: &[PathBuf]) -> bool {
         if run(Command::new("trash").args(files)) {
             return true;
         }
-        // The Finder moves them as a person would (it may ask once to let MDM drive it).
+        // The Finder moves them as a person would (it may ask once to let TDM drive it).
         let list: Vec<String> = files
             .iter()
             .map(|f| {
@@ -1995,14 +1995,14 @@ pub fn gl_driver(gl: &eframe::glow::Context) -> String {
     format!("{renderer} ({version})")
 }
 
-/// End process `pid` (a frozen MDM the user chose to close from the crash report).
+/// End process `pid` (a frozen TDM the user chose to close from the crash report).
 #[allow(unsafe_code)]
 pub fn end_process(pid: u32) -> bool {
     // SAFETY: a signal to a process id we were given.
     unsafe { libc::kill(pid as libc::pid_t, libc::SIGKILL) == 0 }
 }
 
-/// The crash test's segmentation fault (MDM_CRASH_TEST=1, `/show crash-test:crash`).
+/// The crash test's segmentation fault (TDM_CRASH_TEST=1, `/show crash-test:crash`).
 #[allow(unsafe_code)]
 pub fn crash_now() {
     // SAFETY: none: a write through a null pointer, on purpose, to test the crash reports.
@@ -2029,18 +2029,18 @@ pub fn browsers() -> Vec<(String, PathBuf)> {
             .unwrap_or_default()
     };
     // A Flatpak browser (`app.zen_browser.zen` …) isn't listed: its sandbox can't start the
-    // native host, so the extension couldn't reach MDM (docs/browser-help.md). Nor is a Chromium
+    // native host, so the extension couldn't reach TDM (docs/browser-help.md). Nor is a Chromium
     // browser that runs as a Snap (Ubuntu's Chromium): it starts the host inside its sandbox,
-    // which can't read MDM's data folder (~/.local/share is hidden from Snaps) and so started a
-    // second, sandboxed MDM. The Snap Firefox is listed: it starts the host through the desktop
+    // which can't read TDM's data folder (~/.local/share is hidden from Snaps) and so started a
+    // second, sandboxed TDM. The Snap Firefox is listed: it starts the host through the desktop
     // portal, outside its sandbox.
-    mdm_ipc::browsers::BROWSERS
+    tdm_ipc::browsers::BROWSERS
         .iter()
         .filter_map(|b| {
             let names = if mac { b.mac_apps } else { b.linux_cmds };
             found(names, &dirs).map(|p| (b, p))
         })
-        .filter(|(b, p)| mac || b.family == mdm_ipc::browsers::Family::Gecko || !is_snap(p))
+        .filter(|(b, p)| mac || b.family == tdm_ipc::browsers::Family::Gecko || !is_snap(p))
         .map(|(b, p)| (b.name.to_owned(), p))
         .collect()
 }
@@ -2078,7 +2078,7 @@ pub fn mark_downloaded(path: &Path, url: &str, referrer: Option<&str>) {
         set_xattr(
             path,
             "com.apple.quarantine",
-            &format!("0081;{now:x};Mister Download Manager;"),
+            &format!("0081;{now:x};Tufan Download Manager;"),
         );
         let _ = url;
     }
@@ -2481,7 +2481,7 @@ ID_LIKE=arch
     }
 
     /// The child of [`show_in_folder_never_waits_for_the_file_manager`]: the file it shows.
-    const SHOW_CHILD: &str = "MDM_TEST_SHOW_IN_FOLDER_CHILD";
+    const SHOW_CHILD: &str = "TDM_TEST_SHOW_IN_FOLDER_CHILD";
 
     /// #222: a file manager that never answers ShowItems (here a `gdbus` that hangs for 30 s)
     /// leaves `show_in_folder` returning at once, and the folder is opened instead after
@@ -2507,7 +2507,7 @@ ID_LIKE=arch
             }
             return;
         }
-        let root = std::env::temp_dir().join(format!("mdm-show-222-{}", std::process::id()));
+        let root = std::env::temp_dir().join(format!("tdm-show-222-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         let (bin, folder) = (root.join("bin"), root.join("Downloads"));
         std::fs::create_dir_all(&bin).unwrap();
@@ -2564,7 +2564,7 @@ ID_LIKE=arch
 mod host_copy_tests {
     use super::{HOST, MANIFEST, install_host_copy, registration_in, runs};
     use crate::extension::Registration;
-    use mdm_ipc::browsers::Family;
+    use tdm_ipc::browsers::Family;
     use std::path::Path;
 
     fn program(dir: &Path, name: &str, body: &str) -> std::path::PathBuf {
@@ -2582,14 +2582,14 @@ mod host_copy_tests {
         let t = tempfile::tempdir().unwrap();
         let from = program(t.path(), "mount-host", "echo one");
         let dir = t.path().join("data/browser-host");
-        let image = Path::new("/home/u/Apps/MDM.AppImage");
+        let image = Path::new("/home/u/Apps/TDM.AppImage");
         let copy = install_host_copy(&from, &dir, image).unwrap();
         assert_eq!(copy, dir.join(HOST));
         assert!(runs(&copy));
         assert_eq!(std::fs::read(&copy).unwrap(), std::fs::read(&from).unwrap());
         assert_eq!(
             std::fs::read_to_string(dir.join("app-path")).unwrap(),
-            "/home/u/Apps/MDM.AppImage"
+            "/home/u/Apps/TDM.AppImage"
         );
         // Moved by an AppImage manager, and the copy deleted: both put right.
         std::fs::remove_file(&copy).unwrap();
@@ -2671,7 +2671,7 @@ mod host_copy_tests {
         }
         let write = |dir: &Path, path: &Path| {
             let json =
-                serde_json::json!({ "name": "com.misterdownloadmanager.host", "path": path });
+                serde_json::json!({ "name": "com.tufan-download-manager.host", "path": path });
             std::fs::write(dir.join(MANIFEST), json.to_string()).unwrap();
         };
         let dirs = || vec![(a.clone(), Family::Chromium), (b.clone(), Family::Gecko)];
@@ -2690,7 +2690,7 @@ mod host_copy_tests {
         );
         write(&b, &helper);
         assert_eq!(registration_in(dirs(), false), Registration::Ready);
-        let gone = t.path().join("gone/misterdownloadmanager-nmhost");
+        let gone = t.path().join("gone/tufan-download-manager-nmhost");
         write(&b, &gone);
         assert_eq!(
             registration_in(dirs(), false),
@@ -2717,14 +2717,14 @@ mod startup_tests {
         }
     }
 
-    /// The autostart entry and the LaunchAgent start MDM with `/startup` (#226), and name the
+    /// The autostart entry and the LaunchAgent start TDM with `/startup` (#226), and name the
     /// program as it is, quoting and all.
     #[test]
-    fn the_startup_entries_start_mdm_in_the_tray() {
+    fn the_startup_entries_start_tdm_in_the_tray() {
         for exe in [
-            "/home/ana/Apps/Mister Download Manager.AppImage",
-            "/opt/mdm/misterdownloadmanager",
-            "/Applications/Mister Download Manager.app/Contents/MacOS/misterdownloadmanager",
+            "/home/ana/Apps/Tufan Download Manager.AppImage",
+            "/opt/mdm/tufan-download-manager",
+            "/Applications/Tufan Download Manager.app/Contents/MacOS/tufan-download-manager",
             "/home/a\"b$c/m&d<m>",
         ] {
             for macos in [false, true] {
@@ -2734,18 +2734,18 @@ mod startup_tests {
                 assert!(!startup_outdated(&text, Path::new(exe), macos));
             }
         }
-        let desktop = startup_entry(Path::new("/opt/mdm/misterdownloadmanager"), false);
-        assert!(desktop.contains("Exec=\"/opt/mdm/misterdownloadmanager\" /startup\n"));
-        let plist = startup_entry(Path::new("/opt/mdm/misterdownloadmanager"), true);
+        let desktop = startup_entry(Path::new("/opt/mdm/tufan-download-manager"), false);
+        assert!(desktop.contains("Exec=\"/opt/mdm/tufan-download-manager\" /startup\n"));
+        let plist = startup_entry(Path::new("/opt/mdm/tufan-download-manager"), true);
         assert!(plist.contains(
-            "<array><string>/opt/mdm/misterdownloadmanager</string><string>/startup</string></array>"
+            "<array><string>/opt/mdm/tufan-download-manager</string><string>/startup</string></array>"
         ));
     }
 
     /// An entry of a version before 0.5.0 for this program is written again; another copy's is not.
     #[test]
     fn old_startup_entries_are_rewritten() {
-        let exe = "/home/ana/Apps/Mister Download Manager.AppImage";
+        let exe = "/home/ana/Apps/Tufan Download Manager.AppImage";
         for macos in [false, true] {
             assert!(startup_outdated(
                 &old_entry(exe, macos),
@@ -2764,7 +2764,7 @@ mod startup_tests {
 
 // Sign-in secrets in the system's keychain (#44, secrets.rs). Linux: the Secret Service
 // (GNOME Keyring, KeePassXC, KDE's wallet in its Secret Service mode) over D-Bus, its default
-// collection only, and only while it is unlocked: MDM never unlocks it nor answers a prompt
+// collection only, and only while it is unlocked: TDM never unlocks it nor answers a prompt
 // (desktops that log in on their own often have a locked keyring, #164), so a locked or missing
 // keyring leaves the secrets in the owner-only settings. macOS: the login keychain's generic
 // passwords (SecItemAdd / SecItemCopyMatching, through security-framework).
@@ -2797,8 +2797,8 @@ mod secret_service {
     const COLLECTION: &str = "org.freedesktop.Secret.Collection";
     const ITEM: &str = "org.freedesktop.Secret.Item";
     const SESSION: &str = "org.freedesktop.Secret.Session";
-    /// Groups MDM's entries in Seahorse and the like.
-    const SCHEMA: &str = "io.github.anefzaoui.misterdownloadmanager.Secret";
+    /// Groups TDM's entries in Seahorse and the like.
+    const SCHEMA: &str = "io.github.sakimlabs.tufan-download-manager.Secret";
 
     /// The D-Bus error's kind; its text (the service's own words) is never kept.
     fn fault(e: zbus::Error) -> Fault {
@@ -2882,7 +2882,7 @@ mod secret_service {
             Ok(path)
         }
 
-        /// MDM's items of `service` (one account's, or all): (unlocked, locked).
+        /// TDM's items of `service` (one account's, or all): (unlocked, locked).
         fn find(
             &self,
             service: &str,
@@ -3073,7 +3073,7 @@ mod mac_keychain {
 #[cfg(target_os = "linux")]
 const WAKEALARM: &str = "/sys/class/rtc/rtc0/wakealarm";
 
-/// Whether MDM may wake this computer.
+/// Whether TDM may wake this computer.
 pub fn wake_support() -> crate::wake::Support {
     #[cfg(target_os = "linux")]
     {
@@ -3089,7 +3089,7 @@ pub fn wake_support() -> crate::wake::Support {
             Support::NeedsAdmin
         }
     }
-    // macOS: `pmset schedule wake` and IOPMSchedulePowerEvent need an administrator, and MDM
+    // macOS: `pmset schedule wake` and IOPMSchedulePowerEvent need an administrator, and TDM
     // never asks for one by itself.
     #[cfg(target_os = "macos")]
     {
@@ -3111,12 +3111,12 @@ fn rtc_offset() -> i64 {
     }
 }
 
-/// Wake the computer at `at` (seconds since 1970, UTC), or cancel MDM's wake (None).
+/// Wake the computer at `at` (seconds since 1970, UTC), or cancel TDM's wake (None).
 #[cfg(target_os = "linux")]
 pub fn wake_at(at: Option<i64>) -> Result<(), String> {
-    // The alarm MDM set (in the chip's time), to tell it from another program's: kept in the
-    // data folder, so an alarm left by an MDM that was killed (or signed out of) is still ours.
-    let file = mdm_ipc::data_dir().map(|d| d.join("wake-alarm"));
+    // The alarm TDM set (in the chip's time), to tell it from another program's: kept in the
+    // data folder, so an alarm left by an TDM that was killed (or signed out of) is still ours.
+    let file = tdm_ipc::data_dir().map(|d| d.join("wake-alarm"));
     let mut ours = file
         .as_ref()
         .and_then(|f| std::fs::read_to_string(f).ok())
@@ -3213,7 +3213,7 @@ pub fn keep_awake(reason: Option<&str>) -> bool {
         )?;
         logind.call(
             "Inhibit",
-            &("sleep:idle", "Mister Download Manager", reason, "block"),
+            &("sleep:idle", "Tufan Download Manager", reason, "block"),
         )
     };
     match take() {
@@ -3228,7 +3228,7 @@ pub fn keep_awake(reason: Option<&str>) -> bool {
     }
 }
 
-/// macOS: `caffeinate -i` (no idle sleep) for as long as MDM runs, ended when not needed.
+/// macOS: `caffeinate -i` (no idle sleep) for as long as TDM runs, ended when not needed.
 #[cfg(target_os = "macos")]
 pub fn keep_awake(reason: Option<&str>) -> bool {
     use std::sync::Mutex;

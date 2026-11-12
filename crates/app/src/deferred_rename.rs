@@ -12,7 +12,7 @@ use std::ffi::OsStr;
 use std::path::{Component, Path, PathBuf};
 use std::time::Duration;
 
-use mdm_extract::{VolumeKind, volume_key};
+use tdm_extract::{VolumeKind, volume_key};
 
 use crate::model::Item;
 
@@ -48,11 +48,11 @@ pub fn validate_name(raw: &str) -> Result<Option<String>, RenameError> {
         return Err(RenameError::TooLong);
     }
     if trimmed.chars().any(|c| {
-        c.is_control() || mdm_engine::naming::is_format_char(c) || r#"<>:"/\|?*"#.contains(c)
+        c.is_control() || tdm_engine::naming::is_format_char(c) || r#"<>:"/\|?*"#.contains(c)
     }) {
         return Err(RenameError::InvalidChar);
     }
-    if mdm_engine::naming::is_windows_reserved(trimmed) {
+    if tdm_engine::naming::is_windows_reserved(trimmed) {
         return Err(RenameError::ReservedDevice);
     }
     if !is_plain_single_component(OsStr::new(trimmed)) {
@@ -326,7 +326,7 @@ pub fn folder_has_untracked_files(dir: &Path, allowed_files: &[PathBuf]) -> bool
 }
 
 fn entry_taken(p: &Path) -> bool {
-    p.exists() || mdm_engine::naming::part_path(p).exists()
+    p.exists() || tdm_engine::naming::part_path(p).exists()
 }
 
 fn os_rename_no_replace(from: &Path, to: &Path) -> std::io::Result<()> {
@@ -343,7 +343,7 @@ pub fn reserve_target_path(
     current_dest: &Path,
     desired_stem: &str,
     is_dir: bool,
-) -> Option<(PathBuf, Option<mdm_engine::naming::Reservation>)> {
+) -> Option<(PathBuf, Option<tdm_engine::naming::Reservation>)> {
     let clean = validate_name(desired_stem).ok()??;
     let parent = current_dest.parent()?;
     if parent.as_os_str().is_empty() {
@@ -351,7 +351,7 @@ pub fn reserve_target_path(
     }
     let cur_name = current_dest.file_name()?.to_string_lossy();
     let raw_wanted = build_renamed_file_name(&cur_name, &clean, is_dir);
-    let wanted = mdm_engine::naming::fit_name(parent, &raw_wanted)
+    let wanted = tdm_engine::naming::fit_name(parent, &raw_wanted)
         .unwrap_or(raw_wanted)
         .trim_end_matches(['.', ' '])
         .to_owned();
@@ -366,7 +366,7 @@ pub fn reserve_target_path(
         return Some((first, None));
     }
     if !entry_taken(&first)
-        && let Some(res) = mdm_engine::naming::reserve(&first)
+        && let Some(res) = tdm_engine::naming::reserve(&first)
     {
         return Some((first, Some(res)));
     }
@@ -377,7 +377,7 @@ pub fn reserve_target_path(
     };
     for n in 1u32.. {
         let candidate = format!("{base} ({n}){ext}");
-        let fitted = mdm_engine::naming::fit_name(parent, &candidate).unwrap_or(candidate);
+        let fitted = tdm_engine::naming::fit_name(parent, &candidate).unwrap_or(candidate);
         if !is_plain_single_component(OsStr::new(&fitted)) {
             return None;
         }
@@ -386,7 +386,7 @@ pub fn reserve_target_path(
             return None;
         }
         if !entry_taken(&path)
-            && let Some(res) = mdm_engine::naming::reserve(&path)
+            && let Some(res) = tdm_engine::naming::reserve(&path)
         {
             return Some((path, Some(res)));
         }
@@ -438,7 +438,7 @@ pub fn rename_entry_io(from: &Path, to: &Path) -> std::io::Result<()> {
     }
     let stamp = std::process::id();
     for k in 0..16u32 {
-        let hop = parent.join(format!(".mdm-rename-{stamp}-{k}.tmp"));
+        let hop = parent.join(format!(".tdm-rename-{stamp}-{k}.tmp"));
         if !hop.exists() && os_rename_no_replace(from, &hop).is_ok() {
             return match os_rename_no_replace(&hop, to) {
                 Ok(()) => Ok(()),
@@ -477,7 +477,7 @@ pub fn rename_entry(from: &Path, to: &Path) -> Result<(), String> {
 pub fn rename_reserved_or_number(
     from: &Path,
     initial_to: PathBuf,
-    hold: Option<mdm_engine::naming::Reservation>,
+    hold: Option<tdm_engine::naming::Reservation>,
     is_dir: bool,
 ) -> std::io::Result<PathBuf> {
     match rename_entry_io(from, &initial_to) {
@@ -510,12 +510,12 @@ pub fn rename_reserved_or_number(
     };
     for n in 1u32..10_000 {
         let candidate = format!("{base} ({n}){ext}");
-        let fitted = mdm_engine::naming::fit_name(parent, &candidate).unwrap_or(candidate);
+        let fitted = tdm_engine::naming::fit_name(parent, &candidate).unwrap_or(candidate);
         let path = parent.join(&fitted);
         if entry_taken(&path) {
             continue;
         }
-        let Some(_res) = mdm_engine::naming::reserve(&path) else {
+        let Some(_res) = tdm_engine::naming::reserve(&path) else {
             continue;
         };
         match rename_entry_io(from, &path) {
@@ -562,12 +562,12 @@ pub fn rename_video_side_files(
                 return sf.clone();
             };
             let raw_target = format!("{new_stem}.{rest}");
-            let fitted = mdm_engine::naming::fit_name(dir, &raw_target).unwrap_or(raw_target);
+            let fitted = tdm_engine::naming::fit_name(dir, &raw_target).unwrap_or(raw_target);
             if !is_plain_single_component(OsStr::new(&fitted)) {
                 return sf.clone();
             }
             let target = dir.join(&fitted);
-            let hold = mdm_engine::naming::reserve(&target);
+            let hold = tdm_engine::naming::reserve(&target);
             rename_reserved_or_number(sf, target, hold, false).unwrap_or_else(|_| sf.clone())
         })
         .collect()

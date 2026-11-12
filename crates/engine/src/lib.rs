@@ -1,4 +1,4 @@
-//! Mister Download Manager download engine. See notes/ENGINE.md.
+//! Tufan Download Manager download engine. See notes/ENGINE.md.
 
 pub mod agent;
 pub mod disk;

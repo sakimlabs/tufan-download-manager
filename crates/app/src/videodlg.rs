@@ -7,8 +7,8 @@ use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 
 use egui::{Pos2, Ui, pos2};
-use mdm_tools::resolve::{Choice, Looked, SubChoice, Video};
-use mdm_tools::video::{ALL_UPLOADERS, Subs};
+use tdm_tools::resolve::{Choice, Looked, SubChoice, Video};
+use tdm_tools::video::{ALL_UPLOADERS, Subs};
 
 use crate::dialogs::{Outcome, window};
 use crate::model::Category;
@@ -33,7 +33,7 @@ pub struct VideoAdd {
     pub start_now: bool,
     /// What the browser's request for the page carried (its button), for yt-dlp to ask the
     /// same; none for an address typed or edited here.
-    pub context: mdm_ipc::Command,
+    pub context: tdm_ipc::Command,
     /// The subtitles to save with it (#68; none for a sound-only choice).
     pub subs: Subs,
     /// The Subtitles choice to remember for the next video (settings.video_subs); none when
@@ -51,11 +51,11 @@ enum Tool {
 pub struct VideoDialog {
     page: String,
     /// The browser's request context for `page` as it came (VideoAdd::context).
-    context: mdm_ipc::Command,
+    context: tdm_ipc::Command,
     from_browser: String,
     /// Save to.
     folder: String,
-    /// The Video and Music categories' folders MDM puts in Save to (#611): Music's while a
+    /// The Video and Music categories' folders TDM puts in Save to (#611): Music's while a
     /// sound-only choice is chosen, as long as Save to holds one of them (a folder typed or
     /// picked stays). No Music folder: the Music category was deleted, all goes as video.
     video_dir: String,
@@ -65,12 +65,12 @@ pub struct VideoDialog {
     name: String,
     lookup: Option<Slot<Looked>>,
     /// The yt-dlp and the browser's context the look-up ran with (a list is listed with them).
-    looking: Option<(PathBuf, mdm_tools::proc::FromBrowser)>,
+    looking: Option<(PathBuf, tdm_tools::proc::FromBrowser)>,
     /// The page is a playlist or a channel: its videos (#69).
     list: Option<crate::playlistdlg::PlaylistView>,
     /// Adding that many was answered Yes: Download Now (true) or Later goes ahead.
     confirmed: Option<bool>,
-    install: Option<(Tool, Slot<mdm_tools::Installed>)>,
+    install: Option<(Tool, Slot<tdm_tools::Installed>)>,
     /// The helpers found (read again when an install ends, not every frame: it reads files).
     tools: Option<Tools>,
     /// The address the choices were looked up for (an edited one needs Look up again).
@@ -105,35 +105,35 @@ pub struct VideoDialog {
 /// What is installed in the tools folder: (folder, yt-dlp, ffmpeg).
 type Tools = (
     Option<PathBuf>,
-    Option<mdm_tools::Installed>,
-    Option<mdm_tools::Installed>,
+    Option<tdm_tools::Installed>,
+    Option<tdm_tools::Installed>,
 );
 
 /// Keep yt-dlp current: video sites change often and an old yt-dlp is the usual reason a page
 /// stops working. Once per session, when the video window opens and yt-dlp is installed, the
-/// newest release is fetched in the background (mdm_tools::install_latest: signed by yt-dlp's
+/// newest release is fetched in the background (tdm_tools::install_latest: signed by yt-dlp's
 /// developers, never older, switched atomically, the previous version kept). Quiet: a failure
 /// leaves the installed version in use. A system copy is left to its package manager.
 pub fn refresh_ytdlp(rt: &tokio::runtime::Handle) {
     use std::sync::atomic::{AtomicBool, Ordering};
     static DONE: AtomicBool = AtomicBool::new(false);
-    let Some(dir) = mdm_tools::tools_dir() else {
+    let Some(dir) = tdm_tools::tools_dir() else {
         return;
     };
-    if !mdm_tools::refreshable(&dir) || DONE.swap(true, Ordering::SeqCst) {
+    if !tdm_tools::refreshable(&dir) || DONE.swap(true, Ordering::SeqCst) {
         return;
     }
     rt.spawn(async move {
-        if let Err(e) = mdm_tools::install_latest(&dir, &crate::settings::own_net(), None).await {
+        if let Err(e) = tdm_tools::install_latest(&dir, &crate::settings::own_net(), None).await {
             eprintln!("yt-dlp update check: {e}"); // not translated: a log line
         }
     });
 }
 
 fn tools() -> Tools {
-    let dir = mdm_tools::tools_dir();
-    let ytdlp = dir.as_deref().and_then(mdm_tools::installed);
-    let ffmpeg = dir.as_deref().and_then(mdm_tools::ffmpeg::installed);
+    let dir = tdm_tools::tools_dir();
+    let ytdlp = dir.as_deref().and_then(tdm_tools::installed);
+    let ffmpeg = dir.as_deref().and_then(tdm_tools::ffmpeg::installed);
     (dir, ytdlp, ffmpeg)
 }
 
@@ -210,8 +210,8 @@ impl VideoDialog {
 
     /// Opened for `page` (Add URL was given a video's page, or the browser's button was
     /// clicked with `context`): looks it up at once.
-    pub fn for_page(folder: PathBuf, page: &str, mut context: mdm_ipc::Command) -> Self {
-        let own = mdm_tools::pages::video_address(page);
+    pub fn for_page(folder: PathBuf, page: &str, mut context: tdm_ipc::Command) -> Self {
+        let own = tdm_tools::pages::video_address(page);
         // An embedded player taken to the video's own page (#359): the site that embedded it
         // isn't that page's referer, and Dailymotion refuses its own page asked with one (403).
         if own != page {
@@ -228,11 +228,11 @@ impl VideoDialog {
     }
 
     /// The browser's context, while the address is still the one it came with.
-    fn context(&self) -> mdm_ipc::Command {
+    fn context(&self) -> tdm_ipc::Command {
         if self.page.trim() == self.from_browser {
             self.context.clone()
         } else {
-            mdm_ipc::Command::default()
+            tdm_ipc::Command::default()
         }
     }
 
@@ -242,18 +242,18 @@ impl VideoDialog {
         if let Some(title) = self.context.video_title.as_deref().map(str::trim)
             && !title.is_empty()
             && self.page.trim() == self.from_browser
-            && mdm_tools::resolve::named_after_address(&v.title, &self.page)
+            && tdm_tools::resolve::named_after_address(&v.title, &self.page)
         {
             v.title = title.to_owned();
         }
         let merge = self.tools.get_or_insert_with(tools).2.is_some();
-        let choices = mdm_tools::resolve::choices(&v, merge);
+        let choices = tdm_tools::resolve::choices(&v, merge);
         self.chosen = 0;
         self.rows = Default::default();
         self.error = choices
             .is_empty()
             .then(|| crate::i18n::t("No video this can download on that page").into());
-        self.subs = mdm_tools::resolve::sub_choices(&v, crate::i18n::code());
+        self.subs = tdm_tools::resolve::sub_choices(&v, crate::i18n::code());
         self.sub_pick = pick_for(&self.subs, &self.pref);
         self.video = Some((v, choices));
         self.name_from_choice();
@@ -298,7 +298,7 @@ impl VideoDialog {
             "subtitles": {"de": [{"name": "German"}], "pt-PT": [{"name": "Portuguese (Portugal)"}],
                 "ar": [{"name": "Arabic"}]},
             "automatic_captions": {"en-orig": [{"name": "English (Original)"}], "en": [{"name": "English"}]}}"#;
-        if let Some(v) = mdm_tools::resolve::parse(SAMPLE.as_bytes()) {
+        if let Some(v) = tdm_tools::resolve::parse(SAMPLE.as_bytes()) {
             self.page = "https://video.example/talk".into();
             self.looked_up = self.page.clone();
             self.auto_look = false;
@@ -314,7 +314,7 @@ impl VideoDialog {
             {"format_id": "140", "ext": "m4a", "vcodec": "none", "acodec": "mp4a", "filesize": 29000000},
             {"format_id": "137", "ext": "mp4", "height": 1080, "vcodec": "avc1", "acodec": "none", "filesize": 412000000},
             {"format_id": "136", "ext": "mp4", "height": 720, "vcodec": "avc1", "acodec": "none", "filesize": 201000000}]}"#;
-        if let Some(v) = mdm_tools::resolve::parse(SAMPLE.as_bytes()) {
+        if let Some(v) = tdm_tools::resolve::parse(SAMPLE.as_bytes()) {
             self.page = "https://video.example/talk".into();
             self.looked_up = self.page.clone();
             self.auto_look = false;
@@ -385,7 +385,7 @@ impl VideoDialog {
                     let sent = self.looking.as_ref().is_some_and(|(_, b)| {
                         b.cookies.as_deref().is_some_and(|c| !c.trim().is_empty())
                     });
-                    let store = (!sent).then(mdm_tools::proc::browser_cookies).flatten();
+                    let store = (!sent).then(tdm_tools::proc::browser_cookies).flatten();
                     self.error = Some(lookup_error(&e, sent, store.as_ref()));
                 }
             }
@@ -437,7 +437,7 @@ impl VideoDialog {
         );
         // A playlist's quality chosen, a list or a video looked up: Save to follows (#611).
         self.follow_sound();
-        // Helpers... open: on Close, the helpers are read again (another program, or MDM's own).
+        // Helpers... open: on Close, the helpers are read again (another program, or TDM's own).
         if let Some(h) = &mut self.helpers
             && !matches!(h.show(ctx, rt), Outcome::Open)
         {
@@ -476,7 +476,7 @@ impl VideoDialog {
             return None;
         };
         let c = choices.get(self.chosen.min(choices.len().checked_sub(1)?))?;
-        let name = mdm_engine::naming::sanitize(self.name.trim());
+        let name = tdm_engine::naming::sanitize(self.name.trim());
         let chosen = self.chosen_subs();
         Some(VideoOut::One(VideoAdd {
             page,
@@ -488,11 +488,11 @@ impl VideoDialog {
             context: self.context(),
             // Into the video only where its file type holds them (and with ffmpeg, which
             // VideoJob checks).
-            subs: if mdm_tools::resolve::is_audio(c) {
+            subs: if tdm_tools::resolve::is_audio(c) {
                 Subs::default()
             } else {
                 Subs {
-                    embed: chosen.embed && mdm_tools::resolve::holds_subtitles(c),
+                    embed: chosen.embed && tdm_tools::resolve::holds_subtitles(c),
                     ..chosen.clone()
                 }
             },
@@ -506,7 +506,7 @@ impl VideoDialog {
             return Some(list.sound_only());
         }
         let (_, choices) = self.video.as_ref()?;
-        choices.get(self.chosen).map(mdm_tools::resolve::is_audio)
+        choices.get(self.chosen).map(tdm_tools::resolve::is_audio)
     }
 
     /// The category the download is listed under (#611), and whose folder "Change folder for
@@ -520,7 +520,7 @@ impl VideoDialog {
     }
 
     /// Save to goes to the Music category's folder when the choice turns sound-only, back to
-    /// Video's when it turns video again, but only while it holds the folder MDM put there: a
+    /// Video's when it turns video again, but only while it holds the folder TDM put there: a
     /// folder the user typed or picked is theirs (#611).
     fn follow_sound(&mut self) {
         let Some(sound) = self.sound_only() else {
@@ -553,7 +553,7 @@ impl VideoDialog {
         if let Some((v, choices)) = &self.video
             && let Some(c) = choices.get(self.chosen)
         {
-            let stem = mdm_engine::naming::sanitize(&v.title);
+            let stem = tdm_engine::naming::sanitize(&v.title);
             self.name = format!("{stem}.{}", c.ext);
         }
         self.follow_sound();
@@ -567,13 +567,13 @@ impl VideoDialog {
         rt: &tokio::runtime::Handle,
         ctx: &egui::Context,
     ) {
-        let slot: Slot<mdm_tools::Installed> = Arc::new(Mutex::new(None));
+        let slot: Slot<tdm_tools::Installed> = Arc::new(Mutex::new(None));
         let (out, ctx) = (slot.clone(), ctx.clone());
         let net = crate::settings::own_net();
         rt.spawn(async move {
             let res = match tool {
-                Tool::YtDlp => mdm_tools::install_latest(&dir, &net, None).await,
-                Tool::Ffmpeg => mdm_tools::ffmpeg::install_latest(&dir, &net, None).await,
+                Tool::YtDlp => tdm_tools::install_latest(&dir, &net, None).await,
+                Tool::Ffmpeg => tdm_tools::ffmpeg::install_latest(&dir, &net, None).await,
             };
             *out.lock().unwrap() = Some(res.map_err(|e| crate::errors::tools(&e)));
             ctx.request_repaint();
@@ -634,7 +634,7 @@ impl VideoDialog {
             && let Some(tool) = &ytdlp
         {
             // A typed or pasted address too (#359); the box shows what is looked up.
-            self.page = mdm_tools::pages::video_address(self.page.trim());
+            self.page = tdm_tools::pages::video_address(self.page.trim());
             let slot: Slot<Looked> = Arc::new(Mutex::new(None));
             let (out, exe, page, ctx, rt) = (
                 slot.clone(),
@@ -647,7 +647,7 @@ impl VideoDialog {
             self.looking = Some((exe.clone(), browser.clone()));
             std::thread::spawn(move || {
                 let mut res =
-                    mdm_tools::resolve::look_up(&exe, &page, &browser).map_err(|e| e.to_string());
+                    tdm_tools::resolve::look_up(&exe, &page, &browser).map_err(|e| e.to_string());
                 // A plain file: yt-dlp doesn't say its size, its server does (#320).
                 if let Ok(Looked::Video(v)) = &mut res
                     && v.needs_size()
@@ -678,7 +678,7 @@ impl VideoDialog {
                     "Video lookups use yt-dlp (about 23 MB, checked against its signature).",
                 ),
             )),
-            // MDM installs ffmpeg on Windows only (its builds are Windows ones); elsewhere the
+            // TDM installs ffmpeg on Windows only (its builds are Windows ones); elsewhere the
             // system's package manager has it, and the note says so instead of a button.
             (Some(_), None) if cfg!(windows) => Some((
                 Tool::Ffmpeg,
@@ -711,7 +711,7 @@ impl VideoDialog {
         let merge_note = self
             .video
             .as_ref()
-            .filter(|(v, _)| ffmpeg.is_none() && mdm_tools::resolve::needs_merging(v))
+            .filter(|(v, _)| ffmpeg.is_none() && tdm_tools::resolve::needs_merging(v))
             .and(offer.as_ref())
             .map(|(_, _, msg)| *msg);
         if let Some(t) = installing {
@@ -800,7 +800,7 @@ impl VideoDialog {
             .video
             .as_ref()
             .and_then(|(_, c)| c.get(self.chosen))
-            .is_some_and(|c| c.selector == mdm_tools::resolve::FLAC)
+            .is_some_and(|c| c.selector == tdm_tools::resolve::FLAC)
         {
             // The honest word on FLAC (#70): the site's sound is compressed with losses already.
             winui::fit(
@@ -1008,11 +1008,11 @@ impl VideoDialog {
             &[("Helpers...", 90.0)],
             now_at.0 - 8.0 - 11.0,
         )[0];
-        // Where yt-dlp and ffmpeg come from: MDM's own copies or the person's (#51).
+        // Where yt-dlp and ffmpeg come from: TDM's own copies or the person's (#51).
         if winui::button(
             ui,
             r(o, helpers_at.0, 358.0, helpers_at.1, 21.0),
-            // i18n: button in Download video: where MDM takes yt-dlp and ffmpeg from
+            // i18n: button in Download video: where TDM takes yt-dlp and ffmpeg from
             "Helpers...",
             ButtonKind::Normal,
             false,
@@ -1090,7 +1090,7 @@ impl VideoDialog {
             .as_ref()
             .and_then(|(_, c)| c.get(self.chosen))
             .cloned();
-        let audio = choice.as_ref().is_some_and(mdm_tools::resolve::is_audio);
+        let audio = choice.as_ref().is_some_and(tdm_tools::resolve::is_audio);
         let on = !self.subs.is_empty() && !audio;
         let items = sub_items(&self.subs, self.video.is_some());
         let shown: Vec<&str> = items.iter().map(String::as_str).collect();
@@ -1108,7 +1108,7 @@ impl VideoDialog {
         let chosen = on && self.sub_pick > 0;
         let holds = choice
             .as_ref()
-            .is_some_and(mdm_tools::resolve::holds_subtitles);
+            .is_some_and(tdm_tools::resolve::holds_subtitles);
         let mut embed = self.embed && chosen && ffmpeg && holds;
         let resp = winui::checkbox_until(
             ui,
@@ -1143,7 +1143,7 @@ fn all_offered(subs: &[SubChoice]) -> bool {
     subs.iter().filter(|s| !s.automatic).count() >= 2
 }
 
-/// The Subtitles list (English where it is MDM's words; combo_light shows them translated):
+/// The Subtitles list (English where it is TDM's words; combo_light shows them translated):
 /// None, All the uploader's, then each language, the automatic ones marked.
 fn sub_items(subs: &[SubChoice], looked_up: bool) -> Vec<String> {
     let mut out = vec![if looked_up && subs.is_empty() {
@@ -1198,8 +1198,8 @@ fn pick_for(subs: &[SubChoice], pref: &Subs) -> usize {
 }
 
 /// yt-dlp's view of the browser's request context.
-pub fn from_browser(c: &mdm_ipc::Command) -> mdm_tools::proc::FromBrowser {
-    mdm_tools::proc::FromBrowser {
+pub fn from_browser(c: &tdm_ipc::Command) -> tdm_tools::proc::FromBrowser {
+    tdm_tools::proc::FromBrowser {
         referer: c.referer.clone(),
         user_agent: c.user_agent.clone(),
         cookies: c.cookies.clone(),
@@ -1213,7 +1213,7 @@ pub fn from_browser(c: &mdm_ipc::Command) -> mdm_tools::proc::FromBrowser {
 fn direct_size(
     rt: &tokio::runtime::Handle,
     page: &str,
-    browser: &mdm_tools::proc::FromBrowser,
+    browser: &tdm_tools::proc::FromBrowser,
 ) -> Option<u64> {
     use reqwest::header::{COOKIE, HeaderMap, HeaderValue, REFERER};
     let url = url::Url::parse(page).ok()?;
@@ -1227,7 +1227,7 @@ fn direct_size(
     if let Some(agent) = &browser.user_agent {
         opts.speak_as(agent.clone());
     }
-    rt.block_on(mdm_engine::probe(url, headers, &opts))
+    rt.block_on(tdm_engine::probe(url, headers, &opts))
         .ok()?
         .size
 }
@@ -1251,13 +1251,13 @@ pub fn browser_label(name: &str) -> &'static str {
 /// yt-dlp's reason in plain words where it is one users meet often; otherwise its own text.
 /// `sent`: the browser's extension passed the page's cookies; `store`: else, the browser whose
 /// cookies yt-dlp read (Options → Sites Logins → Cookies for video sites, #229).
-fn lookup_error(e: &str, sent: bool, store: Option<&mdm_tools::proc::BrowserCookies>) -> String {
+fn lookup_error(e: &str, sent: bool, store: Option<&tdm_tools::proc::BrowserCookies>) -> String {
     let lower = e.to_ascii_lowercase();
     let browser = store.map_or("?", |b| browser_label(&b.browser));
     let named = |text: &str| crate::i18n::fmt(crate::i18n::t(text), &[("browser", browser)]);
     // The browser's cookies yt-dlp couldn't read come first: the site's "sign in" that follows
     // is only their result.
-    if store.is_some() && mdm_tools::proc::cookie_trouble(&lower) {
+    if store.is_some() && tdm_tools::proc::cookie_trouble(&lower) {
         return if lower.contains("could not copy chrome cookie database") {
             // i18n: the Download video window: yt-dlp couldn't read the cookies of the browser chosen in Options (Chrome, Edge...), which holds them while it runs; {browser} = its name
             named(
@@ -1338,14 +1338,14 @@ fn lookup_error(e: &str, sent: bool, store: Option<&mdm_tools::proc::BrowserCook
 /// A choice's label in the user's language: the audio choice's words translated, the rest (a
 /// resolution, a type) as they are, kept left to right.
 pub(crate) fn choice_label(label: &str) -> String {
-    if let Some(kind) = label.strip_prefix(mdm_tools::resolve::AUDIO_ORIGINAL) {
+    if let Some(kind) = label.strip_prefix(tdm_tools::resolve::AUDIO_ORIGINAL) {
         return crate::i18n::fmt(
             // i18n: a choice in the Download video window: only the sound, the site's own file as it is (not converted); {type} is WEBM, M4A…
             crate::i18n::t("Audio only, original {type}"),
             &[("type", &crate::i18n::ltr(kind.trim()))],
         );
     }
-    match label.strip_prefix(mdm_tools::resolve::AUDIO_ONLY) {
+    match label.strip_prefix(tdm_tools::resolve::AUDIO_ONLY) {
         Some(kind) => crate::i18n::fmt(
             // i18n: a choice in the Download video window: only the sound; {type} is MP3, M4A…
             crate::i18n::t("Audio only {type}"),
@@ -1364,7 +1364,7 @@ mod tests {
     #[test]
     fn an_embedded_player_taken_to_its_page_drops_the_embedding_sites_referer() {
         let from = |page: &str| {
-            let context = mdm_ipc::Command {
+            let context = tdm_ipc::Command {
                 referer: Some("https://news.test/article".into()),
                 ..Default::default()
             };
@@ -1389,7 +1389,7 @@ mod tests {
         assert!(none.contains("Cookies for video sites"), "{none}");
         let sent = lookup_error(check, true, None);
         assert!(sent.contains("even with your browser's cookies"), "{sent}");
-        let firefox = mdm_tools::proc::BrowserCookies::new("firefox", "").unwrap();
+        let firefox = tdm_tools::proc::BrowserCookies::new("firefox", "").unwrap();
         let chrome_had = lookup_error(check, false, Some(&firefox));
         assert!(
             chrome_had.contains("even with Firefox's cookies"),
@@ -1401,15 +1401,15 @@ mod tests {
         );
     }
 
-    /// #229: yt-dlp's refusals and its trouble with a browser's cookies, in MDM's words, saying
+    /// #229: yt-dlp's refusals and its trouble with a browser's cookies, in TDM's words, saying
     /// which cookies it had.
     #[test]
     fn cookie_and_sign_in_errors_in_plain_words() {
         let bot = "yt-dlp failed: [youtube] A1WG3x-Ebpk: Sign in to confirm you're not a bot. Use --cookies-from-browser or --cookies for the authentication.";
         assert!(lookup_error(bot, false, None).contains("Cookies for video sites"));
         assert!(lookup_error(bot, true, None).contains("even with your browser's cookies"));
-        let firefox = mdm_tools::proc::BrowserCookies::new("firefox", "").unwrap();
-        let chrome = mdm_tools::proc::BrowserCookies::new("chrome", "").unwrap();
+        let firefox = tdm_tools::proc::BrowserCookies::new("firefox", "").unwrap();
+        let chrome = tdm_tools::proc::BrowserCookies::new("chrome", "").unwrap();
         assert_eq!(
             lookup_error(bot, false, Some(&firefox)),
             "The site wants you signed in, even with Firefox's cookies. Sign in to it in Firefox, then look the page up again."
@@ -1560,7 +1560,7 @@ mod tests {
 
     /// The Video and Music categories' folders (not made: only their names are compared).
     fn dirs() -> (PathBuf, PathBuf) {
-        let base = std::env::temp_dir().join("mdm-611");
+        let base = std::env::temp_dir().join("tdm-611");
         (base.join("Video"), base.join("Music"))
     }
 
@@ -1576,17 +1576,17 @@ mod tests {
         // No helpers looked for on this computer: no merged qualities.
         d.tools = Some((None, None, None));
         d.looked_up = d.page.clone();
-        d.set_video(mdm_tools::resolve::parse(SAMPLE.as_bytes()).unwrap());
+        d.set_video(tdm_tools::resolve::parse(SAMPLE.as_bytes()).unwrap());
         d
     }
 
     /// The choices' rows: (a sound-only one, a video one).
     fn rows(d: &VideoDialog) -> (usize, usize) {
         let choices = &d.video.as_ref().unwrap().1;
-        let sound = choices.iter().position(mdm_tools::resolve::is_audio);
+        let sound = choices.iter().position(tdm_tools::resolve::is_audio);
         let video = choices
             .iter()
-            .position(|c| !mdm_tools::resolve::is_audio(c));
+            .position(|c| !tdm_tools::resolve::is_audio(c));
         (sound.unwrap(), video.unwrap())
     }
 
@@ -1633,7 +1633,7 @@ mod tests {
     fn a_folder_the_user_chose_stays() {
         let mut d = looked_up(true);
         let (sound, film) = rows(&d);
-        let own = std::env::temp_dir().join("mdm-611").join("Talks");
+        let own = std::env::temp_dir().join("tdm-611").join("Talks");
         d.folder = own.display().to_string();
         choose(&mut d, sound);
         assert_eq!(d.save_folder(), own);

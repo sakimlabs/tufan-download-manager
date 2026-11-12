@@ -27,9 +27,9 @@ use crate::unix as os;
 #[cfg(windows)]
 use crate::win32 as os;
 
-/// The keychain's name for MDM's entries (Credential Manager's targets start with it; Secret
+/// The keychain's name for TDM's entries (Credential Manager's targets start with it; Secret
 /// Service's `service` attribute; the macOS keychain's service).
-pub const SERVICE: &str = "Mister Download Manager";
+pub const SERVICE: &str = "Tufan Download Manager";
 /// What the settings hold in a secret's place.
 pub const REF: &str = "keychain:";
 
@@ -42,7 +42,7 @@ pub enum Kept {
     Keychain,
     /// A portable copy: in its own settings.
     Portable,
-    /// The keyring is locked (MDM never unlocks it): in the settings.
+    /// The keyring is locked (TDM never unlocks it): in the settings.
     Locked,
     /// No keychain answered: in the settings.
     Missing,
@@ -201,7 +201,7 @@ impl Vault {
     /// A reference read from the settings: its secret, or "" when it can't be read now (the
     /// reference is then kept for the next save). The list is read before the window opens:
     /// once the keychain didn't answer (none, or none within the Secret Service's 5 s), the
-    /// other references aren't asked this session, so MDM waits for it once, not once each.
+    /// other references aren't asked this session, so TDM waits for it once, not once each.
     pub fn open(&self, stored: &str) -> String {
         let Some(target) = Target::parse(stored) else {
             tracing::warn!("sign-ins: a keychain reference that doesn't read");
@@ -490,7 +490,7 @@ impl Pass<'_> {
 /// Keeps one data folder's entries apart from another's: a short hash of its path, so a test
 /// copy beside the real data never writes over the real entries.
 fn scope() -> String {
-    let path = mdm_ipc::data_dir()
+    let path = tdm_ipc::data_dir()
         .map(|d| d.to_string_lossy().into_owned())
         .unwrap_or_default();
     let path = if cfg!(windows) {
@@ -502,12 +502,12 @@ fn scope() -> String {
     format!("{:08x}", (h ^ (h >> 32)) as u32)
 }
 
-/// The service's name: `SERVICE`, or a test's own (`MDM_KEYCHAIN_SERVICE=MDM-test-…`; only names
-/// of that form, so a test never writes MDM's real entries).
+/// The service's name: `SERVICE`, or a test's own (`TDM_KEYCHAIN_SERVICE=TDM-test-…`; only names
+/// of that form, so a test never writes TDM's real entries).
 fn service() -> String {
-    std::env::var("MDM_KEYCHAIN_SERVICE")
+    std::env::var("TDM_KEYCHAIN_SERVICE")
         .ok()
-        .filter(|s| s.starts_with("MDM-test-") && !s.contains('/'))
+        .filter(|s| s.starts_with("TDM-test-") && !s.contains('/'))
         .unwrap_or_else(|| SERVICE.to_owned())
 }
 
@@ -520,7 +520,7 @@ fn global() -> &'static Arc<Vault> {
         #[cfg(not(test))]
         let store: Box<dyn Store> = Box::new(System);
         let portable =
-            std::env::var_os("MDM_DATA_DIR").is_none() && mdm_ipc::portable_dir().is_some();
+            std::env::var_os("TDM_DATA_DIR").is_none() && tdm_ipc::portable_dir().is_some();
         Arc::new(Vault::new(
             store,
             &service(),
@@ -579,7 +579,7 @@ pub fn is_prepared() -> bool {
 }
 
 /// `--forget-sign-ins` (the Windows uninstaller runs it when the user chose to remove the data
-/// too): every entry of MDM's service goes, whichever data folder wrote it. Nothing else is
+/// too): every entry of TDM's service goes, whichever data folder wrote it. Nothing else is
 /// touched.
 pub fn forget_all() -> std::process::ExitCode {
     match Vault::new(Box::new(System), &service(), "", true, false).forget_all() {
@@ -703,7 +703,7 @@ mod tests {
     fn vault_on(mem: &Arc<Memory>, scope: &str) -> Arc<Vault> {
         Arc::new(Vault::new(
             Box::new(mem.clone()),
-            "MDM-test-unit",
+            "TDM-test-unit",
             scope,
             true,
             false,
@@ -746,7 +746,7 @@ mod tests {
             assert!(!before.contains(REF));
             let loaded = read(&before);
             assert_eq!(loaded, sample());
-            // Not confirmed yet: the list keeps them as before (nothing lost if MDM ends now).
+            // Not confirmed yet: the list keeps them as before (nothing lost if TDM ends now).
             let first = on_disk(&loaded);
             assert!(!first.contains(REF));
             assert_eq!(read(&first), sample());
@@ -760,11 +760,11 @@ mod tests {
                 assert!(!second.contains(secret), "{second}");
             }
             assert_eq!(
-                second.matches("keychain:MDM-test-unit/aaaa0001/").count(),
+                second.matches("keychain:TDM-test-unit/aaaa0001/").count(),
                 3,
                 "{second}"
             );
-            assert!(second.contains("keychain:MDM-test-unit/aaaa0001/debrid/1"));
+            assert!(second.contains("keychain:TDM-test-unit/aaaa0001/debrid/1"));
             assert!(!v.pending());
             // The next session reads them back from the keychain.
             let next = vault_on(&mem, "aaaa0001");
@@ -866,11 +866,11 @@ mod tests {
             let mut e = mem.entries.lock().unwrap();
             // Another data folder's (a test copy), and another service's.
             e.insert(
-                ("MDM-test-unit".into(), "bbbb0001/debrid/1".into()),
+                ("TDM-test-unit".into(), "bbbb0001/debrid/1".into()),
                 ("x".into(), "other".into()),
             );
             e.insert(
-                ("MDM-test-other".into(), "aaaa0005/debrid/1".into()),
+                ("TDM-test-other".into(), "aaaa0005/debrid/1".into()),
                 ("x".into(), "other".into()),
             );
         }
@@ -893,9 +893,9 @@ mod tests {
             v.run_once();
             let e = mem.entries.lock().unwrap();
             assert_eq!(e.len(), 4);
-            assert!(!e.contains_key(&("MDM-test-unit".into(), "aaaa0005/debrid/1".into())));
-            assert!(e.contains_key(&("MDM-test-unit".into(), "bbbb0001/debrid/1".into())));
-            assert!(e.contains_key(&("MDM-test-other".into(), "aaaa0005/debrid/1".into())));
+            assert!(!e.contains_key(&("TDM-test-unit".into(), "aaaa0005/debrid/1".into())));
+            assert!(e.contains_key(&("TDM-test-unit".into(), "bbbb0001/debrid/1".into())));
+            assert!(e.contains_key(&("TDM-test-other".into(), "aaaa0005/debrid/1".into())));
         });
     }
 
@@ -915,7 +915,7 @@ mod tests {
             let _ = on_disk(&loaded);
             copy.run_once();
             let json = on_disk(&loaded);
-            assert_eq!(json.matches("keychain:MDM-test-unit/cccc0006/").count(), 3);
+            assert_eq!(json.matches("keychain:TDM-test-unit/cccc0006/").count(), 3);
             copy.after_write();
             copy.run_once();
         });
@@ -928,7 +928,7 @@ mod tests {
         let mem = Arc::new(Memory::default());
         let v = Arc::new(Vault::new(
             Box::new(mem.clone()),
-            "MDM-test-unit",
+            "TDM-test-unit",
             "aaaa0007",
             false,
             false,
@@ -952,7 +952,7 @@ mod tests {
         with_vault(&v, || {
             v.run_once();
             for odd in [
-                "keychain:MDM-test-unit/aaaa0008/proxy",
+                "keychain:TDM-test-unit/aaaa0008/proxy",
                 "plain:keychain:x/y/z",
                 "plain:x",
             ] {
@@ -988,7 +988,7 @@ mod tests {
         });
         let next = Arc::new(Vault::new(
             Box::new(slow.clone()),
-            "MDM-test-unit",
+            "TDM-test-unit",
             "aaaa0011",
             true,
             false,
@@ -1025,7 +1025,7 @@ mod tests {
         });
         let v = Arc::new(Vault::new(
             Box::new(slow.clone()),
-            "MDM-test-unit",
+            "TDM-test-unit",
             "aaaa0012",
             true,
             false,
@@ -1101,7 +1101,7 @@ mod tests {
     }
 
     /// The system's own keychain (Credential Manager, the Secret Service, the macOS keychain),
-    /// under a service of its own (`MDM-test-<random>`): only its entries are listed, and every
+    /// under a service of its own (`TDM-test-<random>`): only its entries are listed, and every
     /// one is deleted again. Skipped where there is none (a CI runner without a keyring).
     #[test]
     fn the_system_keychain_keeps_and_forgets() {
@@ -1110,7 +1110,7 @@ mod tests {
             .map_or(0, |d| d.as_nanos()) as u64
             ^ u64::from(std::process::id());
         let service = format!(
-            "MDM-test-{:08x}",
+            "TDM-test-{:08x}",
             crate::settings::fnv(&nonce.to_string()) as u32
         );
         let sys = System;

@@ -528,7 +528,7 @@ impl Default for Store {
 
 impl Store {
     pub fn path() -> Option<PathBuf> {
-        mdm_ipc::data_dir().map(|d| d.join("rss.json"))
+        tdm_ipc::data_dir().map(|d| d.join("rss.json"))
     }
 
     /// The saved one; a missing or unreadable file is an empty store (a broken one is kept

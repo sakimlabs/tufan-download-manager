@@ -1,19 +1,19 @@
-//! #202: a freeze while MDM handles a command must still be reported. Since #176 the incoming
+//! #202: a freeze while TDM handles a command must still be reported. Since #176 the incoming
 //! commands and the clock run in the app's `logic`, which egui calls every frame (and alone while
 //! the main window is minimized); the freeze watchdog timed only `ui`, so a command that hung
 //! never opened the crash report window nor wrote a freeze report. The real app, off the screens
-//! (MDM_OFFSCREEN), with a data folder of its own: MDM_CRASH_TEST=1, then `/show crash-test:…`
+//! (TDM_OFFSCREEN), with a data folder of its own: TDM_CRASH_TEST=1, then `/show crash-test:…`
 //! (a deadlock, or 12 s of a busy window thread) with the main window visible or minimized. The
 //! crash monitor must open its window and write the freeze report, which names the kind of freeze.
 //!
 //! It opens windows, which needs OpenGL or Direct3D, so it runs on request:
-//! `cargo test -p mdm-app --test freeze_report -- --ignored`.
+//! `cargo test -p tdm-app --test freeze_report -- --ignored`.
 
 use std::path::{Path, PathBuf};
 use std::process::{Child, Command};
 use std::time::{Duration, Instant};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 /// The app's and its monitor's logs so far (every file of `logs/`).
 fn log(data: &Path) -> String {
@@ -58,9 +58,9 @@ fn wait_until(app: &mut Child, data: &Path, what: &str, wait: Duration, done: im
 fn second_launch(data: &Path, args: &[&str]) {
     let status = Command::new(APP)
         .args(args)
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_CRASH_TEST", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_CRASH_TEST", "1")
         .status()
         .unwrap();
     assert!(status.success(), "second launch {args:?}: {status}");
@@ -104,9 +104,9 @@ fn freeze_while(state: &str, what: &str, kind: &str, recovers: bool) {
     )
     .unwrap();
     let mut app = Command::new(APP)
-        .env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_CRASH_TEST", "1")
+        .env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_CRASH_TEST", "1")
         .spawn()
         .unwrap();
     let wait = Duration::from_secs(60);

@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Lithuanian: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Lithuanian: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Šalinama %1.
 
 [CustomMessages]
 TaskBrowser=Nustatyti naršyklės integravimą (&Chrome, Edge, Brave, Firefox)
-TaskTorrents=Atidaryti .&torrent failus ir magnet nuorodas naudojant „Mister Download Manager“
-TaskStartup=Paleisti „Mister Download Manager“, kai paleidžiama „&Windows“
+TaskTorrents=Atidaryti .&torrent failus ir magnet nuorodas naudojant „Tufan Download Manager“
+TaskStartup=Paleisti „Tufan Download Manager“, kai paleidžiama „&Windows“
 TaskGroupOther=Kita:
-Launch=Paleisti „Mister Download Manager“
+Launch=Paleisti „Tufan Download Manager“
 KeepData=Ar taip pat ištrinti atsisiuntimų sąrašą ir nustatymus?%n%nJūsų atsisiųsti failai nebus paliesti.

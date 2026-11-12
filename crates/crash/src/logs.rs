@@ -1,7 +1,7 @@
-//! The log MDM keeps in release builds too: `<data>/logs/mdm.log`, rolled over at a size into
+//! The log TDM keeps in release builds too: `<data>/logs/mdm.log`, rolled over at a size into
 //! `mdm.1.log` … `mdm.3.log` (the crash monitor keeps `monitor.log` the same way). Each line is
 //! handed to the log's own thread, which writes it at once; a report takes the last lines of
-//! MDM's ([`flush`] first, so it has them all).
+//! TDM's ([`flush`] first, so it has them all).
 //!
 //! The window's thread never writes the file itself (#513): while Windows held every write on
 //! C: for a shadow copy, a line logged there (or one waiting behind another thread's held write)
@@ -153,7 +153,7 @@ impl Write for Rolling {
 static LOG: std::sync::OnceLock<Rolling> = std::sync::OnceLock::new();
 
 /// Wait, up to `within`, until every line logged so far is in the file: before a report reads
-/// the log's end, and as MDM ends (lines still on their way would be lost with the process).
+/// the log's end, and as TDM ends (lines still on their way would be lost with the process).
 /// True when they are, or when there is no log.
 pub fn flush(within: Duration) -> bool {
     LOG.get().is_none_or(|log| log.flush_within(within))
@@ -166,19 +166,19 @@ impl<'a> tracing_subscriber::fmt::MakeWriter<'a> for Rolling {
     }
 }
 
-/// Start logging into `<data>/logs`: MDM's own crates at `info`, everything else (egui, winit,
-/// the network stack) at `warn`; `MDM_LOG` overrides it with an `EnvFilter` (e.g.
-/// `MDM_LOG=debug`). Returns false when the folder can't be written (MDM runs on without a log).
+/// Start logging into `<data>/logs`: TDM's own crates at `info`, everything else (egui, winit,
+/// the network stack) at `warn`; `TDM_LOG` overrides it with an `EnvFilter` (e.g.
+/// `TDM_LOG=debug`). Returns false when the folder can't be written (TDM runs on without a log).
 pub fn init(data: &Path, name: &'static str) -> bool {
     use tracing_subscriber::EnvFilter;
     let Ok(writer) = Rolling::new(dir(data), name) else {
         return false;
     };
     let _ = LOG.set(writer.clone());
-    let filter = std::env::var("MDM_LOG")
+    let filter = std::env::var("TDM_LOG")
         .ok()
         .and_then(|f| EnvFilter::try_new(f).ok())
-        .unwrap_or_else(|| EnvFilter::new("warn,minidump=error,minidump_processor=error,minidump_unwind=error,breakpad_symbols=error,mdm=info,mdm_app=info,misterdownloadmanager=info,mdm_engine=info,mdm_torrent=info,mdm_crash=info,mdm_tools=info,mdm_ipc=info"));
+        .unwrap_or_else(|| EnvFilter::new("warn,minidump=error,minidump_processor=error,minidump_unwind=error,breakpad_symbols=error,mdm=info,tdm_app=info,tufan-download-manager=info,tdm_engine=info,tdm_torrent=info,tdm_crash=info,tdm_tools=info,tdm_ipc=info"));
     tracing_subscriber::fmt()
         .with_writer(writer)
         .with_ansi(false)

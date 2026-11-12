@@ -177,7 +177,7 @@ impl Properties {
             .map(crate::whereis::Seen::from)
             .or_else(|| item.server.clone());
         if item.torrent.is_some() || item.video.is_some() || item.gallery.is_some() {
-            // i18n: Properties, where a download's server is: a torrent, a video or a gallery has no single server of MDM's own
+            // i18n: Properties, where a download's server is: a torrent, a video or a gallery has no single server of TDM's own
             fit(
                 ui,
                 col,
@@ -460,7 +460,7 @@ impl Properties {
         )
         .clicked();
         let address_ok = !editable
-            || url::Url::parse(self.address.trim()).is_ok_and(|u| mdm_engine::supported(&u));
+            || url::Url::parse(self.address.trim()).is_ok_and(|u| tdm_engine::supported(&u));
         if winui::escape_pressed(ui) {
             Outcome::Closed
         } else if ok || winui::enter_pressed(ui) {

@@ -2,13 +2,13 @@
 //! a thread of its own reads the computer's adapters and works out the route connections take:
 //! through the chosen adapter while it has an address, none at all while it doesn't (a VPN
 //! switched off), and the system's choice when no adapter is chosen. The binding itself is the
-//! kill switch (`mdm_engine::net`); this watch is what stops the downloads at once and starts
+//! kill switch (`tdm_engine::net`); this watch is what stops the downloads at once and starts
 //! them again when the adapter is back (`App::route_changed`).
 
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
-use mdm_engine::Route;
+use tdm_engine::Route;
 
 /// How often the adapters are read (a few milliseconds each time).
 const EVERY: Duration = Duration::from_secs(1);
@@ -56,7 +56,7 @@ fn compute(wanted: &str) -> Route {
         return Route::Any;
     }
     #[allow(unused_mut)]
-    let mut route = mdm_engine::net::route_for(wanted, &adapters());
+    let mut route = tdm_engine::net::route_for(wanted, &adapters());
     // The test adapter (debug builds, below) is on loopback, where the lab server is too:
     // connections to this computer are bound to it as well, so the lab sees them come from the
     // adapter's address (#35, the helpers' relay; unbound, nothing would show it).
@@ -69,10 +69,10 @@ fn compute(wanted: &str) -> Route {
     route
 }
 
-/// Debug builds: the test adapter `MDM_TEST_ADAPTER` names (see [`adapters`]), as (name, address).
+/// Debug builds: the test adapter `TDM_TEST_ADAPTER` names (see [`adapters`]), as (name, address).
 #[cfg(debug_assertions)]
 fn test_adapter() -> Option<(String, std::net::IpAddr)> {
-    std::env::var("MDM_TEST_ADAPTER")
+    std::env::var("TDM_TEST_ADAPTER")
         .ok()
         .and_then(|v| match v.strip_prefix('@') {
             Some(file) => std::fs::read_to_string(file).ok(),
@@ -85,13 +85,13 @@ fn test_adapter() -> Option<(String, std::net::IpAddr)> {
 }
 
 /// The computer's network adapters, as Options lists them and the watch reads them. Debug
-/// builds only: MDM_TEST_ADAPTER="Lab adapter=127.0.0.2" adds an adapter with that address (one
+/// builds only: TDM_TEST_ADAPTER="Lab adapter=127.0.0.2" adds an adapter with that address (one
 /// on loopback, which the system's list leaves out), for tests by hand that must not reach the
 /// network or listen beyond this computer (#143); "@file" reads that line from a file each
 /// time, so deleting the file disconnects the adapter.
-pub fn adapters() -> Vec<mdm_engine::net::Adapter> {
+pub fn adapters() -> Vec<tdm_engine::net::Adapter> {
     #[allow(unused_mut)]
-    let mut all = mdm_engine::net::adapters();
+    let mut all = tdm_engine::net::adapters();
     #[cfg(debug_assertions)]
     if let Some((name, ip)) = test_adapter() {
         let (mut v4, mut v6) = (Vec::new(), Vec::new());
@@ -99,7 +99,7 @@ pub fn adapters() -> Vec<mdm_engine::net::Adapter> {
             std::net::IpAddr::V4(a) => v4.push(a),
             std::net::IpAddr::V6(a) => v6.push(a),
         }
-        all.push(mdm_engine::net::Adapter {
+        all.push(tdm_engine::net::Adapter {
             name,
             index: 0,
             v4,

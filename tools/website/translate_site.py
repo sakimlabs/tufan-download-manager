@@ -18,7 +18,7 @@ with the reason; one that fails twice stays English on the page (sitei18n falls 
 listed in target/site-i18n/<lang>.failures.json. Each run's spending is appended to
 target/site-i18n/runs.jsonl.
 
-The key: OPENROUTER_API_KEY, else %USERPROFILE%\\.mdm-dev\\openrouter.key (never in the repo).
+The key: OPENROUTER_API_KEY, else %USERPROFILE%\\.tdm-dev\\openrouter.key (never in the repo).
 Needs: pip install markdown babel (the English build and tools/i18n/translate.py's helpers).
 """
 from __future__ import annotations
@@ -50,7 +50,7 @@ MODEL = tr.MODEL
 BATCH_ITEMS = 30
 BATCH_WORDS = 1400
 # Names that stay as they are (the app's list, and the site's own).
-KEEP = sorted(set(tr.KEEP + ["macOS", "Linux", "Rust", "YouTube", "Vimeo", "Tonec", "Ahmed Nefzaoui",
+KEEP = sorted(set(tr.KEEP + ["macOS", "Linux", "Rust", "YouTube", "Vimeo", "Tonec", "Md. Sakim",
                              "Statcounter", "OpenRouter", "Gemini", "Homebrew", "AppImage", "Flatpak",
                              "Chromium", "Vivaldi", "Safari", "MCP", "GPL",
                              # The other download managers idm-alternative.html compares.
@@ -60,9 +60,9 @@ KEEP = sorted(set(tr.KEEP + ["macOS", "Linux", "Rust", "YouTube", "Vimeo", "Tone
                              "Hugging Face"]), key=len, reverse=True)
 # Kept names a language writes in its own script instead (the maintainer's spelling of his name).
 OWN_SPELLING = {
-    "ar": {"Ahmed Nefzaoui": "أحمد نفزاوي"},
-    "fa": {"Ahmed Nefzaoui": "احمد نفزاوی"},
-    "bn": {"Ahmed Nefzaoui": "আহমেদ নেফজাউই"},
+    "ar": {"Md. Sakim": "أحمد نفزاوي"},
+    "fa": {"Md. Sakim": "احمد نفزاوی"},
+    "bn": {"Md. Sakim": "আহমেদ নেফজাউই"},
 }
 # The spellings the model falls back to in these scripts, whatever it is told (ویندوز for Windows):
 # written back as the name the page uses everywhere else before the answer is checked.
@@ -111,8 +111,8 @@ def latin_digits(text: str) -> str:
 # Gemini 2.5 Flash on OpenRouter, $ per million tokens: for --dry-run's estimate.
 PRICE_IN, PRICE_OUT = 0.30, 2.50
 
-RULES = """You translate the website of Mister Download Manager (MDM) from English into {english}
-({native}, language code {code}). MDM is a free, open-source download manager for Windows (macOS
+RULES = """You translate the website of Tufan Download Manager (TDM) from English into {english}
+({native}, language code {code}). TDM is a free, open-source download manager for Windows (macOS
 and Linux builds are experimental). It looks and works like Internet Download Manager (IDM), the
 paid download manager many people know, but it is a separate program, written from scratch.
 
@@ -126,8 +126,8 @@ How to write:
 - The neutral, polite register usual for software websites in this language. {variant}
 - A heading or page title stays short. A button or link label stays short.
 
-Input: a JSON object. "page" is the page's title; "ui" lists names of MDM's own menus, buttons,
-windows and settings with their translation in MDM itself; "terms" gives this language's settled
+Input: a JSON object. "page" is the page's title; "ui" lists names of TDM's own menus, buttons,
+windows and settings with their translation in TDM itself; "terms" gives this language's settled
 translation of terms the texts contain (use them); "items" are the texts. Each item has
 "id", "text" (what you translate), "where" it appears (heading, paragraph, button, list item, table
 cell, page title, page description for search results, image description, ...) and "section" (the
@@ -143,10 +143,10 @@ Rules:
 2. Keep these names exactly as written: {keep}. Keep file names, extensions, web addresses,
    code, command-line options, version numbers, sizes and units (MB, GB, KB/sec), keyboard keys
    (Ctrl, Alt, Shift, Enter, Delete, F2...) and arrows (→).{spell}
-3. When a text names a part of MDM (a menu, a button, a window, a setting; often in bold or joined
-   with →), use MDM's own translation from "ui" when it is there.
+3. When a text names a part of TDM (a menu, a button, a window, a setting; often in bold or joined
+   with →), use TDM's own translation from "ui" when it is there.
 4. Numbers in Latin digits 0-9. HTML entities like &amp; and &lt; stay as they are.
-5. IDM and Internet Download Manager belong to another company (Tonec). Never suggest MDM is IDM
+5. IDM and Internet Download Manager belong to another company (Tonec). Never suggest TDM is IDM
    or made by its makers.
 6. No line breaks, notes, explanations or quotes around the translation.
 """
@@ -155,9 +155,9 @@ Rules:
 # ---- The English site's segments -------------------------------------------------------------------
 
 def build_english() -> None:
-    env = dict(os.environ, MDM_SITE_NO_STATS="1")
+    env = dict(os.environ, TDM_SITE_NO_STATS="1")
     # Only English: the catalogs being translated mustn't decide what the English pages are.
-    env["MDM_SITE_ENGLISH_ONLY"] = "1"
+    env["TDM_SITE_ENGLISH_ONLY"] = "1"
     subprocess.run([sys.executable, str(HERE / "build.py")], check=True, env=env,
                    stdout=subprocess.DEVNULL)
 
@@ -251,7 +251,7 @@ def why_not(code: str, row: dict, text) -> str | None:
 # ---- The run -----------------------------------------------------------------------------------------
 
 def ui_terms(code: str) -> list[tuple[str, str]]:
-    """MDM's own interface texts in `code` (its app catalog), menu marks and dots dropped, the
+    """TDM's own interface texts in `code` (its app catalog), menu marks and dots dropped, the
     longest first: the "ui" list a batch gets the ones it mentions from."""
     terms = {}
     for (context, source), (text, _machine) in tr.read_catalog(code).items():
@@ -380,7 +380,7 @@ def run_language(code: str, rows: dict[str, dict], key: str, spend: tr.Spend, wo
 SITE_REVIEW = """You are now the native reviewer of these translations, before they ship. Each item
 also has its "draft". Fix every draft a careful native reviewer would change: a wrong meaning, wrong
 grammar or agreement, an unnatural or word-for-word sentence, the wrong register, a term that isn't
-the settled one in "terms" or MDM's own name in "ui". Keep a draft that is already right exactly as
+the settled one in "terms" or TDM's own name in "ui". Keep a draft that is already right exactly as
 it is: never rewrite for taste. Every rule above still holds (tags, names, numbers).
 
 Output one JSON object mapping every item's "id" to its final text (a string). Nothing else.

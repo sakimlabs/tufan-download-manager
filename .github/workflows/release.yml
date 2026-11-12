@@ -99,7 +99,7 @@ jobs:
       - name: Installer and portable zip
         shell: pwsh
         env:
-          MDM_SIGN_COMMAND: ${{ steps.cert.outputs.command }}
+          TDM_SIGN_COMMAND: ${{ steps.cert.outputs.command }}
         run: ./tools/installer/build.ps1
 
       # Crash reports: the release's symbols (dump_syms reads each program's .pdb beside it; no
@@ -110,7 +110,7 @@ jobs:
           GH_TOKEN: ${{ github.token }} # downloads the build's helpers signed in (fetch_release.py)
         run: |
           $v = [regex]::Match((Get-Content Cargo.toml -Raw), '(?m)^version\s*=\s*"([^"]+)"').Groups[1].Value
-          $exes = "misterdownloadmanager", "misterdownloadmanager-nmhost", "misterdownloadmanager-cli", "misterdownloadmanager-mcp" |
+          $exes = "tufan-download-manager", "tufan-download-manager-nmhost", "tufan-download-manager-cli", "tufan-download-manager-mcp" |
             ForEach-Object { "target/release/$_.exe" }
           python tools/installer/symbols.py windows-x64 $v target/dist @exes
           if ($LASTEXITCODE) { throw "symbols failed" }
@@ -154,12 +154,12 @@ jobs:
           node tools/extension/check-pack.mjs
           $v = [regex]::Match((Get-Content Cargo.toml -Raw), '(?m)^version\s*=\s*"([^"]+)"').Groups[1].Value
           New-Item -ItemType Directory -Force target/dist | Out-Null
-          Copy-Item target/extension/mdm-chromium.zip "target/dist/MisterDownloadManager-$v-extension-chromium.zip"
-          Copy-Item target/extension/mdm-firefox.xpi "target/dist/MisterDownloadManager-$v-extension-firefox.xpi"
+          Copy-Item target/extension/tdm-chromium.zip "target/dist/MisterDownloadManager-$v-extension-chromium.zip"
+          Copy-Item target/extension/tdm-firefox.xpi "target/dist/MisterDownloadManager-$v-extension-firefox.xpi"
           # For the Chrome Web Store (the next step, or its dashboard by hand): kept with the
           # build, not the release.
           New-Item -ItemType Directory -Force target/store | Out-Null
-          Copy-Item target/extension/mdm-chrome-store.zip "target/store/MisterDownloadManager-$v-chrome-web-store.zip"
+          Copy-Item target/extension/tdm-chrome-store.zip "target/store/MisterDownloadManager-$v-chrome-web-store.zip"
 
       # The stores' tools, at the exact versions and hashes of tools/release/package-lock.json.
       - name: Store tools
@@ -202,7 +202,7 @@ jobs:
           REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
           PUBLISHER_ID: ${{ secrets.CWS_PUBLISHER_ID }}
           EXTENSION_ID: ejoleppdfgjdndddcjoehopknmlglojp
-        run: ./tools/release/node_modules/.bin/chrome-webstore-upload --source target/extension/mdm-chrome-store.zip
+        run: ./tools/release/node_modules/.bin/chrome-webstore-upload --source target/extension/tdm-chrome-store.zip
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -315,7 +315,7 @@ jobs:
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
-          MDM_RELEASE_KEY: ${{ secrets.MDM_RELEASE_KEY }}
+          TDM_RELEASE_KEY: ${{ secrets.TDM_RELEASE_KEY }}
         shell: pwsh
         run: |
           # One SHA256SUMS.txt for every file (each build wrote its own).
@@ -323,12 +323,12 @@ jobs:
           $files = Get-ChildItem dist -File | Sort-Object Name
           $sums = $files | ForEach-Object { "$((Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower())  $($_.Name)" }
           Set-Content -Encoding ascii dist/SHA256SUMS.txt $sums
-          # Signed with MDM's release key (fingerprint 5826D399249DE856EA087D802E293C28E8A69D74):
-          # MDM updates itself only from a list it signed
-          # (crates/tools/src/update.rs; the public key is crates/tools/keys/mdm-release.asc).
-          if ($env:MDM_RELEASE_KEY) {
-            $key = Join-Path $env:RUNNER_TEMP "mdm-release.asc"
-            Set-Content -Encoding ascii $key $env:MDM_RELEASE_KEY
+          # Signed with TDM's release key (fingerprint 5826D399249DE856EA087D802E293C28E8A69D74):
+          # TDM updates itself only from a list it signed
+          # (crates/tools/src/update.rs; the public key is crates/tools/keys/tdm-release.asc).
+          if ($env:TDM_RELEASE_KEY) {
+            $key = Join-Path $env:RUNNER_TEMP "tdm-release.asc"
+            Set-Content -Encoding ascii $key $env:TDM_RELEASE_KEY
             gpg --batch --quiet --import $key
             Remove-Item $key
             gpg --batch --yes --detach-sign --local-user 5826D399249DE856EA087D802E293C28E8A69D74 `
@@ -337,7 +337,7 @@ jobs:
             gpg --batch --verify dist/SHA256SUMS.txt.sig dist/SHA256SUMS.txt
             if ($LASTEXITCODE) { throw "the signature of SHA256SUMS.txt doesn't verify" }
           } else {
-            Write-Warning "MDM_RELEASE_KEY isn't set: this release is unsigned, and MDM won't update to it by itself."
+            Write-Warning "TDM_RELEASE_KEY isn't set: this release is unsigned, and TDM won't update to it by itself."
           }
           # Notes: the version's section of CHANGELOG.md ("## [X.Y.Z]" up to the next "## "),
           # else GitHub's list of changes since the last tag; first, the invitation to try the
@@ -345,7 +345,7 @@ jobs:
           $v = "${{ github.ref_name }}".TrimStart("v")
           $log = Get-Content CHANGELOG.md -Raw -ErrorAction SilentlyContinue
           $m = [regex]::Match("$log", "(?ms)^## \[$([regex]::Escape($v))\][^\n]*\n(.*?)(?=^## |\z)")
-          $title = "Mister Download Manager ${{ github.ref_name }}"
+          $title = "Tufan Download Manager ${{ github.ref_name }}"
           $invite = ""
           if ($files.Name -like "*-experimental*") {
             $invite = "**On a Mac?** The ``-experimental`` files are fresh builds for Mac " +

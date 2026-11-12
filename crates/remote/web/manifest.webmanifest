@@ -1,6 +1,6 @@
 {
-  "name": "Mister Download Manager",
-  "short_name": "MDM",
+  "name": "Tufan Download Manager",
+  "short_name": "TDM",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

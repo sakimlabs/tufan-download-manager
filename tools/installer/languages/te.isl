@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Telugu: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Telugu: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 అన్‌ఇన్‌స్టాల్
 
 [CustomMessages]
 TaskBrowser=బ్రౌజర్ ఇంటిగ్రేషన్ (&B) (Chrome, Edge, Brave, Firefox) సెటప్ చేయండి
-TaskTorrents=Mister Download Managerతో .&torrent ఫైల్‌లు మరియు మాగ్నెట్ లింక్‌లను తెరవండి
-TaskStartup=Windows ప్రారంభమైనప్పుడు Mister Download Managerని &ప్రారంభించండి
+TaskTorrents=Tufan Download Managerతో .&torrent ఫైల్‌లు మరియు మాగ్నెట్ లింక్‌లను తెరవండి
+TaskStartup=Windows ప్రారంభమైనప్పుడు Tufan Download Managerని &ప్రారంభించండి
 TaskGroupOther=ఇతర:
-Launch=Mister Download Managerని ప్రారంభించండి
+Launch=Tufan Download Managerని ప్రారంభించండి
 KeepData=మీ డౌన్‌లోడ్ జాబితా మరియు సెట్టింగ్‌లను కూడా తొలగించాలా?%n%nమీరు డౌన్‌లోడ్ చేసిన ఫైల్‌లు ఏ విధంగానూ తాకబడవు.

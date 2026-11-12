@@ -1,6 +1,6 @@
 [package]
-name = "mdm-remote"
-description = "Mister Download Manager's remote control: a paired phone or computer on the local network adds and controls downloads over HTTPS (#141)"
+name = "tdm-remote"
+description = "Tufan Download Manager's remote control: a paired phone or computer on the local network adds and controls downloads over HTTPS (#141)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -13,8 +13,8 @@ publish.workspace = true
 aws-lc-rs.workspace = true
 axum.workspace = true
 hex.workspace = true
-mdm-engine.workspace = true
-mdm-ipc.workspace = true
+tdm-engine.workspace = true
+tdm-ipc.workspace = true
 # The self-signed certificate, made once and kept.
 rcgen.workspace = true
 rustls.workspace = true

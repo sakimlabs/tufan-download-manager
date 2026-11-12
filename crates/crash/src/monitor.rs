@@ -1,4 +1,4 @@
-//! The monitor: a second MDM process (`--crash-monitor`) that waits beside the app. When the app
+//! The monitor: a second TDM process (`--crash-monitor`) that waits beside the app. When the app
 //! crashes, panics or freezes, it asks; the monitor writes the minidump of every thread from
 //! outside (a crashed process can't be trusted to do it), and hands the report window an event.
 
@@ -34,7 +34,7 @@ pub enum Event {
 
 /// The socket the app and its monitor meet on, unique per app process.
 pub fn socket_path(app_pid: u32) -> PathBuf {
-    std::env::temp_dir().join(format!("mdm-crash-{app_pid}.sock"))
+    std::env::temp_dir().join(format!("tdm-crash-{app_pid}.sock"))
 }
 
 /// The folder reports are kept in.

@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Tatar: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Tatar: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 бетерелә.
 
 [CustomMessages]
 TaskBrowser=Браузер интеграциясен көйләү (&B) (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Mister Download Manager белән .&torrent файлларын һәм магнит сылтамаларын ачу
-TaskStartup=&Windows эшләтеп җибәрелгәндә Mister Download Managerны эшләтеп җибәрү
+TaskTorrents=Tufan Download Manager белән .&torrent файлларын һәм магнит сылтамаларын ачу
+TaskStartup=&Windows эшләтеп җибәрелгәндә Tufan Download Managerны эшләтеп җибәрү
 TaskGroupOther=Башкалар:
-Launch=Mister Download Managerны эшләтеп җибәрү
+Launch=Tufan Download Managerны эшләтеп җибәрү
 KeepData=Йөкләү исемлеген һәм көйләүләрне дә бетерергәме?%n%nЙөкләнгән файлларыгызга берни дә булмаячак.

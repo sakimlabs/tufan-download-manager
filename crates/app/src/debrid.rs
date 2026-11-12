@@ -5,13 +5,13 @@
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
-use mdm_debrid::{AccountInfo, Credential, Fault, Http, ServiceKind, Services};
+use tdm_debrid::{AccountInfo, Credential, Fault, Http, ServiceKind, Services};
 
-/// Where the services answer. Debug builds only: MDM_DEBRID_LAB=http://127.0.0.1:PORT/ points
+/// Where the services answer. Debug builds only: TDM_DEBRID_LAB=http://127.0.0.1:PORT/ points
 /// at the lab server's fakes (labserver `debrid`), for tests by hand.
 pub fn services() -> Services {
     #[cfg(debug_assertions)]
-    if let Some(base) = std::env::var("MDM_DEBRID_LAB")
+    if let Some(base) = std::env::var("TDM_DEBRID_LAB")
         .ok()
         .and_then(|b| url::Url::parse(&b).ok())
     {
@@ -20,7 +20,7 @@ pub fn services() -> Services {
     Services::default()
 }
 
-/// A client for the services, through MDM's own network settings (proxy, DNS, adapter).
+/// A client for the services, through TDM's own network settings (proxy, DNS, adapter).
 pub fn http() -> Result<Arc<Http>, String> {
     Http::new(&crate::settings::own_net(), services()).map(Arc::new)
 }
@@ -28,7 +28,7 @@ pub fn http() -> Result<Arc<Http>, String> {
 /// Did the browser start this download itself (it came with the browser's size or type,
 /// `ipc::Command`)? Then the host is already sending the file: by default it is downloaded
 /// directly, not through a debrid account (`Item::direct`).
-pub fn browser_started(context: &mdm_ipc::Command) -> bool {
+pub fn browser_started(context: &tdm_ipc::Command) -> bool {
     context.size.is_some() || context.mime.is_some()
 }
 
@@ -37,14 +37,14 @@ pub fn browser_started(context: &mdm_ipc::Command) -> bool {
 /// windows that say it. Cheap to clone: Download File Info and File Properties keep one.
 #[derive(Clone, Default)]
 pub struct Route {
-    debrid: mdm_debrid::Debrid,
+    debrid: tdm_debrid::Debrid,
     on: bool,
     /// Each account's id and its name at the service.
     names: Arc<Vec<(u64, String)>>,
 }
 
 impl Route {
-    pub fn new(debrid: &mdm_debrid::Debrid, settings: &crate::settings::Settings) -> Self {
+    pub fn new(debrid: &tdm_debrid::Debrid, settings: &crate::settings::Settings) -> Self {
         Route {
             debrid: debrid.clone(),
             on: settings.debrid_on,
@@ -67,9 +67,9 @@ impl Route {
         self.debrid.account_for(url)
     }
 
-    /// The unlocker a download of `url` goes with (`mdm_engine::Options::unlocker`): none when
+    /// The unlocker a download of `url` goes with (`tdm_engine::Options::unlocker`): none when
     /// it is downloaded directly (`direct`: the user's choice, or the browser had started it).
-    pub fn unlocker(&self, url: &url::Url, direct: bool) -> Option<Arc<dyn mdm_engine::Unlocker>> {
+    pub fn unlocker(&self, url: &url::Url, direct: bool) -> Option<Arc<dyn tdm_engine::Unlocker>> {
         if direct || self.account(url).is_none() {
             return None;
         }
@@ -170,7 +170,7 @@ impl SignIn {
         std::thread::spawn(move || {
             let run = async {
                 let http = http()?;
-                let code = mdm_debrid::signin::start(&http, service)
+                let code = tdm_debrid::signin::start(&http, service)
                     .await
                     .map_err(|f| fault_text(service, &f))?;
                 let until = Instant::now() + Duration::from_secs(code.expires_in);
@@ -184,7 +184,7 @@ impl SignIn {
                 );
                 // The page opens in the browser, except in off-screen test runs and against the
                 // lab's fake service (whose page is the real one's address).
-                if !crate::offscreen() && std::env::var_os("MDM_DEBRID_LAB").is_none() {
+                if !crate::offscreen() && std::env::var_os("TDM_DEBRID_LAB").is_none() {
                     crate::launch::open(&code.page);
                 }
                 loop {
@@ -196,7 +196,7 @@ impl SignIn {
                         return Err(crate::i18n::t("the code expired: sign in again").to_owned());
                     }
                     tokio::time::sleep(Duration::from_secs(code.interval.max(1))).await;
-                    if let Some(c) = mdm_debrid::signin::poll(&http, &code)
+                    if let Some(c) = tdm_debrid::signin::poll(&http, &code)
                         .await
                         .map_err(|f| fault_text(service, &f))?
                     {
@@ -242,7 +242,7 @@ impl SignIn {
         let out = rt.block_on(async {
             let (http, credential) = run.await?;
             self.set(SignInState::Checking, ctx);
-            let info = mdm_debrid::check(&http, service, credential.clone())
+            let info = tdm_debrid::check(&http, service, credential.clone())
                 .await
                 .map_err(|f| fault_text(service, &f))?;
             let credential = serde_json::to_string(&credential).map_err(|e| e.to_string())?;
@@ -261,22 +261,22 @@ impl SignIn {
     }
 }
 
-/// The command line's way to the accounts in Options → Accounts (#44, `mdm_cli::Accounts`): read
+/// The command line's way to the accounts in Options → Accounts (#44, `tdm_cli::Accounts`): read
 /// from the app's settings, which open their sealed secrets, when a download asks, never before.
 /// The services are asked through the download's own network options.
 pub struct CliAccounts;
 
-impl mdm_cli::Accounts for CliAccounts {
+impl tdm_cli::Accounts for CliAccounts {
     fn unlocker<'a>(
         &'a self,
         url: &'a url::Url,
-        net: &'a mdm_engine::Options,
-    ) -> mdm_cli::Unlocking<'a> {
+        net: &'a tdm_engine::Options,
+    ) -> tdm_cli::Unlocking<'a> {
         Box::pin(async move {
             let Some(settings) = crate::store::settings_only() else {
                 return Ok(None);
             };
-            let accounts: Vec<mdm_debrid::Account> = settings
+            let accounts: Vec<tdm_debrid::Account> = settings
                 .debrid_accounts
                 .iter()
                 .filter(|a| a.enabled)
@@ -286,7 +286,7 @@ impl mdm_cli::Accounts for CliAccounts {
                 return Ok(None);
             }
             let http = Http::new(net, services()).map(Arc::new)?;
-            let debrid = mdm_debrid::Debrid::default();
+            let debrid = tdm_debrid::Debrid::default();
             debrid.set_accounts(accounts, http);
             let failed = debrid.refresh_hosts().await.err();
             match (debrid.unlocker_for(url), failed) {

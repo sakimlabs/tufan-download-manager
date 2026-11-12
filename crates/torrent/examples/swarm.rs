@@ -3,7 +3,7 @@
 //! generated multi-file torrent, and a tracker that hands them to whoever announces. Writes
 //! `<out>/Open Movie Night.torrent`, then seeds until stopped.
 //!
-//!   cargo run --release -p mdm-torrent --example swarm -- target/swarm [size MB] [seeders] [port] [lsd|-] [piece KB]
+//!   cargo run --release -p tdm-torrent --example swarm -- target/swarm [size MB] [seeders] [port] [lsd|-] [piece KB]
 //!
 //! The app leaves out trackers on this computer (#40), so for the app add `lsd`: the seeders
 //! then answer Local Service Discovery, and the app finds them that way (Torrent settings'
@@ -18,7 +18,7 @@ use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::path::{Path, PathBuf};
 use std::time::Duration;
 
-use mdm_torrent::{Config, Phase, Source, Torrents, librqbit};
+use tdm_torrent::{Config, Phase, Source, Torrents, librqbit};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 const NAME: &str = "Open Movie Night";
@@ -97,7 +97,7 @@ async fn main() {
             meta.files.len(),
             meta.total() >> 20
         );
-        // For an off-screen test copy of the app (MDM_LAB_PEERS, torrents.rs).
+        // For an off-screen test copy of the app (TDM_LAB_PEERS, torrents.rs).
         let list: Vec<String> = peers.iter().map(|a| a.to_string()).collect();
         println!("peers {}", list.join(","));
     } else {

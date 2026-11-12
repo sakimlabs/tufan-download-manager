@@ -3,8 +3,8 @@
 use std::path::{Path, PathBuf};
 use std::time::Instant;
 
-use mdm_engine::Download;
-use mdm_engine::download::State;
+use tdm_engine::Download;
+use tdm_engine::download::State;
 use serde::{Deserialize, Serialize};
 use url::Url;
 
@@ -295,7 +295,7 @@ impl Category {
         match self {
             Category::General => downloads.to_owned(),
             Category::Custom(id) => match custom(id) {
-                Some(c) => downloads.join(mdm_engine::naming::sanitize(&c.name)),
+                Some(c) => downloads.join(tdm_engine::naming::sanitize(&c.name)),
                 None => downloads.to_owned(),
             },
             // The shipped name, whatever it is called now: renaming doesn't move a folder.
@@ -368,7 +368,7 @@ pub struct Item {
     pub resumable: Option<bool>,
     /// The hash the finished file must have (Verify checksum…; beyond IDM, D-015).
     #[serde(default)]
-    pub checksum: Option<mdm_engine::verify::Hash>,
+    pub checksum: Option<tdm_engine::verify::Hash>,
     /// When the download was added ("Added" column), as `Last Try Date` is written. Downloads
     /// added before the column existed have none.
     #[serde(default)]
@@ -415,7 +415,7 @@ pub struct Item {
     /// download reaches `Status::Complete`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub rename_on_complete: Option<String>,
-    /// True when a folder download's destination already held files before MDM added it, so
+    /// True when a folder download's destination already held files before TDM added it, so
     /// folder-level deferred rename refuses to sweep untracked files along.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub preexisting_folder: bool,
@@ -426,13 +426,13 @@ pub struct Item {
     pub torrent_check: Option<(u64, u64)>,
     /// The engine's last view of this download (segments, connections).
     #[serde(skip)]
-    pub snap: Option<mdm_engine::Snapshot>,
+    pub snap: Option<tdm_engine::Snapshot>,
     /// "Use authorization" login; kept in memory only, never written to disk.
     #[serde(skip)]
     pub login: Option<(String, String)>,
     /// Request context from the browser (Referer, Cookie, User-Agent); memory only.
     #[serde(skip)]
-    pub context: mdm_ipc::Command,
+    pub context: tdm_ipc::Command,
     /// What the Download complete window says besides (a video's subtitles the site refused,
     /// #68), in the interface language; memory only.
     #[serde(skip)]
@@ -477,16 +477,16 @@ pub struct PackageTag {
 pub enum Job {
     File(Download),
     Video {
-        job: mdm_tools::video::VideoJob,
+        job: tdm_tools::video::VideoJob,
         url: Url,
     },
     Gallery {
-        job: mdm_tools::gallery::GalleryJob,
+        job: tdm_tools::gallery::GalleryJob,
         url: Url,
     },
     Torrent(crate::torrents::Run),
     /// A torrent through a debrid account, then its files over HTTP (#44).
-    Remote(mdm_debrid::torrents::RemoteTorrent),
+    Remote(tdm_debrid::torrents::RemoteTorrent),
 }
 
 /// A torrent sent to a debrid account (#44).
@@ -511,8 +511,8 @@ pub struct GallerySpec {
 
 /// A helper's progress (yt-dlp's, gallery-dl's) as the engine's view: one segment when its size
 /// is known, no connections, its notes as events.
-fn tool_snapshot(p: mdm_tools::video::Progress, url: &Url) -> mdm_engine::Snapshot {
-    use mdm_tools::video::State as V;
+fn tool_snapshot(p: tdm_tools::video::Progress, url: &Url) -> tdm_engine::Snapshot {
+    use tdm_tools::video::State as V;
     let (state, file, error) = match p.state {
         V::Running => (State::Downloading, None, None),
         V::Done(f) => (State::Done, Some(f), None),
@@ -520,7 +520,7 @@ fn tool_snapshot(p: mdm_tools::video::Progress, url: &Url) -> mdm_engine::Snapsh
         V::Stopped => (State::Cancelled, None, None),
     };
     let size = p.total;
-    mdm_engine::Snapshot {
+    tdm_engine::Snapshot {
         state,
         url: url.clone(),
         file,
@@ -529,7 +529,7 @@ fn tool_snapshot(p: mdm_tools::video::Progress, url: &Url) -> mdm_engine::Snapsh
         resumable: Some(true),
         segments: size
             .map(|t| {
-                vec![mdm_engine::download::SegmentView {
+                vec![tdm_engine::download::SegmentView {
                     start: 0,
                     cursor: p.downloaded.min(t),
                     end: t,
@@ -543,7 +543,7 @@ fn tool_snapshot(p: mdm_tools::video::Progress, url: &Url) -> mdm_engine::Snapsh
             .events
             .iter()
             .enumerate()
-            .map(|(i, (at, text))| mdm_engine::download::Event {
+            .map(|(i, (at, text))| tdm_engine::download::Event {
                 seq: i as u64 + 1,
                 at: *at,
                 text: text.clone(),
@@ -557,7 +557,7 @@ fn tool_snapshot(p: mdm_tools::video::Progress, url: &Url) -> mdm_engine::Snapsh
 
 impl Job {
     /// The engine's view, or one made from yt-dlp's progress (one segment, no connections).
-    pub fn snapshot(&self) -> mdm_engine::Snapshot {
+    pub fn snapshot(&self) -> tdm_engine::Snapshot {
         match self {
             Job::File(d) => d.snapshot(),
             Job::Torrent(t) => t.snapshot(),
@@ -598,8 +598,8 @@ impl Job {
 }
 
 /// A subtitle language a video came without, in the interface language (#68).
-pub fn sub_notice(p: &mdm_tools::video::SubProblem, site: &str) -> String {
-    use mdm_tools::video::SubReason;
+pub fn sub_notice(p: &tdm_tools::video::SubProblem, site: &str) -> String {
+    use tdm_tools::video::SubReason;
     let language = p.name.as_str();
     if p.beside {
         return crate::i18n::fmt(
@@ -633,7 +633,7 @@ pub struct VideoSpec {
     pub selector: String,
     /// The subtitles saved with it (#68; none in a list saved before them).
     #[serde(default)]
-    pub subs: mdm_tools::video::Subs,
+    pub subs: tdm_tools::video::Subs,
 }
 
 /// A running download and its speed measurement.
@@ -754,8 +754,8 @@ impl Item {
     /// This row's resume state is at its place. `downloaded` can't say: after a crash the list
     /// holds what it held at its last save, often nothing.
     pub fn owns_resume_state(&self) -> bool {
-        let state = mdm_engine::state::state_path(&self.dest);
-        mdm_engine::state::ResumeState::load(&state).is_ok_and(|s| s.url == self.url)
+        let state = tdm_engine::state::state_path(&self.dest);
+        tdm_engine::state::ResumeState::load(&state).is_ok_and(|s| s.url == self.url)
     }
 
     /// Whether this row has its place on the disk: running, part-way (its pieces and resume
@@ -942,7 +942,7 @@ impl Item {
         let total = self.size.filter(|t| *t > 0)?;
         let f = (self.downloaded as f64 / total as f64).clamp(0.0, 1.0);
         Some(if self.video.is_some() && self.status != Status::Complete {
-            f.min(mdm_tools::video::MAX_WHILE_RUNNING)
+            f.min(tdm_tools::video::MAX_WHILE_RUNNING)
         } else {
             f
         })
@@ -962,7 +962,7 @@ impl Item {
         };
         let service = service.as_str();
         Some(crate::i18n::fmt(
-            // i18n: a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+            // i18n: a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
             crate::i18n::t("{percent} at {service}"),
             &[
                 ("service", service),
@@ -1375,7 +1375,7 @@ mod finished_file_gone_tests {
 
     #[test]
     fn only_a_finished_file_gone_from_a_folder_that_is_there() {
-        let dir = std::env::temp_dir().join(format!("mdm-342-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("tdm-342-{}", std::process::id()));
         std::fs::create_dir_all(&dir).unwrap();
         let there = dir.join("there.bin");
         std::fs::write(&there, b"x").unwrap();

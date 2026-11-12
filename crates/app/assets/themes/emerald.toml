@@ -1,4 +1,4 @@
-# Emerald: one of Mister Download Manager's built-in themes, and an example of a theme file.
+# Emerald: one of Tufan Download Manager's built-in themes, and an example of a theme file.
 # A white canvas, one near-black ink, a ladder of neutral greys for structure, and emerald as the
 # one chromatic event.
 #
@@ -8,7 +8,7 @@
 # shape this look never draws.
 #
 # A theme file names only what it changes. A few seeds per variant derive every other colour
-# (`crate::derive`), so a role MDM adds later arrives in this look rather than the classic one.
+# (`crate::derive`), so a role TDM adds later arrives in this look rather than the classic one.
 # The icons are Metro's: one-colour line art where the default look has pictures.
 
 name = "Emerald"

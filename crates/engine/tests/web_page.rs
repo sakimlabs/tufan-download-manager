@@ -1,8 +1,8 @@
 //! #533: a web page (a firewall's "The requested URL was rejected") where the download expects
 //! another kind of file is an error, never saved as the file; real pages and files still are.
 
-use mdm_engine::{Destination, Download, Error, Options, Request};
-use mdm_labserver::{Config, LabServer, content};
+use tdm_engine::{Destination, Download, Error, Options, Request};
+use tdm_labserver::{Config, LabServer, content};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 async fn server() -> LabServer {
@@ -72,7 +72,7 @@ async fn a_page_where_the_browser_had_another_type_is_an_error() {
         expected_type: Some("application/msword".into()),
         ..Options::default()
     };
-    let probed = mdm_engine::probe_kept(url.parse().unwrap(), Default::default(), &opts).await;
+    let probed = tdm_engine::probe_kept(url.parse().unwrap(), Default::default(), &opts).await;
     assert!(matches!(probed, Err(Error::GotWebPage)), "{probed:?}");
     // An address named like a file, added by hand (no browser): the same.
     let (out, _) = get(&s.url("/gen/245/report.pdf?html=1"), None, None).await;

@@ -1,4 +1,4 @@
-# Mister Download Manager in Welsh (Cymraeg): tools/i18n/translate.py
+# Tufan Download Manager in Welsh (Cymraeg): tools/i18n/translate.py
 # writes the rows marked '#, machine'; a native speaker deletes that line after checking.
 # context	source	translation (craft-i18n format, rows as in en.tsv)
 @id	language.name	Cymraeg
@@ -11,7 +11,7 @@
 #. never shown for a single download
 #. {n} = a number (keep the braces as they are)
 #, machine
-@plural	Are you sure you want to delete {n} download from Mister Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Mister Download Manager list of downloads?	Ydych chi'n siŵr eich bod am ddileu {n} lawrlwythiad o restr lawrlwythiadau Mister Download Manager?|Ydych chi'n siŵr eich bod am ddileu {n} lawrlwythiad o restr lawrlwythiadau Mister Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Mister Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Mister Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Mister Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Mister Download Manager?
+@plural	Are you sure you want to delete {n} download from Tufan Download Manager list of downloads?|Are you sure you want to delete these {n} downloads from Tufan Download Manager list of downloads?	Ydych chi'n siŵr eich bod am ddileu {n} lawrlwythiad o restr lawrlwythiadau Tufan Download Manager?|Ydych chi'n siŵr eich bod am ddileu {n} lawrlwythiad o restr lawrlwythiadau Tufan Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Tufan Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Tufan Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Tufan Download Manager?|Ydych chi'n siŵr eich bod am ddileu'r {n} lawrlwythiad hyn o restr lawrlwythiadau Tufan Download Manager?
 #. count in the Add torrent window
 #. while a magnet link's file list is fetched; {n} = peers that answered
 #. {n} = a number (keep the braces as they are)
@@ -186,7 +186,7 @@
 #. text in the Options window
 #. Options → Accounts: what these accounts are, and the services' rule against sharing
 #, machine
-	A debrid service downloads a file host's link with your own paid account and gives MDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Mae gwasanaeth dadfridio yn lawrlwytho dolen gwesteiwr ffeil gyda'ch cyfrif taledig eich hun ac yn rhoi dolen uniongyrchol i MDM. Defnyddiwch eich cyfrif eich hun yn unig: mae rhannu cyfrif neu ei ddolenni yn torri telerau'r gwasanaethau a gall arwain at ei atal. Mae lawrlwythiadau y mae'r porwr eisoes wedi'u cychwyn yn aros fel y maent.
+	A debrid service downloads a file host's link with your own paid account and gives TDM a direct link. Use only your own account: sharing an account or its links breaks the services' terms and can get it suspended. Downloads the browser already started stay as they are.	Mae gwasanaeth dadfridio yn lawrlwytho dolen gwesteiwr ffeil gyda'ch cyfrif taledig eich hun ac yn rhoi dolen uniongyrchol i TDM. Defnyddiwch eich cyfrif eich hun yn unig: mae rhannu cyfrif neu ei ddolenni yn torri telerau'r gwasanaethau a gall arwain at ei atal. Mae lawrlwythiadau y mae'r porwr eisoes wedi'u cychwyn yn aros fel y maent.
 #. text in a download's progress window
 #. reason shown on the Rename box when the entered name ends with a period
 #, machine
@@ -225,7 +225,7 @@
 #, machine
 	A single-file torrent keeps its name	Mae torrent ffeil sengl yn cadw ei enw
 #. text in the Add torrent window
-#. Add trackers: MDM never contacts a tracker on this computer or the local network
+#. Add trackers: TDM never contacts a tracker on this computer or the local network
 #, machine
 	A tracker on this computer or the local network is never contacted: {line}	Ni chysylltir byth â thraciwr ar y cyfrifiadur hwn neu'r rhwydwaith lleol: {line}
 #. text in extracting archives (a download's log, the Archive password window)
@@ -234,7 +234,7 @@
 	a volume of it is missing	mae un o'i gyfrolau ar goll
 #. window title in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	About Mister Download Manager	Ynglŷn â Mister Download Manager
+	About Tufan Download Manager	Ynglŷn â Tufan Download Manager
 #. text in whereis.rs
 #. a download's server's round trip: {ms} a number of milliseconds, {reach} near, medium or far
 #, machine
@@ -288,7 +288,7 @@
 #. window title in extension.rs
 #. title of the window that offers the browser extension
 #, machine
-	Add Mister Download Manager to your browser	Ychwanegu Mister Download Manager at eich porwr
+	Add Tufan Download Manager to your browser	Ychwanegu Tufan Download Manager at eich porwr
 #. message or event log entry in the main window; text in the tray icon's menu
 #. link in the empty download list: opens Add URL
 #, machine
@@ -350,9 +350,9 @@
 #, machine
 	Added.	Ychwanegwyd.
 #. text in remote.rs
-#. remote control page (on a phone): a magnet link or .torrent file was added; MDM reads the torrent's files first
+#. remote control page (on a phone): a magnet link or .torrent file was added; TDM reads the torrent's files first
 #, machine
-	Added. MDM is reading the torrent: it joins the list in a moment.	Ychwanegwyd. Mae MDM yn darllen y cenllif: bydd yn ymuno â'r rhestr mewn eiliad.
+	Added. TDM is reading the torrent: it joins the list in a moment.	Ychwanegwyd. Mae TDM yn darllen y cenllif: bydd yn ymuno â'r rhestr mewn eiliad.
 #. text in the Batch download window; text in a dialog box; label in the Options window; text in a download's progress window
 #. noun: the web address (URL)
 #. column title: the web address (URL)
@@ -436,7 +436,7 @@
 #, machine
 	Already reported as issue #{number}: {title}	Eisoes wedi'i adrodd fel mater #{number}: {title}
 #. checkbox in crashui.rs
-#. crash report window: checkbox; the .dmp file holds what MDM had in memory
+#. crash report window: checkbox; the .dmp file holds what TDM had in memory
 #, machine
 	Also attach the crash data (.dmp): it may hold addresses, cookies and passwords	Atodwch y data damwain (.dmp) hefyd: gall gynnwys cyfeiriadau, cwcis a chyfrineiriau
 #. text in a dialog box
@@ -455,7 +455,7 @@
 	Always into a folder named after it	Bob amser i ffolder sydd wedi'i enwi ar ei ôl
 #. checkbox in a dialog box
 #, machine
-	Always turn on Speed Limiter on Mister Download Manager startup	Bob amser yn troi Cyfyngwr Cyflymder ymlaen wrth gychwyn Mister Download Manager
+	Always turn on Speed Limiter on Tufan Download Manager startup	Bob amser yn troi Cyfyngwr Cyflymder ymlaen wrth gychwyn Tufan Download Manager
 #. text in regional.rs; text in the Scheduler window
 #. before noon, after a time of day (12-hour clock). Its pair is "PM": write both the same way (this language's own short marks, or both kept as AM and PM)
 #, machine
@@ -521,7 +521,7 @@
 #. text in a dialog box
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	Are you sure you want to delete "{name}" from Mister Download Manager list of downloads?	Ydych chi'n siŵr eich bod am ddileu "{name}" o restr lawrlwythiadau Mister Download Manager?
+	Are you sure you want to delete "{name}" from Tufan Download Manager list of downloads?	Ydych chi'n siŵr eich bod am ddileu "{name}" o restr lawrlwythiadau Tufan Download Manager?
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -581,7 +581,7 @@
 #, machine
 	Austria	Awstria
 #. checkbox in the Options window; text in the Options window
-#. checkbox: the User-Agent is the default browser's, which MDM finds itself
+#. checkbox: the User-Agent is the default browser's, which TDM finds itself
 #, machine
 	Automatic	Awtomatig
 #. text in remote.rs
@@ -664,7 +664,7 @@
 	Bosnia and Herzegovina	Bosnia a Herzegovina
 #. text in helpers.rs
 #, machine
-	Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Mae'r ddau yn ffynhonnell agored. Mae MDM yn eu cael o'u datganiadau swyddogol gyda'i lawrlwythwr ei hun ac yn gwirio llofnod pob ffeil cyn ei redeg. Tua 100 MB, unwaith.
+	Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.	Mae'r ddau yn ffynhonnell agored. Mae TDM yn eu cael o'u datganiadau swyddogol gyda'i lawrlwythwr ei hun ac yn gwirio llofnod pob ffeil cyn ei redeg. Tua 100 MB, unwaith.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -694,7 +694,7 @@
 	Browse...	Pori...
 #. text in extension.rs
 #, machine
-	Browser integration isn't set up on this computer, so no browser can reach Mister Download Manager yet.	Nid yw integreiddio porwr wedi'i sefydlu ar y cyfrifiadur hwn, felly ni all unrhyw borwr gyrraedd Mister Download Manager eto.
+	Browser integration isn't set up on this computer, so no browser can reach Tufan Download Manager yet.	Nid yw integreiddio porwr wedi'i sefydlu ar y cyfrifiadur hwn, felly ni all unrhyw borwr gyrraedd Tufan Download Manager eto.
 #. page title in the Options window
 #, machine
 	Browser/System Integration	Integreiddio Porwr/System
@@ -826,16 +826,16 @@
 #, machine
 	Check for updates	Gwirio am ddiweddariadau
 #. checkbox in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. check box in the update window: look for a new version every time MDM starts
+#. check box in the update window: look for a new version every time TDM starts
 #, machine
-	Check for updates at every start	Gwirio am ddiweddariadau bob tro y bydd Mister Download Manager yn cychwyn
+	Check for updates at every start	Gwirio am ddiweddariadau bob tro y bydd Tufan Download Manager yn cychwyn
 #. text in helpers.rs
 #, machine
 	Check your connection, then try again, or get them later from the video window.	Gwiriwch eich cysylltiad, yna ceisiwch eto, neu eu cael yn ddiweddarach o'r ffenestr fideo.
 #. text in the Options window
-#. tooltip of the close-setting: checked keeps MDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
+#. tooltip of the close-setting: checked keeps TDM running when the window closes, in the notification area when available or else the taskbar; downloads continue; unchecked closing quits
 #, machine
-	Checked, closing the window keeps MDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits MDM	Os caiff ei wirio, mae cau'r ffenestr yn cadw MDM i redeg: mae'n cuddio yn yr ardal hysbysu pan fydd ar gael, neu'n lleihau i'r bar tasgau fel arall, ac mae lawrlwythiadau'n parhau; os na chaiff ei wirio, mae cau'n rhoi'r gorau i MDM.
+	Checked, closing the window keeps TDM running: it hides in the notification area when available, or minimizes to the taskbar otherwise, and downloads continue; unchecked, closing quits TDM	Os caiff ei wirio, mae cau'r ffenestr yn cadw TDM i redeg: mae'n cuddio yn yr ardal hysbysu pan fydd ar gael, neu'n lleihau i'r bar tasgau fel arall, ac mae lawrlwythiadau'n parhau; os na chaiff ei wirio, mae cau'n rhoi'r gorau i TDM.
 #. message or event log entry in the main window
 #. event log entry after Recheck: {have} and {total} are sizes ("1.2 GB of 4 GB there")
 #, machine
@@ -894,7 +894,7 @@
 	Choose a language	Dewis iaith
 #. text in langpick.rs
 #, machine
-	Choose the language Mister Download Manager shows its windows in:	Dewiswch yr iaith y mae Mister Download Manager yn dangos ei ffenestri ynddi:
+	Choose the language Tufan Download Manager shows its windows in:	Dewiswch yr iaith y mae Tufan Download Manager yn dangos ei ffenestri ynddi:
 #. text in the Options window
 #. Options → Sites Logins → Cookies for video sites: the title of the window, and the tooltip of the button, that pick a browser profile's folder
 #, machine
@@ -978,7 +978,7 @@
 #, machine
 	Congo	Congo
 #. text in extension.rs
-#. in the browser extension's window, beside a browser whose extension reached MDM
+#. in the browser extension's window, beside a browser whose extension reached TDM
 #, machine
 	Connected	Cysylltiedig
 #. text in extension.rs
@@ -1054,13 +1054,13 @@
 	Customize "Download progress" dialog	Addasu blwch deialog "Cynnydd lawrlwytho"
 #. text in the Options window
 #, machine
-	Customize keys to prevent or force downloading with MDM	Addasu allweddi i atal neu orfodi lawrlwytho gyda MDM
+	Customize keys to prevent or force downloading with TDM	Addasu allweddi i atal neu orfodi lawrlwytho gyda TDM
 #. text in the Options window
 #, machine
-	Customize MDM Download panels in browsers	Addasu paneli Lawrlwytho MDM mewn porwyr
+	Customize TDM Download panels in browsers	Addasu paneli Lawrlwytho TDM mewn porwyr
 #. text in the Options window
 #, machine
-	Customize MDM menu items in context menu of browsers	Addasu eitemau dewislen MDM yn newislen cyd-destun porwyr
+	Customize TDM menu items in context menu of browsers	Addasu eitemau dewislen TDM yn newislen cyd-destun porwyr
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -1433,9 +1433,9 @@
 #, machine
 	Empty: all of them. On most sites the newest come first.	Gadewch yn wag: pob un ohonynt. Ar y rhan fwyaf o safleoedd, y rhai mwyaf newydd sy'n dod gyntaf.
 #. text in crashui.rs
-#. crash report window button: end the frozen MDM and start it again
+#. crash report window button: end the frozen TDM and start it again
 #, machine
-	End and restart MDM	Terfynu ac ailgychwyn MDM
+	End and restart TDM	Terfynu ac ailgychwyn TDM
 #. text in the Add torrent window
 #, machine
 	Enter a magnet link or choose a .torrent file	Rhowch ddolen magnet neu dewiswch ffeil .torrent
@@ -1518,7 +1518,7 @@
 	Exit	Gadael
 #. checkbox in a download's progress window; checkbox in the Scheduler window
 #, machine
-	Exit Mister Download Manager when done	Gadael Mister Download Manager pan fydd wedi gorffen
+	Exit Tufan Download Manager when done	Gadael Tufan Download Manager pan fydd wedi gorffen
 #. text in the Checksum window
 #, machine
 	Expected checksum (MD5, SHA-1, SHA-256, SHA-512 or CRC32):	Swm gwirio disgwyliedig (MD5, SHA-1, SHA-256, SHA-512 neu CRC32):
@@ -1704,7 +1704,7 @@
 #, machine
 	For example:  {address}	Er enghraifft: {address}
 #. text in the Add torrent window
-#. Torrent settings, under the switch that makes MDM open magnet links and .torrent files (macOS, Linux)
+#. Torrent settings, under the switch that makes TDM open magnet links and .torrent files (macOS, Linux)
 #, machine
 	For your account only. Another app set as the default stays first.	Ar gyfer eich cyfrif chi yn unig. Mae ap arall sydd wedi'i osod fel y rhagosodiad yn aros yn gyntaf.
 #. text in the Add torrent window
@@ -1714,7 +1714,7 @@
 #, machine
 	Force processes to terminate	Gorfodi prosesau i derfynu
 #. text in remote.rs
-#. remote control page (on a phone): menu command: unpair this phone or computer from MDM
+#. remote control page (on a phone): menu command: unpair this phone or computer from TDM
 #, machine
 	Forget this device	Anghofio'r ddyfais hon
 #. text in remote.rs
@@ -1925,11 +1925,11 @@
 #, machine
 	Help	Cymorth
 #. window title in helpers.rs
-#. window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+#. window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
 #, machine
 	Helpers	Cynorthwywyr
 #. button in gallerydlg.rs; button in the Download video window
-#. button in Download video: where MDM takes yt-dlp and ffmpeg from
+#. button in Download video: where TDM takes yt-dlp and ffmpeg from
 #. the trailing ... means it opens a window: keep it
 #, machine
 	Helpers...	Cynorthwywyr...
@@ -1954,7 +1954,7 @@
 	Hide web pages	Cuddio tudalennau gwe
 #. text in the Options window
 #, machine
-	Hold Alt while clicking a link to let the browser download it instead of Mister Download Manager.	Daliwch Alt wrth glicio dolen i adael i'r porwr ei lawrlwytho yn lle Mister Download Manager.
+	Hold Alt while clicking a link to let the browser download it instead of Tufan Download Manager.	Daliwch Alt wrth glicio dolen i adael i'r porwr ei lawrlwytho yn lle Tufan Download Manager.
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Home page	Hafan
@@ -1990,7 +1990,7 @@
 	Hungary	Hwngari
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	I download with Mister Download Manager: fast, free, and it looks like the download manager you already know. {link}	Rwy'n lawrlwytho gyda Mister Download Manager: yn gyflym, yn rhad ac am ddim, ac mae'n edrych fel y rheolwr lawrlwytho rydych chi eisoes yn ei adnabod. {link}
+	I download with Tufan Download Manager: fast, free, and it looks like the download manager you already know. {link}	Rwy'n lawrlwytho gyda Tufan Download Manager: yn gyflym, yn rhad ac am ddim, ac mae'n edrych fel y rheolwr lawrlwytho rydych chi eisoes yn ei adnabod. {link}
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2018,7 +2018,7 @@
 #, machine
 	In the categories: the selected category's menu	Yn y categorïau: dewislen y categori a ddewiswyd
 #. text in the Options window
-#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; MDM never unlocks it
+#. Options → Accounts: the account's sign-in is in the system's keyring (Linux), which is locked now; TDM never unlocks it
 #, machine
 	in the locked keyring	yn y cylch allweddi sydd wedi'i gloi
 #. text in standard windows
@@ -2058,7 +2058,7 @@
 #, machine
 	Install it by hand	Gosodwch ef â llaw
 #. text in unix.rs
-#. Linux, after a missing library's name, on a distribution MDM doesn't know
+#. Linux, after a missing library's name, on a distribution TDM doesn't know
 #, machine
 	Install what's missing from your distribution's packages.	Gosodwch yr hyn sydd ar goll o becynnau eich dosbarthiad.
 #. text in the Download video window
@@ -2117,7 +2117,7 @@
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
-	it is not an archive MDM extracts	nid yw'n archif y mae MDM yn ei echdynnu
+	it is not an archive TDM extracts	nid yw'n archif y mae TDM yn ei echdynnu
 #. text in extracting archives (a download's log, the Archive password window)
 #. why an archive wasn't extracted (after "Couldn't extract {name}: ")
 #, machine
@@ -2138,7 +2138,7 @@
 #. text in the Batch download window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.	Mae'n bosibl ychwanegu grŵp o enwau ffeiliau dilyniannol fel img001.jpg, img002.jpg, ac ati,\nimg100.jpg i giw lawrlwytho MDM. Defnyddiwch y nod gwyllt seren ar gyfer y patrwm enw ffeil.
+	It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.	Mae'n bosibl ychwanegu grŵp o enwau ffeiliau dilyniannol fel img001.jpg, img002.jpg, ac ati,\nimg100.jpg i giw lawrlwytho TDM. Defnyddiwch y nod gwyllt seren ar gyfer y patrwm enw ffeil.
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2186,7 +2186,7 @@
 #, machine
 	KBytes/sec	KB/eiliad
 #. text in the Options window
-#. checkbox: closing keeps MDM running, in the notification area when available or else the taskbar, instead of quitting
+#. checkbox: closing keeps TDM running, in the notification area when available or else the taskbar, instead of quitting
 #, machine
 	Keep running when closing the window	Cadw i redeg wrth gau'r ffenestr
 #. checkbox in the Add torrent window
@@ -2204,7 +2204,7 @@
 #, machine
 	Keyboard shortcuts	Llwybrau byr bysellfwrdd
 #. window title in the Options window
-#. window title: the keys that force or prevent downloading with MDM
+#. window title: the keys that force or prevent downloading with TDM
 #, machine
 	Keys	Allweddi
 #. button in the Options window
@@ -2240,14 +2240,14 @@
 #, machine
 	Laos	Laos
 #. message or event log entry in the main window
-#. RSS: a feed bigger than MDM reads (5 MB)
+#. RSS: a feed bigger than TDM reads (5 MB)
 #, machine
 	larger than a feed can be	yn fwy na'r maint y gall porthiant fod
 #. text in the Batch download window
 #, machine
 	Last file:	Ffeil olaf:
 #. text in the Options window
-#. column title: when the device last reached MDM
+#. column title: when the device last reached TDM
 #, machine
 	Last seen	Gwelwyd ddiwethaf
 #. text in a download's Properties window
@@ -2265,7 +2265,7 @@
 	Latvia	Latfia
 #. text in the Options window
 #, machine
-	Launch Mister Download Manager on startup	Lansio Mister Download Manager ar gychwyn
+	Launch Tufan Download Manager on startup	Lansio Tufan Download Manager ar gychwyn
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -2277,7 +2277,7 @@
 #. checkbox in the Options window
 #. Options → Remote check box (off by default)
 #, machine
-	Let phones and computers on the local network control MDM	Gadewch i ffonau a chyfrifiaduron ar y rhwydwaith lleol reoli MDM
+	Let phones and computers on the local network control TDM	Gadewch i ffonau a chyfrifiaduron ar y rhwydwaith lleol reoli TDM
 #. option (radio button) in the Batch download window
 #. the * in the address runs through letters
 #, machine
@@ -2326,7 +2326,7 @@
 #, machine
 	List the rest	Rhestru'r gweddill
 #. text in the Options window
-#. Options → Remote: label before the choice of the address MDM listens on
+#. Options → Remote: label before the choice of the address TDM listens on
 #, machine
 	Listen on:	Gwrando ar:
 #. text in playlistdlg.rs
@@ -2499,32 +2499,32 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: the remote control isn't listening (no network, port taken): the Remote page says why
 #, machine
-	MDM can't be reached on the network now: Options → Remote says why.	Ni ellir cyrraedd MDM ar y rhwydwaith nawr: mae Opsiynau → Anghysbell yn dweud pam.
+	TDM can't be reached on the network now: Options → Remote says why.	Ni ellir cyrraedd TDM ar y rhwydwaith nawr: mae Opsiynau → Anghysbell yn dweud pam.
 #. text in remote.rs
-#. remote control page (on a phone): the address typed isn't one MDM downloads (not http, https, ftp or magnet)
+#. remote control page (on a phone): the address typed isn't one TDM downloads (not http, https, ftp or magnet)
 #, machine
-	MDM cannot download this address.	Ni all MDM lawrlwytho'r cyfeiriad hwn.
+	TDM cannot download this address.	Ni all TDM lawrlwytho'r cyfeiriad hwn.
 #. text in remote.rs
 #. remote control page (on a phone): adding a download failed
 #, machine
-	MDM could not add it.	Ni allai MDM ei ychwanegu.
+	TDM could not add it.	Ni allai TDM ei ychwanegu.
 #. text in remote.rs
 #. remote control page (on a phone): an action failed
 #, machine
-	MDM could not do it.	Ni allai MDM ei wneud.
+	TDM could not do it.	Ni allai TDM ei wneud.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached while pairing
+#. remote control page (on a phone): TDM can't be reached while pairing
 #, machine
-	MDM does not answer. Check that it is running and on the same network.	Nid yw MDM yn ateb. Gwiriwch ei fod yn rhedeg ac ar yr un rhwydwaith.
+	TDM does not answer. Check that it is running and on the same network.	Nid yw TDM yn ateb. Gwiriwch ei fod yn rhedeg ac ar yr un rhwydwaith.
 #. text in remote.rs
-#. remote control page (on a phone): MDM can't be reached now; the page keeps trying by itself
+#. remote control page (on a phone): TDM can't be reached now; the page keeps trying by itself
 #. the trailing ... means it is still going on: keep it
 #, machine
-	MDM does not answer. Trying again...	Nid yw MDM yn ateb. Yn ceisio eto...
+	TDM does not answer. Trying again...	Nid yw TDM yn ateb. Yn ceisio eto...
 #. text in remote.rs
-#. remote control page (on a phone): no pairing code is shown in MDM; "Pair a device" is MDM's button
+#. remote control page (on a phone): no pairing code is shown in TDM; "Pair a device" is TDM's button
 #, machine
-	MDM shows no code now. Click Pair a device there first.	Nid yw MDM yn dangos cod nawr. Cliciwch Pâr dyfais yno yn gyntaf.
+	TDM shows no code now. Click Pair a device there first.	Nid yw TDM yn dangos cod nawr. Cliciwch Pâr dyfais yno yn gyntaf.
 #. text in whereis.rs
 #. how far a download's server is, by its round trip (60 to 150 ms)
 #, machine
@@ -2542,7 +2542,7 @@
 #, machine
 	Minimize	Lleihau
 #. text in the Options window
-#. checkbox: the Minimize button hides MDM's windows to the notification area (system tray) instead of the taskbar
+#. checkbox: the Minimize button hides TDM's windows to the notification area (system tray) instead of the taskbar
 #, machine
 	Minimize to the notification area	Lleihau i'r ardal hysbysu
 #. text in rssdlg.rs; text in the Add torrent window
@@ -2556,54 +2556,54 @@
 	Missing	Ar goll
 #. message or event log entry in the main window; window title in a dialog box; text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Mister Download Manager	Mister Download Manager
+	Tufan Download Manager	Tufan Download Manager
 #. text in unix.rs
 #. Linux, at start, on the terminal and in a message box: a library the window needs isn't installed; {libraries} = its file names (libxkbcommon-x11.so.0…), left as they are
 #, machine
-	Mister Download Manager can't open its window: this system lacks {libraries}.	Ni all Mister Download Manager agor ei ffenestr: mae'r system hon yn brin o {libraries}.
+	Tufan Download Manager can't open its window: this system lacks {libraries}.	Ni all Tufan Download Manager agor ei ffenestr: mae'r system hon yn brin o {libraries}.
 #. text in crashui.rs
-#. crash report window heading: MDM crashed and is gone
+#. crash report window heading: TDM crashed and is gone
 #, machine
-	Mister Download Manager closed unexpectedly	Fe wnaeth Mister Download Manager gau'n annisgwyl
+	Tufan Download Manager closed unexpectedly	Fe wnaeth Tufan Download Manager gau'n annisgwyl
 #. window title in the Options window
 #, machine
-	Mister Download Manager Configuration	Ffurfweddiad Mister Download Manager
+	Tufan Download Manager Configuration	Ffurfweddiad Tufan Download Manager
 #. text in crashui.rs
 #, machine
-	Mister Download Manager crash report	Adroddiad damwain Mister Download Manager
+	Tufan Download Manager crash report	Adroddiad damwain Tufan Download Manager
 #. text in crashui.rs
-#. crash report window heading: an internal error, MDM still running
+#. crash report window heading: an internal error, TDM still running
 #, machine
-	Mister Download Manager hit an internal error	Fe wnaeth Mister Download Manager daro gwall mewnol
+	Tufan Download Manager hit an internal error	Fe wnaeth Tufan Download Manager daro gwall mewnol
 #. text in wake.rs
 #. why the computer isn't going to sleep, in the system's list of programs that keep it awake; {queue} = the queue's name
 #. {queue} = a queue name such as "Main queue" (keep the braces as they are)
 #, machine
-	Mister Download Manager is running the queue "{queue}"	Mae Mister Download Manager yn rhedeg y ciw "{queue}"
+	Tufan Download Manager is running the queue "{queue}"	Mae Tufan Download Manager yn rhedeg y ciw "{queue}"
 #. text in crashui.rs
-#. crash report window heading: MDM's window doesn't answer (frozen)
+#. crash report window heading: TDM's window doesn't answer (frozen)
 #, machine
-	Mister Download Manager stopped responding	Fe wnaeth Mister Download Manager roi'r gorau i ymateb
+	Tufan Download Manager stopped responding	Fe wnaeth Tufan Download Manager roi'r gorau i ymateb
 #. text in crashui.rs
 #, machine
-	Mister Download Manager stopped responding for a while	Fe wnaeth Mister Download Manager roi'r gorau i ymateb am ychydig
+	Tufan Download Manager stopped responding for a while	Fe wnaeth Tufan Download Manager roi'r gorau i ymateb am ychydig
 #. text in the Options window
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	Mister Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Mae Mister Download Manager yn ysgrifennu pob cysylltiad yn syth i'r ffeil\nderfynol (ffeil rhan denau wrth ei hymyl), felly nid oes angen cyfeiriadur\ndros dro na cham cydosod.
+	Tufan Download Manager writes every connection straight into the final\nfile (a sparse part file next to it), so no temporary directory and no\nassembling step are needed.	Mae Tufan Download Manager yn ysgrifennu pob cysylltiad yn syth i'r ffeil\nderfynol (ffeil rhan denau wrth ei hymyl), felly nid oes angen cyfeiriadur\ndros dro na cham cydosod.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager {version} is available (released {date}).	Mae Mister Download Manager {version} ar gael (rhyddhawyd {date}).
+	Tufan Download Manager {version} is available (released {date}).	Mae Tufan Download Manager {version} ar gael (rhyddhawyd {date}).
 #. text in helpers.rs
-#. Video helpers: {version} = the version of MDM's own copy
+#. Video helpers: {version} = the version of TDM's own copy
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Mister Download Manager's own copy, version {version}	Copi Mister Download Manager ei hun, fersiwn {version}
+	Tufan Download Manager's own copy, version {version}	Copi Tufan Download Manager ei hun, fersiwn {version}
 #. text in unix.rs
 #. Linux, at start, on the terminal: the libraries an X11 window needs aren't installed, so the window opens through Wayland instead, where menus can't be placed under what was clicked; {libraries} = their file names, left as they are
 #, machine
-	Mister Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Mae ffenestr X11 Mister Download Manager angen {libraries}, sydd ar goll o'r system hon: mae'n agor ar Wayland yn lle hynny, lle gall ei ddewislenni agor i ffwrdd o'u teitlau.
+	Tufan Download Manager's X11 window needs {libraries}, which this system lacks: it opens on Wayland instead, where its menus may open away from their titles.	Mae ffenestr X11 Tufan Download Manager angen {libraries}, sydd ar goll o'r system hon: mae'n agor ar Wayland yn lle hynny, lle gall ei ddewislenni agor i ffwrdd o'u teitlau.
 #. text in the Scheduler window
 #. Monday, as short as a calendar's column head (two letters in English)
 #, machine
@@ -2808,11 +2808,11 @@
 #, machine
 	No addresses yet	Dim cyfeiriadau eto
 #. text in extension.rs
-#. a check of Test browser integration (Linux, macOS): MDM found no browser it can connect to (one installed as a Flatpak isn't found)
+#. a check of Test browser integration (Linux, macOS): TDM found no browser it can connect to (one installed as a Flatpak isn't found)
 #, machine
-	No browser MDM can connect to was found	Ni ddarganfuwyd unrhyw borwr y gall MDM gysylltu ag ef
+	No browser TDM can connect to was found	Ni ddarganfuwyd unrhyw borwr y gall TDM gysylltu ag ef
 #. text in extension.rs
-#. a check of Test browser integration: no browser's extension has reached MDM
+#. a check of Test browser integration: no browser's extension has reached TDM
 #, machine
 	No browser's extension has connected yet	Nid yw estyniad unrhyw borwr wedi cysylltu eto
 #. text in torrent downloads
@@ -2878,9 +2878,9 @@
 #, machine
 	No proxy/socks	Dim dirprwy/SOCKS
 #. text in the Options window
-#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts: no system keyring/keychain answered (none runs, e.g. a desktop without one), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	No system keyring answered, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Ni ymatebodd unrhyw gylch allweddi system, felly cedwir mewngofnodion a chyfrineiriau yng ngosodiadau MDM, na all ond chi eu darllen.
+	No system keyring answered, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Ni ymatebodd unrhyw gylch allweddi system, felly cedwir mewngofnodion a chyfrineiriau yng ngosodiadau TDM, na all ond chi eu darllen.
 #. message or event log entry in the main window
 #. event log entry: Add trackers changed nothing, the torrent had them all
 #, machine
@@ -3011,7 +3011,7 @@
 #. text in the Options window
 #. Options → Remote → Status: the remote control is off
 #, machine
-	Off: nothing on the network can reach MDM.	I ffwrdd: ni all unrhyw beth ar y rhwydwaith gyrraedd MDM.
+	Off: nothing on the network can reach TDM.	I ffwrdd: ni all unrhyw beth ar y rhwydwaith gyrraedd TDM.
 #. text in the Options window
 #, machine
 	Offer to download links copied to the clipboard	Cynnig lawrlwytho dolenni a gopïwyd i'r clipfwrdd
@@ -3038,7 +3038,7 @@
 #, machine
 	On macOS, only an administrator can schedule a wake	Ar macOS, dim ond gweinyddwr all drefnu deffro
 #. text in remote.rs
-#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are MDM's dialog, tab and button
+#. remote control page (on a phone): how to pair; "Options", "Remote" and "Pair a device" are TDM's dialog, tab and button
 #, machine
 	On the computer, open Options, then Remote, and click Pair a device. Enter the code it shows.	Ar y cyfrifiadur, agorwch Opsiynau, yna Anghysbell, a chliciwch Pâr dyfais. Rhowch y cod y mae'n ei ddangos.
 #. text in the Options window
@@ -3087,9 +3087,9 @@
 #. text in the Options window
 #. Options → Remote, at the bottom of the page
 #, machine
-	Only paired devices see or change anything. The first time, the phone's browser warns about MDM's own certificate: its fingerprint is the one above.	Dim ond dyfeisiau pâr sy'n gweld neu'n newid unrhyw beth. Y tro cyntaf, mae porwr y ffôn yn rhybuddio am dystysgrif MDM ei hun: ei hôl bys yw'r un uchod.
+	Only paired devices see or change anything. The first time, the phone's browser warns about TDM's own certificate: its fingerprint is the one above.	Dim ond dyfeisiau pâr sy'n gweld neu'n newid unrhyw beth. Y tro cyntaf, mae porwr y ffôn yn rhybuddio am dystysgrif TDM ei hun: ei hôl bys yw'r un uchod.
 #. text in playlistdlg.rs
-#. in Download video, a list longer than MDM lists: only its first {n} videos are shown
+#. in Download video, a list longer than TDM lists: only its first {n} videos are shown
 #. {n} = a number (keep the braces as they are)
 #, machine
 	Only the first {n} videos are listed.	Dim ond y {n} fideo cyntaf sydd wedi'u rhestru.
@@ -3109,10 +3109,10 @@
 	Open folder	Agor ffolder
 #. checkbox in the Add torrent window
 #, machine
-	Open magnet links and .torrent files with Mister Download Manager	Agor dolenni magnet a ffeiliau .torrent gyda Mister Download Manager
+	Open magnet links and .torrent files with Tufan Download Manager	Agor dolenni magnet a ffeiliau .torrent gyda Tufan Download Manager
 #. text in the tray icon's menu
 #, machine
-	Open Mister Download Manager	Agor Mister Download Manager
+	Open Tufan Download Manager	Agor Tufan Download Manager
 #. text in extension.rs
 #. step 2 of turning on the Safari extension; Cmd is the Command key
 #, machine
@@ -3168,7 +3168,7 @@
 #, machine
 	Page address	Cyfeiriad y dudalen
 #. text in remote.rs
-#. remote control page (on a phone): button: pair this phone with MDM
+#. remote control page (on a phone): button: pair this phone with TDM
 #, machine
 	Pair	Pâr
 #. window title in the Options window
@@ -3183,7 +3183,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): title of the pairing screen
 #, machine
-	Pair with Mister Download Manager	Pârwch â Mister Download Manager
+	Pair with Tufan Download Manager	Pârwch â Tufan Download Manager
 #. text in the Options window
 #. column title: when the device was paired
 #, machine
@@ -3466,11 +3466,11 @@
 #, machine
 	Remember this path for "{category}" category	Cofiwch y llwybr hwn ar gyfer y categori "{category}"
 #. text in the Options window
-#. tab title: control MDM from a phone or another computer on the local network
+#. tab title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote	O Bell
 #. text in the Options window
-#. Options page title: control MDM from a phone or another computer on the local network
+#. Options page title: control TDM from a phone or another computer on the local network
 #, machine
 	Remote control	Rheoli o bell
 #. button in the Options window; text in remote.rs; button in rssdlg.rs
@@ -3500,9 +3500,9 @@
 #, machine
 	Replace asterisk to	Amnewid seren i
 #. text in crashui.rs
-#. crash report window button: start MDM again
+#. crash report window button: start TDM again
 #, machine
-	Restart MDM	Ailgychwyn MDM
+	Restart TDM	Ailgychwyn TDM
 #. button in the Options window; text in the Options window
 #, machine
 	Restore the built-in categories	Adfer y categorïau adeiledig
@@ -3677,7 +3677,7 @@
 	Select or unselect the download with the dotted outline	Dewis neu ddad-ddewis y lawrlwythiad gyda'r amlinell doredig
 #. group box title in the Options window
 #, machine
-	Select sounds for Mister Download Manager events	Dewis synau ar gyfer digwyddiadau Mister Download Manager
+	Select sounds for Tufan Download Manager events	Dewis synau ar gyfer digwyddiadau Tufan Download Manager
 #. what a keyboard shortcut does in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	Select the downloads in the box	Dewis y lawrlwythiadau yn y blwch
@@ -3700,7 +3700,7 @@
 #, machine
 	Send this to a friend:	Anfon hwn at ffrind:
 #. text in the Options window
-#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; MDM then downloads the files from it (no connections to peers)
+#. Options → Accounts: checkbox: magnet links and .torrent files go to the first account's service, which downloads them; TDM then downloads the files from it (no connections to peers)
 #, machine
 	Send torrents and magnet links to the first account instead of to peers	Anfonwch ffeiliau cenllif a dolenni magnet at y cyfrif cyntaf yn hytrach nag at gymheiriaid
 #. text in countries.rs
@@ -3745,8 +3745,8 @@
 #, machine
 	Set file creation date as provided by the server	Gosod dyddiad creu ffeil fel y darperir gan y gweinydd
 #. button in extension.rs; button in the Options window
-#. button in the browser extension's window: register MDM's helper with the browsers
-#. button in Test browser integration: register MDM's helper with the browsers
+#. button in the browser extension's window: register TDM's helper with the browsers
+#. button in Test browser integration: register TDM's helper with the browsers
 #, machine
 	Set it up	Sefydlu
 #. message or event log entry in the main window
@@ -3898,7 +3898,7 @@
 	Sites Logins	Mewngofnodi Safleoedd
 #. text in helpers.rs
 #, machine
-	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.	Mae gwefannau'n anfon eu hansawdd gorau fel fideo a sain ar wahân, ac mae ffmpeg yn eu huno. Ar y system hon mae MDM yn defnyddio'ch un chi: gosodwch ffmpeg gyda'ch rheolwr pecynnau.
+	Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.	Mae gwefannau'n anfon eu hansawdd gorau fel fideo a sain ar wahân, ac mae ffmpeg yn eu huno. Ar y system hon mae TDM yn defnyddio'ch un chi: gosodwch ffmpeg gyda'ch rheolwr pecynnau.
 #. text in helpers.rs
 #, machine
 	Sites send their best quality as separate video and audio. ffmpeg puts them together into one file that plays anywhere.	Mae gwefannau'n anfon eu hansawdd gorau fel fideo a sain ar wahân. Mae ffmpeg yn eu rhoi at ei gilydd yn un ffeil sy'n chwarae unrhyw le.
@@ -4012,7 +4012,7 @@
 	Start download at	Cychwyn lawrlwytho am
 #. checkbox in the Scheduler window
 #, machine
-	Start download on Mister Download Manager startup	Dechrau lawrlwytho wrth gychwyn Mister Download Manager
+	Start download on Tufan Download Manager startup	Dechrau lawrlwytho wrth gychwyn Tufan Download Manager
 #. checkbox in the Options window
 #, machine
 	Start downloading immediately while displaying "Download File Info" dialog	Dechrau lawrlwytho ar unwaith wrth ddangos y ddeialog "Gwybodaeth ffeil lawrlwytho"
@@ -4043,11 +4043,11 @@
 #, machine
 	Started with gallery-dl {version}	Wedi dechrau gyda gallery-dl {version}
 #. text in the Options window
-#. the same tooltip where no notification area (system tray) shows MDM's icon (some Linux desktops): its window starts minimized instead
+#. the same tooltip where no notification area (system tray) shows TDM's icon (some Linux desktops): its window starts minimized instead
 #, machine
 	Started with the computer, it starts minimized: no notification area shows its icon here	Wedi'i gychwyn gyda'r cyfrifiadur; mae'n cychwyn wedi'i leihau: nid oes ardal hysbysu yn dangos ei eicon yma
 #. text in the Options window
-#. tooltip of "Launch Mister Download Manager on startup": started with the computer, MDM's window stays hidden, its icon in the notification area (system tray)
+#. tooltip of "Launch Tufan Download Manager on startup": started with the computer, TDM's window stays hidden, its icon in the notification area (system tray)
 #, machine
 	Started with the computer, it waits in the notification area	Wedi'i gychwyn gyda'r cyfrifiadur; mae'n aros yn yr ardal hysbysu
 #. message or event log entry in the main window
@@ -4151,7 +4151,7 @@
 	Sunday	Dydd Sul
 #. link (opens a web page) in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
-	Support MDM on GitHub Sponsors	Cefnogi MDM ar Noddwyr GitHub
+	Support TDM on GitHub Sponsors	Cefnogi TDM ar Noddwyr GitHub
 #. text in countries.rs
 #. a country's name (where a download's server is)
 #, machine
@@ -4262,13 +4262,13 @@
 #, machine
 	The best qualities, MP3, Opus and FLAC need ffmpeg: install it with your system's package manager (or Homebrew).	Mae angen ffmpeg ar yr ansawdd gorau, MP3, Opus a FLAC: gosodwch ef gyda rheolwr pecynnau eich system (neu Homebrew).
 #. text in the settings
-#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and MDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
+#. an error: the browser's VPN or proxy extension logs in to its proxy itself, and TDM can't; Options → Proxy / Socks → Network adapter is where an adapter can be chosen
 #, machine
 	the browser's proxy (a VPN or proxy extension) asks for a login only that extension has: use the VPN's own app, or choose its network adapter in Options → Proxy / Socks	mae dirprwy'r porwr (estyniad VPN neu ddirprwy) yn gofyn am fewngofnod sydd gan yr estyniad hwnnw yn unig: defnyddiwch ap y VPN ei hun, neu dewiswch ei addasydd rhwydwaith yn Opsiynau → Dirprwy / Socks
 #. text in extension.rs
-#. a check of Test browser integration: the browsers find MDM's helper program
+#. a check of Test browser integration: the browsers find TDM's helper program
 #, machine
-	The browsers can find Mister Download Manager	Gall y porwyr ddod o hyd i Mister Download Manager
+	The browsers can find Tufan Download Manager	Gall y porwyr ddod o hyd i Tufan Download Manager
 #. text in the Options window
 #. Options → Remote → Status: the settings were changed; they apply on OK
 #, machine
@@ -4292,7 +4292,7 @@
 #. text in the Scheduler window
 #. tooltip on the Scheduler's "Wake the computer to run this queue"
 #, machine
-	The computer is woken a minute before the start time and kept awake while the queue runs. Mister Download Manager has to be running (it can wait in the notification area).	Caiff y cyfrifiadur ei ddeffro funud cyn yr amser cychwyn a'i gadw'n effro tra bydd y ciw'n rhedeg. Rhaid i Mister Download Manager fod yn rhedeg (gall aros yn yr ardal hysbysu).
+	The computer is woken a minute before the start time and kept awake while the queue runs. Tufan Download Manager has to be running (it can wait in the notification area).	Caiff y cyfrifiadur ei ddeffro funud cyn yr amser cychwyn a'i gadw'n effro tra bydd y ciw'n rhedeg. Rhaid i Tufan Download Manager fod yn rhedeg (gall aros yn yr ardal hysbysu).
 #. text in the Scheduler window
 #. the Scheduler, under "Wake the computer to run this queue": when it will happen; {date} = e.g. 06/11/2026, {time} = e.g. 22:59:00
 #. {time} = a time of day (keep the braces as they are)
@@ -4337,7 +4337,7 @@
 #. message or event log entry in the main window
 #. {error} = an error message (keep the braces as they are)
 #, machine
-	The download list could not be saved: {error}. Changes are kept while MDM runs.	Ni ellid cadw'r rhestr lawrlwytho: {error}. Cedwir newidiadau tra bod MDM yn rhedeg.
+	The download list could not be saved: {error}. Changes are kept while TDM runs.	Ni ellid cadw'r rhestr lawrlwytho: {error}. Cedwir newidiadau tra bod TDM yn rhedeg.
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #, machine
 	The download manager you already know, rebuilt to be faster. Free and open source under the GNU GPL, version 3 or later. Videos are found by yt-dlp; torrents run on librqbit.	Y rheolwr lawrlwytho rydych chi eisoes yn ei adnabod, wedi'i ailadeiladu i fod yn gyflymach. Am ddim a ffynhonnell agored o dan y GNU GPL, fersiwn 3 neu'n hwyrach. Mae fideos yn cael eu canfod gan yt-dlp; mae torrents yn rhedeg ar librqbit.
@@ -4413,7 +4413,7 @@
 #, machine
 	the FTP server answered {code} {reply}	atebodd y gweinydd FTP {code} {reply}
 #. text in extension.rs
-#. a check of Test browser integration: the browsers are set up, but the small helper program they start (misterdownloadmanager-nmhost) is gone
+#. a check of Test browser integration: the browsers are set up, but the small helper program they start (tufan-download-manager-nmhost) is gone
 #, machine
 	The helper program the browsers start is missing	Mae'r rhaglen gynorthwyol y mae'r porwyr yn ei chychwyn ar goll
 #. message or event log entry in the main window; text in the Options window
@@ -4467,7 +4467,7 @@
 #. text in a dialog box
 #. \\n starts a new line: break lines where they fit the translation
 #, machine
-	The selected download is not complete. Are you sure you want to delete\nit from Mister Download Manager list of downloads?	Nid yw'r lawrlwythiad a ddewiswyd wedi'i gwblhau. Ydych chi'n siŵr eich bod am ei ddileu\no restr lawrlwythiadau Mister Download Manager?
+	The selected download is not complete. Are you sure you want to delete\nit from Tufan Download Manager list of downloads?	Nid yw'r lawrlwythiad a ddewiswyd wedi'i gwblhau. Ydych chi'n siŵr eich bod am ei ddileu\no restr lawrlwythiadau Tufan Download Manager?
 #. text in errors.rs
 #, machine
 	the server answered {status}	atebodd y gweinydd {status}
@@ -4502,9 +4502,9 @@
 #, machine
 	The symbols couldn't be fetched: some lines of the report show addresses instead of names (the developers can still read them).	Ni ellid nôl y symbolau: mae rhai llinellau o'r adroddiad yn dangos cyfeiriadau yn hytrach nag enwau (gall y datblygwyr eu darllen o hyd).
 #. text in the Options window
-#. Options → Accounts (Linux): the system keyring is locked (MDM never unlocks it: that would ask for its password), so the sign-ins stay in MDM's settings folder, which only the user's account may read
+#. Options → Accounts (Linux): the system keyring is locked (TDM never unlocks it: that would ask for its password), so the sign-ins stay in TDM's settings folder, which only the user's account may read
 #, machine
-	The system keyring is locked and MDM doesn't unlock it, so sign-ins and passwords are kept in MDM's settings, which only you can read.	Mae'r cylch allweddi system wedi'i gloi ac nid yw MDM yn ei ddatgloi, felly cedwir mewngofnodion a chyfrineiriau yn ngyfluniadau MDM, na all ond chi eu darllen.
+	The system keyring is locked and TDM doesn't unlock it, so sign-ins and passwords are kept in TDM's settings, which only you can read.	Mae'r cylch allweddi system wedi'i gloi ac nid yw TDM yn ei ddatgloi, felly cedwir mewngofnodion a chyfrineiriau yn ngyfluniadau TDM, na all ond chi eu darllen.
 #. text in the Options window
 #. Options → Connection → DNS: the operating system's own DNS (the default)
 #, machine
@@ -4536,7 +4536,7 @@
 #, machine
 	The web page from which this file was obtained:	Y dudalen we y cafwyd y ffeil hon ohoni:
 #. message or event log entry in the main window
-#. the kind of file View → Theme → Add a theme file lists: MDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
+#. the kind of file View → Theme → Add a theme file lists: TDM's themes (TOML, JSON), Base16 schemes (YAML) and pywal's colors.json
 #, machine
 	Themes and colour schemes	Themâu a chynlluniau lliw
 #. text in the Options window
@@ -4598,7 +4598,7 @@
 #, machine
 	This date has passed: the queue will not start	Mae'r dyddiad hwn wedi mynd heibio: ni fydd y ciw yn cychwyn
 #. text in remote.rs
-#. remote control page (on a phone): label of the box naming this phone (shown in MDM's list of paired devices)
+#. remote control page (on a phone): label of the box naming this phone (shown in TDM's list of paired devices)
 #, machine
 	This device's name	Enw'r ddyfais hon
 #. message or event log entry in the main window
@@ -4709,7 +4709,7 @@
 #. message or event log entry in the main window
 #. event log: a torrent goes through the user's debrid account, not to peers; {service} its name ("Real-Debrid")
 #, machine
-	Through {service}: the service downloads the torrent, then MDM its files	Drwy {service}: mae'r gwasanaeth yn lawrlwytho'r cenllif, yna mae MDM yn lawrlwytho ei ffeiliau
+	Through {service}: the service downloads the torrent, then TDM its files	Drwy {service}: mae'r gwasanaeth yn lawrlwytho'r cenllif, yna mae TDM yn lawrlwytho ei ffeiliau
 #. text in the Scheduler window
 #, machine
 	Thursday	Dydd Iau
@@ -4846,7 +4846,7 @@
 #. text in extension.rs
 #. step 8 of turning on the Safari extension
 #, machine
-	Turn on "Mister Download Manager" and allow it on all websites.	Trowch “Mister Download Manager” ymlaen a'i ganiatáu ar bob gwefan.
+	Turn on "Tufan Download Manager" and allow it on all websites.	Trowch “Tufan Download Manager” ymlaen a'i ganiatáu ar bob gwefan.
 #. text in extension.rs
 #. step 4 of turning on the Safari extension; the quoted switch name is what Safari's settings show in this language: use Apple's own words for it, or keep the English name when unsure
 #, machine
@@ -4902,7 +4902,7 @@
 #. Options → Add an account: waiting while the user types the code at the service's page; {page} its address, {time} minutes:seconds left
 #. {time} = a time of day (keep the braces as they are)
 #, machine
-	Type this code at {page} and allow MDM; waiting for you (the code expires in {time}).	Teipiwch y cod hwn yn {page} a chaniatáu MDM; yn aros amdanoch chi (mae'r cod yn dod i ben mewn {time}).
+	Type this code at {page} and allow TDM; waiting for you (the code expires in {time}).	Teipiwch y cod hwn yn {page} a chaniatáu TDM; yn aros amdanoch chi (mae'r cod yn dod i ben mewn {time}).
 #. tooltip (why a control is greyed) in the Find window
 #. tooltip of the greyed Find button
 #, machine
@@ -4997,9 +4997,9 @@
 #, machine
 	Use FTP in PASV mode	Defnyddio FTP yn y modd PASV
 #. button in helpers.rs
-#. Video helpers: button: go back to the copy MDM downloads and checks itself
+#. Video helpers: button: go back to the copy TDM downloads and checks itself
 #, machine
-	Use MDM's own copy	Defnyddio copi MDM ei hun
+	Use TDM's own copy	Defnyddio copi TDM ei hun
 #. text in the Batch download window
 #. why Batch download's OK is greyed
 #, machine
@@ -5193,9 +5193,9 @@
 #, machine
 	Windows allows wake timers only while plugged in	Mae Windows yn caniatáu amseryddion deffro dim ond tra'n plygio i mewn
 #. text in the Options window
-#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in MDM's settings, encrypted so that only this Windows account can read them
+#. Options → Accounts: Windows Credential Manager didn't answer, so the sign-ins stay in TDM's settings, encrypted so that only this Windows account can read them
 #, machine
-	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in MDM's settings, encrypted for your Windows account.	Ni ymatebodd Rheolwr Manylion Windows, felly cedwir mewngofnodion a chyfrineiriau yng ngosodiadau MDM, wedi'u hamgryptio ar gyfer eich cyfrif Windows.
+	Windows Credential Manager didn't answer, so sign-ins and passwords are kept in TDM's settings, encrypted for your Windows account.	Ni ymatebodd Rheolwr Manylion Windows, felly cedwir mewngofnodion a chyfrineiriau yng ngosodiadau TDM, wedi'u hamgryptio ar gyfer eich cyfrif Windows.
 #. text in a dialog box
 #. why the computer could not be put to sleep (fills {error})
 #, machine
@@ -5227,7 +5227,7 @@
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed and the code is void now
 #, machine
-	Wrong code. Show a new code in MDM and try again.	Cod anghywir. Dangoswch god newydd yn MDM a cheisiwch eto.
+	Wrong code. Show a new code in TDM and try again.	Cod anghywir. Dangoswch god newydd yn TDM a cheisiwch eto.
 #. text in remote.rs
 #. remote control page (on a phone): pairing failed; {n} = how many more codes may be tried
 #. {n} = a number (keep the braces as they are)
@@ -5259,9 +5259,9 @@
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	You have the latest version of Mister Download Manager ({version}).	Mae gennych y fersiwn diweddaraf o Mister Download Manager ({version}).
+	You have the latest version of Tufan Download Manager ({version}).	Mae gennych y fersiwn diweddaraf o Tufan Download Manager ({version}).
 #. text in the Help menu's windows (About, updates, shortcuts, Tell a friend)
-#. Check for updates, under the new version's line, when MDM was installed by the Linux system's package manager (pacman, ...), which MDM can't update itself
+#. Check for updates, under the new version's line, when TDM was installed by the Linux system's package manager (pacman, ...), which TDM can't update itself
 #. {version} = a version number (keep the braces as they are)
 #, machine
 	You have version {version}, from your system's package manager: update it there.	Mae gennych fersiwn {version}, o reolwr pecynnau eich system: diweddarwch ef yno.
@@ -5275,7 +5275,7 @@
 	Your browser	Eich porwr
 #. text in the Options window
 #, machine
-	Your default browser isn't one MDM knows: a current Chrome's User-Agent	Nid yw eich porwr rhagosodedig yn un y mae MDM yn ei adnabod: User-Agent Chrome cyfredol
+	Your default browser isn't one TDM knows: a current Chrome's User-Agent	Nid yw eich porwr rhagosodedig yn un y mae TDM yn ei adnabod: User-Agent Chrome cyfredol
 #. text in the Options window
 #. tooltip; {browser} is a browser and its version, e.g. "Brave 157"
 #, machine
@@ -5289,10 +5289,10 @@
 #, machine
 	your Google account has no access to this file, or its owner turned off downloading	Nid oes gan eich cyfrif Google fynediad i'r ffeil hon, neu mae ei pherchennog wedi diffodd y gallu i'w lawrlwytho
 #. text in helpers.rs
-#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+#. Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
 #. {version} = a version number (keep the braces as they are)
 #, machine
-	Your own program ({version}) is too old: MDM needs {oldest} or newer	Mae eich rhaglen eich hun ({version}) yn rhy hen: mae angen {oldest} neu fwy newydd ar MDM
+	Your own program ({version}) is too old: TDM needs {oldest} or newer	Mae eich rhaglen eich hun ({version}) yn rhy hen: mae angen {oldest} neu fwy newydd ar TDM
 #. text in helpers.rs
 #. Video helpers: {path} = the program the person chose, {version} = its version
 #. {version} = a version number (keep the braces as they are)
@@ -5387,7 +5387,7 @@
 #. text in the Options window
 #. Options → Remote → Pair a device: done; {device} = the name it was given
 #, machine
-	{device} is paired. It can control MDM now.	Mae {device} wedi'i baru. Gall reoli MDM nawr.
+	{device} is paired. It can control TDM now.	Mae {device} wedi'i baru. Gall reoli TDM nawr.
 #. text in remote.rs
 #. remote control page (on a phone): progress; {done} and {size} are sizes ("1.2 MB of 7.5 MB")
 #. {size} = a file size such as "4.2 MB" (keep the braces as they are)
@@ -5472,7 +5472,7 @@
 #. in the "7-Zip needed" window: {name} is the archive's file name; 7-Zip is a program's name
 #. {name} = a file name (keep the braces as they are)
 #, machine
-	{name} is a 7z or RAR archive. MDM extracts those with 7-Zip, which isn't installed.	Mae {name} yn archif 7z neu RAR. Mae MDM yn echdynnu'r rhain gyda 7-Zip, nad yw wedi'i osod.
+	{name} is a 7z or RAR archive. TDM extracts those with 7-Zip, which isn't installed.	Mae {name} yn archif 7z neu RAR. Mae TDM yn echdynnu'r rhain gyda 7-Zip, nad yw wedi'i osod.
 #. text in extracting archives (a download's log, the Archive password window)
 #. in Archive password: {name} is the archive's file name
 #. {name} = a file name (keep the braces as they are)
@@ -5484,10 +5484,10 @@
 #, machine
 	{name} isn't offered as {how}.	Ni chynigir {name} fel {how}.
 #. text in errors.rs
-#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one MDM can use
+#. error: a program chosen as a helper is too old; {name} = gallery-dl, {version} = its version, {oldest} = the oldest one TDM can use
 #. {name} = a file name; {version} = a version number (keep the braces as they are)
 #, machine
-	{name} {version} is too old: MDM needs {oldest} or newer	Mae {name} {version} yn rhy hen: mae angen {oldest} neu fwy newydd ar MDM
+	{name} {version} is too old: TDM needs {oldest} or newer	Mae {name} {version} yn rhy hen: mae angen {oldest} neu fwy newydd ar TDM
 #. text in the Options window
 #. a number of connections the app learned by itself for a server
 #. {n} = a number (keep the braces as they are)
@@ -5503,16 +5503,16 @@
 #, machine
 	{n} of {total} selected	{n} o {total} wedi'u dewis
 #. text in the download list (sizes, speeds, status)
-#. a torrent's status while the user's debrid service downloads it, before MDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
+#. a torrent's status while the user's debrid service downloads it, before TDM gets its files; {service} the service ("Real-Debrid"), {percent} how far it is ("45%")
 #, machine
 	{percent} at {service}	{percent} yn {service}
 #. text in errors.rs
 #, machine
 	{problem} ({cause})	{problem} ({cause})
 #. text in errors.rs
-#. a debrid service's error: too many requests; MDM waits and retries
+#. a debrid service's error: too many requests; TDM waits and retries
 #, machine
-	{service} asks to slow down; MDM will try again in a minute	Mae {service} yn gofyn am arafu; bydd MDM yn ceisio eto ymhen munud
+	{service} asks to slow down; TDM will try again in a minute	Mae {service} yn gofyn am arafu; bydd TDM yn ceisio eto ymhen munud
 #. text in errors.rs
 #. a debrid service's error: it wants the user to allow this computer (it sent an email)
 #, machine
@@ -5522,7 +5522,7 @@
 	{service} can't get this torrent: nobody shares it, or its link can't be read	Ni all {service} gael y cenllif hwn: nid oes neb yn ei rannu, neu ni ellir darllen ei ddolen
 #. text in errors.rs
 #, machine
-	{service} can't reach this file host right now; MDM will try again later	Ni all {service} gyrraedd y gwesteiwr ffeiliau hwn ar hyn o bryd; bydd MDM yn ceisio eto yn ddiweddarach
+	{service} can't reach this file host right now; TDM will try again later	Ni all {service} gyrraedd y gwesteiwr ffeiliau hwn ar hyn o bryd; bydd TDM yn ceisio eto yn ddiweddarach
 #. text in errors.rs
 #. a debrid service's error: it isn't answering
 #, machine
@@ -5557,7 +5557,7 @@
 	{service}: this needs a premium account	{service}: mae angen cyfrif premiwm ar hyn
 #. text in errors.rs
 #, machine
-	{service}: too many downloads at once through your account; MDM will try again	{service}: gormod o lawrlwythiadau ar unwaith trwy'ch cyfrif; bydd MDM yn ceisio eto
+	{service}: too many downloads at once through your account; TDM will try again	{service}: gormod o lawrlwythiadau ar unwaith trwy'ch cyfrif; bydd TDM yn ceisio eto
 #. text in errors.rs
 #. a debrid service's error: the account's limit (traffic) for this host is used up
 #, machine
@@ -5592,7 +5592,7 @@
 #, machine
 	{title}: already in the list	{title}: eisoes yn y rhestr
 #. message or event log entry in the main window
-#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (MDM never writes into them unasked)
+#. RSS feeds window, under the rules: not added, because files of its names are already in the folder (TDM never writes into them unasked)
 #, machine
 	{title}: not added: files of its names are already in {folder}	{title}: heb ei ychwanegu: mae ffeiliau â'r un enwau eisoes yn {folder}
 #. message or event log entry in the main window
@@ -5662,15 +5662,15 @@ column	Transfer rate	Cyfradd trosglwyddo
 #, machine
 column	Upload speed	Cyflymder llwytho i fyny
 #. text in the browser extension
-#. choice under Send downloads to: an MDM running on another computer of the network, such as a home server; keep the name Mister Download Manager as it is
+#. choice under Send downloads to: an TDM running on another computer of the network, such as a home server; keep the name Tufan Download Manager as it is
 #, machine
-extension	Another Mister Download Manager (a server)	Mister Download Manager arall (gweinydd)
+extension	Another Tufan Download Manager (a server)	Tufan Download Manager arall (gweinydd)
 #. text in the browser extension
-#. the name this browser gets in the other MDM's list of paired devices
+#. the name this browser gets in the other TDM's list of paired devices
 #, machine
 extension	Browser extension	Estyniad porwr
 #. text in the browser extension
-#. menu command of the download button over a video: opens its settings in Mister Download Manager
+#. menu command of the download button over a video: opens its settings in Tufan Download Manager
 #. the trailing ... means it is still going on: keep it
 #, machine
 extension	Button settings...	Gosodiadau botwm...
@@ -5679,41 +5679,41 @@ extension	Button settings...	Gosodiadau botwm...
 #, machine
 extension	Can't tell which video this is: open its own page and try there	Methu dweud pa fideo yw hwn: agorwch ei dudalen ei hun a rhowch gynnig arni yno
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app; keep the name Tufan Download Manager as it is
 #, machine
-extension	Connected to Mister Download Manager	Wedi cysylltu â Mister Download Manager
+extension	Connected to Tufan Download Manager	Wedi cysylltu â Tufan Download Manager
 #. text in the browser extension
-#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Mister Download Manager as it is
+#. the toolbar button's status when the browser reaches the app, with the app's version number; keep the name Tufan Download Manager as it is
 #. {version} = a version number (keep the braces as they are)
 #, machine
-extension	Connected to Mister Download Manager {version}	Wedi cysylltu â Mister Download Manager {version}
+extension	Connected to Tufan Download Manager {version}	Wedi cysylltu â Tufan Download Manager {version}
 #. text in the browser extension
 #. button beside a video, sound or stream in the toolbar button's popup: download it with the app; verb; short
 #, machine
 extension	Download	Lawrlwytho
 #. text in the browser extension
-#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a page: download the links of the whole page; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download all links with Mister Download Manager	Lawrlwytho pob dolen gyda Mister Download Manager
+extension	Download all links with Tufan Download Manager	Lawrlwytho pob dolen gyda Tufan Download Manager
 #. text in the browser extension
-#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on selected text: download the links in the selection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download selected links with Mister Download Manager	Lawrlwytho dolenni dethol gyda Mister Download Manager
+extension	Download selected links with Tufan Download Manager	Lawrlwytho dolenni dethol gyda Tufan Download Manager
 #. text in the browser extension
 #. the button over a video on a web page that downloads it; verb; short (it sits on the video)
 #, machine
 extension	Download video	Lawrlwytho fideo
 #. text in the browser extension
-#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Mister Download Manager as it is
+#. command in the browser's right-click menu on a link, picture, video or sound; keep the name Tufan Download Manager as it is
 #, machine
-extension	Download with Mister Download Manager	Lawrlwytho gyda Mister Download Manager
+extension	Download with Tufan Download Manager	Lawrlwytho gyda Tufan Download Manager
 #. text in the browser extension
 #. shown in the toolbar button's popup after the site was excluded
 #. {site} = a web site's name such as "example.com" (keep the braces as they are)
 #, machine
 extension	Downloads from {site} stay with the browser	Mae lawrlwythiadau o {site} yn aros gyda'r porwr
 #. text in the browser extension
-#. the toolbar button's status while downloads go to another MDM
+#. the toolbar button's status while downloads go to another TDM
 #, machine
 extension	Downloads go to {address}	Mae lawrlwythiadau'n mynd i {address}
 #. text in the browser extension
@@ -5725,9 +5725,9 @@ extension	Drag to move it along the video's edge	Llusgwch i'w symud ar hyd ymyl 
 #, machine
 extension	Enter its https:// address.	Rhowch ei gyfeiriad https://.
 #. text in the browser extension
-#. the extension's description in the browser's list of extensions; keep the name Mister Download Manager as it is
+#. the extension's description in the browser's list of extensions; keep the name Tufan Download Manager as it is
 #, machine
-extension	Hands downloads from the browser to Mister Download Manager.	Yn trosglwyddo lawrlwythiadau o'r porwr i Mister Download Manager.
+extension	Hands downloads from the browser to Tufan Download Manager.	Yn trosglwyddo lawrlwythiadau o'r porwr i Tufan Download Manager.
 #. text in the browser extension
 #. link in the toolbar button's popup to the help page
 #, machine
@@ -5749,7 +5749,7 @@ extension	How to fix it	Sut i'w drwsio
 #, machine
 extension	It didn't work. Try again.	Ni weithiodd. Rhowch gynnig arall arni.
 #. text in the browser extension
-#. pairing failed: the other MDM shows no pairing code; Pair a device is its button
+#. pairing failed: the other TDM shows no pairing code; Pair a device is its button
 #, machine
 extension	It shows no code now: click Pair a device there first.	Nid yw'n dangos cod nawr: cliciwch ar Paru dyfais yno yn gyntaf.
 #. text in the browser extension
@@ -5782,33 +5782,33 @@ extension	Live	Byw
 #, machine
 extension	Media on this page	Cyfryngau ar y dudalen hon
 #. text in the browser extension
-#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Mister Download Manager as it is
+#. the extension's name in the browser's list of extensions and on its toolbar button; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager	Mister Download Manager
+extension	Tufan Download Manager	Tufan Download Manager
 #. text in the browser extension
-#. status when the app was started for a download but didn't answer in time; keep the name Mister Download Manager as it is
+#. status when the app was started for a download but didn't answer in time; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager didn't start in time	Ni ddechreuodd Mister Download Manager mewn pryd
+extension	Tufan Download Manager didn't start in time	Ni ddechreuodd Tufan Download Manager mewn pryd
 #. text in the browser extension
-#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Mister Download Manager as it is
+#. status when the app refuses this copy of the extension (another copy is installed, or it came from another store); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager doesn't accept this copy of the extension	Nid yw Mister Download Manager yn derbyn y copi hwn o'r estyniad
+extension	Tufan Download Manager doesn't accept this copy of the extension	Nid yw Tufan Download Manager yn derbyn y copi hwn o'r estyniad
 #. text in the browser extension
-#. shown briefly on the download button when the app could not be reached; keep the name Mister Download Manager as it is
+#. shown briefly on the download button when the app could not be reached; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed or didn't start	Nid yw Mister Download Manager wedi'i osod neu ni ddechreuodd
+extension	Tufan Download Manager isn't installed or didn't start	Nid yw Tufan Download Manager wedi'i osod neu ni ddechreuodd
 #. text in the browser extension
-#. status when the browser can't find the app's connection; keep the name Mister Download Manager as it is
+#. status when the browser can't find the app's connection; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager isn't installed, or its browser integration isn't set up	Nid yw Mister Download Manager wedi'i osod, neu nid yw ei integreiddiad porwr wedi'i sefydlu
+extension	Tufan Download Manager isn't installed, or its browser integration isn't set up	Nid yw Tufan Download Manager wedi'i osod, neu nid yw ei integreiddiad porwr wedi'i sefydlu
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Yna mae Mister Download Manager yn lawrlwytho drwy'r un ddirprwy â'r porwr hwn. Mae'r porwr yn gofyn unwaith i chi ganiatáu hynny; mae diffodd hwn yn tynnu hynny'n ôl.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. The browser asks you once to allow it; turning this off takes that back.	Yna mae Tufan Download Manager yn lawrlwytho drwy'r un ddirprwy â'r porwr hwn. Mae'r porwr yn gofyn unwaith i chi ganiatáu hynny; mae diffodd hwn yn tynnu hynny'n ôl.
 #. text in the browser extension
-#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Mister Download Manager as it is
+#. tooltip of the switch Send downloads through this browser's proxy or VPN extension in Chrome, Edge and the other Chromium browsers (they ask for no permission at the switch); keep the name Tufan Download Manager as it is
 #, machine
-extension	Mister Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Yna mae Mister Download Manager yn lawrlwytho drwy'r un ddirprwy â'r porwr hwn. Tra bod hyn i ffwrdd, nid yw'r estyniad yn darllen dirprwy'r porwr.
+extension	Tufan Download Manager then downloads through the same proxy as this browser. While this is off, the extension doesn't read the browser's proxy.	Yna mae Tufan Download Manager yn lawrlwytho drwy'r un ddirprwy â'r porwr hwn. Tra bod hyn i ffwrdd, nid yw'r estyniad yn darllen dirprwy'r porwr.
 #. text in the browser extension
 #. the small arrow next to the Download video button that opens its menu (read aloud by screen readers)
 #, machine
@@ -5828,21 +5828,21 @@ extension	Never take downloads from {site}	Peidiwch byth â chymryd lawrlwythiad
 #, machine
 extension	No video or sound found on this page yet. Play it, then open this again.	Heb ddod o hyd i fideo na sain ar y dudalen hon eto. Chwaraewch ef, yna agorwch hwn eto.
 #. text in the browser extension
-#. pairing failed: the other MDM didn't answer
+#. pairing failed: the other TDM didn't answer
 #, machine
 extension	Not reached. Open its address once in this browser and accept its certificate, then try again.	Heb ei gyrraedd. Agorwch ei gyfeiriad unwaith yn y porwr hwn a derbyniwch ei dystysgrif, yna rhowch gynnig arall arni.
 #. text in the browser extension
-#. button: open the other MDM's address in a tab (to accept its certificate once)
+#. button: open the other TDM's address in a tab (to accept its certificate once)
 #, machine
 extension	Open it	Agorwch ef
 #. text in the browser extension
-#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep misterdownloadmanager-cli pair as it is
+#. help under the pairing boxes; Options, Remote and Pair a device are the app's window, tab and button; keep tufan-download-manager-cli pair as it is
 #, machine
-extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or misterdownloadmanager-cli pair).	Agorwch ei gyfeiriad unwaith a derbyniwch ei dystysgrif, yna rhowch god o'i Opsiynau, O bell, Paru dyfais (neu misterdownloadmanager-cli pair).
+extension	Open its address once and accept its certificate, then enter a code from its Options, Remote, Pair a device (or tufan-download-manager-cli pair).	Agorwch ei gyfeiriad unwaith a derbyniwch ei dystysgrif, yna rhowch god o'i Opsiynau, O bell, Paru dyfais (neu tufan-download-manager-cli pair).
 #. text in the browser extension
-#. button in the toolbar button's popup; keep the name Mister Download Manager as it is
+#. button in the toolbar button's popup; keep the name Tufan Download Manager as it is
 #, machine
-extension	Open Mister Download Manager	Agor Mister Download Manager
+extension	Open Tufan Download Manager	Agor Tufan Download Manager
 #. shown briefly on the download button over a video in a feed (a social site's home page, a timeline) when nothing in the feed gives that video's own address, so nothing was sent: the user should open the post the video belongs to and click the button on that page; short
 #, machine
 extension	Open the post, then use the button there	Agorwch y post, yna defnyddiwch y botwm yno
@@ -5852,11 +5852,11 @@ extension	Open the post, then use the button there	Agorwch y post, yna defnyddiw
 #, machine
 extension	Options...	Dewisiadau...
 #. text in the browser extension
-#. button: pair this browser with the other MDM using the code
+#. button: pair this browser with the other TDM using the code
 #, machine
 extension	Pair	Paru
 #. text in the browser extension
-#. placeholder of the box for the 8-digit code the other MDM shows
+#. placeholder of the box for the 8-digit code the other TDM shows
 #, machine
 extension	Pairing code	Cod paru
 #. text in the browser extension
@@ -5884,13 +5884,13 @@ extension	Send downloads through this browser's proxy or VPN extension	Anfon law
 #, machine
 extension	Send downloads to	Anfon lawrlwythiadau i
 #. text in the browser extension
-#. shown briefly on the download button after it was clicked; keep the name Mister Download Manager as it is
+#. shown briefly on the download button after it was clicked; keep the name Tufan Download Manager as it is
 #, machine
-extension	Sent to Mister Download Manager	Anfonwyd at Mister Download Manager
+extension	Sent to Tufan Download Manager	Anfonwyd at Tufan Download Manager
 #. text in the browser extension
-#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (MDM is free; this is an optional donation)
+#. link at the foot of the toolbar button's popup to the creator's GitHub Sponsors page (TDM is free; this is an optional donation)
 #, machine
-extension	Support MDM	Cefnogi MDM
+extension	Support TDM	Cefnogi TDM
 #. text in the browser extension
 #. check box in the toolbar button's popup: on, downloads go to the app; off, the browser keeps them
 #, machine
@@ -5900,9 +5900,9 @@ extension	Take downloads from this browser	Cymerwch lawrlwythiadau o'r porwr hwn
 #, machine
 extension	The Chrome Web Store's rules keep this copy of the add-on away from this site's videos. Help says what you can do.	Mae rheolau Chrome Web Store yn cadw'r copi hwn o'r estyniad draw o fideos y wefan hon. Mae Cymorth yn dweud beth allwch chi ei wneud.
 #. text in the browser extension
-#. status when the connection to the app broke off (often security software blocking it); keep the name Mister Download Manager as it is
+#. status when the connection to the app broke off (often security software blocking it); keep the name Tufan Download Manager as it is
 #, machine
-extension	The connection to Mister Download Manager failed	Methodd y cysylltiad â Mister Download Manager
+extension	The connection to Tufan Download Manager failed	Methodd y cysylltiad â Tufan Download Manager
 #. text in the browser extension
 #. shown briefly on the download button over a video when the app's settings keep the button off on this web site
 #, machine
@@ -5920,7 +5920,7 @@ extension	The last download was left to the browser.	Gadawyd y lawrlwythiad diwe
 #, machine
 extension	This browser isn't ticked in Options → General.	Nid yw'r porwr hwn wedi'i dicio yn Opsiynau → Cyffredinol.
 #. text in the browser extension
-#. choice under Send downloads to: the Mister Download Manager on this computer
+#. choice under Send downloads to: the Tufan Download Manager on this computer
 #, machine
 extension	This computer	Y cyfrifiadur hwn
 #. text in the browser extension
@@ -5932,9 +5932,9 @@ extension	This download's details were too large to hand over	Roedd manylion y l
 #, machine
 extension	This page's player streams its video in pieces, so there's no file to list. Point at the video and use its Download video button.	Mae chwaraewr y dudalen hon yn ffrydio ei fideo mewn darnau, felly nid oes ffeil i'w rhestru. Pwyntiwch at y fideo a defnyddiwch ei fotwm Lawrlwytho fideo.
 #. text in the browser extension
-#. status when the app is older than the extension; keep the name Mister Download Manager as it is
+#. status when the app is older than the extension; keep the name Tufan Download Manager as it is
 #, machine
-extension	Update Mister Download Manager to use everything this extension offers	Diweddarwch Mister Download Manager i ddefnyddio popeth y mae'r estyniad hwn yn ei gynnig
+extension	Update Tufan Download Manager to use everything this extension offers	Diweddarwch Tufan Download Manager i ddefnyddio popeth y mae'r estyniad hwn yn ei gynnig
 #. text in the browser extension
 #. why a download stayed with the browser: the app's setting 'Use advanced browser integration' is off; keep the setting's name as the app shows it
 #, machine
@@ -6050,7 +6050,7 @@ key	Up / Down	Up / Down
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	&About Mister Download Manager	&Ynghylch Mister Download Manager
+menu	&About Tufan Download Manager	&Ynghylch Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6086,7 +6086,7 @@ menu	&Exit	&Gadael
 #, machine
 menu	&Import	&Mewnforio
 #. menu command in the main window
-#. View menu: submenu choosing how large MDM draws its windows and text (100 % to 200 %), as a browser's zoom
+#. View menu: submenu choosing how large TDM draws its windows and text (100 % to 200 %), as a browser's zoom
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
 menu	&Interface size	Maint y &rhyngwyneb
@@ -6203,9 +6203,9 @@ menu	Adwaita	Adwaita
 #, machine
 menu	Aero	Aero
 #. menu command in the main window
-#. View → Draw with: a greyed note under the choices; the choice takes effect when MDM is started again
+#. View → Draw with: a greyed note under the choices; the choice takes effect when TDM is started again
 #, machine
-menu	Applies the next time MDM starts	Yn berthnasol y tro nesaf y bydd MDM yn cychwyn
+menu	Applies the next time TDM starts	Yn berthnasol y tro nesaf y bydd TDM yn cychwyn
 #. menu command in the main window
 #. View → Theme: a style theme's name (Mac OS X's look), a name: keep "Aqua" as written
 #, machine
@@ -6280,7 +6280,7 @@ menu	C&ustomize URL List...	Addasu Rhestr &URL...
 #, machine
 menu	Check for &updates...	Gwirio am &ddiweddariadau...
 #. menu command in the main window
-#. View → Theme: MDM's own look, the default (IDM's layout, Windows 11's controls)
+#. View → Theme: TDM's own look, the default (IDM's layout, Windows 11's controls)
 #, machine
 menu	Classic	Clasur
 #. menu command in the main window
@@ -6326,7 +6326,7 @@ menu	Download &video from a page...	Lawrlwytho &fideo o dudalen...
 #, machine
 menu	Download in order	Lawrlwytho mewn trefn
 #. menu command in the main window
-#. View menu: submenu choosing what draws MDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
+#. View menu: submenu choosing what draws TDM's windows: OpenGL, or Direct3D, Vulkan or Metal (graphics systems)
 #, machine
 menu	Draw with	Lluniadu gyda
 #. menu command in the main window
@@ -6382,15 +6382,15 @@ menu	Hide drop target	Cuddio targed gollwng
 #, machine
 menu	High contrast	Cyferbyniad uchel
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in MDM's log
+#. View → Draw with: a greyed note under "… didn't start here"; why: another error, written in TDM's log
 #, machine
 menu	It couldn't start: the log says why	Ni allai ddechrau: mae'r log yn dweud pam
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so MDM started again with OpenGL
+#. View → Draw with: a greyed note under "… didn't start here"; why: the window stayed empty, so TDM started again with OpenGL
 #, machine
 menu	Its first frame didn't show within 10 seconds	Ni ddangosodd ei ffrâm gyntaf o fewn 10 eiliad
 #. menu command in the main window
-#. View → Draw with: a greyed note under "… didn't start here"; why: MDM crashed or was closed while starting with it
+#. View → Draw with: a greyed note under "… didn't start here"; why: TDM crashed or was closed while starting with it
 #, machine
 menu	Its last start ended before its first frame	Daeth ei gychwyn olaf i ben cyn ei ffrâm gyntaf
 #. menu command in the main window
@@ -6412,7 +6412,7 @@ menu	Metro	Metro
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Mister Download Manager &Home Page	Tudalen &Hafan Mister Download Manager
+menu	Tufan Download Manager &Home Page	Tudalen &Hafan Tufan Download Manager
 #. menu command in the main window
 #, machine
 menu	Move/Rename (Ctrl-M)	Symud/Ailenwi (Ctrl-M)
@@ -6525,7 +6525,7 @@ menu	Select &all	Dewis &pawb
 menu	Show &drop target	Dangos targed &gollwng
 #. menu command in the main window
 #, machine
-menu	Show Mister Download Manager	Dangos Mister Download Manager
+menu	Show Tufan Download Manager	Dangos Tufan Download Manager
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6547,7 +6547,7 @@ menu	Stop Download	Stopio Lawrlwytho
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
-menu	Support &MDM	Cefnogi &MDM
+menu	Support &TDM	Cefnogi &TDM
 #. menu command in the main window
 #. & marks the keyboard shortcut letter: keep one & before a letter of the translation
 #, machine
@@ -6557,7 +6557,7 @@ menu	Tell a &friend	Dweud wrth &gyfaill
 #, machine
 menu	The graphics card was lost twice in 10 minutes	Daeth y cerdyn graffeg yn anymatebol ddwywaith mewn 10 munud
 #. menu command in the main window
-#. View menu: submenu choosing MDM's look (colours, sizes, icons): Classic, Native…
+#. View menu: submenu choosing TDM's look (colours, sizes, icons): Classic, Native…
 #, machine
 menu	Theme	Thema
 #. menu command in the main window

@@ -1,4 +1,4 @@
-//! View → Interface size (#262): every window of MDM drawn larger, 100 % to 200 %, as a browser
+//! View → Interface size (#262): every window of TDM drawn larger, 100 % to 200 %, as a browser
 //! zooms a page (Ctrl + / Ctrl − / Ctrl 0 too). It is egui's zoom factor, which multiplies the
 //! display's own scale: the windows are laid out in points, so a dialog, a menu or the drop
 //! target opens that much larger, and an open one is made larger with it.
@@ -41,19 +41,19 @@ pub fn next(percent: u16, up: bool) -> u16 {
     STEPS[to]
 }
 
-/// MDM_ZOOM=2: a test run drawn at that zoom (sharp 2× screenshots), whatever the setting,
+/// TDM_ZOOM=2: a test run drawn at that zoom (sharp 2× screenshots), whatever the setting,
 /// which it neither shows nor changes.
 pub fn test_zoom() -> Option<f32> {
     static Z: std::sync::OnceLock<Option<f32>> = std::sync::OnceLock::new();
     *Z.get_or_init(|| {
-        std::env::var("MDM_ZOOM")
+        std::env::var("TDM_ZOOM")
             .ok()
             .and_then(|z| z.parse::<f32>().ok())
             .filter(|z| (0.5..=4.0).contains(z))
     })
 }
 
-/// The zoom a start draws at: MDM_ZOOM's, else the setting's.
+/// The zoom a start draws at: TDM_ZOOM's, else the setting's.
 pub fn startup(setting: u16) -> f32 {
     test_zoom().unwrap_or_else(|| factor(setting))
 }
@@ -102,12 +102,12 @@ const FRAME: Vec2 = vec2(16.0, 40.0);
 #[cfg(not(windows))]
 const FRAME_AND_PANELS: Vec2 = vec2(32.0, 120.0);
 
-/// MDM_TEST_SCREEN=1366x768, for off-screen test runs: windows are sized for a screen that size
+/// TDM_TEST_SCREEN=1366x768, for off-screen test runs: windows are sized for a screen that size
 /// (at 100 %, with a 40 px taskbar) instead of this computer's, to check them on a small one.
 fn test_screen() -> Option<Vec2> {
     static S: std::sync::OnceLock<Option<Vec2>> = std::sync::OnceLock::new();
     *S.get_or_init(|| {
-        let v = std::env::var("MDM_TEST_SCREEN").ok()?;
+        let v = std::env::var("TDM_TEST_SCREEN").ok()?;
         let (w, h) = v.split_once('x')?;
         Some(vec2(w.trim().parse().ok()?, h.trim().parse().ok()?))
     })
@@ -243,7 +243,7 @@ pub fn fit_window(ctx: &egui::Context, min: Vec2, layout: Option<Vec2>) {
 
 /// A layout of `content` points drawn in the space `ui` has, scrolled when that is smaller (a
 /// fixed-size window larger than the screen, at a large interface size): scroll bars at the
-/// trailing and bottom edges (MDM's own, `scrollbar::bar`), the wheel where nothing inside takes
+/// trailing and bottom edges (TDM's own, `scrollbar::bar`), the wheel where nothing inside takes
 /// it, and the control the keyboard focuses brought into view. `body` gets the layout's origin
 /// (moved by the scrolling), as a window's client origin. Fits: `body` as is, nothing added.
 pub fn pane<R>(

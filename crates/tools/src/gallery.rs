@@ -3,7 +3,7 @@
 //! (Codeberg), its `SHA256SUMS` checked against its author's OpenPGP key (pinned in
 //! `keys/gallery-dl.asc`), the program against that list, kept in `tools/gallery-dl/<version>/`
 //! with the previous version, never older; or the person's own copy (`chosen`). It runs in the
-//! same job as yt-dlp does (`proc::spawn`), so Stop and MDM's end take it and all it started.
+//! same job as yt-dlp does (`proc::spawn`), so Stop and TDM's end take it and all it started.
 //!
 //! A download is a folder: gallery-dl prints each file it saves (one path a line, `# path` for
 //! one already there), and skips what is already there when started again, so a gallery started
@@ -27,12 +27,12 @@ use crate::{Error, Installed, chosen};
 const KEY: &str = include_str!("../keys/gallery-dl.asc");
 /// Where releases come from (Gitea's API, as GitHub's: `tag_name`, `assets`).
 const RELEASES: &str = "https://codeberg.org/api/v1/repos/mikf/gallery-dl/releases/latest";
-/// MDM as sites see it: gallery-dl's own name is refused by some (Wikimedia's servers answer
+/// TDM as sites see it: gallery-dl's own name is refused by some (Wikimedia's servers answer
 /// 429 to unnamed tools); this one says who asks and where to read about it.
 pub const USER_AGENT: &str = concat!(
     "MisterDownloadManager/",
     env!("CARGO_PKG_VERSION"),
-    " (+https://misterdownloadmanager.com) gallery-dl"
+    " (+https://tufan-download-manager.com) gallery-dl"
 );
 
 /// gallery-dl's program for this system in its releases. None on macOS (it publishes no build
@@ -53,20 +53,20 @@ pub fn signed_by_gallery_dl(sums: &[u8], sig: &[u8]) -> bool {
     crate::signed_by(KEY, sums, sig)
 }
 
-/// The oldest gallery-dl MDM can drive: `--directory` (the files right in the gallery's own
+/// The oldest gallery-dl TDM can drive: `--directory` (the files right in the gallery's own
 /// folder) came in 1.20.0. Debian 11's 1.17 lacks it; Ubuntu 22.04's 1.20.5 and every later
 /// distribution's has it (#236).
 pub const OLDEST: &str = "1.20.0";
 
-/// What a gallery-dl release accepts of the options MDM passes, past those every release from
+/// What a gallery-dl release accepts of the options TDM passes, past those every release from
 /// [`OLDEST`] has (`--extractor-info`, `--sleep`, `--range`, `--limit-rate`, `--cookies`,
-/// `--proxy`, `--ignore-config`). Each release from 1.17 to 1.30 was asked in mdm-lab (#236):
+/// `--proxy`, `--ignore-config`). Each release from 1.17 to 1.30 was asked in tdm-lab (#236):
 /// argparse refuses an option it doesn't know, so one too many fails the whole download, as
 /// `--no-input` did with Ubuntu 24.04's 1.26.9.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Accepts {
     /// `--no-input` (1.27.1): never a question on the console. Without it the same holds, as
-    /// MDM gives it no input to read (`proc::spawn`): a question ends it instead of waiting.
+    /// TDM gives it no input to read (`proc::spawn`): a question ends it instead of waiting.
     pub no_input: bool,
     /// `--user-agent` (1.24.0); before it, the same setting as `-o user-agent=…`.
     pub user_agent: bool,
@@ -75,7 +75,7 @@ pub struct Accepts {
 impl Accepts {
     /// For `version` as gallery-dl prints it (`1.26.9`, `1.31.0-dev`). A version that can't be
     /// read is taken as a recent one, as before #236. The system's copy (#571), whose version
-    /// isn't asked (finding it starts no program), gets what every release MDM drives accepts:
+    /// isn't asked (finding it starts no program), gets what every release TDM drives accepts:
     /// a distribution's may be one of the oldest.
     pub fn of(version: &str) -> Accepts {
         if version == crate::SYSTEM {
@@ -108,9 +108,9 @@ pub fn too_old(version: &str) -> bool {
     release(version).is_some_and(|have| Some(have) < release(OLDEST))
 }
 
-/// The gallery-dl to use: the person's own (`chosen`), else MDM's install in `dir`; on Linux
+/// The gallery-dl to use: the person's own (`chosen`), else TDM's install in `dir`; on Linux
 /// and macOS, else the system's (#571, as yt-dlp's: a package manager's or Homebrew's, kept up
-/// to date by it). A chosen one too old for MDM ([`too_old`], chosen before #236 checked) is
+/// to date by it). A chosen one too old for TDM ([`too_old`], chosen before #236 checked) is
 /// passed over; [`chosen_too_old`] names it, for the Helpers window to say so.
 pub fn installed(dir: &Path) -> Option<Installed> {
     let own = chosen::chosen(dir, chosen::Helper::GalleryDl)
@@ -122,7 +122,7 @@ pub fn installed(dir: &Path) -> Option<Installed> {
     own
 }
 
-/// The person's own gallery-dl when it is too old for MDM, so passed over.
+/// The person's own gallery-dl when it is too old for TDM, so passed over.
 pub fn chosen_too_old(dir: &Path) -> Option<Installed> {
     chosen::chosen(dir, chosen::Helper::GalleryDl).filter(|mine| too_old(&mine.version))
 }
@@ -146,12 +146,12 @@ struct Asset {
 }
 
 /// Install the latest gallery-dl into `dir` unless the installed one is as new, downloaded with
-/// MDM's engine (`net`), counted into `progress`. The person's own copy is theirs to update. A
-/// system copy doesn't count as installed here: this is the way to MDM's own instead (Helpers,
+/// TDM's engine (`net`), counted into `progress`. The person's own copy is theirs to update. A
+/// system copy doesn't count as installed here: this is the way to TDM's own instead (Helpers,
 /// #571), which then wins ([`installed`]).
 pub async fn install_latest(
     dir: &Path,
-    net: &mdm_engine::Options,
+    net: &tdm_engine::Options,
     progress: Option<&crate::update::Progress>,
 ) -> Result<Installed, Error> {
     if let Some(mine) = chosen::chosen(dir, chosen::Helper::GalleryDl) {
@@ -162,7 +162,7 @@ pub async fn install_latest(
             "build for this system: install gallery-dl with the system's packages (Homebrew, pip) and choose it in Helpers".into(),
         ));
     };
-    let client = mdm_engine::net::client_builder(&net.dns, &net.route, RELEASES)?
+    let client = tdm_engine::net::client_builder(&net.dns, &net.route, RELEASES)?
         .user_agent(crate::USER_AGENT)
         .build()?;
     let body = crate::get_bytes(&client, RELEASES).await?;
@@ -245,7 +245,7 @@ pub fn name_of(page: &url::Url) -> String {
         Some(l) => format!("{host} - {l}"),
         None => host.to_owned(),
     };
-    mdm_engine::naming::sanitize(&name)
+    tdm_engine::naming::sanitize(&name)
 }
 
 /// What a gallery download is asked for.
@@ -368,7 +368,7 @@ impl Drop for GalleryJob {
 }
 
 /// The browser's context (`FromBrowser::args`, made for yt-dlp) as gallery-dl takes it: its
-/// cookies, and its User-Agent or MDM's (`--user-agent`, or `-o user-agent=…` before 1.24); no
+/// cookies, and its User-Agent or TDM's (`--user-agent`, or `-o user-agent=…` before 1.24); no
 /// Referer, which gallery-dl has no option for.
 fn browser_args(theirs: Vec<String>, accepts: Accepts) -> Vec<String> {
     let mut out = Vec::new();
@@ -533,7 +533,7 @@ mod tests {
         assert_eq!(accepts("1.32.19"), (true, true));
         assert_eq!(accepts("1.31.0-dev"), (true, true));
         assert_eq!(accepts("2.0"), (true, true));
-        // One that can't be read: as recent as MDM's own.
+        // One that can't be read: as recent as TDM's own.
         assert_eq!(accepts("unknown"), (true, true));
         // The system's, not asked (#571): what every release from 1.20.0 accepts.
         assert_eq!(accepts("system"), (false, false));
@@ -569,7 +569,7 @@ mod tests {
         );
     }
 
-    /// The browser's User-Agent (else MDM's) and cookies, as each release takes them.
+    /// The browser's User-Agent (else TDM's) and cookies, as each release takes them.
     #[test]
     fn the_browsers_context_as_each_release_takes_it() {
         let theirs = || -> Vec<String> {
@@ -601,7 +601,7 @@ mod tests {
         );
     }
 
-    /// A gallery-dl chosen before #236 checked, too old for MDM: MDM's own copy instead.
+    /// A gallery-dl chosen before #236 checked, too old for TDM: TDM's own copy instead.
     #[test]
     fn a_chosen_release_too_old_gives_way_to_mdms_own() {
         let dir = tempfile::tempdir().unwrap();

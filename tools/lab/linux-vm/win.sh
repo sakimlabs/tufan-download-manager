@@ -1,27 +1,27 @@
 #!/bin/bash
-# One MDM kept running while the host screenshots several of its windows in turn (faster than
-# shots.sh, which restarts MDM for each): start it once with a language, mode and theme, then
+# One TDM kept running while the host screenshots several of its windows in turn (faster than
+# shots.sh, which restarts TDM for each): start it once with a language, mode and theme, then
 # open, shoot and close windows one by one. Each `open` prints the window's frame as "X Y W H"
 # for the host to crop VirtualBox's screenshot to (shot-host.sh's way).
 #
-#   win.sh start <label> <lang> <light|dark|system> [theme]   MDM restarted with these settings
+#   win.sh start <label> <lang> <light|dark|system> [theme]   TDM restarted with these settings
 #                                       (system: Dark Mode support, following the desktop; theme:
 #                                       classic, native, high-contrast, metro, adwaita, breeze…)
 #   win.sh open <main|fileinfo|show name>              e.g. options, scheduler, addurl, progress,
 #                                       properties, about, menu:3:theme
-#   win.sh close                         every MDM window but the main one, closed as a person would
+#   win.sh close                         every TDM window but the main one, closed as a person would
 #   win.sh theme <id>                    View → Theme → <id>, live (/show theme:<id>)
 #   win.sh click|hover|press|release <x> <y>   real input at a point of the main window's frame
-#                                        (MDM_ON=last: of the window last opened)
+#                                        (TDM_ON=last: of the window last opened)
 #   win.sh key <key>...                  keys to the focused window (xdotool names)
-#   win.sh stop                          MDM ended
+#   win.sh stop                          TDM ended
 #
-# MDM_STATE: a saved downloads.json put back first (as shots.sh); MDM_SET: more settings, a JSON
-# object (e.g. '{"net_adapter":"none0"}'). MDM_NATIVE_ACCENT and
-# MDM_NATIVE_CONTRAST pass through to MDM (the Native theme's stand-ins for the system's).
+# TDM_STATE: a saved downloads.json put back first (as shots.sh); TDM_SET: more settings, a JSON
+# object (e.g. '{"net_adapter":"none0"}'). TDM_NATIVE_ACCENT and
+# TDM_NATIVE_CONTRAST pass through to TDM (the Native theme's stand-ins for the system's).
 . ~/lab/env.sh
-data=$HOME/.local/share/misterdownloadmanager
-state=/tmp/mdm-win.state
+data=$HOME/.local/share/tufan-download-manager
+state=/tmp/tdm-win.state
 cmd=$1; shift
 
 frame() { # the window's frame, widened by the window manager's title bar and borders
@@ -35,13 +35,13 @@ mine() { wmctrl -lp | awk -v p="$PID" '$3 == p {print $1}'; }
 case "$cmd" in
   start)
     label=$1; lang=$2; mode=$3; theme=${4:-classic}
-    app=$HOME/lab/bin/$label/misterdownloadmanager
-    # The last MDM gone for good first: a new one started while it still ends hands its command
+    app=$HOME/lab/bin/$label/tufan-download-manager
+    # The last TDM gone for good first: a new one started while it still ends hands its command
     # line to it and leaves, and nothing is left running.
     pkill -x misterdownloadm
     for _ in $(seq 20); do pgrep -x misterdownloadm >/dev/null || break; sleep 0.5; done
     pkill -9 -x misterdownloadm; sleep 1
-    [ -n "${MDM_STATE:-}" ] && cp "$MDM_STATE" "$data/downloads.json"
+    [ -n "${TDM_STATE:-}" ] && cp "$TDM_STATE" "$data/downloads.json"
     python3 - "$data/downloads.json" "$lang" "$mode" "$theme" <<'PY'
 import json, os, sys
 p, lang, mode, theme = sys.argv[1:5]
@@ -49,12 +49,12 @@ d = json.load(open(p))
 s = d.setdefault("settings", {})
 s.update(language=lang, language_asked=True, always_dark=(mode == "dark"),
          dark_mode_support=(mode != "light"), theme=theme)
-s.update(json.loads(os.environ.get("MDM_SET") or "{}"))
+s.update(json.loads(os.environ.get("TDM_SET") or "{}"))
 json.dump(d, open(p, "w"))
 PY
     # The pointer parked at the screen's right edge, so no hover or tooltip shows in a shot.
     read -r sw sh < <(xdotool getdisplaygeometry); xdotool mousemove $((sw - 2)) $((sh / 2))
-    cd ~; setsid -f "$app" >/tmp/mdm-win.log 2>&1 </dev/null
+    cd ~; setsid -f "$app" >/tmp/tdm-win.log 2>&1 </dev/null
     for _ in $(seq 60); do
       PID=$(pgrep -f "^$app$" | head -1)
       [ -n "$PID" ] && [ -n "$(mine)" ] && break
@@ -106,8 +106,8 @@ PY
     # held down or let go, or nothing. Prints the main window's frame. (`/show menu:…` opens the
     # wrong popup on X11, so menus are opened as a person would.)
     . "$state"
-    # MDM_ON=last: the point is in the window `open` showed last instead.
-    target=$MAIN; [ "${MDM_ON:-}" = last ] && target=${LAST:-$MAIN}
+    # TDM_ON=last: the point is in the window `open` showed last instead.
+    target=$MAIN; [ "${TDM_ON:-}" = last ] && target=${LAST:-$MAIN}
     read -r fx fy fw fh < <(frame "$target")
     x=$1; y=$2; [ "$x" -lt 0 ] && x=$((fw + x))
     xdotool mousemove $((fx + x)) $((fy + y)); sleep 0.4
@@ -116,7 +116,7 @@ PY
       press) xdotool mousedown 1 ;;
       release) xdotool mouseup 1 ;;
     esac
-    sleep "${MDM_SETTLE:-1.2}"
+    sleep "${TDM_SETTLE:-1.2}"
     echo "$fx $fy $fw $fh"
     ;;
   key)

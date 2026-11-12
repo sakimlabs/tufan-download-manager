@@ -1,22 +1,22 @@
-//! #226: started with the session, MDM waits in the notification area. The real app, off the
-//! screens (MDM_OFFSCREEN), with a data folder of its own, started as its startup entry starts
-//! it (`/startup`), with its tray icon (MDM_TEST_TRAY: off-screen copies have none otherwise):
+//! #226: started with the session, TDM waits in the notification area. The real app, off the
+//! screens (TDM_OFFSCREEN), with a data folder of its own, started as its startup entry starts
+//! it (`/startup`), with its tray icon (TDM_TEST_TRAY: off-screen copies have none otherwise):
 //! the icon is shown and no window is, the list's clock runs, and a second launch by the user
 //! shows the window as always. On the way, the startup entry versions before 0.5.0 wrote (the
 //! program alone) is written again with `/startup`: on Windows a Run value of the test's own name
-//! (MDM_TEST_RUN_VALUE, deleted after; the user's own is never read nor written by an off-screen
+//! (TDM_TEST_RUN_VALUE, deleted after; the user's own is never read nor written by an off-screen
 //! copy), on Linux an autostart entry in a configuration folder of the test's own.
 //!
 //! It opens windows, which needs OpenGL or Direct3D, so it runs on request:
-//! `cargo test -p mdm-app --test startup_tray -- --ignored`.
+//! `cargo test -p tdm-app --test startup_tray -- --ignored`.
 
 use std::path::Path;
 use std::process::{Child, Command};
 use std::time::{Duration, Instant};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 /// The main window's title (main.rs MAIN_TITLE).
-const MAIN: &str = concat!("Mister Download Manager ", env!("CARGO_PKG_VERSION"));
+const MAIN: &str = concat!("Tufan Download Manager ", env!("CARGO_PKG_VERSION"));
 
 /// The app's log so far (every file of `logs/`).
 fn log(data: &Path) -> String {
@@ -52,13 +52,13 @@ fn wait_for(app: &mut Child, data: &Path, line: &str, wait: Duration) {
 /// The app's environment: off the screens, its own data folder, its tray icon, and (Windows) a
 /// Run value or (Linux) an autostart folder of the test's own.
 fn env<'a>(cmd: &'a mut Command, data: &Path, startup: &Startup) -> &'a mut Command {
-    cmd.env("MDM_DATA_DIR", data)
-        .env("MDM_OFFSCREEN", "1")
-        .env("MDM_TEST_TRAY", "1")
+    cmd.env("TDM_DATA_DIR", data)
+        .env("TDM_OFFSCREEN", "1")
+        .env("TDM_TEST_TRAY", "1")
         // A test's shell isn't asked where the icon is: say it is shown (app.rs tray_shown).
-        .env("MDM_TEST_TRAY_VISIBLE", "1");
+        .env("TDM_TEST_TRAY_VISIBLE", "1");
     #[cfg(windows)]
-    cmd.env("MDM_TEST_RUN_VALUE", &startup.name);
+    cmd.env("TDM_TEST_RUN_VALUE", &startup.name);
     #[cfg(unix)]
     cmd.env("XDG_CONFIG_HOME", &startup.config);
     cmd
@@ -80,7 +80,7 @@ impl Startup {
     fn old(_dir: &Path) -> Startup {
         #[cfg(windows)]
         {
-            let name = format!("MisterDownloadManagerTest{}", std::process::id());
+            let name = format!("TufanDownloadManagerTest{}", std::process::id());
             let status = Command::new("reg")
                 .args(["add", RUN, "/v", &name, "/t", "REG_SZ", "/f", "/d"])
                 .arg(format!("\"{APP}\""))
@@ -95,10 +95,10 @@ impl Startup {
             let auto = config.join("autostart");
             std::fs::create_dir_all(&auto).unwrap();
             std::fs::write(
-                auto.join("misterdownloadmanager.desktop"),
+                auto.join("tufan-download-manager.desktop"),
                 format!(
-                    "[Desktop Entry]\nType=Application\nName=Mister Download Manager\n\
-                     Exec=\"{APP}\"\nIcon=misterdownloadmanager\nTerminal=false\n\
+                    "[Desktop Entry]\nType=Application\nName=Tufan Download Manager\n\
+                     Exec=\"{APP}\"\nIcon=tufan-download-manager\nTerminal=false\n\
                      X-GNOME-Autostart-enabled=true\n"
                 ),
             )
@@ -121,7 +121,7 @@ impl Startup {
                 .unwrap_or_default()
         }
         #[cfg(unix)]
-        std::fs::read_to_string(self.config.join("autostart/misterdownloadmanager.desktop"))
+        std::fs::read_to_string(self.config.join("autostart/tufan-download-manager.desktop"))
             .unwrap_or_default()
     }
 }
@@ -248,7 +248,7 @@ fn a_start_with_the_session_waits_in_the_tray() {
         // uses; port 9 on this computer: nothing answers, nothing leaves it): Download File
         // Info opens (#145, #173).
         let status = env(&mut Command::new(APP), &data, &startup)
-            .args(["/d", "http://127.0.0.1:9/mdm-test-226.zip"])
+            .args(["/d", "http://127.0.0.1:9/tdm-test-226.zip"])
             .status()
             .unwrap();
         assert!(status.success());

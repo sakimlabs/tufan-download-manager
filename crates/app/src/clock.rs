@@ -64,7 +64,7 @@ impl Clock {
         let (ask, asked) = mpsc::channel();
         let k = kept.clone();
         let spawned = std::thread::Builder::new()
-            .name("mdm-clock".into())
+            .name("tdm-clock".into())
             .spawn(move || run(&k, &asked, &offset_at, &to_utc));
         if let Err(e) = spawned {
             tracing::warn!("clock: no thread for the local time ({e}); UTC shown");

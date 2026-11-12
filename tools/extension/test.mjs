@@ -197,7 +197,7 @@ function fakeApi({
       onClicked: event("menu"),
     },
     // The browser's language: German here.
-    i18n: { getMessage: (key) => ({ menu: "Mit Mister Download Manager herunterladen" })[key] ?? "" },
+    i18n: { getMessage: (key) => ({ menu: "Mit Tufan Download Manager herunterladen" })[key] ?? "" },
   };
   if (safari) delete api.downloads;
   if (!firefox && !safari) api.declarativeNetRequest = { getSessionRules: async () => [], updateSessionRules: async (r) => calls.push(["dnr", r]) };
@@ -280,7 +280,7 @@ const ok = (what) => {
   const cookies = calls.find((c) => c[0] === "cookies");
   assert.deepEqual(cookies[1], { url: "https://x/a.zip", storeId: "firefox-container-2" });
   const native = calls.find((c) => c[0] === "native");
-  assert.equal(native[1], "com.misterdownloadmanager.host");
+  assert.equal(native[1], "com.tufan-download-manager.host");
   const m = native[2];
   assert.deepEqual(
     [m.url, m.referrer, m.cookies, m.filename, m.size, m.mime, m.userAgent, m.v],
@@ -322,10 +322,10 @@ const ok = (what) => {
   await settle();
   assert.deepEqual(natives(calls), []);
   assert.deepEqual(steps(calls), []);
-  // Said, for MDM's log, under its own key and without an address.
+  // Said, for TDM's log, under its own key and without an address.
   assert.deepEqual(notices(calls), [{ why: "file-type", name: "page.html", site: "x" }]);
   assert.ok(!calls.some((c) => c[0] === "native" && c[2].declined && "url" in c[2]));
-  ok("a type not listed stays with the browser, and MDM's log hears why");
+  ok("a type not listed stays with the browser, and TDM's log hears why");
 }
 
 // Chrome: incognito downloads use the incognito store; the address asked for goes as the
@@ -379,7 +379,7 @@ const ok = (what) => {
 // DetermineFilename and DeterminerCallback): no valid suggestion goes as an empty name with no
 // conflict action, which counts as a name; a name the browser refuses is emptied after the
 // answer is counted, and only an empty name with "uniquify" is no name at all. The newest
-// extension's name wins (here MDM's, updated after Save In was installed).
+// extension's name wins (here TDM's, updated after Save In was installed).
 {
   const answer = (s) => {
     const valid = s && typeof s === "object" && typeof s.filename === "string" && s.filename.length > 0;
@@ -411,7 +411,7 @@ const ok = (what) => {
     await settle();
     assert.notEqual(mdm, "none", `${what}: answered, the download doesn't wait`);
     const want = other ? other.filename : creator;
-    assert.equal(determined(creator, other ? [other, mdm] : [mdm]), want, `${what}: MDM's answer gives no name of its own`);
+    assert.equal(determined(creator, other ? [other, mdm] : [mdm]), want, `${what}: TDM's answer gives no name of its own`);
   }
   // The model, checked: Chromium's own cases.
   assert.equal(determined("Pic/a.jpg", [undefined]), "", "suggest() empties the creator's name");
@@ -444,7 +444,7 @@ const ok = (what) => {
   ok("the app's file types decide, asked once");
 }
 
-// Mister Download Manager not installed (no host): everything stays with the browser, and the
+// Tufan Download Manager not installed (no host): everything stays with the browser, and the
 // toolbar button says something is wrong.
 {
   const { api, calls, listeners, store } = fakeApi({ firefox: false, host: false });
@@ -473,7 +473,7 @@ const ok = (what) => {
   await settle();
   assert.ok(calls.some((c) => c[0] === "openTab" && c[1].endsWith("#not-installed")));
   const items = calls.filter((c) => c[0] === "menu-item").map((c) => c[1].id);
-  assert.deepEqual(items, ["mdm-link", "mdm-selected", "mdm-all"]);
+  assert.deepEqual(items, ["tdm-link", "tdm-selected", "tdm-all"]);
   ok("installed without the app: the help page, the menus");
 }
 
@@ -600,21 +600,21 @@ const ok = (what) => {
   ok("opened types: the session rule follows the app's list");
 }
 
-// Right-click → Download with Mister Download Manager: handed over as an explicit request, so
+// Right-click → Download with Tufan Download Manager: handed over as an explicit request, so
 // the host takes any link (an .html page here); a failure opens the help page's section.
 {
   const { api, calls, listeners } = fakeApi({ firefox: false });
   load(api, false);
-  await listeners.menu({ menuItemId: "mdm-link", linkUrl: "https://x/page.html", pageUrl: "https://x/" }, { incognito: false });
+  await listeners.menu({ menuItemId: "tdm-link", linkUrl: "https://x/page.html", pageUrl: "https://x/" }, { incognito: false });
   await settle();
   const [m] = natives(calls);
   assert.deepEqual([m.url, m.explicit, m.referrer], ["https://x/page.html", true, "https://x/"]);
-  await listeners.menu({ menuItemId: "mdm-all", pageUrl: "https://x/" }, { id: 1, incognito: false });
+  await listeners.menu({ menuItemId: "tdm-all", pageUrl: "https://x/" }, { id: 1, incognito: false });
   await settle();
   assert.deepEqual(natives(calls)[1].links, ["https://x/1.zip", "https://x/2.zip"]);
   const failing = fakeApi({ firefox: false, reply: { ok: false, why: "not-running" } });
   load(failing.api, false);
-  await failing.listeners.menu({ menuItemId: "mdm-link", linkUrl: "https://x/a.zip", pageUrl: "https://x/" }, {});
+  await failing.listeners.menu({ menuItemId: "tdm-link", linkUrl: "https://x/a.zip", pageUrl: "https://x/" }, {});
   await settle();
   assert.ok(failing.calls.some((c) => c[0] === "openTab" && c[1].endsWith("#not-running")));
   ok("context menus: explicit links, a page's links, failures explained");
@@ -693,7 +693,7 @@ const ok = (what) => {
   listeners.responseStarted({ tabId: 7, frameId: 2, url: "https://cdn.test/s/master.m3u8", responseHeaders: [] });
   listeners.responseStarted({ tabId: 7, frameId: 0, url: "https://other.test/x/main.mpd", responseHeaders: [] });
   await listeners.menu(
-    { menuItemId: "mdm-link", srcUrl: "blob:https://player.test/1", frameId: 2, frameUrl: "https://player.test/embed", pageUrl: "https://blog.test/post" },
+    { menuItemId: "tdm-link", srcUrl: "blob:https://player.test/1", frameId: 2, frameUrl: "https://player.test/embed", pageUrl: "https://blog.test/post" },
     { id: 7, incognito: false },
   );
   await settle();
@@ -704,16 +704,16 @@ const ok = (what) => {
     "the frame's stream, not the page alone",
   );
   assert.ok(calls.some((c) => c[0] === "cookies" && c[1].url === "https://cdn.test/s/master.m3u8"), "the stream's cookies");
-  await listeners.menu({ menuItemId: "mdm-link", linkUrl: "https://cdn.test/s/other.m3u8", pageUrl: "https://blog.test/post" }, { id: 7, incognito: false });
+  await listeners.menu({ menuItemId: "tdm-link", linkUrl: "https://cdn.test/s/other.m3u8", pageUrl: "https://blog.test/post" }, { id: 7, incognito: false });
   await settle();
   assert.equal(natives(calls).filter((x) => x.video)[1].src, "https://cdn.test/s/other.m3u8");
   assert.ok(calls.some((c) => c[0] === "cookies" && c[1].url === "https://cdn.test/s/other.m3u8"), "the manifest's cookies");
   // Firefox names no address for a player fed by a MediaSource: the same stream goes.
-  await listeners.menu({ menuItemId: "mdm-link", mediaType: "video", frameId: 2, frameUrl: "https://player.test/embed", pageUrl: "https://blog.test/post" }, { id: 7, incognito: false });
+  await listeners.menu({ menuItemId: "tdm-link", mediaType: "video", frameId: 2, frameUrl: "https://player.test/embed", pageUrl: "https://blog.test/post" }, { id: 7, incognito: false });
   await settle();
   assert.equal(natives(calls).filter((x) => x.video).pop().src, "https://cdn.test/s/master.m3u8", "Firefox: no srcUrl");
   // Nothing loaded in that tab: the page, as before (a page yt-dlp may know).
-  await listeners.menu({ menuItemId: "mdm-link", srcUrl: "blob:https://tube.test/2", frameId: 0, pageUrl: "https://tube.test/watch" }, { id: 9, incognito: false });
+  await listeners.menu({ menuItemId: "tdm-link", srcUrl: "blob:https://tube.test/2", frameId: 0, pageUrl: "https://tube.test/watch" }, { id: 9, incognito: false });
   await settle();
   const page = natives(calls).filter((x) => x.video).pop();
   assert.deepEqual([page.url, page.src], ["https://tube.test/watch", undefined]);
@@ -1152,7 +1152,7 @@ const MPD = (protect) => `<?xml version="1.0"?>
   await settle();
   fetched.length = 0;
   await listeners.menu(
-    { menuItemId: "mdm-link", srcUrl: "blob:https://emb.test/1", frameId: 2, frameUrl: "https://emb.test/player", pageUrl: "https://blog.test/post" },
+    { menuItemId: "tdm-link", srcUrl: "blob:https://emb.test/1", frameId: 2, frameUrl: "https://emb.test/player", pageUrl: "https://blog.test/post" },
     { id: 7, incognito: false },
   );
   await settle();
@@ -1170,8 +1170,8 @@ const MPD = (protect) => `<?xml version="1.0"?>
 // The button's logo is the extension's own icon, kept in video.js as data.
 {
   const video = readFileSync(new URL("../../extension/video.js", import.meta.url), "utf8");
-  const icon = readFileSync(new URL("../../extension/icons/icon-48.png", import.meta.url)).toString("base64");
-  assert.ok(video.includes(`"data:image/png;base64,${icon}"`), "video.js's LOGO is extension/icons/icon-48.png");
+  const icon = readFileSync(new URL("../../extension/icons/tdm-icon-48.png", import.meta.url)).toString("base64");
+  assert.ok(video.includes(`"data:image/png;base64,${icon}"`), "video.js's LOGO is extension/icons/tdm-icon-48.png");
   ok("video button logo");
 }
 
@@ -1386,7 +1386,7 @@ function samplePage(html) {
       yield* all(c);
     }
   };
-  const page = doc.querySelector('meta[name="mdm-page"]').getAttribute("content");
+  const page = doc.querySelector('meta[name="tdm-page"]').getAttribute("content");
   base = page;
   return { document: doc, page, videos: [...all(doc)].filter((e) => e.localName === "video") };
 }
@@ -1525,7 +1525,7 @@ function samplePage(html) {
   load(api, false);
   await listeners.installed({ reason: "update" });
   const item = calls.find((c) => c[0] === "menu-item")[1];
-  assert.equal(item.title, "Mit Mister Download Manager herunterladen");
+  assert.equal(item.title, "Mit Tufan Download Manager herunterladen");
   const dir = new URL("../../extension/_locales/", import.meta.url);
   const english = JSON.parse(readFileSync(new URL("en/messages.json", dir), "utf8"));
   for (const locale of readdirSync(dir)) {
@@ -1987,7 +1987,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
   assert.deepEqual(natives(calls).map((m) => m.proxy), [undefined, undefined, undefined, undefined, "http://10.0.0.9:3128"]);
   ok("Firefox: loopback addresses skip its proxy settings' proxy, as Firefox itself does");
 }
-// A type the app doesn't take: the browser goes on (its dialog shows), MDM's log hears why once,
+// A type the app doesn't take: the browser goes on (its dialog shows), TDM's log hears why once,
 // and the download after the dialog isn't paused or asked again.
 {
   const { api, calls, listeners } = fakeApi({ firefox: true });
@@ -2086,7 +2086,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
   ok("#208 Chromium: answers aren't held");
 }
 // #603: only a tokenized Colab runtime-proxy transfer stays with the browser. A normal
-// download linked from a Colab notebook is still offered to MDM.
+// download linked from a Colab notebook is still offered to TDM.
 {
   const { api, calls, listeners } = fakeApi({ firefox: false });
   load(api, false);
@@ -2127,7 +2127,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
   );
   await settle();
   assert.equal(natives(calls).length, 1, "ordinary notebook links remain capturable");
-  ok("#603 Chromium: a GitHub file linked from Colab is still handed to MDM");
+  ok("#603 Chromium: a GitHub file linked from Colab is still handed to TDM");
 }
 {
   const { api, calls, listeners } = fakeApi({ firefox: true });
@@ -2177,7 +2177,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
     () => {},
   );
   await settle();
-  assert.equal(natives(calls).length, 1, "a token on a non-proxy host must not bypass MDM");
+  assert.equal(natives(calls).length, 1, "a token on a non-proxy host must not bypass TDM");
   ok("#603 Chromium: tokenized non-Colab URLs remain capturable");
 }
 {
@@ -2197,7 +2197,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
     () => {},
   );
   await settle();
-  assert.equal(natives(calls).length, 1, "a proxy host without its token must not bypass MDM");
+  assert.equal(natives(calls).length, 1, "a proxy host without its token must not bypass TDM");
   ok("#603 Chromium: an un-tokenized Colab host remains capturable");
 }
 
@@ -2218,7 +2218,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
   assert.ok(en.popup_proxy && en.popup_proxy_title && en.popup_proxy_title_chromium, "the switch's texts");
   ok("manifests: proxy optional in Firefox, required in Chrome; the popup's switch in each");
 }
-// Another MDM (#157): the file types caught for it are the app's defaults, and every message
+// Another TDM (#157): the file types caught for it are the app's defaults, and every message
 // the pairing can end with is there.
 {
   const capture = readFileSync(new URL("../../crates/ipc/src/capture.rs", import.meta.url), "utf8");
@@ -2230,7 +2230,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
     assert.ok(english[`remote_${why}`], `remote_${why}`);
   }
   assert.ok(english.status_remote, "status_remote");
-  ok("another MDM: the app's file types, every pairing message");
+  ok("another TDM: the app's file types, every pairing message");
 }
 // Safari has no downloads API: the extension still starts, and a link page.js holds (a file type
 // Options lists) is offered to the app as a browser's download is; the app taking it is told to
@@ -2244,7 +2244,7 @@ const ask = (listeners) => (m, sender) => new Promise((r) => listeners.message(m
   const m = natives(calls)[0];
   assert.deepEqual([m.url, m.filename, m.referrer, m.cookies], ["https://x.test/files/a.zip", "a.zip", "https://page.test/dl", "sid=1"]);
   assert.ok(!("explicit" in m), "Options' rules apply, as for the browser's own downloads");
-  // Not a listed type: the click goes on, and MDM's log hears why.
+  // Not a listed type: the click goes on, and TDM's log hears why.
   calls.length = 0;
   assert.deepEqual(await send({ type: "link", url: "https://x.test/page.html" }, sender), { taken: false });
   await settle();

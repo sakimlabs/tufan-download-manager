@@ -1,6 +1,6 @@
 // The remote control's page (#141) in a headless Chromium as a phone sees it: pairs with a code
-// MDM shows, adds downloads, pauses and starts one, and screenshots each step in the languages
-// and themes asked for. Exits non-zero when a step fails. A test client: it accepts MDM's
+// TDM shows, adds downloads, pauses and starts one, and screenshots each step in the languages
+// and themes asked for. Exits non-zero when a step fails. A test client: it accepts TDM's
 // self-signed certificate without asking (its own profile, deleted afterwards).
 //
 //   node tools/lab/remote-page.mjs --url https://127.0.0.1:18463/ --code 12345678 --out shots \
@@ -41,7 +41,7 @@ const candidates = [
 ].filter(Boolean);
 const browser = candidates.find((p) => fs.existsSync(p));
 if (!browser) throw new Error("no Chromium found (--browser)");
-const profile = opt("keep-profile") || fs.mkdtempSync(path.join(os.tmpdir(), "mdm-remote-page-"));
+const profile = opt("keep-profile") || fs.mkdtempSync(path.join(os.tmpdir(), "tdm-remote-page-"));
 
 const proc = spawn(
   browser,
@@ -132,7 +132,7 @@ try {
   // Pairing, in the first language and theme.
   await look(langs[0], themes[0]);
   await open(code ? `${base}#pair=${code}` : base);
-  const paired = await js("!!localStorage.getItem('mdm-token')");
+  const paired = await js("!!localStorage.getItem('tdm-token')");
   if (!paired) {
     check(await js("!document.getElementById('pair').hidden"), "the pairing screen shows");
     check((await js("document.getElementById('code').value.replace(/ /g, '')")) === code, "the QR code's code is filled in");
@@ -140,7 +140,7 @@ try {
     await shot(`pair-${langs[0]}-${themes[0]}`);
     await js("document.getElementById('name').value = 'Test phone'; document.querySelector('#pair-form button').click(); true");
     await until("!document.getElementById('main').hidden", "the list after pairing");
-    check(await js("!!localStorage.getItem('mdm-token')"), "paired: the token is kept");
+    check(await js("!!localStorage.getItem('tdm-token')"), "paired: the token is kept");
   }
   // Adding.
   for (const url of adds) {

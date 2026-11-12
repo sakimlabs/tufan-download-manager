@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Maltese: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Maltese: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Qed tiddiżinstalla %1.
 
 [CustomMessages]
 TaskBrowser=Issettja l-integrazzjoni tal-&brawżer (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Iftaħ fajls .&torrent u links manjetiċi b'Mister Download Manager
-TaskStartup=Ibda Mister Download Manager meta tibda l-&Windows
+TaskTorrents=Iftaħ fajls .&torrent u links manjetiċi b'Tufan Download Manager
+TaskStartup=Ibda Tufan Download Manager meta tibda l-&Windows
 TaskGroupOther=Oħrajn:
-Launch=Ibda Mister Download Manager
+Launch=Ibda Tufan Download Manager
 KeepData=Tħassar ukoll il-lista tat-tniżżil u s-settings tiegħek?%n%nIl-fajls imniżżla tiegħek ma jintmessux fi kwalunkwe każ.

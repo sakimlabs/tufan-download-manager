@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Khmer: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Khmer: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=កំពុងលុបការដំឡើ
 
 [CustomMessages]
 TaskBrowser=រៀបចំការរួមបញ្ចូល&កម្មវិធីរុករក (Chrome, Edge, Brave, Firefox)
-TaskTorrents=បើកឯកសារ .&torrent និងតំណភ្ជាប់ magnet ជាមួយ Mister Download Manager
-TaskStartup=ចាប់ផ្ដើម Mister Download Manager នៅពេល &Windows ចាប់ផ្ដើម
+TaskTorrents=បើកឯកសារ .&torrent និងតំណភ្ជាប់ magnet ជាមួយ Tufan Download Manager
+TaskStartup=ចាប់ផ្ដើម Tufan Download Manager នៅពេល &Windows ចាប់ផ្ដើម
 TaskGroupOther=ផ្សេងៗ:
-Launch=ចាប់ផ្ដើម Mister Download Manager
+Launch=ចាប់ផ្ដើម Tufan Download Manager
 KeepData=លុបបញ្ជីទាញយក និងការកំណត់របស់អ្នកដែរឬទេ?%n%nឯកសារដែលបានទាញយករបស់អ្នកមិនត្រូវបានប៉ះពាល់ឡើយ។

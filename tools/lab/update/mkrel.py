@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""A fake MDM release for Update now's end-to-end tests (never a real one): the asset, its
-SHA256SUMS.txt signed with a throwaway key, and GitHub's latest-release JSON for MDM_UPDATE_FEED.
+"""A fake TDM release for Update now's end-to-end tests (never a real one): the asset, its
+SHA256SUMS.txt signed with a throwaway key, and GitHub's latest-release JSON for TDM_UPDATE_FEED.
 
     mkrel.py --keys DIR --out DIR --base URL --asset NAME --kind zip|targz|file --program FILE
              [--version 9.9.9] [--sums good|bad] [--signer test|other] [--asset-base URL] [--pad MB]
 
 --keys: a folder of this run's own. Its first use makes two throwaway Ed25519 keys there, "test"
-(its public half in test-key.asc, for MDM_TEST_UPDATE_KEY) and "other" (a stranger's: a release
-it signs must be refused). Never MDM's release key: that one isn't read or needed.
+(its public half in test-key.asc, for TDM_TEST_UPDATE_KEY) and "other" (a stranger's: a release
+it signs must be refused). Never TDM's release key: that one isn't read or needed.
 
 zip / targz: a folder named after the asset holding the program and a NEW-COPY.txt marker (the
 portable zip, the .tar.gz). file: the program itself with a marker appended (an AppImage's place).
@@ -76,7 +76,7 @@ def ensure_keys(keys):
         if os.name != "nt":
             os.chmod(home, 0o700)
         gpg(home, "--pinentry-mode", "loopback", "--passphrase", "", "--quick-gen-key",
-            f"MDM update test key, {who} (throwaway, not a release key) <{who}@invalid>",
+            f"TDM update test key, {who} (throwaway, not a release key) <{who}@invalid>",
             "ed25519", "sign", "never")
         if who == "test":
             out = gpg(home, "--armor", "--export").stdout

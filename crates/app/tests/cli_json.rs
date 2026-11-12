@@ -1,14 +1,14 @@
-//! misterdownloadmanager-cli's `--json`, end to end: a download's progress and result as JSON lines, and failures as
+//! tufan-download-manager-cli's `--json`, end to end: a download's progress and result as JSON lines, and failures as
 //! `{"error"}` with a failing exit code.
 
 use std::process::Command;
 
-use mdm_labserver::{Config, Faults, LabServer};
+use tdm_labserver::{Config, Faults, LabServer};
 use serde_json::Value;
 
-/// The app's program, which runs misterdownloadmanager-cli's commands when its launcher
+/// The app's program, which runs tufan-download-manager-cli's commands when its launcher
 /// (crates/cli) starts it with `--cli`.
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 fn lines(out: &[u8]) -> Vec<Value> {
     String::from_utf8_lossy(out)
@@ -29,7 +29,7 @@ async fn a_download_reports_progress_then_done() {
     let dest = dir.path().join("json.bin");
     let out = tokio::task::spawn_blocking(move || {
         Command::new(APP)
-            .arg(mdm_cli::FLAG)
+            .arg(tdm_cli::FLAG)
             .args(["--json", "get", &s.url("/gen/3M?seed=5"), "-o"])
             .arg(&dest)
             .output()
@@ -56,9 +56,9 @@ fn failures_are_json_with_a_failing_exit_code() {
     // No app runs on this data folder.
     let dir = tempfile::tempdir().unwrap();
     let out = Command::new(APP)
-        .arg(mdm_cli::FLAG)
+        .arg(tdm_cli::FLAG)
         .args(["--json", "status"])
-        .env("MDM_DATA_DIR", dir.path())
+        .env("TDM_DATA_DIR", dir.path())
         .output()
         .unwrap();
     assert!(!out.status.success());
@@ -69,7 +69,7 @@ fn failures_are_json_with_a_failing_exit_code() {
     );
 
     let out = Command::new(APP)
-        .arg(mdm_cli::FLAG)
+        .arg(tdm_cli::FLAG)
         .args(["--json", "resume"])
         .arg(dir.path().join("missing.mdm.json"))
         .output()

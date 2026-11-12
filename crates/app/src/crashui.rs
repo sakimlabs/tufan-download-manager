@@ -1,6 +1,6 @@
 //! The crash monitor's process (`--crash-monitor`, started by crash.rs) and its report window.
 //!
-//! The monitor waits without a window. When MDM crashes, panics or freezes, mdm-crash writes the
+//! The monitor waits without a window. When TDM crashes, panics or freezes, tdm-crash writes the
 //! dump and this window opens: what happened, a box for what the user was doing, the whole report
 //! to read, and Send on GitHub (the browser opens the Crash report form filled in; nothing is sent
 //! by itself). Behind it, the report is made readable: the release's symbols are fetched when the
@@ -13,18 +13,18 @@ use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
 use egui::{Pos2, Rect, Ui, ViewportBuilder};
-use mdm_crash::MonitorArgs;
-use mdm_crash::github::{self, Found};
-use mdm_crash::monitor::{self, Event};
-use mdm_crash::protocol::{Kind, Notes};
-use mdm_crash::report::{self, Made};
+use tdm_crash::MonitorArgs;
+use tdm_crash::github::{self, Found};
+use tdm_crash::monitor::{self, Event};
+use tdm_crash::protocol::{Kind, Notes};
+use tdm_crash::report::{self, Made};
 
 use crate::winui::{self, ButtonKind, r};
 
 const CLIENT: [f32; 2] = [620.0, 540.0];
 
 pub fn monitor_main(m: MonitorArgs) -> eframe::Result {
-    mdm_crash::logs::init(&m.data, mdm_crash::logs::MONITOR);
+    tdm_crash::logs::init(&m.data, tdm_crash::logs::MONITOR);
     tracing::info!(
         "crash monitor (process {}) for {}",
         std::process::id(),
@@ -69,7 +69,7 @@ pub fn monitor_main(m: MonitorArgs) -> eframe::Result {
                 if !clean && notes.session.is_some() {
                     // Kept for a later look, without a window (a shutdown can look the same).
                     let made = report::make(None, Kind::Exit, notes, &m.data, &[]);
-                    tracing::warn!("MDM ended unexpectedly: {}", made.path.display());
+                    tracing::warn!("TDM ended unexpectedly: {}", made.path.display());
                 }
                 return Ok(());
             }
@@ -83,7 +83,7 @@ pub fn monitor_main(m: MonitorArgs) -> eframe::Result {
     };
     tracing::warn!("crash monitor: {} report", kind.word());
 
-    // The window speaks MDM's language and follows its theme. The language first: the title
+    // The window speaks TDM's language and follows its theme. The language first: the title
     // below is translated before the window exists, and Windows' caption is found by it
     // (`win32::caption_dark` in `update`).
     let settings = crate::store::load().settings;
@@ -94,14 +94,14 @@ pub fn monitor_main(m: MonitorArgs) -> eframe::Result {
     crate::theme::init_smooth_text(settings.smooth_text);
     let builder = crate::quiet(
         ViewportBuilder::default()
-            .with_title(crate::i18n::t("Mister Download Manager crash report"))
+            .with_title(crate::i18n::t("Tufan Download Manager crash report"))
             .with_inner_size([CLIENT[0] * zoom, CLIENT[1] * zoom])
             .with_resizable(false)
             .with_maximize_button(false)
             .with_icon(crate::app_icon()),
     );
     let builder = if crate::offscreen() {
-        // Where the main window goes too: on a runner's screen (MDM_OFFSCREEN_AT), whose software
+        // Where the main window goes too: on a runner's screen (TDM_OFFSCREEN_AT), whose software
         // OpenGL draws nothing off the screens (docs-shots.yml).
         builder.with_position(crate::offscreen_at())
     } else {
@@ -111,7 +111,7 @@ pub fn monitor_main(m: MonitorArgs) -> eframe::Result {
         viewport: builder.clone(),
         ..Default::default()
     };
-    // What the app draws with (renderer.rs, MDM_RENDERER too), the other way when it can't
+    // What the app draws with (renderer.rs, TDM_RENDERER too), the other way when it can't
     // start. OpenGL when the app's Direct3D failed or is still starting (this report may be about
     // it); only the app's own start is watched.
     let mut plan = crate::renderer::plan(
@@ -121,7 +121,7 @@ pub fn monitor_main(m: MonitorArgs) -> eframe::Result {
     );
     plan.watched = false;
     let data = m.data.clone();
-    crate::renderer::run("misterdownloadmanager-crash", &plan, options, move |cc| {
+    crate::renderer::run("tufan-download-manager-crash", &plan, options, move |cc| {
         crate::scale::start(&cc.egui_ctx, zoom);
         crate::theme::select(&crate::theme::startup_id(&settings.theme), &cc.egui_ctx);
         crate::theme::apply(&cc.egui_ctx);
@@ -238,10 +238,10 @@ fn prepare(job: &Job, shared: Arc<Mutex<Shared>>, ctx: egui::Context) {
         let from_source = notes
             .session
             .as_ref()
-            .is_some_and(|s| s.install == mdm_tools::update::Install::Source.label());
+            .is_some_and(|s| s.install == tdm_tools::update::Install::Source.label());
         let store = version
             .as_deref()
-            .map(|v| mdm_crash::symbols::store(&data, v));
+            .map(|v| tdm_crash::symbols::store(&data, v));
         let stores: Vec<PathBuf> = store.iter().cloned().collect();
         let made = report::make(dump.as_deref(), kind, notes.clone(), &data, &stores);
         let missing = made
@@ -257,7 +257,7 @@ fn prepare(job: &Job, shared: Arc<Mutex<Shared>>, ctx: egui::Context) {
             return;
         };
         let Ok(http) = reqwest::Client::builder()
-            .user_agent(concat!("MisterDownloadManager/", env!("CARGO_PKG_VERSION")))
+            .user_agent(concat!("TufanDownloadManager/", env!("CARGO_PKG_VERSION")))
             .timeout(Duration::from_secs(120))
             .build()
         else {
@@ -265,7 +265,7 @@ fn prepare(job: &Job, shared: Arc<Mutex<Shared>>, ctx: egui::Context) {
         };
         // The release's symbols, when the stacks need them and they aren't here yet.
         if let (Some(v), true, false) = (version.as_deref(), missing, from_source)
-            && !mdm_crash::symbols::have(&data, v)
+            && !tdm_crash::symbols::have(&data, v)
             && dump.is_some()
         {
             set(&shared, &ctx, |s| s.fetching = Some((0, None)));
@@ -273,7 +273,7 @@ fn prepare(job: &Job, shared: Arc<Mutex<Shared>>, ctx: egui::Context) {
             let progress = move |done: u64, total: Option<u64>| {
                 set(&sh, &cx, |s| s.fetching = Some((done, total)));
             };
-            let fetched = rt.block_on(mdm_crash::symbols::fetch(
+            let fetched = rt.block_on(tdm_crash::symbols::fetch(
                 &data,
                 v,
                 crate::settings::own_net(),
@@ -316,7 +316,7 @@ fn set(shared: &Mutex<Shared>, ctx: &egui::Context, f: impl FnOnce(&mut Shared))
 
 impl eframe::App for ReportWindow {
     fn ui(&mut self, ui: &mut Ui, _frame: &mut eframe::Frame) {
-        // The caption in the window's light or dark, as every MDM window's (Windows would draw
+        // The caption in the window's light or dark, as every TDM window's (Windows would draw
         // it in its own app mode).
         if !self.caption_set {
             // As the app logs its windows (crash.rs), for the log and the tests.
@@ -336,7 +336,7 @@ impl eframe::App for ReportWindow {
         #[cfg(windows)]
         if !self.caption_dwm {
             self.caption_dwm = crate::win32::caption_dark(
-                crate::i18n::t("Mister Download Manager crash report"),
+                crate::i18n::t("Tufan Download Manager crash report"),
                 crate::theme::dark_surface(),
             );
         }
@@ -345,7 +345,7 @@ impl eframe::App for ReportWindow {
                 self.recovered = true;
             }
         }
-        // MDM's state is checked now and then (a frozen one may recover or be ended).
+        // TDM's state is checked now and then (a frozen one may recover or be ended).
         ui.ctx().request_repaint_after(Duration::from_secs(1));
         egui::CentralPanel::no_frame()
             .frame(egui::Frame::new().fill(winui::BG()))
@@ -362,16 +362,16 @@ impl eframe::App for ReportWindow {
 impl ReportWindow {
     fn heading(&self, alive: bool) -> &'static str {
         match self.job.kind {
-            // i18n: crash report window heading: the window of MDM stopped answering, then answered again
+            // i18n: crash report window heading: the window of TDM stopped answering, then answered again
             Kind::Freeze if self.recovered => {
-                crate::i18n::t("Mister Download Manager stopped responding for a while")
+                crate::i18n::t("Tufan Download Manager stopped responding for a while")
             }
-            // i18n: crash report window heading: MDM's window doesn't answer (frozen)
-            Kind::Freeze => crate::i18n::t("Mister Download Manager stopped responding"),
-            // i18n: crash report window heading: an internal error, MDM still running
-            Kind::Panic if alive => crate::i18n::t("Mister Download Manager hit an internal error"),
-            // i18n: crash report window heading: MDM crashed and is gone
-            _ => crate::i18n::t("Mister Download Manager closed unexpectedly"),
+            // i18n: crash report window heading: TDM's window doesn't answer (frozen)
+            Kind::Freeze => crate::i18n::t("Tufan Download Manager stopped responding"),
+            // i18n: crash report window heading: an internal error, TDM still running
+            Kind::Panic if alive => crate::i18n::t("Tufan Download Manager hit an internal error"),
+            // i18n: crash report window heading: TDM crashed and is gone
+            _ => crate::i18n::t("Tufan Download Manager closed unexpectedly"),
         }
     }
 
@@ -521,7 +521,7 @@ impl ReportWindow {
                 ui,
                 o + egui::vec2(16.0, 462.0),
                 &mut self.attach,
-                // i18n: crash report window: checkbox; the .dmp file holds what MDM had in memory
+                // i18n: crash report window: checkbox; the .dmp file holds what TDM had in memory
                 "Also attach the crash data (.dmp): it may hold addresses, cookies and passwords",
                 true,
             );
@@ -537,14 +537,14 @@ impl ReportWindow {
             // i18n: crash report window button: open GitHub's crash report form filled in
             "Send on GitHub"
         };
-        // A frozen MDM can be ended; a gone one started again.
+        // A frozen TDM can be ended; a gone one started again.
         let frozen = self.job.kind == Kind::Freeze && alive && !self.recovered;
         let restart_label = if frozen {
-            // i18n: crash report window button: end the frozen MDM and start it again
-            "End and restart MDM"
+            // i18n: crash report window button: end the frozen TDM and start it again
+            "End and restart TDM"
         } else {
-            // i18n: crash report window button: start MDM again
-            "Restart MDM"
+            // i18n: crash report window button: start TDM again
+            "Restart TDM"
         };
         let [send_at, copy_at, folder_at, restart_at, close_at] = winui::button_row(
             &p,

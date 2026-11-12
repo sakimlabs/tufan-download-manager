@@ -1,5 +1,5 @@
 //! Just enough OpenPGP (RFC 9580, and RFC 4880 before it) to check a detached signature by one
-//! of the keys MDM pins: yt-dlp's (RSA) and MDM's own release key (Ed25519, in its legacy
+//! of the keys TDM pins: yt-dlp's (RSA) and TDM's own release key (Ed25519, in its legacy
 //! EdDSA form, algorithm 22). Both sign their checksum lists as binary documents with v4
 //! signatures; that, with SHA-256 or SHA-512, is all this understands, and anything else fails.
 //! The keys are built into the program, so their self-signatures aren't checked: every key and
@@ -461,14 +461,14 @@ fn left_pad(bytes: &[u8], len: usize) -> Option<Vec<u8>> {
 mod tests {
     use super::*;
 
-    const MDM_KEY: &[u8] = include_bytes!("../keys/mdm-release.asc");
+    const TDM_KEY: &[u8] = include_bytes!("../keys/tdm-release.asc");
     const YTDLP_KEY: &[u8] = include_bytes!("../keys/yt-dlp.asc");
-    const MDM_SUMS: &[u8] = include_bytes!("../tests/fixtures/mdm-SHA256SUMS.txt");
-    const MDM_SIG: &[u8] = include_bytes!("../tests/fixtures/mdm-SHA256SUMS.txt.sig");
+    const TDM_SUMS: &[u8] = include_bytes!("../tests/fixtures/tdm-SHA256SUMS.txt");
+    const TDM_SIG: &[u8] = include_bytes!("../tests/fixtures/tdm-SHA256SUMS.txt.sig");
     const YTDLP_SUMS: &[u8] = include_bytes!("../tests/fixtures/SHA2-256SUMS");
     const YTDLP_SIG: &[u8] = include_bytes!("../tests/fixtures/SHA2-256SUMS.sig");
     const BOTH: [(&[u8], &[u8], &[u8]); 2] = [
-        (MDM_KEY, MDM_SUMS, MDM_SIG),
+        (TDM_KEY, TDM_SUMS, TDM_SIG),
         (YTDLP_KEY, YTDLP_SUMS, YTDLP_SIG),
     ];
 
@@ -505,7 +505,7 @@ mod tests {
             hex::encode_upper(keys[0].fingerprint)
         };
         assert_eq!(
-            fingerprint(MDM_KEY),
+            fingerprint(TDM_KEY),
             "5826D399249DE856EA087D802E293C28E8A69D74"
         );
         assert_eq!(
@@ -552,23 +552,23 @@ mod tests {
 
     #[test]
     fn each_key_signs_for_itself_only() {
-        assert!(!verify(YTDLP_KEY, MDM_SUMS, MDM_SIG));
-        assert!(!verify(MDM_KEY, YTDLP_SUMS, YTDLP_SIG));
-        assert!(!verify(MDM_KEY, MDM_SUMS, MDM_KEY));
-        assert!(!verify(MDM_SIG, MDM_SUMS, MDM_SIG));
+        assert!(!verify(YTDLP_KEY, TDM_SUMS, TDM_SIG));
+        assert!(!verify(TDM_KEY, YTDLP_SUMS, YTDLP_SIG));
+        assert!(!verify(TDM_KEY, TDM_SUMS, TDM_KEY));
+        assert!(!verify(TDM_SIG, TDM_SUMS, TDM_SIG));
     }
 
     #[test]
     fn armor_is_checked_by_its_checksum() {
-        let armored = armor(MDM_SIG, crc24(MDM_SIG));
-        assert!(verify(MDM_KEY, MDM_SUMS, armored.as_bytes()));
-        let wrong = armor(MDM_SIG, crc24(MDM_SIG) ^ 1);
-        assert!(!verify(MDM_KEY, MDM_SUMS, wrong.as_bytes()));
+        let armored = armor(TDM_SIG, crc24(TDM_SIG));
+        assert!(verify(TDM_KEY, TDM_SUMS, armored.as_bytes()));
+        let wrong = armor(TDM_SIG, crc24(TDM_SIG) ^ 1);
+        assert!(!verify(TDM_KEY, TDM_SUMS, wrong.as_bytes()));
         // A damaged key: "mDME" begins its data.
-        let key = String::from_utf8(MDM_KEY.to_vec())
+        let key = String::from_utf8(TDM_KEY.to_vec())
             .unwrap()
             .replacen("mDME", "mDMF", 1);
-        assert!(!verify(key.as_bytes(), MDM_SUMS, MDM_SIG));
+        assert!(!verify(key.as_bytes(), TDM_SUMS, TDM_SIG));
     }
 
     #[test]
@@ -592,7 +592,7 @@ mod tests {
             assert!(!verify(&bytes, YTDLP_SUMS, YTDLP_SIG));
             let text: String = bytes.iter().map(|&b| char::from(b'+' + b % 80)).collect();
             let armored = format!("-----BEGIN PGP SIGNATURE-----\n\n{text}\n=");
-            assert!(!verify(MDM_KEY, MDM_SUMS, armored.as_bytes()));
+            assert!(!verify(TDM_KEY, TDM_SUMS, armored.as_bytes()));
         }
         // The real keys and signatures, each byte damaged in turn, and cut short.
         for (key, sums, sig) in BOTH {

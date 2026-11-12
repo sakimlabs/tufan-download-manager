@@ -1,12 +1,12 @@
-# Mister Download Manager (MDM) — agent guide
+# Tufan Download Manager (TDM) — agent guide
 
-Mister Download Manager (MDM) is a download manager for Windows in Rust (egui + storytold
+Tufan Download Manager (TDM) is a download manager for Windows in Rust (egui + storytold
 craft-libs), laid out the way Internet Download Manager users expect. Start by reading
 [README.md](README.md) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Rules
 
-1. **Clean room.** MDM contains no code, binaries, artwork, icons, sounds or text from
+1. **Clean room.** TDM contains no code, binaries, artwork, icons, sounds or text from
    Internet Download Manager or any other download manager. Never disassemble, decompile,
    debug-attach or patch any IDM file, and never bypass its licensing or trial. Behaviour is
    learned only from public documentation, screenshots and black-box use of a licensed copy.
@@ -25,7 +25,7 @@ craft-libs), laid out the way Internet Download Manager users expect. Start by r
 6. Every PR description shows what it changed in screenshots, as many as it takes: each changed
    window and state, before and after, light and dark, a long language (de) and right to left (ar);
    phone width for the website. The images live on the `pr-shots` branch (`<pr>/<name>.png`, never
-   merged) and are embedded from `raw.githubusercontent.com/anefzaoui/misterdownloadmanager/pr-shots/`.
+   merged) and are embedded from `raw.githubusercontent.com/sakimlabs/tufan-download-manager/pr-shots/`.
    Neutral test folders in shots, no IDM artwork. A change with nothing to see shows its proof
    (tables, logs) instead and says so.
 
@@ -34,16 +34,16 @@ craft-libs), laid out the way Internet Download Manager users expect. Start by r
 - `cargo build` / `cargo test` / `cargo clippy --all-targets` / `cargo fmt --all` — workspace.
 - `tools/dev/check-cross.ps1` — clippy for Linux and macOS from Windows (needs Zig, see the
   script); `node tools/extension/e2e.mjs` — the extension in real headless browsers.
-- `cargo run -p mdm-labserver -- --faults "rate=2M"` — test server (GET / lists the faults).
-- `cargo run -p mdm-app -- --cli get <url> -o <dir>` — headless download with progress (the
-  app's program runs the command line; `misterdownloadmanager-cli` is only its launcher).
+- `cargo run -p tdm-labserver -- --faults "rate=2M"` — test server (GET / lists the faults).
+- `cargo run -p tdm-app -- --cli get <url> -o <dir>` — headless download with progress (the
+  app's program runs the command line; `tufan-download-manager-cli` is only its launcher).
 - `tools/extension/pack.ps1` — build the extension for Chromium and Firefox into
   `target/extension/`; `node tools/extension/test.mjs` — its logic against fake browser APIs.
 - `tools/installer/build.ps1` — the Windows installer and portable zip into `target/dist/`.
 - `python tools/website/build.py --serve` — the website (and its 21 languages) on 127.0.0.1:8765;
   after changing its English (website/, docs/, CHANGELOG.md), `python tools/website/translate_site.py
   --all` sends only the new or changed texts (`--status` shows what each language lacks).
-  `MDM_SITE_PREVIEW=1` builds the English pages with their language picker only (fast).
+  `TDM_SITE_PREVIEW=1` builds the English pages with their language picker only (fast).
 - Website design goes through the Impeccable skill (`/impeccable`, `.claude/skills/impeccable`):
   product truth in [PRODUCT.md](PRODUCT.md), the visual system in DESIGN.md, the site's
   direction contract in `.impeccable/surfaces/`; its hook checks every website edit.

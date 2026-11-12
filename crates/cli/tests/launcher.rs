@@ -6,10 +6,10 @@
 use std::io::{Read, Write};
 use std::process::{Command, Stdio};
 
-const LAUNCHER: &str = env!("CARGO_BIN_EXE_misterdownloadmanager-cli");
+const LAUNCHER: &str = env!("CARGO_BIN_EXE_tufan-download-manager-cli");
 
 fn main() {
-    if let Some(launch) = mdm_cli::launched(std::env::args_os().collect()) {
+    if let Some(launch) = tdm_cli::launched(std::env::args_os().collect()) {
         let mut input = String::new();
         std::io::stdin().read_to_string(&mut input).unwrap();
         println!("args {:?}", launch.args);
@@ -21,8 +21,8 @@ fn main() {
 
     let dir = tempfile::tempdir().unwrap();
     let exe = std::env::consts::EXE_SUFFIX;
-    let launcher = dir.path().join(format!("misterdownloadmanager-cli{exe}"));
-    let program = dir.path().join(format!("misterdownloadmanager{exe}"));
+    let launcher = dir.path().join(format!("tufan-download-manager-cli{exe}"));
+    let program = dir.path().join(format!("tufan-download-manager{exe}"));
     std::fs::copy(LAUNCHER, &launcher).unwrap();
     std::fs::copy(std::env::current_exe().unwrap(), &program).unwrap();
 

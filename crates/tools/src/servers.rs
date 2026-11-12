@@ -26,7 +26,7 @@ pub fn reachable(host: &str) -> bool {
     let route = crate::proc::route();
     addrs
         .filter(|a| !a.ip().is_unspecified())
-        .any(|a| mdm_engine::net::tcp_connect_blocking(&route, a, CONNECT).is_ok())
+        .any(|a| tdm_engine::net::tcp_connect_blocking(&route, a, CONNECT).is_ok())
 }
 
 /// Every string in `v` (links sit in `formats[].url`, `requested_formats`, fragments…).
@@ -82,7 +82,7 @@ impl Prober {
         // while it's down.
         let route = crate::proc::route();
         let client = rt.block_on(async {
-            mdm_engine::net::client_builder(
+            tdm_engine::net::client_builder(
                 &Default::default(),
                 &route,
                 "https://www.googlevideo.com/",
@@ -416,13 +416,13 @@ mod tests {
 mod live {
     use super::*;
 
-    /// `MDM_LIVE_INFO=<yt-dlp -J output> cargo test -p mdm-tools live_serves -- --ignored
+    /// `TDM_LIVE_INFO=<yt-dlp -J output> cargo test -p tdm-tools live_serves -- --ignored
     /// --nocapture`: each direct stream on its first alternative, one by one.
     #[test]
     #[ignore]
     fn live_serves() {
         let info: Value = serde_json::from_str(
-            &std::fs::read_to_string(std::env::var("MDM_LIVE_INFO").unwrap()).unwrap(),
+            &std::fs::read_to_string(std::env::var("TDM_LIVE_INFO").unwrap()).unwrap(),
         )
         .unwrap();
         for f in info["formats"].as_array().unwrap() {
@@ -453,7 +453,7 @@ mod live {
     #[ignore]
     fn live_reroute() {
         let mut info: Value = serde_json::from_str(
-            &std::fs::read_to_string(std::env::var("MDM_LIVE_INFO").unwrap()).unwrap(),
+            &std::fs::read_to_string(std::env::var("TDM_LIVE_INFO").unwrap()).unwrap(),
         )
         .unwrap();
         let before = info["formats"].as_array().unwrap().len();
@@ -471,7 +471,7 @@ mod live {
             ids.len(),
             t.elapsed()
         );
-        if let Ok(out) = std::env::var("MDM_LIVE_OUT") {
+        if let Ok(out) = std::env::var("TDM_LIVE_OUT") {
             std::fs::write(out, info.to_string()).unwrap();
         }
     }

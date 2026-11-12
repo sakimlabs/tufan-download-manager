@@ -66,7 +66,7 @@ impl Origin {
     /// Where the link `url` named `name` (found on page `referer`) belongs.
     pub fn of(url: &Url, name: &str, referer: Option<&str>) -> Origin {
         let host = url.host_str().unwrap_or_default().to_ascii_lowercase();
-        if let Some(v) = mdm_extract::volume_key(name) {
+        if let Some(v) = tdm_extract::volume_key(name) {
             return Origin::Volumes { host, base: v.base };
         }
         if let Some(page) = referer.and_then(|r| Url::parse(r).ok())
@@ -136,7 +136,7 @@ pub struct Link {
     check: Option<Check>,
 }
 
-type Check = Arc<Mutex<Option<Result<mdm_engine::ProbeInfo, LinkState>>>>;
+type Check = Arc<Mutex<Option<Result<tdm_engine::ProbeInfo, LinkState>>>>;
 
 /// A package's ticked links, as the window hands them over.
 pub struct Picked {
@@ -205,7 +205,7 @@ impl Grabber {
             if self.links.iter().any(|l| same_address(&l.url, &url)) {
                 continue;
             }
-            let name = mdm_engine::naming::sanitize(&mdm_engine::naming::file_name(None, &url));
+            let name = tdm_engine::naming::sanitize(&tdm_engine::naming::file_name(None, &url));
             let known = known(&url);
             let origin = if known {
                 Origin::Known
@@ -393,7 +393,7 @@ impl Grabber {
                 Ok(info) => {
                     l.state = LinkState::Online;
                     l.size = info.size;
-                    let named = mdm_engine::naming::sanitize(&info.file_name);
+                    let named = tdm_engine::naming::sanitize(&info.file_name);
                     if !named.is_empty() && named != l.name {
                         l.name = named;
                         moved.push(l.pkg);
@@ -1045,15 +1045,15 @@ fn state_text(s: &LinkState) -> String {
 }
 
 /// A look-up's failure as a link's status.
-pub fn state_of(e: &mdm_engine::Error) -> LinkState {
+pub fn state_of(e: &tdm_engine::Error) -> LinkState {
     match e {
-        mdm_engine::Error::Status(s) => match s.as_u16() {
+        tdm_engine::Error::Status(s) => match s.as_u16() {
             404 | 410 => LinkState::Offline(s.as_u16()),
             401 | 403 => LinkState::NeedsLogin,
             429 | 503 => LinkState::Busy,
             _ => LinkState::Failed(crate::errors::describe(e)),
         },
-        mdm_engine::Error::Throttled(..) => LinkState::Busy,
+        tdm_engine::Error::Throttled(..) => LinkState::Busy,
         _ => LinkState::Failed(crate::errors::describe(e)),
     }
 }

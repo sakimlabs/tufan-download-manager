@@ -1,20 +1,20 @@
 //! #142: Scheduler → "Wake the computer to run this queue". The real app, off the screens
-//! (MDM_OFFSCREEN), with a data folder of its own and the lab server on 127.0.0.1: a queue with
+//! (TDM_OFFSCREEN), with a data folder of its own and the lab server on 127.0.0.1: a queue with
 //! the option, "Once at" today, starting 75 s ahead. The computer is never put to sleep: the
 //! test checks that the wake is set a minute before the start (and on Windows that the wake timer
 //! goes off then), that the queue starts at its time and keeps the computer awake while it runs,
 //! and that the wake is cancelled once there is no start left to wake for.
 //!
 //! It opens windows, which needs OpenGL or Direct3D, so it runs on request:
-//! `cargo test -p mdm-app --test wake_timer -- --ignored --nocapture`.
+//! `cargo test -p tdm-app --test wake_timer -- --ignored --nocapture`.
 
 use std::path::Path;
 use std::process::{Child, Command};
 use std::time::{Duration, Instant};
 
-use mdm_labserver::{Config, LabServer};
+use tdm_labserver::{Config, LabServer};
 
-const APP: &str = env!("CARGO_BIN_EXE_misterdownloadmanager");
+const APP: &str = env!("CARGO_BIN_EXE_tufan-download-manager");
 
 /// The app's log so far (every file of `logs/`).
 fn log(data: &Path) -> String {
@@ -91,8 +91,8 @@ async fn the_computer_is_woken_for_the_queue_and_kept_awake_while_it_runs() {
     std::fs::write(data.join("downloads.json"), list.to_string()).unwrap();
     let result = tokio::task::spawn_blocking(move || {
         let mut app = Command::new(APP)
-            .env("MDM_DATA_DIR", &data)
-            .env("MDM_OFFSCREEN", "1")
+            .env("TDM_DATA_DIR", &data)
+            .env("TDM_OFFSCREEN", "1")
             .spawn()
             .unwrap();
         let outcome = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
@@ -158,8 +158,8 @@ async fn the_computer_is_woken_for_the_queue_and_kept_awake_while_it_runs() {
         }));
         let _ = Command::new(APP)
             .arg("/exit")
-            .env("MDM_DATA_DIR", &data)
-            .env("MDM_OFFSCREEN", "1")
+            .env("TDM_DATA_DIR", &data)
+            .env("TDM_OFFSCREEN", "1")
             .status();
         let until = Instant::now() + Duration::from_secs(15);
         while app.try_wait().unwrap().is_none() && Instant::now() < until {

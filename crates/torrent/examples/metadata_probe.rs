@@ -4,14 +4,14 @@
 //! fresh session in a temporary folder, as the app's first torrent does, with everything on
 //! (listening on every address: Windows Firewall asks about this program once).
 //!
-//!   cargo run --release -p mdm-torrent --example metadata_probe -- [options] SOURCE...
+//!   cargo run --release -p tdm-torrent --example metadata_probe -- [options] SOURCE...
 //!
 //! SOURCE: a magnet link, or a .torrent file (looked up as its magnet link, with its trackers).
 //! Options: `--no-trackers` (the DHT alone), `--no-dht` (the trackers alone), `--runs N` (each
 //! source N times), `--wait S` (give up after S seconds, 180 by default, as the app),
 //! `--state DIR` (the session's folder, kept: a later run starts with the DHT nodes and the port
 //! of the one before, as the app's next session does), `--bootstrap HOST:PORT,...` (the DHT's
-//! first nodes instead of MDM's public routers, #650), `--listen-ip ADDR` (listen there only:
+//! first nodes instead of TDM's public routers, #650), `--listen-ip ADDR` (listen there only:
 //! 127.0.0.1 or ::1 keeps Windows Firewall out of it; the DHT then stays on it too, and local
 //! peer discovery is off).
 //! Prints a Markdown table, a row a run; times in seconds from the session's start. RUST_LOG
@@ -19,7 +19,7 @@
 
 use std::time::{Duration, Instant};
 
-use mdm_torrent::{Config, Lookup, LookupStatus, Source, Torrents};
+use tdm_torrent::{Config, Lookup, LookupStatus, Source, Torrents};
 
 #[derive(Default)]
 struct Marks {
@@ -96,8 +96,8 @@ fn magnet_of(source: &str, no_trackers: bool) -> (String, String) {
     let magnet = if source.starts_with("magnet:") {
         source.to_owned()
     } else {
-        let bytes = mdm_torrent::read_file(std::path::Path::new(source)).expect(".torrent read");
-        mdm_torrent::magnet_link(&bytes).expect("a .torrent")
+        let bytes = tdm_torrent::read_file(std::path::Path::new(source)).expect(".torrent read");
+        tdm_torrent::magnet_link(&bytes).expect("a .torrent")
     };
     let magnet = if no_trackers {
         magnet

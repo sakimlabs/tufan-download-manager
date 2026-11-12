@@ -1,5 +1,5 @@
 {
-  "name": "mdm-readme-figures",
+  "name": "tdm-readme-figures",
   "private": true,
   "description": "Builds the README's charts and stat tiles (SVG, light and dark) from the benchmark data: node tools/readme/build.mjs",
   "type": "module",

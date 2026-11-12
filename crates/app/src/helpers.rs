@@ -1,7 +1,7 @@
 //! The first start's offer of the video helpers (user request 2026-11-01): yt-dlp finds a page's
 //! video, ffmpeg joins its picture and sound. Both are asked for once, explained, and downloaded
-//! on Yes (through MDM's own engine, checked against their publishers' signed checksums: see
-//! mdm_tools); Not now leaves them to Tasks → Download video from a page, which offers them again.
+//! on Yes (through TDM's own engine, checked against their publishers' signed checksums: see
+//! tdm_tools); Not now leaves them to Tasks → Download video from a page, which offers them again.
 
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -27,7 +27,7 @@ struct State {
 
 struct Job {
     /// The current helper's bytes.
-    progress: Arc<mdm_tools::update::Progress>,
+    progress: Arc<tdm_tools::update::Progress>,
     state: Arc<Mutex<State>>,
 }
 
@@ -38,19 +38,19 @@ pub struct Helpers {
 }
 
 /// Whether to offer the helpers at this start: never asked, and one of them is missing (ffmpeg
-/// counts only where MDM installs it; elsewhere the system's is used).
+/// counts only where TDM installs it; elsewhere the system's is used).
 pub fn worth_asking() -> bool {
-    let Some(dir) = mdm_tools::tools_dir() else {
+    let Some(dir) = tdm_tools::tools_dir() else {
         return false;
     };
-    mdm_tools::installed(&dir).is_none()
-        || (cfg!(windows) && mdm_tools::ffmpeg::installed(&dir).is_none())
+    tdm_tools::installed(&dir).is_none()
+        || (cfg!(windows) && tdm_tools::ffmpeg::installed(&dir).is_none())
 }
 
 impl Helpers {
     pub fn new() -> Self {
         Helpers {
-            dir: mdm_tools::tools_dir(),
+            dir: tdm_tools::tools_dir(),
             job: None,
         }
     }
@@ -62,11 +62,11 @@ impl Helpers {
             return;
         };
         let mut list = Vec::new();
-        if mdm_tools::installed(&dir).is_none() {
+        if tdm_tools::installed(&dir).is_none() {
             list.push("yt-dlp");
         }
-        // ffmpeg: MDM's own on Windows; elsewhere the system's.
-        if cfg!(windows) && mdm_tools::ffmpeg::installed(&dir).is_none() {
+        // ffmpeg: TDM's own on Windows; elsewhere the system's.
+        if cfg!(windows) && tdm_tools::ffmpeg::installed(&dir).is_none() {
             list.push("ffmpeg");
         }
         let job = Job {
@@ -85,9 +85,9 @@ impl Helpers {
                 }
                 state.lock().unwrap().current = Some((name, k + 1, total));
                 let res = if name == "ffmpeg" {
-                    mdm_tools::ffmpeg::install_latest(&dir, &net, Some(&progress)).await
+                    tdm_tools::ffmpeg::install_latest(&dir, &net, Some(&progress)).await
                 } else {
-                    mdm_tools::install_latest(&dir, &net, Some(&progress)).await
+                    tdm_tools::install_latest(&dir, &net, Some(&progress)).await
                 };
                 let mut s = state.lock().unwrap();
                 match res {
@@ -162,7 +162,7 @@ impl Helpers {
         let p = ui.painter().clone();
         let (ink, muted) = (winui::TEXT(), winui::MUTED());
         let w = 520.0;
-        // The banner: MDM's own logo, what this is for, in one line, and why now.
+        // The banner: TDM's own logo, what this is for, in one line, and why now.
         let extra = winui::banner(
             ui,
             &p,
@@ -182,7 +182,7 @@ impl Helpers {
             && self
                 .dir
                 .as_deref()
-                .and_then(mdm_tools::ffmpeg::installed)
+                .and_then(tdm_tools::ffmpeg::installed)
                 .is_some();
         let rows: [(Icon, &str, String); 3] = [
             (
@@ -205,7 +205,7 @@ impl Helpers {
                     .to_owned()
                 } else {
                     crate::i18n::t(
-                        "Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system MDM uses yours: install ffmpeg with your package manager.",
+                        "Sites send their best quality as separate video and audio, and ffmpeg joins them. On this system TDM uses yours: install ffmpeg with your package manager.",
                     )
                     .to_owned()
                 },
@@ -215,7 +215,7 @@ impl Helpers {
                 // i18n: a promise in the helpers window: the helpers are free, official and checked
                 "Free, official and checked",
                 crate::i18n::t(
-                    "Both are open source. MDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.",
+                    "Both are open source. TDM gets them from their official releases with its own downloader and checks each file's signature before it runs. About 100 MB, once.",
                 )
                 .to_owned(),
             ),
@@ -421,20 +421,20 @@ impl Helpers {
     }
 }
 
-// ---- Video helpers: MDM's own copies or the person's (#51) ------------------------------------
+// ---- Video helpers: TDM's own copies or the person's (#51) ------------------------------------
 
-use mdm_tools::chosen::Helper;
+use tdm_tools::chosen::Helper;
 
 /// Helpers (Download video from a page or a gallery → Helpers...): for yt-dlp, ffmpeg and
-/// gallery-dl (#58), where MDM takes it from (its own copy, or a program of the person's), and the
+/// gallery-dl (#58), where TDM takes it from (its own copy, or a program of the person's), and the
 /// way to choose another: one copy of each for every program that uses them (#51).
 pub struct Programs {
     dir: Option<std::path::PathBuf>,
     /// The helpers as found (read again after each change, not every frame: it reads files).
-    found: [Option<mdm_tools::Installed>; 3],
+    found: [Option<tdm_tools::Installed>; 3],
     /// A chosen program being checked (`--version`), and what it answered.
     checking: Option<(Helper, Answer)>,
-    /// MDM's own yt-dlp or gallery-dl being downloaded in place of the system's (#452, #571),
+    /// TDM's own yt-dlp or gallery-dl being downloaded in place of the system's (#452, #571),
     /// and how that went.
     installing: Option<(Helper, Answer)>,
     error: Option<String>,
@@ -448,7 +448,7 @@ type Answer = Arc<Mutex<Option<Result<(), String>>>>;
 impl Programs {
     pub fn new() -> Self {
         let mut p = Programs {
-            dir: mdm_tools::tools_dir(),
+            dir: tdm_tools::tools_dir(),
             found: [None, None, None],
             checking: None,
             installing: None,
@@ -463,15 +463,15 @@ impl Programs {
             return;
         };
         self.found = [
-            mdm_tools::installed(dir),
-            mdm_tools::ffmpeg::installed(dir),
-            mdm_tools::gallery::installed(dir),
+            tdm_tools::installed(dir),
+            tdm_tools::ffmpeg::installed(dir),
+            tdm_tools::gallery::installed(dir),
         ];
     }
 
-    /// MDM's own yt-dlp or gallery-dl in place of the system's (#452, #571): downloaded and
-    /// checked as usual, from then on the one used (`mdm_tools::installed`,
-    /// `mdm_tools::gallery::installed`). It goes on if the window is closed.
+    /// TDM's own yt-dlp or gallery-dl in place of the system's (#452, #571): downloaded and
+    /// checked as usual, from then on the one used (`tdm_tools::installed`,
+    /// `tdm_tools::gallery::installed`). It goes on if the window is closed.
     fn install_own(
         &mut self,
         h: Helper,
@@ -484,8 +484,8 @@ impl Programs {
         let net = crate::settings::own_net();
         rt.spawn(async move {
             let res = match h {
-                Helper::GalleryDl => mdm_tools::gallery::install_latest(&dir, &net, None).await,
-                _ => mdm_tools::install_latest(&dir, &net, None).await,
+                Helper::GalleryDl => tdm_tools::gallery::install_latest(&dir, &net, None).await,
+                _ => tdm_tools::install_latest(&dir, &net, None).await,
             };
             *out.lock().unwrap() = Some(res.map(|_| ()).map_err(|e| crate::errors::tools(&e)));
             wake.request_repaint();
@@ -521,7 +521,7 @@ impl Programs {
                 let slot = Arc::new(Mutex::new(None));
                 let (out, wake) = (slot.clone(), ctx.clone());
                 std::thread::spawn(move || {
-                    let res = mdm_tools::chosen::choose(&dir, h, &path)
+                    let res = tdm_tools::chosen::choose(&dir, h, &path)
                         .map(|_| ())
                         .map_err(|e| crate::errors::tools(&e));
                     *out.lock().unwrap() = Some(res);
@@ -534,7 +534,7 @@ impl Programs {
         window(
             ctx,
             "video-helpers",
-            // i18n: window title: where MDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
+            // i18n: window title: where TDM takes its helper programs (yt-dlp, ffmpeg, gallery-dl) from
             "Helpers",
             [500.0, 292.0],
             false,
@@ -559,39 +559,39 @@ impl Programs {
             let chosen = self
                 .dir
                 .as_deref()
-                .and_then(|d| mdm_tools::chosen::chosen(d, h));
+                .and_then(|d| tdm_tools::chosen::chosen(d, h));
             // One of the person's, maybe passed over (a gallery-dl too old, #236).
             let mine = chosen.is_some();
             let too_old = chosen
                 .as_ref()
-                .filter(|c| h == Helper::GalleryDl && mdm_tools::gallery::too_old(&c.version));
+                .filter(|c| h == Helper::GalleryDl && tdm_tools::gallery::too_old(&c.version));
             let checking = self.checking.as_ref().is_some_and(|(c, _)| *c == h);
             let downloading = self.installing.as_ref().is_some_and(|(i, _)| *i == h);
-            // The system's yt-dlp or gallery-dl may be old: MDM's own copy can replace it (#452,
-            // #571), where MDM has one for this system (gallery-dl: none on macOS).
+            // The system's yt-dlp or gallery-dl may be old: TDM's own copy can replace it (#452,
+            // #571), where TDM has one for this system (gallery-dl: none on macOS).
             let replaceable = match h {
                 Helper::YtDlp => true,
-                Helper::GalleryDl => mdm_tools::gallery::asset().is_some(),
+                Helper::GalleryDl => tdm_tools::gallery::asset().is_some(),
                 Helper::Ffmpeg => false,
             };
-            let system = replaceable && found.is_some_and(mdm_tools::Installed::is_system);
+            let system = replaceable && found.is_some_and(tdm_tools::Installed::is_system);
             let status = match (too_old, found) {
                 _ if downloading => {
-                    // i18n: Video helpers: MDM's own yt-dlp is being downloaded
-                    crate::i18n::t("Downloading MDM's own copy...").to_owned()
+                    // i18n: Video helpers: TDM's own yt-dlp is being downloaded
+                    crate::i18n::t("Downloading TDM's own copy...").to_owned()
                 }
                 _ if checking => {
                     // i18n: Video helpers: a program just chosen is being checked
                     crate::i18n::t("Checking the program...").to_owned()
                 }
                 (Some(old), _) => crate::i18n::fmt(
-                    // i18n: Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest MDM can use
+                    // i18n: Video helpers: the person's own gallery-dl is too old and not used; {version} = its version, {oldest} = the oldest TDM can use
                     crate::i18n::t(
-                        "Your own program ({version}) is too old: MDM needs {oldest} or newer",
+                        "Your own program ({version}) is too old: TDM needs {oldest} or newer",
                     ),
                     &[
                         ("version", &old.version),
-                        ("oldest", mdm_tools::gallery::OLDEST),
+                        ("oldest", tdm_tools::gallery::OLDEST),
                     ],
                 ),
                 (None, Some(i)) if mine => crate::i18n::fmt(
@@ -608,8 +608,8 @@ impl Programs {
                     &[("path", &crate::i18n::ltr(&i.exe.display().to_string()))],
                 ),
                 (None, Some(i)) => crate::i18n::fmt(
-                    // i18n: Video helpers: {version} = the version of MDM's own copy
-                    crate::i18n::t("Mister Download Manager's own copy, version {version}"),
+                    // i18n: Video helpers: {version} = the version of TDM's own copy
+                    crate::i18n::t("Tufan Download Manager's own copy, version {version}"),
                     &[("version", &i.version)],
                 ),
                 // i18n: Video helpers: no copy of this helper yet
@@ -631,7 +631,7 @@ impl Programs {
                 &p,
                 &[
                     ("Use another program...", 14.0, 180.0),
-                    ("Use MDM's own copy", 202.0, 180.0),
+                    ("Use TDM's own copy", 202.0, 180.0),
                 ],
                 8.0,
                 486.0,
@@ -664,8 +664,8 @@ impl Programs {
             if winui::button(
                 ui,
                 r(o, own_at.0, y - o.y + 46.0, own_at.1, 21.0),
-                // i18n: Video helpers: button: go back to the copy MDM downloads and checks itself
-                "Use MDM's own copy",
+                // i18n: Video helpers: button: go back to the copy TDM downloads and checks itself
+                "Use TDM's own copy",
                 if (mine || system) && !busy {
                     ButtonKind::Normal
                 } else {
@@ -678,7 +678,7 @@ impl Programs {
                 && let Some(dir) = self.dir.clone()
             {
                 if mine {
-                    self.error = mdm_tools::chosen::forget(&dir, h)
+                    self.error = tdm_tools::chosen::forget(&dir, h)
                         .err()
                         .map(|e| crate::errors::tools(&e));
                     self.look();

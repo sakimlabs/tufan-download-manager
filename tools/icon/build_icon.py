@@ -1,4 +1,4 @@
-"""Builds every app icon size from art/Mister Download Manager.png (made with ChatGPT).
+"""Builds every app icon size from art/Tufan Download Manager.png (made with ChatGPT).
 
 - 48 px and up: the full artwork (globe, hat, moustache, arrow and pixel trail).
 - 16-32 px: a tighter crop on the globe, hat and moustache; the fine trail and thin arrow
@@ -6,7 +6,7 @@
 - The source's solid areas are ~1 % transparent (alpha 252-253); they are made opaque so
   the taskbar never shows through.
 
-Writes crates/app/assets/icons/app/mdm-<size>.png, MDM.ico (all sizes) and the
+Writes crates/app/assets/icons/app/tdm-<size>.png, TDM.ico (all sizes) and the
 browser extension's icons. Run from the repository root: python -I tools/icon/build_icon.py
 """
 
@@ -15,7 +15,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "art" / "Mister Download Manager.png"
+SRC = ROOT / "art" / "Tufan Download Manager.png"
 APP = ROOT / "crates" / "app" / "assets" / "icons" / "app"
 EXT = ROOT / "extension" / "icons"
 SIZES = [16, 20, 24, 32, 48, 64, 128, 256]
@@ -46,7 +46,7 @@ def main() -> None:
     for size in SIZES:
         base = tight if size <= 32 else full
         icons[size] = base.resize((size, size), Image.LANCZOS)
-        icons[size].save(APP / f"mdm-{size}.png")
+        icons[size].save(APP / f"tdm-{size}.png")
     big = icons[256]
     big.save(
         APP / "mdm.ico",

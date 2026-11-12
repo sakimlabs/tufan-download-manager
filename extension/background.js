@@ -1,8 +1,8 @@
-// Mister Download Manager's browser extension: the background part (Chrome, Edge, Brave, Opera
+// Tufan Download Manager's browser extension: the background part (Chrome, Edge, Brave, Opera
 // and Vivaldi run it as a service worker, Firefox as a background script; one file for both, see
 // manifest.json and manifest.firefox.json).
 //
-// Downloads of the file types Mister Download Manager takes are handed to it: the browser's own
+// Downloads of the file types Tufan Download Manager takes are handed to it: the browser's own
 // download is cancelled, and the address, referrer, cookies, User-Agent, file name, size, type
 // and (for a form) the posted body go to the app through the native messaging host
 // (crates/nmhost). When it can't be reached the download stays with the browser, so nothing is
@@ -11,9 +11,9 @@
 // (the rules, the status, the pause) is kept in storage, not in memory.
 
 const ext = globalThis.browser ?? globalThis.chrome;
-const HOST = "com.misterdownloadmanager.host";
+const HOST = "com.tufan-download-manager.host";
 const VERSION = ext.runtime.getManifest().version;
-const HELP = "https://misterdownloadmanager.com/help/browser-help.html";
+const HELP = "https://tufan-download-manager.com/help/browser-help.html";
 const action = ext.action ?? ext.browserAction;
 // Safari has no downloads API at all (nor proxy): it can't take a download from the browser, so
 // the links clicked in a page are handed over instead (`link`, below; page.js).
@@ -32,7 +32,7 @@ const t = (key, ...subs) => ext.i18n.getMessage(key, subs) || key;
 
 // ---- the native host ---------------------------------------------------------------------
 
-// How long an answer may take: the host starts Mister Download Manager when it isn't running
+// How long an answer may take: the host starts Tufan Download Manager when it isn't running
 // and waits for it (crates/nmhost START_WAIT); the browser's download waits meanwhile.
 const HOST_WAIT = 30000;
 
@@ -59,7 +59,7 @@ function hostProblem(error) {
 // browser's status, and the rules depend on the browser). Never throws: failures come back as
 // `{ok: false, why}`.
 async function native(message, ms = HOST_WAIT) {
-  // A download for another MDM (a server, #157): sent there, not to this computer's.
+  // A download for another TDM (a server, #157): sent there, not to this computer's.
   if (typeof message.url === "string" && message.url) {
     const target = await remoteTarget();
     if (target) return remoteSend(target, message);
@@ -75,15 +75,15 @@ async function native(message, ms = HOST_WAIT) {
     return reply;
   } catch (e) {
     const why = hostProblem(e);
-    // With another MDM chosen, this computer's needn't be there.
+    // With another TDM chosen, this computer's needn't be there.
     if (!(await remoteTarget())) await noteStatus(why);
     return { ok: false, why, error: String((e && e.message) || e) };
   }
 }
 
-// ---- another MDM (#157): a server's, through its remote control ------------------------------
+// ---- another TDM (#157): a server's, through its remote control ------------------------------
 
-// {url, token} while downloads go to another MDM instead of this computer's, else null.
+// {url, token} while downloads go to another TDM instead of this computer's, else null.
 async function remoteTarget() {
   const { remote } = await ext.storage.local.get({ remote: null });
   return remote && remote.url && remote.token ? remote : null;
@@ -117,7 +117,7 @@ async function remoteCall(base, path, body, token) {
   }
 }
 
-// A download handed to the other MDM: its address only (a site's sign-in stays in this browser).
+// A download handed to the other TDM: its address only (a site's sign-in stays in this browser).
 async function remoteSend(target, message) {
   const r = await remoteCall(target.url, "api/add", { url: message.url, start: true }, target.token);
   if (r.status === 200 && r.body && !r.body.error) return { ok: true };
@@ -126,11 +126,11 @@ async function remoteSend(target, message) {
 }
 
 // The file types the app takes by default (mdm_ipc::capture::DEFAULT_AUTO_TYPES; a test keeps
-// them the same): what is caught for another MDM when this computer has none to ask.
+// them the same): what is caught for another TDM when this computer has none to ask.
 const DEFAULT_TYPES =
   "00* 3DM 3DS 3GP 3MF 7Z AAB AAC ABC ACE AFDESIGN AFPHOTO AI AIF AIFF APE APK APKM APKS APPIMAGE APPX APPXBUNDLE ARJ ARROW ARW ASF AU AVI AVRO AZW AZW3 BAK BAM BIN BLEND BZ BZ2 C4D CAB CAF CBR CBZ CCD CHD CKPT CPIO CR2 CR3 CRAM CSO DAE DAT DCM DDS DEB DFF DIVX DJVU DMG DNG DOC DOCX DSF DWG DXF EPS EPUB EXE EXR F3D F4V FASTA FASTQ FB2 FBX FEATHER FIG FITS FLAC FLATPAK FQ GCODE GCZ GEM GGML GGUF GLB GLTF GPKG GRIB GRIB2 GZ GZIP H5 HDF5 HDR IGES IGS IMG INDD IPA ISO ISZ JAR JOBLIB JSONL KERAS KRA LAS LAZ LLAMAFILE LWO LZ LZ4 LZH LZMA M2T M2TS M2V M4A M4B M4V MA MAT MAX MB MBTILES MDF MDS MID MIDI MKA MKV MLMODEL MOBI MOV MP3 MP4 MPA MPE MPEG MPG MSI MSIX MSIXBUNDLE MSP MSU MTS MXF NC NDJSON NEF NEMO NII NPY NPZ NRG NSP NSZ NUPKG OBJ ODP ODS ODT OGG OGM OGV ONNX OPUS ORC ORF OTF OVA OVF PAK PARQUET PB PBF PDF PICKLE PK3 PK4 PKG PKL PLJ PLY POTX PPS PPSX PPT PPTX PSB PSD PT PTH QCOW QCOW2 QT R0* R1* R2* R3* R4* R5* R6* R7* R8* R9* RA RAF RAR RDS RM RMVB RPM RTF RUN RVZ RW2 SAFETENSORS SEA SF2 SFZ SHP SIT SITX SKETCH SKP SLDASM SLDPRT SNAP SQLITE SQLITE3 STEP STL STP TAR TBZ TBZ2 TFLITE TGA TGZ TIF TIFF TLZ TORRENT TTA TTC TTF TXZ TZST UNITYPACKAGE USD USDA USDC USDZ VDB VDI VHD VHDX VMDK VOB VPK VSIX WAV WBFS WEBM WHL WIM WMA WMV WRL WTV WUA WV X3D XAPK XCF XCI XLS XLSB XLSM XLSX XZ Z Z0* ZIP ZIPX ZPR ZST ZTL";
 
-// Pair with the MDM at `address` with a code it shows; {ok} or {ok: false, why, left}.
+// Pair with the TDM at `address` with a code it shows; {ok} or {ok: false, why, left}.
 async function remotePair(address, code) {
   let base;
   try {
@@ -244,7 +244,7 @@ async function askRules() {
     await syncOpenedRule();
     return rules;
   }
-  // No MDM on this computer, another one chosen: the app's default file types (the browser
+  // No TDM on this computer, another one chosen: the app's default file types (the browser
   // keeps the files it would open).
   if (await remoteTarget()) {
     rules = { types: DEFAULT_TYPES, capture: true, excludedSites: "", excludedAddresses: [], opened: false, minKb: 0, at: Date.now() };
@@ -315,7 +315,7 @@ function excludedBy(r, url) {
   return "";
 }
 
-// ---- downloads left to the browser: why, for the popup and MDM's log (#208) ----------------
+// ---- downloads left to the browser: why, for the popup and TDM's log (#208) ----------------
 
 // A host's refusal by Options names the rule (`declined`); one before #208 says it only in its
 // error text, by the rule's Rust name (mdm_ipc::capture::Declined).
@@ -343,7 +343,7 @@ function siteOf(url) {
 
 // The last download left to the browser by Options (or because the extension may not read the
 // site): kept for the popup ({why, name, site, at}; a private window's without its name or
-// site), and, when the extension decided alone (`told` false), told to the host for MDM's log.
+// site), and, when the extension decided alone (`told` false), told to the host for TDM's log.
 // The host logs its own refusals itself. A download taken later clears it.
 async function noteLeft(why, name, url, incognito, told) {
   const declined = incognito ? { why, name: "", site: "", at: Date.now() } : { why, name, site: siteOf(url), at: Date.now() };
@@ -1279,7 +1279,7 @@ async function handOff(d) {
 
 // Colab's runtime proxy uses an ephemeral token tied to the browser's partitioned session.
 // Only the actual proxy transfer URL is left to the browser: a normal file linked from a Colab
-// notebook must still be capturable by MDM (#603).
+// notebook must still be capturable by TDM (#603).
 function colabRuntimeProxy(...urls) {
   return urls.some((value) => {
     if (!value) return false;
@@ -1299,7 +1299,7 @@ function colabRuntimeProxy(...urls) {
 
 // The file name to offer the app the download under (`{name}`), or why Options leave it to
 // the browser (`{left, name}`), or null: the browser keeps it and there is nothing to say (not a
-// web address, paused, Alt held, a form that can't be posted again, MDM not reached).
+// web address, paused, Alt held, a form that can't be posted again, TDM not reached).
 async function candidate(item, url) {
   if (!/^https?:/i.test(url)) return null; // blob:, data:, file: stay the browser's
   const { paused } = await ext.storage.local.get({ paused: false });
@@ -1325,7 +1325,7 @@ async function candidate(item, url) {
   return { name };
 }
 
-// Why it stays with the browser, said (the popup, MDM's log).
+// Why it stays with the browser, said (the popup, TDM's log).
 function leftAlone(c, item, url) {
   if (c && c.left) noteLeft(c.left, c.name, firstUrl(item) || url, item.incognito, false).catch(() => {});
 }
@@ -1739,9 +1739,9 @@ function createMenus() {
   ext.contextMenus.removeAll(() => {
     const add = (id, contexts, key) =>
       ext.contextMenus.create({ id, title: t(key), contexts }, () => void ext.runtime.lastError);
-    add("mdm-link", ["link", "video", "audio", "image"], "menu");
-    add("mdm-selected", ["selection"], "menu_selected");
-    add("mdm-all", ["page"], "menu_all");
+    add("tdm-link", ["link", "video", "audio", "image"], "menu");
+    add("tdm-selected", ["selection"], "menu_selected");
+    add("tdm-all", ["page"], "menu_all");
   });
 }
 
@@ -1771,7 +1771,7 @@ function pageLinks(selectedOnly) {
 }
 
 // When the user asked and it couldn't be done: the help page's section opens beside (a link
-// MDM refused has none of its own: the connection's).
+// TDM refused has none of its own: the connection's).
 const SECTIONS = ["not-installed", "forbidden", "not-running", "host-failed", "too-large", "update-app", "options"];
 function explain(why) {
   const at = SECTIONS.includes(why) ? why : "host-failed";
@@ -1781,7 +1781,7 @@ function explain(why) {
 ext.contextMenus.onClicked.addListener(async (info, tab) => {
   const incognito = Boolean(tab && tab.incognito);
   const storeId = tab && tab.cookieStoreId;
-  if (info.menuItemId === "mdm-link") {
+  if (info.menuItemId === "tdm-link") {
     const url = info.linkUrl || info.srcUrl;
     // A player's own stream (blob:, a MediaSource) or a stream's manifest: the Download video
     // window, which reads streams (a manifest downloaded as a file is only a short list).
@@ -1812,19 +1812,19 @@ ext.contextMenus.onClicked.addListener(async (info, tab) => {
       if (!reply.ok && reply.why !== "options") explain(reply.why);
       return;
     }
-    // ftp links too: browsers no longer download them, MDM does.
+    // ftp links too: browsers no longer download them, TDM does.
     if (!url || !/^(https?|ftps?|ftpes):/i.test(url)) return;
     const reply = await handOff({ url, referrer: info.pageUrl, incognito, storeId, explicit: true });
     if (!reply.ok) explain(reply.why);
     return;
   }
-  if ((info.menuItemId === "mdm-selected" || info.menuItemId === "mdm-all") && tab) {
+  if ((info.menuItemId === "tdm-selected" || info.menuItemId === "tdm-all") && tab) {
     let links = [];
     try {
       const [res] = await ext.scripting.executeScript({
         target: { tabId: tab.id, frameIds: [info.frameId || 0] },
         func: pageLinks,
-        args: [info.menuItemId === "mdm-selected"],
+        args: [info.menuItemId === "tdm-selected"],
       });
       links = (res && res.result) || [];
     } catch {

@@ -1,5 +1,5 @@
 //! Where a download's server is (#140): the country of an IP address, from DB-IP's IP to Country
-//! Lite database (CC BY 4.0: "IP Geolocation by DB-IP", <https://db-ip.com>), shipped with MDM as a
+//! Lite database (CC BY 4.0: "IP Geolocation by DB-IP", <https://db-ip.com>), shipped with TDM as a
 //! compressed range table (`tools/geo/build.py`). Addresses are looked up here, on this computer;
 //! none is ever sent anywhere. And the countries' flags, in one picture (`examples/flag_atlas.rs`,
 //! lipis/flag-icons, MIT).
@@ -107,7 +107,7 @@ fn load() -> Option<Table> {
     lzma_rust2::XzReader::new(TABLE, false)
         .read_to_end(&mut data)
         .ok()?;
-    if data.get(..7)? != b"MDMGEO\x01" {
+    if data.get(..7)? != b"TDMGEO\x01" {
         return None;
     }
     let n = *data.get(7)? as usize;

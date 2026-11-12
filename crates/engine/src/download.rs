@@ -83,13 +83,13 @@ pub struct Options {
     /// The download's User-Agent: by default the automatic one (`agent::automatic`, the default
     /// browser's), else the user's or the one a browser handed over.
     pub user_agent: String,
-    /// `user_agent` is MDM's automatic one, not one the user set or a browser handed over: a
+    /// `user_agent` is TDM's automatic one, not one the user set or a browser handed over: a
     /// site that wants an agent of its own (Google Drive's hosts, `sites::user_agent`) gets it.
     /// [`Options::speak_as`] sets another agent and clears this.
     pub automatic_agent: bool,
     /// Asked with instead of `user_agent` when the server refuses the first request with 403
     /// (#372): a browser's User-Agent on a connection that isn't a browser's trips some sites'
-    /// bot checks (Cloudflare, seen on a public PDF), while MDM's own passes. Set when
+    /// bot checks (Cloudflare, seen on a public PDF), while TDM's own passes. Set when
     /// `user_agent` is the browser's. A later 403 is left to the download.
     pub agent_fallback: Option<String>,
     /// From the browser: the address its own download of this file ended at, its redirects
@@ -156,7 +156,7 @@ pub struct Options {
     /// quarantine attribute — stays with the finished file.
     pub on_file_created: Option<FileHook>,
     /// From the browser: the MIME type its own download had. A web page where it had another
-    /// type is the server refusing MDM (a firewall's "The requested URL was rejected"), an error
+    /// type is the server refusing TDM (a firewall's "The requested URL was rejected"), an error
     /// and never saved as the file (#533, `expects_other_file`).
     pub expected_type: Option<String>,
     /// Tests: a disk whose flush takes this long and holds every write to the file meanwhile
@@ -262,7 +262,7 @@ impl Options {
     }
 
     /// A site's own User-Agent may replace this download's (`request_agent`): the agent is the
-    /// automatic one, or MDM's former one (#372's fallback, D-007), as before #668.
+    /// automatic one, or TDM's former one (#372's fallback, D-007), as before #668.
     fn site_agent(&self) -> bool {
         self.automatic_agent || self.user_agent == crate::agent::IE11_USER_AGENT
     }
@@ -647,7 +647,7 @@ fn post_for(opts: &Options, as_get: bool, headers: &mut HeaderMap) -> Option<Byt
 
 /// A request for `url` with `headers`: a POST with `post` as its body, else a GET. The client
 /// sends the download's User-Agent (`Options::user_agent`); a site that wants a browser's gets
-/// it instead when `site_agent` (`Options::site_agent`: the agent is MDM's automatic one).
+/// it instead when `site_agent` (`Options::site_agent`: the agent is TDM's automatic one).
 fn build(
     client: &Client,
     url: Url,
@@ -670,7 +670,7 @@ fn build(
 
 /// The User-Agent a request to `url` carries instead of the download's own: a site's browser
 /// agent (`sites::user_agent`: Google Drive's hosts), only when `site_agent` (the download's is
-/// MDM's automatic one, `Options::site_agent`). A browser's agent handed over with the download,
+/// TDM's automatic one, `Options::site_agent`). A browser's agent handed over with the download,
 /// or one the user set, always wins.
 fn request_agent(site_agent: bool, url: &Url) -> Option<&'static str> {
     site_agent.then(|| sites::user_agent(url)).flatten()
@@ -850,7 +850,7 @@ pub async fn probe_kept(
     let seen = Arc::new(crate::server::ServerSeen::default());
     let client = client(opts, &target, &as_get, &seen)?;
     let expects = expects_other_file(opts.expected_type.as_deref(), None, &url);
-    // A browser's User-Agent refused (#372): asked once more as MDM.
+    // A browser's User-Agent refused (#372): asked once more as TDM.
     let (client, asked) = match get(
         &client,
         target.clone(),
@@ -1095,7 +1095,7 @@ impl Download {
     }
 }
 
-/// Download `url` to `path` and wait for it: MDM's own downloads that aren't in the list (its
+/// Download `url` to `path` and wait for it: TDM's own downloads that aren't in the list (its
 /// helpers, its updates, a crash report's symbols) use the engine like every download. An
 /// earlier attempt cut off at `path` resumes; `progress(done, total)` while it runs.
 pub async fn fetch(
@@ -1450,7 +1450,7 @@ fn client(
             }
             b
         }
-        // The script's first route MDM can use: a proxy, or straight to the server.
+        // The script's first route TDM can use: a proxy, or straight to the server.
         (Proxy::Pac { script }, _) => {
             let first = crate::pac::routes(script, url).ok().and_then(|routes| {
                 routes.into_iter().find_map(|r| match r {
@@ -2466,7 +2466,7 @@ struct FirstAsk<'a> {
     cancel: &'a CancellationToken,
 }
 
-/// A first request's client, its answer (or why not) and whether it went as MDM (#372).
+/// A first request's client, its answer (or why not) and whether it went as TDM (#372).
 type FirstAnswer = (
     Client,
     Result<((Response, HeaderMap), Duration), Error>,
@@ -2474,8 +2474,8 @@ type FirstAnswer = (
 );
 
 impl FirstAsk<'_> {
-    /// `first_get` at `url` with its client; asked once more as MDM when the browser's
-    /// User-Agent is refused (#372, `opts` then goes on as MDM: the third value says so).
+    /// `first_get` at `url` with its client; asked once more as TDM when the browser's
+    /// User-Agent is refused (#372, `opts` then goes on as TDM: the third value says so).
     async fn at(
         &self,
         opts: &mut Options,
@@ -2486,10 +2486,10 @@ impl FirstAsk<'_> {
         let client0 = client(opts, url, self.as_get, self.seen)?;
         match first_get(&client0, url, headers, opts, expects, shared, cancel).await {
             Err(e) if agent_refused(&e) && opts.agent_fallback.is_some() => {
-                // #372: the rest of the download goes as MDM too.
+                // #372: the rest of the download goes as TDM too.
                 opts.user_agent = opts.agent_fallback.take().unwrap_or_default();
                 shared.event(
-                    "The server refused the browser's User-Agent; asking as Mister Download Manager",
+                    "The server refused the browser's User-Agent; asking as Tufan Download Manager",
                 );
                 let client1 = client(opts, url, self.as_get, self.seen)?;
                 let first = first_get(&client1, url, headers, opts, expects, shared, cancel).await;
@@ -3955,7 +3955,7 @@ mod tests {
     fn drive_gets_a_browsers_agent_and_only_drive() {
         let u = |s: &str| Url::parse(s).unwrap();
         let browser = Some(sites::gdrive::USER_AGENT);
-        // MDM's automatic agent (the default browser's, #668), by default.
+        // TDM's automatic agent (the default browser's, #668), by default.
         let auto = Options::default();
         assert!(auto.automatic_agent && auto.site_agent());
         for drive in [
@@ -3991,7 +3991,7 @@ mod tests {
                 None
             );
         }
-        // MDM's former agent, asked with when a browser's is refused (#372), still gets it.
+        // TDM's former agent, asked with when a browser's is refused (#372), still gets it.
         let mut fallback = Options::default();
         fallback.speak_as(crate::agent::IE11_USER_AGENT.to_owned());
         assert!(fallback.site_agent());

@@ -1,4 +1,4 @@
-//! Real-Debrid against the lab server's fake (labserver `debrid`), end to end through MDM's
+//! Real-Debrid against the lab server's fake (labserver `debrid`), end to end through TDM's
 //! engine: the account, the host list, the unlock, the download, the device sign-in, and the
 //! service's refusals. The fake host `hoster.test` resolves nowhere: a download that completes
 //! came through the service's direct link.
@@ -6,9 +6,9 @@
 use std::sync::Arc;
 use std::time::Duration;
 
-use mdm_debrid::{Account, Credential, Debrid, Fault, Http, ServiceKind, Services, check, signin};
-use mdm_engine::{Destination, Download, Error, Options, Refusal, Request, ServiceFault};
-use mdm_labserver::{Config, LabServer, content, debrid::seed};
+use tdm_debrid::{Account, Credential, Debrid, Fault, Http, ServiceKind, Services, check, signin};
+use tdm_engine::{Destination, Download, Error, Options, Refusal, Request, ServiceFault};
+use tdm_labserver::{Config, LabServer, content, debrid::seed};
 use url::Url;
 
 async fn lab() -> (LabServer, Arc<Http>) {
@@ -55,7 +55,7 @@ async fn download(d: &Debrid, link: &str) -> Result<std::path::PathBuf, Error> {
 
 fn tempfile_dir() -> std::path::PathBuf {
     let d = std::env::temp_dir().join(format!(
-        "mdm-debrid-test-{}-{}",
+        "tdm-debrid-test-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)

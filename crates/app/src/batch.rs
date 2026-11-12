@@ -54,11 +54,11 @@ impl Batch {
         }
     }
 
-    /// The clipboard's text as the address, when it is one MDM downloads and the box is still
+    /// The clipboard's text as the address, when it is one TDM downloads and the box is still
     /// empty (nothing typed meanwhile).
     fn fill_from_clipboard(&mut self, clip: &str) {
         let clip = clip.trim();
-        if self.address.is_empty() && url::Url::parse(clip).is_ok_and(|u| mdm_engine::supported(&u))
+        if self.address.is_empty() && url::Url::parse(clip).is_ok_and(|u| tdm_engine::supported(&u))
         {
             self.address = clip.to_owned();
         }
@@ -122,7 +122,7 @@ impl Batch {
         let urls: Vec<url::Url> = parts
             .iter()
             .filter_map(|p| crate::model::parse_address(&format!("{head}{p}{tail}")).ok())
-            .filter(mdm_engine::supported)
+            .filter(tdm_engine::supported)
             .collect();
         if urls.is_empty() {
             // i18n: why Batch download's OK is greyed
@@ -194,7 +194,7 @@ impl Batch {
             o.x + 11.0,
             o.y + 17.0,
             crate::i18n::t(
-                "It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to MDM download queue. Use the asterisk wildcard for the file name pattern.",
+                "It's possible to add a group of sequential file names like img001.jpg, img002.jpg, etc.,\nimg100.jpg to TDM download queue. Use the asterisk wildcard for the file name pattern.",
             ),
             LIGHT_TEXT(),
             o.x + 470.0,
@@ -328,7 +328,7 @@ impl Batch {
 
         // Preview: first, second and last file.
         let name = |i: Option<&url::Url>| {
-            i.map(|u| mdm_engine::naming::file_name(None, u))
+            i.map(|u| tdm_engine::naming::file_name(None, u))
                 .unwrap_or_default()
         };
         let rows = [
@@ -456,7 +456,7 @@ mod tests {
     }
 
     /// #661: the clipboard's address comes a frame or more after the window opens: it fills
-    /// an empty box only, and only with an address MDM downloads.
+    /// an empty box only, and only with an address TDM downloads.
     #[test]
     fn the_clipboard_fills_only_an_empty_box() {
         let mut b = batch("");

@@ -2,7 +2,7 @@
 //! (`.ef2`), and downloads from either. IDM's import finds every web address in a file and shows
 //! them to check before they are added; so does ours (in Link grabber, grabber.rs). An `.ef2` file holds one block per
 //! download — `<`, the address, `referer: …` / `cookie: …` / `User-Agent: …` lines, `>` — so a
-//! list moves between IDM and MDM with its request context.
+//! list moves between IDM and TDM with its request context.
 
 use crate::model::Item;
 
@@ -93,7 +93,7 @@ fn ef2_blocks(text: &str) -> Vec<Imported> {
 }
 
 fn downloadable(url: &str) -> bool {
-    url::Url::parse(url).is_ok_and(|u| mdm_engine::supported(&u))
+    url::Url::parse(url).is_ok_and(|u| tdm_engine::supported(&u))
 }
 
 /// Every http(s) and ftp(s) address in free text (a page saved as text, a list, a mail).

@@ -1,6 +1,6 @@
-//! Mister Download Manager's command channel (shared by the app, its command line and the browser host).
+//! Tufan Download Manager's command channel (shared by the app, its command line and the browser host).
 //! Single-instance command channel. The running app listens on a localhost port and writes
-//! `{port, token}` to `%APPDATA%\misterdownloadmanager\ipc.json`; a second launch (IDM-style command line)
+//! `{port, token}` to `%APPDATA%\tufan-download-manager\ipc.json`; a second launch (IDM-style command line)
 //! or the browser's native messaging host sends one JSON line per command, carrying the token.
 //! Only connections from 127.0.0.1 with the right token are accepted.
 
@@ -83,14 +83,14 @@ pub struct Command {
     /// The remote control: an uploaded .torrent file's bytes (never read from a request line).
     #[serde(skip)]
     pub torrent_file: Option<Vec<u8>>,
-    /// The remote control (#157, `misterdownloadmanager-cli pair`): show a new pairing code;
+    /// The remote control (#157, `tufan-download-manager-cli pair`): show a new pairing code;
     /// answered with it, the page's addresses and a QR code to scan ([`api::PairAnswer`]).
     pub pair: bool,
     /// `/exit` (beyond IDM): the running app saves and quits (the installer, before an upgrade
     /// or an uninstall). Starts nothing when no app runs.
     pub exit: bool,
     /// `/startup` (beyond IDM): started with the session (Options → General → Launch on
-    /// startup, or the installer's "Start when Windows starts", #226): MDM starts in the
+    /// startup, or the installer's "Start when Windows starts", #226): TDM starts in the
     /// notification area, its window hidden. Changes nothing in a running app.
     pub startup: bool,
     /// `/show <window>` (beyond IDM): the running app opens one of its windows by name, for
@@ -211,15 +211,15 @@ struct Envelope {
 /// The data folder a headless run was given (`--data`, #157), before anything reads it.
 static DATA_DIR: std::sync::OnceLock<PathBuf> = std::sync::OnceLock::new();
 
-/// Use `dir` as the data folder from now on (over `MDM_DATA_DIR`): `--headless --data <dir>`.
+/// Use `dir` as the data folder from now on (over `TDM_DATA_DIR`): `--headless --data <dir>`.
 pub fn set_data_dir(dir: PathBuf) {
     let _ = DATA_DIR.set(dir);
 }
 
-/// The app's data folder, `%APPDATA%\misterdownloadmanager` (list, settings, channel, crash
+/// The app's data folder, `%APPDATA%\tufan-download-manager` (list, settings, channel, crash
 /// log). The folder of the app's former codename, `idmnext`, is moved here once.
 ///
-/// `MDM_DATA_DIR` overrides it (a separate instance with its own list and channel: tests,
+/// `TDM_DATA_DIR` overrides it (a separate instance with its own list and channel: tests,
 /// screenshots). Portable mode: a writable `data` folder next to the program holds it all.
 ///
 /// Worked out once per run and kept (#565): the window asks for it on every tick (torrents'
@@ -231,14 +231,14 @@ pub fn data_dir() -> Option<PathBuf> {
     }
     static RESOLVED: std::sync::OnceLock<Option<PathBuf>> = std::sync::OnceLock::new();
     once(&RESOLVED, || {
-        if let Some(dir) = std::env::var_os("MDM_DATA_DIR") {
+        if let Some(dir) = std::env::var_os("TDM_DATA_DIR") {
             return Some(PathBuf::from(dir));
         }
         if let Some(dir) = portable_dir() {
             return Some(dir);
         }
         let base = dirs::data_dir()?;
-        let dir = base.join("misterdownloadmanager");
+        let dir = base.join("tufan-download-manager");
         let legacy = base.join("idmnext");
         if !dir.exists() && legacy.is_dir() {
             let _ = std::fs::rename(&legacy, &dir);
@@ -347,7 +347,7 @@ impl std::fmt::Display for SendError {
     }
 }
 
-/// Send `cmd` to a running Mister Download Manager.
+/// Send `cmd` to a running Tufan Download Manager.
 pub fn send(cmd: &Command) -> Result<(), SendError> {
     let ack = exchange(cmd)?;
     if ack.trim() == "ok" {
@@ -403,7 +403,7 @@ pub fn serve(tx: Sender<Incoming>, wake: impl Fn() + Send + Sync + 'static) -> s
         private_write(&path, &json)?;
     }
     std::thread::Builder::new()
-        .name("mdm-ipc".into())
+        .name("tdm-ipc".into())
         .spawn(move || accept_loop(listener, token, tx, wake))?;
     Ok(())
 }
@@ -433,7 +433,7 @@ fn accept_loop(
         }
         let (token, wake, tx, slot) = (token.clone(), wake.clone(), tx.clone(), in_flight.clone());
         let spawned = std::thread::Builder::new()
-            .name("mdm-ipc-conn".into())
+            .name("tdm-ipc-conn".into())
             .spawn(move || {
                 handle(&conn, &token, &tx, &*wake);
                 slot.fetch_sub(1, Ordering::SeqCst);
@@ -602,7 +602,7 @@ fn random_token() -> String {
 }
 
 /// The argument every startup entry passes (the Run key, the XDG autostart entry, the
-/// LaunchAgent, the installer's): MDM starts in the notification area ([`Command::startup`]).
+/// LaunchAgent, the installer's): TDM starts in the notification area ([`Command::startup`]).
 pub const STARTUP: &str = "/startup";
 
 /// Parse IDM's command line: `/d URL [/p dir] [/f name] [/a] [/n] [/q] [/s]` (case-insensitive;

@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Serbian (Latin): tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Serbian (Latin): tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Deinstaliranje programa %1.
 
 [CustomMessages]
 TaskBrowser=Podesite integraciju &pregledača (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Otvorite .&torrent datoteke i magnet veze pomoću programa Mister Download Manager
-TaskStartup=Pokreni Mister Download Manager kada se pokrene &Windows
+TaskTorrents=Otvorite .&torrent datoteke i magnet veze pomoću programa Tufan Download Manager
+TaskStartup=Pokreni Tufan Download Manager kada se pokrene &Windows
 TaskGroupOther=Ostalo:
-Launch=Pokreni Mister Download Manager
+Launch=Pokreni Tufan Download Manager
 KeepData=Izbrisati i listu preuzimanja i podešavanja?%n%nPreuzete datoteke se ne diraju ni u jednom slučaju.

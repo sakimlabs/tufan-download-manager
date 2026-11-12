@@ -60,8 +60,8 @@ pub enum Native {
 
 /// The system's icon for `what` at about `px` pixels (None: it has none).
 pub(crate) fn system(what: &What, px: u32) -> Option<Native> {
-    // MDM_SYSTEM_ICONS=0: Tango's only, as a desktop without icons shows them (checks, shots).
-    if std::env::var_os("MDM_SYSTEM_ICONS").is_some_and(|v| v == "0") {
+    // TDM_SYSTEM_ICONS=0: Tango's only, as a desktop without icons shows them (checks, shots).
+    if std::env::var_os("TDM_SYSTEM_ICONS").is_some_and(|v| v == "0") {
         return None;
     }
     #[cfg(windows)]
@@ -482,7 +482,7 @@ mod tests {
     #[test]
     fn a_lookup_is_asked_once_and_answers_later() {
         let ctx = egui::Context::default();
-        let what = What::File(Some("mdm-test-type".into()));
+        let what = What::File(Some("tdm-test-type".into()));
         // First ask: nothing yet (Tango's is drawn), the lookup queued.
         assert!(shown(&ctx, &what, 16).is_none());
         assert!(cache().icons.contains_key(&(what.clone(), 16)));
@@ -502,7 +502,7 @@ mod tests {
         assert!(matches!(shown(&ctx, &what, 16), Some(Shown::Texture(_))));
         assert!(matches!(shown(&ctx, &what, 24), Some(Shown::Texture(_))));
         // A system with nothing for a type: Tango's, for good.
-        let none = What::File(Some("mdm-test-none".into()));
+        let none = What::File(Some("tdm-test-none".into()));
         cache()
             .icons
             .insert((none.clone(), 16), Some(to_shown(&ctx, &none, 16, None)));

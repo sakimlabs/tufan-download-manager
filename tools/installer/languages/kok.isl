@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Konkani: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Konkani: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 अनइंस्टॉल करता.
 
 [CustomMessages]
 TaskBrowser=ब्रावझर एकीकरण सेट करा (&B) (Chrome, Edge, Brave, Firefox)
-TaskTorrents=.&torrent फायली आनी मॅग्नेट लिंक्स Mister Download Manager वापरून उगडा
-TaskStartup=जेन्ना &Windows सुरू जाता तेन्ना Mister Download Manager सुरू करात
+TaskTorrents=.&torrent फायली आनी मॅग्नेट लिंक्स Tufan Download Manager वापरून उगडा
+TaskStartup=जेन्ना &Windows सुरू जाता तेन्ना Tufan Download Manager सुरू करात
 TaskGroupOther=हेर:
-Launch=Mister Download Manager सुरू करात
+Launch=Tufan Download Manager सुरू करात
 KeepData=तुमची डाउनलोड वळेरी आनी सेटिंग्स लेगीत काडून उडोवची?%n%nतुमच्यो डाउनलोड केल्ल्यो फायली खंयच्याच पद्दतीन हात लावच्यो न्हय.

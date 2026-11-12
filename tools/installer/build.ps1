@@ -1,15 +1,15 @@
-# Builds the Windows release into target/dist/:
-#   MisterDownloadManager-<version>-setup.exe     the installer (tools/installer/mdm.iss)
-#   MisterDownloadManager-<version>-portable.zip  the same programs with a `data` folder (portable
+# Builds the Windows release into target/dist/
+#   TufanDownloadManager-<version>-setup.exe     the installer (tools/installer/mdm.iss)
+#   TufanDownloadManager-<version>-portable.zip  the same programs with a `data` folder (portable
 #                                                 mode: settings beside the exe, no registry)
-#   MisterDownloadManager-<version>-x64.zip       the same programs, data in %APPDATA% as installed
+#   TufanDownloadManager-<version>-x64.zip       the same programs, data in %APPDATA% as installed
 #   SHA256SUMS.txt
 # Needs Inno Setup 6 (ISCC.exe on PATH, in $env:ISCC, or in its default folders).
-# Code signing: set $env:MDM_SIGN_COMMAND to a signtool command line with $f for the file, e.g.
+# Code signing: set $env:TDM_SIGN_COMMAND to a signtool command line with $f for the file, e.g.
 #   signtool sign /fd sha256 /tr http://timestamp.digicert.com /td sha256 /a $f
 # Inno Setup then signs the programs (in place, so the zip carries them signed too), the
 # installer and its uninstaller.
-param([switch]$NoBuild, [string]$SignCommand = $env:MDM_SIGN_COMMAND)
+param([switch]$NoBuild, [string]$SignCommand = $env:TDM_SIGN_COMMAND)
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $dist = Join-Path $root "target\dist"
@@ -26,7 +26,7 @@ if (-not $NoBuild) {
   $cargoHome = if ($env:CARGO_HOME) { $env:CARGO_HOME } else { Join-Path $env:USERPROFILE ".cargo" }
   $env:CARGO_ENCODED_RUSTFLAGS = "--remap-path-prefix=$cargoHome=cargo" + [char]0x1f + "--remap-path-prefix=$root=mdm"
   try {
-    & cargo build --release -p mdm-app -p mdm-nmhost -p mdm-cli -p mdm-mcp
+    & cargo build --release -p tdm-app -p tdm-nmhost -p tdm-cli -p tdm-mcp
     if ($LASTEXITCODE) { throw "cargo build failed" }
   } finally {
     Remove-Item Env:CARGO_ENCODED_RUSTFLAGS
@@ -55,18 +55,18 @@ function New-Zip([string]$name, [bool]$portable) {
   $stage = Join-Path $dist "stage\$name"
   if (Test-Path $stage) { Remove-Item -LiteralPath $stage -Recurse -Force }
   New-Item -ItemType Directory -Force $stage | Out-Null
-  foreach ($exe in "misterdownloadmanager.exe", "misterdownloadmanager-nmhost.exe", "misterdownloadmanager-cli.exe", "misterdownloadmanager-mcp.exe") {
+  foreach ($exe in "tufan-download-manager.exe", "tufan-download-manager-nmhost.exe", "tufan-download-manager-cli.exe", "tufan-download-manager-mcp.exe") {
     Copy-Item (Join-Path $bin $exe) $stage
   }
   New-Item -ItemType Directory -Force (Join-Path $stage "extension") | Out-Null
   Copy-Item (Join-Path $root "target\extension\chromium") (Join-Path $stage "extension\chromium") -Recurse
-  Copy-Item (Join-Path $root "target\extension\mdm-firefox.xpi") (Join-Path $stage "extension")
+  Copy-Item (Join-Path $root "target\extension\tdm-firefox.xpi") (Join-Path $stage "extension")
   Copy-Item (Join-Path $root "LICENSE") (Join-Path $stage "LICENSE.txt")
   Copy-Item (Join-Path $root "ATTRIBUTION.md") (Join-Path $stage "ATTRIBUTION.txt")
   if ($portable) {
     New-Item -ItemType Directory -Force (Join-Path $stage "data") | Out-Null
     Set-Content -Encoding utf8 (Join-Path $stage "data\README.txt") @"
-This folder makes Mister Download Manager portable: the download list and settings are kept
+This folder makes Tufan Download Manager portable: the download list and settings are kept
 here instead of in your profile, and nothing is written to the registry. Delete the folder to
 use the profile instead. Browser integration needs the installer.
 "@
@@ -96,11 +96,11 @@ use the profile instead. Browser integration needs the installer.
   }
 }
 Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
-New-Zip "MisterDownloadManager-$version-portable" $true
-New-Zip "MisterDownloadManager-$version-x64" $false
+New-Zip "TufanDownloadManager-$version-portable" $true
+New-Zip "TufanDownloadManager-$version-x64" $false
 Remove-Item -LiteralPath (Join-Path $dist "stage") -Recurse -Force
 
-$files = Get-ChildItem $dist -File | Where-Object { $_.Name -like "MisterDownloadManager-$version-*" }
+$files = Get-ChildItem $dist -File | Where-Object { $_.Name -like "TufanDownloadManager-$version-*" }
 $files | ForEach-Object { "{0}  {1}" -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower(), $_.Name } |
   Set-Content -Encoding ascii (Join-Path $dist "SHA256SUMS.txt")
 $files | ForEach-Object { "{0}  {1:N1} MB" -f $_.Name, ($_.Length / 1MB) }

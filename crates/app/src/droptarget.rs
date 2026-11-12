@@ -11,7 +11,7 @@ use std::sync::{Arc, atomic::AtomicBool, atomic::Ordering};
 use egui::{Pos2, ViewportCommand, ViewportId, pos2, vec2};
 
 /// The window's title (its OLE target is found by it).
-const TITLE: &str = "Mister Download Manager drop target"; // not translated: an id
+const TITLE: &str = "Tufan Download Manager drop target"; // not translated: an id
 const SIZE: f32 = 56.0;
 
 /// What was dropped: an address or a file path.
@@ -81,7 +81,7 @@ impl Drops {
 pub struct DropTarget {
     drops: Drops,
     pos: Pos2,
-    /// MDM_TEST_DROP's link was dropped (once).
+    /// TDM_TEST_DROP's link was dropped (once).
     #[cfg(windows)]
     test_dropped: bool,
 }
@@ -113,14 +113,14 @@ impl DropTarget {
             .into_iter()
             .map(Event::Drop)
             .collect();
-        // Off-screen test copies: MDM_TEST_DROP=<link> is dropped on the box once, through its
+        // Off-screen test copies: TDM_TEST_DROP=<link> is dropped on the box once, through its
         // OLE drop target, as a browser drops one (#208's checks: it still takes links as a
         // popup window). Taken at the next poll, as a real drop is.
         #[cfg(windows)]
         if !self.test_dropped
             && let Some(ole) = &self.drops.ole
             && crate::offscreen()
-            && let Ok(link) = std::env::var("MDM_TEST_DROP")
+            && let Ok(link) = std::env::var("TDM_TEST_DROP")
         {
             self.test_dropped = true;
             ole.test_drop(&link);

@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Indonesian: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Indonesian: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Menghapus instalasi %1.
 
 [CustomMessages]
 TaskBrowser=Siapkan integrasi &browser (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Buka file .&torrent dan tautan magnet dengan Mister Download Manager
-TaskStartup=Mulai Mister Download Manager saat &Windows dimulai
+TaskTorrents=Buka file .&torrent dan tautan magnet dengan Tufan Download Manager
+TaskStartup=Mulai Tufan Download Manager saat &Windows dimulai
 TaskGroupOther=Lainnya:
-Launch=Mulai Mister Download Manager
+Launch=Mulai Tufan Download Manager
 KeepData=Hapus juga daftar unduhan dan pengaturan Anda?%n%nFile yang Anda unduh tidak akan tersentuh.

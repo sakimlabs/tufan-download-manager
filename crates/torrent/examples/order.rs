@@ -5,7 +5,7 @@
 //! play), and for the scarce swarm when the scarce pieces arrived and when another peer had them
 //! from us (how soon they spread).
 //!
-//!   cargo run --release -p mdm-torrent --example order -- <out dir> [runs] [video.mp4]
+//!   cargo run --release -p tdm-torrent --example order -- <out dir> [runs] [video.mp4]
 //!
 //! With a video (an MP4 whose index is at its end, as most are written), each in-order run also
 //! copies the partial file at 30% and 60% and asks ffprobe and ffmpeg (on PATH) whether its
@@ -14,7 +14,7 @@
 use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 
-use mdm_torrent::{Config, Phase, PieceOrder, Torrents};
+use tdm_torrent::{Config, Phase, PieceOrder, Torrents};
 
 const PIECE: u32 = 64 << 10;
 
@@ -508,16 +508,16 @@ fn write_pseudo_random(path: &Path, size: usize) {
 }
 
 async fn make_torrent(dir: &Path) -> Vec<u8> {
-    let spawner = mdm_torrent::librqbit::spawn_utils::BlockingSpawner::new(2);
+    let spawner = tdm_torrent::librqbit::spawn_utils::BlockingSpawner::new(2);
     let file = std::fs::read_dir(dir)
         .unwrap()
         .next()
         .unwrap()
         .unwrap()
         .path();
-    mdm_torrent::librqbit::create_torrent(
+    tdm_torrent::librqbit::create_torrent(
         &file,
-        mdm_torrent::librqbit::CreateTorrentOptions {
+        tdm_torrent::librqbit::CreateTorrentOptions {
             name: None,
             trackers: Vec::new(),
             piece_length: Some(PIECE),

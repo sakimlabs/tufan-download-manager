@@ -2,20 +2,20 @@
 
 [← Back to docs index](README.md)
 
-MDM can be driven without its window in three ways:
+TDM can be driven without its window in three ways:
 
 - **The app's own command line**, the same switches as IDM's: hand a download to the running app from a script, a batch file or another program.
-- **`misterdownloadmanager-cli`**, a separate command-line tool: download files, videos and torrents in a terminal, with progress, without the app.
-- **The automation API**: other programs list the running app's downloads (as JSON) and pause, start, remove or delete them, over a local, token-protected channel. AI assistants use it through MDM's MCP server: see [AI assistants](ai-assistants.md).
+- **`tufan-download-manager-cli`**, a separate command-line tool: download files, videos and torrents in a terminal, with progress, without the app.
+- **The automation API**: other programs list the running app's downloads (as JSON) and pause, start, remove or delete them, over a local, token-protected channel. AI assistants use it through TDM's MCP server: see [AI assistants](ai-assistants.md).
 
-To run the whole app without a window, on a home server or a NAS, see [Run MDM on a server](server.md) (`misterdownloadmanager --headless`); to control it from a phone, [Control MDM from your phone](remote-control.md).
+To run the whole app without a window, on a home server or a NAS, see [Run TDM on a server](server.md) (`tufan-download-manager --headless`); to control it from a phone, [Control TDM from your phone](remote-control.md).
 
 The examples use Windows' paths; on macOS and Linux the programs have the same names without `.exe`.
 
 ## The app's command line
 
 ```
-misterdownloadmanager.exe /d URL [/p folder] [/f name] [/a] [/n] [/s]
+tufan-download-manager.exe /d URL [/p folder] [/f name] [/a] [/n] [/s]
 ```
 
 | Switch | What it does |
@@ -27,20 +27,20 @@ misterdownloadmanager.exe /d URL [/p folder] [/f name] [/a] [/n] [/s]
 | `/n` | Silent: no **Download File Info** window, the download starts (or is queued, with `/a`) at once. |
 | `/s` | Start the main download queue. |
 | `/exit` | Save and close the running app (the installer uses it before an upgrade). |
-| `/startup` | Start in the notification area, the window hidden: what **Launch Mister Download Manager on startup** starts MDM with when you sign in. Where no notification area shows MDM's icon (some Linux desktops), MDM starts minimized. A running MDM stays as it is. |
-| *a `.torrent` file or `magnet:` link* | Open it in **Add torrent** (what Windows passes when MDM opens torrents). |
+| `/startup` | Start in the notification area, the window hidden: what **Launch Tufan Download Manager on startup** starts TDM with when you sign in. Where no notification area shows TDM's icon (some Linux desktops), TDM starts minimized. A running TDM stays as it is. |
+| *a `.torrent` file or `magnet:` link* | Open it in **Add torrent** (what Windows passes when TDM opens torrents). |
 
-Switches can start with `/` or `-`, in any case. If MDM is running, the command goes to it; if not, MDM starts and carries it out. For example:
+Switches can start with `/` or `-`, in any case. If TDM is running, the command goes to it; if not, TDM starts and carries it out. For example:
 
 ```
-misterdownloadmanager.exe /d https://example.com/files/report.pdf /p D:\Reports /n
-misterdownloadmanager.exe /d https://example.com/big.iso /a
-misterdownloadmanager.exe /s
+tufan-download-manager.exe /d https://example.com/files/report.pdf /p D:\Reports /n
+tufan-download-manager.exe /d https://example.com/big.iso /a
+tufan-download-manager.exe /s
 ```
 
-## misterdownloadmanager-cli
+## tufan-download-manager-cli
 
-It comes with every download of MDM, next to the app (the installer puts it in MDM's folder). It works on its own: the app needn't run, except for `status` and `api`.
+It comes with every download of TDM, next to the app (the installer puts it in TDM's folder). It works on its own: the app needn't run, except for `status` and `api`.
 
 | Command | What it does |
 |---|---|
@@ -52,7 +52,7 @@ It comes with every download of MDM, next to the app (the installer puts it in M
 | `playlist-info URL [--from N] [--count N]` | A playlist's or channel's videos, one line each as they're listed: its place, length, title and address. |
 | `playlist-get URL [-f selector] [-o folder] [-c pieces] [--from N] [--count N]` | Download a playlist's or channel's videos one after another, into a folder named after the list inside `-o`. `-f` is one quality for all, as for `video-get` (by default each video's best; `bv*[height<=720]+ba/b[height<=720]` = up to 720p; `ba` = the original sound; `mp3:320`, `opus:`, `flac:` as for `video-get`). `-c` as for `video-get`. |
 | `video-get URL [-f selector] [-o folder] [-c pieces] [--subs langs] [--auto-subs] [--embed-subs] [--adapter name]` | Download a video; `-f` takes a quality's selector from `video-info` (`b` = the best single file; `ba` = the sound alone as the site has it, not converted; `mp3:320`, `mp3:256`, `mp3:192` or `mp3:128` = the sound as an MP3 at that bitrate, `mp3:0` at its best variable one; `opus:` = as Opus; `flac:` = as FLAC, lossless but no better than the site's sound; conversions need ffmpeg). `-c`: a video the site sends in pieces (HLS, DASH) comes down this many pieces at once (8 by default, 1 to 128); a video in one file is one connection whatever it says. `--subs` saves subtitles beside it: language codes from `video-info` (`en,fr`), or `all` for every one the uploader gave; `--auto-subs` takes the site's automatic captions instead; `--embed-subs` puts them into the video (needs ffmpeg, MP4 or MKV). `--adapter` sends yt-dlp's connections (and ffmpeg's) through one network adapter, as for `get`; when it isn't connected, nothing starts. |
-| `install-ytdlp`, `install-ffmpeg` | Install or update the helpers videos need: yt-dlp (checked against its signing key) and ffmpeg (Windows; on macOS and Linux MDM uses the system's). |
+| `install-ytdlp`, `install-ffmpeg` | Install or update the helpers videos need: yt-dlp (checked against its signing key) and ffmpeg (Windows; on macOS and Linux TDM uses the system's). |
 | `torrent-info SOURCE` | A torrent's name, files (numbered) and size; `SOURCE` is a magnet link or a `.torrent` file. |
 | `torrent-get SOURCE [-o folder] [--files 0,2] [--use-existing]` | Download a torrent, or only some of its files. If some of its files are already in the folder, it stops and names them; `--use-existing` uses them instead (what matches is kept, the rest downloaded). |
 | `torrent-create PATH -o file.torrent` | Make a `.torrent` of a file or folder (peers find it through the DHT). |
@@ -61,12 +61,12 @@ It comes with every download of MDM, next to the app (the installer puts it in M
 | `remove ID...`, `delete ID...` | Take downloads off the running app's list: `remove` keeps their files, `delete` deletes them too. A running download is paused first (`pause`). |
 | `api on`, `api off` | Turn the running app's automation API on or off. |
 
-`misterdownloadmanager-cli help <command>` shows every option. A command that fails (the app isn't running, it answers with an error, a download breaks) exits with code 1. For example:
+`tufan-download-manager-cli help <command>` shows every option. A command that fails (the app isn't running, it answers with an error, a download breaks) exits with code 1. For example:
 
 ```
-misterdownloadmanager-cli get https://example.com/big.iso -o D:\Downloads -c 16 --checksum sha256:9f86d0…
-misterdownloadmanager-cli video-get "https://www.youtube.com/watch?v=aqz-KE-bpKQ" -f "b[height=720]"
-misterdownloadmanager-cli torrent-get "magnet:?xt=urn:btih:…" --files 0
+tufan-download-manager-cli get https://example.com/big.iso -o D:\Downloads -c 16 --checksum sha256:9f86d0…
+tufan-download-manager-cli video-get "https://www.youtube.com/watch?v=aqz-KE-bpKQ" -f "b[height=720]"
+tufan-download-manager-cli torrent-get "magnet:?xt=urn:btih:…" --files 0
 ```
 
 ### JSON for scripts and programs
@@ -87,7 +87,7 @@ With `--json` (before or after the command), every command prints JSON instead o
 Sizes are in bytes (`null` while unknown), speeds in bytes per second. A failure prints `{"error": "…"}` and exits with code 1. For example:
 
 ```
-misterdownloadmanager-cli --json get https://example.com/big.iso -o D:\Downloads
+tufan-download-manager-cli --json get https://example.com/big.iso -o D:\Downloads
 {"event":"progress","downloaded":4194304,"size":1073741824,"speed":52428800,"connections":8,"segments":8}
 …
 {"event":"done","path":"D:\\Downloads\\big.iso","size":1073741824,"seconds":20.4}
@@ -95,19 +95,19 @@ misterdownloadmanager-cli --json get https://example.com/big.iso -o D:\Downloads
 
 ## The automation API
 
-Other programs can ask the running app what it is downloading, and pause, start, remove or delete downloads. The API is **off by default**; turn it on with `misterdownloadmanager-cli api on` (and off with `api off`).
+Other programs can ask the running app what it is downloading, and pause, start, remove or delete downloads. The API is **off by default**; turn it on with `tufan-download-manager-cli api on` (and off with `api off`).
 
-### How a program talks to MDM
+### How a program talks to TDM
 
-1. While it runs, MDM listens on a port of `127.0.0.1` (this computer only) and writes the port and a secret token to `ipc.json` in its data folder:
-   - Windows: `%APPDATA%\misterdownloadmanager\ipc.json`
-   - macOS: `~/Library/Application Support/misterdownloadmanager/ipc.json`
-   - Linux: `~/.local/share/misterdownloadmanager/ipc.json`
+1. While it runs, TDM listens on a port of `127.0.0.1` (this computer only) and writes the port and a secret token to `ipc.json` in its data folder:
+   - Windows: `%APPDATA%\tufan-download-manager\ipc.json`
+   - macOS: `~/Library/Application Support/tufan-download-manager/ipc.json`
+   - Linux: `~/.local/share/tufan-download-manager/ipc.json`
    - A [portable copy](portable.md): `data\ipc.json` next to the program.
 
    The token changes at every start; only programs that can read your data folder (yours) can use it.
 2. Connect to that port and send one line of JSON: the token and the command's fields, e.g. `{"token": "<token>", "query": "list"}`.
-3. MDM answers with one line: `ok` for a command, or a JSON object for a question.
+3. TDM answers with one line: `ok` for a command, or a JSON object for a question.
 
 ### What it understands
 
@@ -122,14 +122,14 @@ Other programs can ask the running app what it is downloading, and pause, start,
 
 An unknown question or action is answered `{"error": "…"}`, as is a question while the API is off (then with `"code": "api-off"`, for programs to check: the error text may change). A wrong token is answered `denied`.
 
-Every request and answer is described, field by field, in a JSON Schema: [automation-api.schema.json](automation-api.schema.json) (also at `https://misterdownloadmanager.com/automation-api.schema.json`). It is made from the code the app answers with, so it stays exact; programs can check what they send and read against it, or generate their types from it.
+Every request and answer is described, field by field, in a JSON Schema: [automation-api.schema.json](automation-api.schema.json) (also at `https://tufan-download-manager.com/automation-api.schema.json`). It is made from the code the app answers with, so it stays exact; programs can check what they send and read against it, or generate their types from it.
 
 ### Examples
 
 PowerShell (Windows):
 
 ```powershell
-$ep = Get-Content "$env:APPDATA\misterdownloadmanager\ipc.json" | ConvertFrom-Json
+$ep = Get-Content "$env:APPDATA\tufan-download-manager\ipc.json" | ConvertFrom-Json
 $client = New-Object Net.Sockets.TcpClient("127.0.0.1", $ep.port)
 $stream = $client.GetStream()
 $writer = New-Object IO.StreamWriter($stream); $reader = New-Object IO.StreamReader($stream)
@@ -144,7 +144,7 @@ Python:
 ```python
 import json, os, socket
 
-ipc = os.path.join(os.environ["APPDATA"], "misterdownloadmanager", "ipc.json")  # see above elsewhere
+ipc = os.path.join(os.environ["APPDATA"], "tufan-download-manager", "ipc.json")  # see above elsewhere
 ep = json.load(open(ipc))
 with socket.create_connection(("127.0.0.1", ep["port"])) as s:
     s.sendall((json.dumps({"token": ep["token"], "query": "list"}) + "\n").encode())

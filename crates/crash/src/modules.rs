@@ -3,11 +3,11 @@
 //! The Linux dump writer (minidump-writer) makes one module of a program's mappings only when
 //! they follow each other in memory. A program linked by lld can leave an unmapped page between
 //! its first, read-only mapping (the ELF header, at file offset 0) and its code, whenever the
-//! code segment happens to start on a page of its own (MDM 0.5.0's did). The writer then lists
+//! code segment happens to start on a page of its own (TDM 0.5.0's did). The writer then lists
 //! the code as a module of its own, based where the code starts instead of where the program
 //! starts. Every address in the code was then read 0xd96000 too low: the release's symbols named
 //! the wrong functions, unwinding found no unwind tables, and the report's own offsets
-//! (`misterdownloadmanager + 0x…`) couldn't be looked up either.
+//! (`tufan-download-manager + 0x…`) couldn't be looked up either.
 //!
 //! The dump also holds the process's `/proc/self/maps`, which says which part of the file each
 //! mapping holds. A module whose mapping doesn't start the file is joined here to the mapping of
@@ -43,7 +43,7 @@ pub fn mend(mut dump: Vec<u8>) -> Vec<u8> {
 
 /// The bytes to write over (where, what), or None.
 fn mended(dump: &[u8]) -> Option<Vec<(usize, Vec<u8>)>> {
-    if dump.get(..4)? != b"MDMP" {
+    if dump.get(..4)? != b"TDMP" {
         return None;
     }
     let streams = u32_at(dump, 8)? as usize;
@@ -159,7 +159,7 @@ mod tests {
     /// A dump with a module list and a maps stream, as minidump-writer writes them.
     fn dump(modules: &[(u64, u32, &str)], maps: &str) -> Vec<u8> {
         let mut d = vec![0u8; 32];
-        d[..4].copy_from_slice(b"MDMP");
+        d[..4].copy_from_slice(b"TDMP");
         d[4..8].copy_from_slice(&0xa793u32.to_le_bytes());
         d[8..12].copy_from_slice(&2u32.to_le_bytes());
         d[12..16].copy_from_slice(&32u32.to_le_bytes());
@@ -212,10 +212,10 @@ mod tests {
             .collect()
     }
 
-    const EXE: &str = "/usr/bin/misterdownloadmanager";
+    const EXE: &str = "/usr/bin/tufan-download-manager";
     const LIBC: &str = "/usr/lib64/libc.so.6";
 
-    /// MDM 0.5.0's layout (#661): the header's mapping, a page unmapped, then the code with the
+    /// TDM 0.5.0's layout (#661): the header's mapping, a page unmapped, then the code with the
     /// rest of the program after it.
     fn split_maps() -> String {
         format!(

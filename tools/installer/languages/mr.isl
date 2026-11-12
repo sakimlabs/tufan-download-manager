@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Marathi: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Marathi: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=%1 अनइंस्टॉल करत आ�
 
 [CustomMessages]
 TaskBrowser=ब्राउझर इंटिग्रेशन सेट अप करा (&B) (Chrome, Edge, Brave, Firefox)
-TaskTorrents=.&torrent फाइल्स आणि मॅग्नेट लिंक्स Mister Download Manager सह उघडा
-TaskStartup=जेव्हा &Windows सुरू होते तेव्हा Mister Download Manager सुरू करा
+TaskTorrents=.&torrent फाइल्स आणि मॅग्नेट लिंक्स Tufan Download Manager सह उघडा
+TaskStartup=जेव्हा &Windows सुरू होते तेव्हा Tufan Download Manager सुरू करा
 TaskGroupOther=इतर:
-Launch=Mister Download Manager सुरू करा
+Launch=Tufan Download Manager सुरू करा
 KeepData=तुमची डाउनलोड सूची आणि सेटिंग्ज देखील हटवायची आहेत का?%n%nतुमच्या डाउनलोड केलेल्या फाइल्सला काहीही होणार नाही.

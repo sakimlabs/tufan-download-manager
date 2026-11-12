@@ -227,7 +227,7 @@ pub fn galley(p: &Painter, font: FontId, s: &str, color: Color32) -> std::sync::
 }
 
 /// The banner atop a first-start window (the browser extension's offer, the video helpers):
-/// MDM's logo at the start side, a bold headline, and a muted subline that wraps. 84 px tall, and
+/// TDM's logo at the start side, a bold headline, and a muted subline that wraps. 84 px tall, and
 /// taller by what a long translation's extra lines need: that extra is returned, for the window
 /// to add to its height and to move what is below the banner down by (it is known from the frame
 /// before: [`crate::dialogs::grow_extra`] under `key`).
@@ -247,7 +247,7 @@ pub fn banner(
     // `r` gives the rect where it is on screen (mirrored in RTL): the logo at the start side.
     p.rect_filled(r(o, 0.0, 0.0, w, h), 0.0, FIELD());
     fill_l(p, o.x, o.y + h, o.x + w - 1.0, o.y + h, FIELD_EDGE());
-    egui::Image::new(egui::include_image!("../assets/icons/app/mdm-48.png"))
+    egui::Image::new(egui::include_image!("../assets/icons/app/tdm-48.png"))
         .paint_at(ui, r(o, 18.0, 18.0, 48.0, 48.0));
     // The headline on one line: cut with "..." at the far edge (a long translation), whole on
     // hover.
@@ -418,7 +418,7 @@ fn paint_galley(
     drawn
 }
 
-/// `MDM_FIT_AUDIT=<file>` (a check for translations, beyond IDM): every distinct text drawn past
+/// `TDM_FIT_AUDIT=<file>` (a check for translations, beyond IDM): every distinct text drawn past
 /// the edge of what its painter may show (the window, a box), and every two texts drawn over each
 /// other in one window, are appended to the file, so a run through the windows in each language
 /// lists what doesn't fit. Off otherwise (one env lookup).
@@ -436,7 +436,7 @@ fn fit_audit(p: &Painter, drawn: Rect, text: &str) {
     )>;
     static AUDIT: OnceLock<Option<Audit>> = OnceLock::new();
     let Some(audit) = AUDIT.get_or_init(|| {
-        let path = std::env::var_os("MDM_FIT_AUDIT")?;
+        let path = std::env::var_os("TDM_FIT_AUDIT")?;
         let file = std::fs::OpenOptions::new()
             .create(true)
             .append(true)
@@ -966,7 +966,7 @@ fn wrap_lines(p: &Painter, s: &str, room: f32) -> Vec<String> {
                     n = k + 1;
                 }
                 let latin = |k: usize| g[k].chars().all(|c| c.is_ascii_alphanumeric());
-                // Not inside a Latin word ("Mister Download Manager" in Japanese): before it.
+                // Not inside a Latin word ("Tufan Download Manager" in Japanese): before it.
                 if n > 0
                     && n < g.len()
                     && latin(n - 1)
@@ -6098,10 +6098,10 @@ pub mod caption {
         title: &str,
         buttons: &[(CaptionButton, bool)],
     ) -> TitleBar {
-        // MDM_TEST_ACTIVE: every bar drawn as the active window's (pictures of windows off the
+        // TDM_TEST_ACTIVE: every bar drawn as the active window's (pictures of windows off the
         // screens, which never have the focus).
         static ALWAYS_ACTIVE: std::sync::LazyLock<bool> =
-            std::sync::LazyLock::new(|| std::env::var_os("MDM_TEST_ACTIVE").is_some());
+            std::sync::LazyLock::new(|| std::env::var_os("TDM_TEST_ACTIVE").is_some());
         let active = *ALWAYS_ACTIVE || ui.ctx().input(|i| i.viewport().focused) != Some(false);
         let rtl = rtl();
         let p = ui.painter().clone();
@@ -6151,7 +6151,7 @@ pub mod caption {
             } else {
                 pos2(rect.left() + 16.0, rect.center().y)
             };
-            egui::Image::new(egui::include_image!("../assets/icons/app/mdm-32.png"))
+            egui::Image::new(egui::include_image!("../assets/icons/app/tdm-32.png"))
                 .paint_at(ui, Rect::from_center_size(icon_c.round(), vec2(16.0, 16.0)));
         }
         let font = if st.bold {

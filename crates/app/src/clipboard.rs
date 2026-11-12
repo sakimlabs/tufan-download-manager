@@ -114,7 +114,7 @@ impl Drop for Reader {
 /// The window woken when an answer comes (set once the window exists).
 static WINDOW: OnceLock<egui::Context> = OnceLock::new();
 
-/// MDM's reader, of the system clipboard ([`crate::clipboard_text`]); started at its first ask.
+/// TDM's reader, of the system clipboard ([`crate::clipboard_text`]); started at its first ask.
 fn reader() -> &'static Reader {
     static READER: OnceLock<Reader> = OnceLock::new();
     READER.get_or_init(|| {

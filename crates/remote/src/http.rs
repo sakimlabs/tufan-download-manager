@@ -19,7 +19,7 @@ use serde::Deserialize;
 use crate::Inner;
 use crate::pairing::Check;
 
-/// The largest .torrent file taken (as the app's own limit, mdm_torrent::MAX_TORRENT_FILE).
+/// The largest .torrent file taken (as the app's own limit, tdm_torrent::MAX_TORRENT_FILE).
 const MAX_TORRENT: usize = 10 << 20;
 /// The largest other request body.
 const MAX_BODY: usize = 64 << 10;
@@ -100,16 +100,16 @@ static PAGE: &str = include_str!("../web/index.html");
 static SCRIPT: &str = include_str!("../web/app.js");
 static STYLE: &str = include_str!("../web/app.css");
 /// The app's icon (art/), for the page's tab and a phone's home screen.
-static ICON: &[u8] = include_bytes!("../../app/assets/icons/app/mdm-256.png");
+static ICON: &[u8] = include_bytes!("../../app/assets/icons/app/tdm-256.png");
 static MANIFEST: &str = include_str!("../web/manifest.webmanifest");
 
 fn asset(kind: &'static str, body: &'static str) -> Response {
     ([(header::CONTENT_TYPE, kind)], body).into_response()
 }
 
-/// An error answer, shaped as the automation API's (`mdm_ipc::api::ErrorAnswer`).
+/// An error answer, shaped as the automation API's (`tdm_ipc::api::ErrorAnswer`).
 fn error(status: StatusCode, code: &str) -> Response {
-    let body = mdm_ipc::api::line(&mdm_ipc::api::ErrorAnswer {
+    let body = tdm_ipc::api::line(&tdm_ipc::api::ErrorAnswer {
         error: code.replace('-', " "),
         code: Some(code.to_owned()),
     });
@@ -176,7 +176,7 @@ fn same_origin(headers: &HeaderMap, host: &str) -> bool {
         .and_then(|v| v.to_str().ok())
         .is_some_and(|v| v.eq_ignore_ascii_case("cross-site"));
     let origin = headers.get(header::ORIGIN).and_then(|o| o.to_str().ok());
-    // MDM's browser extension (#157): its requests carry its own origin, which no web page can
+    // TDM's browser extension (#157): its requests carry its own origin, which no web page can
     // send, and a token like any other.
     if origin.is_some_and(|o| {
         [
@@ -219,7 +219,7 @@ impl FromRequestParts<Arc<State>> for Paired {
 }
 
 /// Hand `cmd` (marked remote) to the app and answer with what it says.
-async fn ask(s: &State, mut cmd: mdm_ipc::Command) -> Response {
+async fn ask(s: &State, mut cmd: tdm_ipc::Command) -> Response {
     cmd.remote = true;
     let sink = s.inner.sink.clone();
     let answer = tokio::task::spawn_blocking(move || sink.ask(cmd, ANSWER_WAIT))
@@ -289,7 +289,7 @@ async fn pair(
 async fn list(s: S, _: Paired) -> Response {
     ask(
         &s,
-        mdm_ipc::Command {
+        tdm_ipc::Command {
             query: Some("list".into()),
             ..Default::default()
         },
@@ -316,7 +316,7 @@ async fn add(s: S, _: Paired, axum::Json(b): axum::Json<AddBody>) -> Response {
     }
     ask(
         &s,
-        mdm_ipc::Command {
+        tdm_ipc::Command {
             url: Some(url.to_owned()),
             category: b.category.filter(|c| !c.is_empty()),
             queue: b.queue.filter(|q| !q.is_empty()),
@@ -345,7 +345,7 @@ async fn torrent(s: S, _: Paired, Query(q): Query<TorrentQuery>, body: Bytes) ->
     }
     ask(
         &s,
-        mdm_ipc::Command {
+        tdm_ipc::Command {
             torrent_file: Some(body.to_vec()),
             category: q.category.filter(|c| !c.is_empty()),
             queue: q.queue.filter(|q| !q.is_empty()),
@@ -370,7 +370,7 @@ async fn act(s: S, _: Paired, axum::Json(b): axum::Json<ActBody>) -> Response {
     }
     ask(
         &s,
-        mdm_ipc::Command {
+        tdm_ipc::Command {
             action: Some(b.action),
             ids: b.ids,
             ..Default::default()
@@ -389,7 +389,7 @@ async fn queue(s: S, _: Paired, axum::Json(b): axum::Json<QueueBody>) -> Respons
     let action = if b.start { "start_queue" } else { "stop_queue" };
     ask(
         &s,
-        mdm_ipc::Command {
+        tdm_ipc::Command {
             action: Some(action.into()),
             queue: Some(b.name),
             ..Default::default()

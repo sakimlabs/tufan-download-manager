@@ -1,7 +1,7 @@
 # Checks the workspace for Linux and macOS from Windows: `cargo clippy -D warnings` for
 # x86_64-unknown-linux-gnu and aarch64-apple-darwin, into target/cross. Nothing is linked, so
 # no Linux or macOS libraries are needed: Zig (a portable zip from ziglang.org; $env:ZIG, else
-# %USERPROFILE%\.mdm-dev\zig-*\zig.exe) compiles the few C dependencies, and pkg-config is a
+# %USERPROFILE%\.tdm-dev\zig-*\zig.exe) compiles the few C dependencies, and pkg-config is a
 # stub. The real builds run on GitHub's runners (release.yml).
 #
 #   tools\dev\check-cross.ps1 [-Targets linux, macos]
@@ -9,7 +9,7 @@ param([string[]]$Targets = @("linux", "macos"))
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $zig = if ($env:ZIG) { $env:ZIG } else {
-  Get-ChildItem "$env:USERPROFILE\.mdm-dev\zig-*\zig.exe" -ErrorAction SilentlyContinue |
+  Get-ChildItem "$env:USERPROFILE\.tdm-dev\zig-*\zig.exe" -ErrorAction SilentlyContinue |
     Select-Object -First 1 -ExpandProperty FullName
 }
 if (-not $zig -or -not (Test-Path $zig)) { throw "Zig not found: set `$env:ZIG to zig.exe" }

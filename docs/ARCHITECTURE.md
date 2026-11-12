@@ -1,28 +1,28 @@
 # Architecture
 
-How Mister Download Manager's pieces fit together.
+How Tufan Download Manager's pieces fit together.
 
 ## Crates
 
 | Path | Crate | Role |
 |---|---|---|
-| `crates/engine` | `mdm-engine` | Downloads one file over HTTP(S) or FTP(S): probe, segment planner, connection workers, resume state, per-host limits, speed limiter, checksums, proxy scripts |
-| `crates/app` | `mdm-app` | The desktop app (`misterdownloadmanager.exe`, egui): list, categories, queues, scheduler, dialogs, tray, settings |
-| `crates/cli` | `mdm-cli` | Headless downloads with progress (`get`, `resume`), videos, torrents and the automation API's commands: a library the app's program runs (`misterdownloadmanager --cli …`), and `misterdownloadmanager-cli`, a small launcher that starts it with the same arguments, terminal and exit code |
-| `crates/mcp` | `mdm-mcp` | The MCP server (`misterdownloadmanager-mcp`): AI assistants list, add and control the running app's downloads through the automation API |
-| `crates/remote` | `mdm-remote` | The remote control (#141): the HTTPS server a paired phone or computer on the local network uses (its page, pairing codes, device tokens, the self-signed certificate); every request becomes an automation API command the app answers |
-| `crates/nmhost` | `mdm-nmhost` | The browser's native messaging host: takes captured downloads from the extension and hands them to the app |
-| `crates/ipc` | `mdm-ipc` | The single-instance channel (a token-protected local socket), the data folder, and the capture rules shared by the app and the host |
-| `crates/debrid` | `mdm-debrid` | Debrid accounts (#44): the services' official APIs (Real-Debrid, AllDebrid, Premiumize, TorBox) turn a file host's link into a direct one the engine downloads |
-| `crates/extract` | `mdm-extract` | Archive extraction (#37): zip, tar, gz and xz in process; 7z and RAR through an installed 7-Zip, run as its own program |
-| `crates/geo` | `mdm-geo` | Where a download's server is (#140): an IP-to-country range table built from DB-IP's Lite data (`tools/geo/build.py`), looked up on this computer only, and the countries' flags |
-| `crates/tools` | `mdm-tools` | Video pages through yt-dlp and ffmpeg, image galleries through gallery-dl (run as separate programs); while a network adapter is chosen, their connections go through a proxy of MDM's on 127.0.0.1 that binds them to it (`relay.rs`) |
-| `crates/crash` | `mdm-crash` | Crash and freeze reports: the monitor process, out-of-process minidumps, symbolicated stacks, the report's text and the release logs ([crash-reports.md](crash-reports.md)) |
-| `crates/torrent` | `mdm-torrent` | BitTorrent and magnet links through librqbit |
-| `crates/labserver` | `mdm-labserver` | An HTTP Range server with a request log and fault injection, and an FTP/FTPS server with its own faults, for tests and benchmarks |
+| `crates/engine` | `tdm-engine` | Downloads one file over HTTP(S) or FTP(S): probe, segment planner, connection workers, resume state, per-host limits, speed limiter, checksums, proxy scripts |
+| `crates/app` | `tdm-app` | The desktop app (`tufan-download-manager.exe`, egui): list, categories, queues, scheduler, dialogs, tray, settings |
+| `crates/cli` | `tdm-cli` | Headless downloads with progress (`get`, `resume`), videos, torrents and the automation API's commands: a library the app's program runs (`tufan-download-manager --cli …`), and `tufan-download-manager-cli`, a small launcher that starts it with the same arguments, terminal and exit code |
+| `crates/mcp` | `tdm-mcp` | The MCP server (`tufan-download-manager-mcp`): AI assistants list, add and control the running app's downloads through the automation API |
+| `crates/remote` | `tdm-remote` | The remote control (#141): the HTTPS server a paired phone or computer on the local network uses (its page, pairing codes, device tokens, the self-signed certificate); every request becomes an automation API command the app answers |
+| `crates/nmhost` | `tdm-nmhost` | The browser's native messaging host: takes captured downloads from the extension and hands them to the app |
+| `crates/ipc` | `tdm-ipc` | The single-instance channel (a token-protected local socket), the data folder, and the capture rules shared by the app and the host |
+| `crates/debrid` | `tdm-debrid` | Debrid accounts (#44): the services' official APIs (Real-Debrid, AllDebrid, Premiumize, TorBox) turn a file host's link into a direct one the engine downloads |
+| `crates/extract` | `tdm-extract` | Archive extraction (#37): zip, tar, gz and xz in process; 7z and RAR through an installed 7-Zip, run as its own program |
+| `crates/geo` | `tdm-geo` | Where a download's server is (#140): an IP-to-country range table built from DB-IP's Lite data (`tools/geo/build.py`), looked up on this computer only, and the countries' flags |
+| `crates/tools` | `tdm-tools` | Video pages through yt-dlp and ffmpeg, image galleries through gallery-dl (run as separate programs); while a network adapter is chosen, their connections go through a proxy of TDM's on 127.0.0.1 that binds them to it (`relay.rs`) |
+| `crates/crash` | `tdm-crash` | Crash and freeze reports: the monitor process, out-of-process minidumps, symbolicated stacks, the report's text and the release logs ([crash-reports.md](crash-reports.md)) |
+| `crates/torrent` | `tdm-torrent` | BitTorrent and magnet links through librqbit |
+| `crates/labserver` | `tdm-labserver` | An HTTP Range server with a request log and fault injection, and an FTP/FTPS server with its own faults, for tests and benchmarks |
 | `extension/` | — | The Chromium (MV3) and Firefox extension |
 | `docs/` | — | The user guide and tutorials, this file, the benchmark data; the website makes the guide its help pages, which Help opens |
-| `website/` | — | misterdownloadmanager.com's own pages (home, download, features, themes, FAQ); `tools/website/build.py` adds the help from `docs/` and the news from the CHANGELOG, in 22 languages, and GitHub Pages publishes it |
+| `website/` | — | tufan-download-manager.com's own pages (home, download, features, themes, FAQ); `tools/website/build.py` adds the help from `docs/` and the news from the CHANGELOG, in 22 languages, and GitHub Pages publishes it |
 
 Dependencies point inward: `app`, `cli`, `mcp`, `nmhost` and `remote` use `engine` and `ipc`; the engine knows
 nothing of the UI. The app sees the engine only through its events (progress, segment table
@@ -89,7 +89,7 @@ light and a dark palette, metrics, control styles and an icon style (`palette.rs
   accent).
 - **Control styles.** `palette::Controls` names each control's shape (text boxes, check boxes,
   buttons, progress bars, scroll bars, the focus mark, the title bar); the style themes (Metro,
-  Adwaita, Breeze, Luna, Aero, Aqua, Emerald) pick theirs, and on Windows MDM then draws the
+  Adwaita, Breeze, Luna, Aero, Aqua, Emerald) pick theirs, and on Windows TDM then draws the
   title bar itself (the `caption.*` roles).
 - **Theme files.** `themefile.rs` reads TOML or JSON from the data folder's `themes` (one file,
   or `<id>/theme.toml` with icons beside it). A file names only what it changes; the rest comes
@@ -115,7 +115,7 @@ tried them, #206). View → Draw with picks one, from the next start. One code p
 every system (`crates/app/src/renderer.rs`): when the chosen one can't start, the other one is
 tried, so the windows always open. A watched start with the system's API leaves a marker until
 its first frame is drawn: a start that ends before it (a crash inside the driver), one whose
-first frame doesn't come within 10 seconds (MDM then starts again with OpenGL), or a graphics
+first frame doesn't come within 10 seconds (TDM then starts again with OpenGL), or a graphics
 card lost twice in 10 minutes is remembered with its reason, which the menu shows.
 
 View → Interface size (`scale.rs`, #262) is egui's zoom factor over the display's own scale:
@@ -125,33 +125,33 @@ scrolls.
 ### Data
 
 The download list and settings are saved atomically to the data folder (`downloads.json`):
-`%APPDATA%\misterdownloadmanager\` on Windows, `~/.local/share/misterdownloadmanager` on Linux,
-`~/Library/Application Support/misterdownloadmanager` on macOS, a `data` folder beside a portable
-copy, or `MDM_DATA_DIR` (`mdm_ipc::data_dir`). The browser host reads the same file for the
+`%APPDATA%\tufan-download-manager\` on Windows, `~/.local/share/tufan-download-manager` on Linux,
+`~/Library/Application Support/tufan-download-manager` on macOS, a `data` folder beside a portable
+copy, or `TDM_DATA_DIR` (`mdm_ipc::data_dir`). The browser host reads the same file for the
 capture rules, so a change in Options applies to the next captured download.
 
 Sign-in secrets (debrid accounts, Sites Logins' and the proxy's passwords) live in the system's
 keychain (`secrets.rs`, #44): Windows Credential Manager (`win32.rs`), the Secret Service on Linux
 or the macOS keychain (`unix.rs`). The settings keep a `keychain:<service>/<scope>/<key>`
 reference in their place, written only once the keychain has confirmed the secret; without a
-keychain (or with a locked one, never unlocked for MDM) the secret stays in the settings as
+keychain (or with a locked one, never unlocked for TDM) the secret stays in the settings as
 before.
 
 A download's server location (#140) is the country of the address it connected to, looked up in
-`mdm-geo`'s table on this computer (`countries.rs` names it in the interface language); the
+`tdm-geo`'s table on this computer (`countries.rs` names it in the interface language); the
 release job builds the table again from the month's data (`tools/geo/build.py --release`).
 
 ## Browser integration
 
 ```
-page ──► extension ──native messaging──► mdm-nmhost ──ipc──► app
+page ──► extension ──native messaging──► tdm-nmhost ──ipc──► app
 ```
 
 The extension asks the host which file types to take, checks each download against them, and
 cancels the browser's download only after the app has accepted it; otherwise the browser keeps
 it, and the extension says why.
 
-The host serves only MDM's own extension. Its IDs are in one place, `mdm_ipc::extension`
+The host serves only TDM's own extension. Its IDs are in one place, `mdm_ipc::extension`
 (`crates/ipc/src/extension.rs`): the unpacked copy's (`UNPACKED_ID`, from the manifest's public
 key), the Chrome Web Store's (`STORE_ID`, signed with the store's own key: `pack.ps1` leaves the
 manifest's key out of the store's copy), the Firefox add-on's (`FIREFOX_ID`) and its
@@ -162,7 +162,7 @@ offers the store's copy (Add to Chrome, Add to Firefox) before the unpacked one.
 ## Remote control
 
 ```
-phone ──HTTPS (paired token)──► mdm-remote ──ipc::Sink──► app (answer, remote_add)
+phone ──HTTPS (paired token)──► tdm-remote ──ipc::Sink──► app (answer, remote_add)
 ```
 
 `--headless` (`headless.rs`, #157) runs the same `App` without eframe: a loop calls its
@@ -190,7 +190,7 @@ the other catalogs lack (rows marked `#, machine`), following each language's st
 ## Pictures
 
 The help pages' pictures (`docs/images/help/`) come from one list, `tools/shots/shots.toml`:
-`tools/shots/make.py` opens each window through MDM's own `/show <window>` command line in a test
+`tools/shots/make.py` opens each window through TDM's own `/show <window>` command line in a test
 instance off the screen, crops and annotates it from the window's accessibility tree, and writes
 lossless WebP; `make.py check` (CI) keeps the list, the pages and the files in step. The
 published ones are taken on GitHub's Windows runner (`docs-shots.yml`).
@@ -206,6 +206,6 @@ photos are committed in `art/contributors/`, since GitHub can't round a picture 
 
 ## Tests and benchmarks
 
-`cargo test` runs unit tests and end-to-end downloads against `mdm-labserver` with injected
+`cargo test` runs unit tests and end-to-end downloads against `tdm-labserver` with injected
 faults (slow, dropped and refused connections, servers without ranges, changing files).
 `tools/bench` runs the published speed comparison; its raw data is in `docs/bench/`.

@@ -1,4 +1,4 @@
-﻿; Mister Download Manager's installer in Filipino: tools/installer/languages.py
+﻿; Tufan Download Manager's installer in Filipino: tools/installer/languages.py
 ; (machine-translated; a native speaker may correct any line).
 
 [LangOptions]
@@ -291,8 +291,8 @@ ShutdownBlockReasonUninstallingApp=Ina-uninstall ang %1.
 
 [CustomMessages]
 TaskBrowser=I-set up ang pagsasama ng &browser (Chrome, Edge, Brave, Firefox)
-TaskTorrents=Buksan ang mga .&torrent file at magnet link gamit ang Mister Download Manager
-TaskStartup=Simulan ang Mister Download Manager kapag nagsimula ang &Windows
+TaskTorrents=Buksan ang mga .&torrent file at magnet link gamit ang Tufan Download Manager
+TaskStartup=Simulan ang Tufan Download Manager kapag nagsimula ang &Windows
 TaskGroupOther=Iba pa:
-Launch=Simulan ang Mister Download Manager
+Launch=Simulan ang Tufan Download Manager
 KeepData=Burahin din ang iyong listahan ng download at mga setting?%n%nAng iyong mga na-download na file ay hindi maaapektuhan.

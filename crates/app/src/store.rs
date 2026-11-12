@@ -1,4 +1,4 @@
-//! The download list on disk: `%APPDATA%\misterdownloadmanager\downloads.json`, written with craft-atomic.
+//! The download list on disk: `%APPDATA%\tufan-download-manager\downloads.json`, written with craft-atomic.
 //! Also holds the list's column layout (order, widths, visibility, sort).
 //!
 //! Generations: `downloads.json.bak` is the list before the last save; `.1.bak` and `.2.bak`
@@ -11,7 +11,7 @@ use std::path::{Path, PathBuf};
 use std::sync::Mutex;
 use std::time::Duration;
 
-use mdm_engine::state::{ResumeState, state_path};
+use tdm_engine::state::{ResumeState, state_path};
 use serde::{Deserialize, Serialize};
 
 use crate::list::Layout;
@@ -46,7 +46,7 @@ pub struct Loaded {
 }
 
 pub fn path() -> Option<PathBuf> {
-    mdm_ipc::data_dir().map(|d| d.join("downloads.json"))
+    tdm_ipc::data_dir().map(|d| d.join("downloads.json"))
 }
 
 /// Load the list; a missing file gives an empty list, a damaged one is kept aside.
@@ -129,7 +129,7 @@ fn load_from(p: &Path, empty: Loaded) -> Loaded {
                 // state: not looked for (a playlist's thousands cost a second at start, #69).
                 if i.status != Status::Complete && i.video.is_none() {
                     // Started under the former codename: rename its files so it resumes.
-                    mdm_engine::state::migrate_legacy(&i.dest);
+                    tdm_engine::state::migrate_legacy(&i.dest);
                 }
                 if i.status != Status::Complete
                     && i.video.is_none()
@@ -152,7 +152,7 @@ fn load_from(p: &Path, empty: Loaded) -> Loaded {
             settings.list_known_browsers();
             // An earlier version's default File types, untouched, become today's (#208); a list
             // the user edited stays as it is.
-            if let Some(types) = mdm_ipc::capture::upgraded_types(&settings.auto_types) {
+            if let Some(types) = tdm_ipc::capture::upgraded_types(&settings.auto_types) {
                 settings.auto_types = types.into();
             }
             Loaded {
@@ -290,18 +290,18 @@ fn encode(
 /// flushed to the disk: slow while a big download writes, hence [`Saver`]).
 fn write(p: &Path, json: &[u8]) -> std::io::Result<()> {
     if let Some(dir) = p.parent() {
-        mdm_ipc::private_dir(dir)?;
+        tdm_ipc::private_dir(dir)?;
     }
     keep_generations(p);
     // The list holds the saved logins: its owner's only (the folder too).
-    mdm_ipc::private_write(p, json)?;
+    tdm_ipc::private_write(p, json)?;
     // On the disk now: keychain entries it no longer names can go.
     crate::secrets::vault().after_write();
     Ok(())
 }
 
 /// Saves the list on a thread of its own. The write ends with a flush to the disk, which waited
-/// for every byte a big download had written meanwhile: on the window's thread it froze MDM for
+/// for every byte a big download had written meanwhile: on the window's thread it froze TDM for
 /// seconds (a crash report caught it: "freeze in store::save"). The newest list waiting replaces
 /// an older one not yet written. Any file the window keeps saving goes the same way
 /// ([`Saver::writing`]): Windows holding every write on C: for a shadow copy held the window
@@ -387,7 +387,7 @@ impl Saver {
             .take()
     }
 
-    /// Wait until nothing is waiting or being written (MDM closing).
+    /// Wait until nothing is waiting or being written (TDM closing).
     pub fn flush(&self) {
         let (lock, cv) = &*self.shared;
         let mut s = lock.lock().unwrap_or_else(|e| e.into_inner());
@@ -582,10 +582,10 @@ mod tests {
         };
         std::fs::write(&p, list(old)).unwrap();
         let s = load_from(&p, empty()).settings;
-        assert_eq!(s.auto_types, mdm_ipc::capture::DEFAULT_AUTO_TYPES);
+        assert_eq!(s.auto_types, tdm_ipc::capture::DEFAULT_AUTO_TYPES);
         assert!(
-            mdm_ipc::capture::type_listed(&s.auto_types, "MDM-0.3.0.dmg")
-                && mdm_ipc::capture::type_listed(&s.auto_types, "mdm_0.3.0_amd64.deb")
+            tdm_ipc::capture::type_listed(&s.auto_types, "TDM-0.3.0.dmg")
+                && tdm_ipc::capture::type_listed(&s.auto_types, "tdm_0.3.0_amd64.deb")
         );
         let edited = format!("{old} NZB");
         std::fs::write(&p, list(&edited)).unwrap();

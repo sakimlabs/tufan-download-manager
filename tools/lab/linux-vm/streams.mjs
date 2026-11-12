@@ -1,8 +1,8 @@
 // #155/#167 on Linux: the Snap Firefox (headless, over WebDriver BiDi, as tools/extension/e2e.mjs
 // drives it) with an add-on, on the lab server's HLS and DASH player pages. Each hand-over path
 // (the button over the player, the right-click menu, the popup's media list) is triggered, then:
-// when the host started, when MDM's Download video window opened, the address yt-dlp was given,
-// and what yt-dlp asked the lab for once it finished. MDM must be running and not minimized.
+// when the host started, when TDM's Download video window opened, the address yt-dlp was given,
+// and what yt-dlp asked the lab for once it finished. TDM must be running and not minimized.
 //   node streams.mjs <xpi> [lab] [kinds]   lab: http://127.0.0.1:8097
 //   kinds: page flag and manifest path, default "hls:/hls/master.m3u8,dash:/dash/manifest.mpd";
 //   #171's streams without endings: "hls2:/hls2/playlist,dash2:/dash2/manifest"
@@ -13,7 +13,7 @@ import { spawn, execFileSync } from "node:child_process";
 const xpi = path.resolve(process.argv[2]);
 const LAB = process.argv[3] || "http://127.0.0.1:8097";
 const KINDS = (process.argv[4] || "hls:/hls/master.m3u8,dash:/dash/manifest.mpd").split(",").map((k) => k.split(":"));
-const ID = "integration@misterdownloadmanager.com";
+const ID = "integration@tufan-download-manager.com";
 const UUID = "5d0c3b8e-7a51-4c1e-9f0a-38e2c4a1d7b6";
 const NL = String.fromCharCode(10);
 const NUL = String.fromCharCode(0);
@@ -74,7 +74,7 @@ const hostLaunches = () => {
 };
 
 // A profile the Snap can read (not /tmp: a Snap has its own).
-const profile = path.join(process.env.HOME, "snap/firefox/common/mdm-streams");
+const profile = path.join(process.env.HOME, "snap/firefox/common/tdm-streams");
 fs.rmSync(profile, { recursive: true, force: true });
 fs.mkdirSync(profile, { recursive: true });
 const pref = (k, v) => `user_pref(${JSON.stringify(k)}, ${JSON.stringify(v)});`;
@@ -130,7 +130,7 @@ try {
   };
   const rect = (sel) =>
     evaluate(`(() => { const e = document.querySelector(${JSON.stringify(sel)});
-      if (!e || (e.localName === "mdm-video-button" && e.style.display !== "block")) return null;
+      if (!e || (e.localName === "tdm-video-button" && e.style.display !== "block")) return null;
       const r = e.getBoundingClientRect(); return { l: r.left, t: r.top, r: r.right, b: r.bottom }; })()`);
   const chrome = async (expression) => {
     const { contexts: w } = await bidi.send("browsingContext.getTree", { "moz:scope": "chrome" });
@@ -172,7 +172,7 @@ try {
     const ok = windowAt && given && new URL(given).pathname === manifest && asked.some((e) => e.path === manifest) && !asked.some((e) => e.path === "/page");
     say(
       `${ok ? "OK  " : "FAIL"} ${what}${r ? ` (${r})` : ""}: host started ${hostAt ? `at ${hostAt} s` : "?"}, ` +
-        `MDM's window ${windowAt ? `at ${windowAt} s` : "NOT within 60 s"}; yt-dlp given ${given || "nothing"}, done at ${done} s; ` +
+        `TDM's window ${windowAt ? `at ${windowAt} s` : "NOT within 60 s"}; yt-dlp given ${given || "nothing"}, done at ${done} s; ` +
         `the lab saw ${seen.join(", ") || "nothing"}`,
     );
   };
@@ -195,7 +195,7 @@ try {
       let b = null;
       for (let i = 0; i < 40 && !b; i++) {
         await mouse((v.l + v.r) / 2 + (i % 2), (v.t + v.b) / 2);
-        b = await rect("mdm-video-button");
+        b = await rect("tdm-video-button");
         if (!b) await sleep(200);
       }
       if (!b) return "no button over the player";
@@ -207,7 +207,7 @@ try {
       return chrome(`(async () => {
         const menu = document.getElementById("contentAreaContextMenu");
         const shown = () => [...menu.querySelectorAll("menuitem")].filter((m) => !m.hidden);
-        const L = "Download with Mister Download Manager";
+        const L = "Download with Tufan Download Manager";
         for (let i = 0; i < 50 && !shown().some((m) => m.label === L); i++) await new Promise((r) => setTimeout(r, 100));
         const item = shown().find((m) => m.label === L);
         if (!item) { const all = shown().map((m) => m.label).join(" | "); menu.hidePopup(); return "not there: " + all; }

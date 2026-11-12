@@ -5,7 +5,7 @@
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 
-use mdm_engine::verify::Hash;
+use tdm_engine::verify::Hash;
 
 use crate::dialogs::{Outcome, window};
 use crate::winui::{self, ButtonKind, LIGHT_BG, LIGHT_TEXT, r, text};
@@ -229,7 +229,7 @@ impl ChecksumDialog {
                             let (out, file, ctx) = (slot.clone(), file.clone(), ui.ctx().clone());
                             let gone = self.gone.clone();
                             std::thread::spawn(move || {
-                                let r = mdm_engine::verify::digest(&file, h.algo)
+                                let r = tdm_engine::verify::digest(&file, h.algo)
                                     .map_err(|e| e.to_string());
                                 // Closed while it checked: the verdict comes anyway (a large
                                 // file's was lost).

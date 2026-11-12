@@ -1,16 +1,16 @@
 //! TorBox's API, as documented at <https://api-docs.torbox.app/> and
-//! <https://api.torbox.app/openapi.json> (read 2026-11-10). Only what MDM uses: the account, the
+//! <https://api.torbox.app/openapi.json> (read 2026-11-10). Only what TDM uses: the account, the
 //! hosters list, and two kinds of its downloads (web downloads for file-host links, and
 //! torrents), which go the same way: created, fetched on TorBox's servers (`mylist` until
 //! finished), then each file's link asked (`requestdl`).
 //!
 //! - Every call carries `Authorization: Bearer <API key>`, except `requestdl`, whose documented
-//!   sign-in is the `token` query parameter: MDM never logs or shows that address, and asks it
+//!   sign-in is the `token` query parameter: TDM never logs or shows that address, and asks it
 //!   with `redirect=false` so the API key never reaches the download's own address.
 //! - Every answer is `{"success", "error", "detail", "data"}`; `error` is a code
 //!   (`BAD_TOKEN`, `UNSUPPORTED_SITE`...). Note `ITEM_NOT_FOUND` comes with `success: true`.
 //! - Sign-in by code (`user/auth/device/start`, then `user/auth/device/token` until allowed): the
-//!   user types the code at TorBox's page (its short address is `tor.box/link`), and MDM gets the
+//!   user types the code at TorBox's page (its short address is `tor.box/link`), and TDM gets the
 //!   account's API key. Or the key is pasted from the account's settings page.
 
 use serde::Deserialize;
@@ -23,7 +23,7 @@ use crate::{Fault, Http, ServiceKind};
 /// Where TorBox answers (tests: the lab server's `/tb/v1/api/`).
 pub const BASE: &str = "https://api.torbox.app/v1/api/";
 
-/// TorBox's kinds of downloads MDM uses: the same calls under their own path and id names.
+/// TorBox's kinds of downloads TDM uses: the same calls under their own path and id names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(crate) enum Kind {
     Web,
@@ -77,9 +77,9 @@ struct Envelope {
     data: Value,
 }
 
-/// What an error code means for MDM (the codes the documentation's examples show).
+/// What an error code means for TDM (the codes the documentation's examples show).
 pub(crate) fn fault_of(code: &str, detail: &str) -> Fault {
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
     Fault::Service(match code {
         "NO_AUTH" | "BAD_TOKEN" | "AUTH_ERROR" => F::SignIn,
         "UNSUPPORTED_SITE" => return Fault::Unsupported,
@@ -97,7 +97,7 @@ pub(crate) fn fault_of(code: &str, detail: &str) -> Fault {
 
 /// An answer's `data`, or its error.
 fn read(status: u16, body: &[u8], retry: Option<u64>) -> Result<Value, Fault> {
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
     if status == 429 {
         return Err(Fault::Service(F::TooManyRequests(
             retry.map(std::time::Duration::from_secs),
@@ -107,7 +107,7 @@ fn read(status: u16, body: &[u8], retry: Option<u64>) -> Result<Value, Fault> {
         return Err(Fault::Service(if status >= 500 {
             F::ServiceDown
         } else {
-            F::Other("an answer MDM can't read".into())
+            F::Other("an answer TDM can't read".into())
         }));
     };
     match e.error.filter(|c| !c.is_empty()) {
@@ -119,8 +119,8 @@ fn read(status: u16, body: &[u8], retry: Option<u64>) -> Result<Value, Fault> {
 
 fn data<T: serde::de::DeserializeOwned>(v: Value) -> Result<T, Fault> {
     serde_json::from_value(v).map_err(|_| {
-        Fault::Service(mdm_engine::ServiceFault::Other(
-            "an answer MDM can't read".into(),
+        Fault::Service(tdm_engine::ServiceFault::Other(
+            "an answer TDM can't read".into(),
         ))
     })
 }
@@ -174,7 +174,7 @@ pub(crate) async fn device_start(http: &Http) -> Result<DeviceCode, Fault> {
     data(call(http, http.get(&u)).await?)
 }
 
-/// `POST user/auth/device/token`: the API key once the user allowed MDM, None while not yet
+/// `POST user/auth/device/token`: the API key once the user allowed TDM, None while not yet
 /// (`DEVICE_CODE_NOT_USED`).
 pub(crate) async fn device_token(http: &Http, device_code: &str) -> Result<Option<String>, Fault> {
     #[derive(Deserialize)]
@@ -191,7 +191,7 @@ pub(crate) async fn device_token(http: &Http, device_code: &str) -> Result<Optio
         .and_then(|e| e.error);
     match code.as_deref() {
         Some("DEVICE_CODE_NOT_USED") => Ok(None),
-        Some("ITEM_NOT_FOUND") => Err(Fault::Service(mdm_engine::ServiceFault::Other(
+        Some("ITEM_NOT_FOUND") => Err(Fault::Service(tdm_engine::ServiceFault::Other(
             "the code expired: sign in again".into(),
         ))),
         _ => data::<Token>(read(status, &body, retry)?).map(|t| Some(t.access_token)),
@@ -234,7 +234,7 @@ pub(crate) async fn create(
     .await?;
     d.get(kind.created_id())
         .and_then(Value::as_u64)
-        .ok_or(Fault::Service(mdm_engine::ServiceFault::ServiceDown))
+        .ok_or(Fault::Service(tdm_engine::ServiceFault::ServiceDown))
 }
 
 /// A `mylist` entry: the same for both kinds.
@@ -285,11 +285,11 @@ pub(crate) async fn item(http: &Http, key: &str, kind: Kind, id: u64) -> Result<
     match d {
         Value::Array(mut a) if !a.is_empty() => data(a.swap_remove(0)),
         Value::Object(_) => data(d),
-        _ => Err(Fault::Service(mdm_engine::ServiceFault::FileUnavailable)),
+        _ => Err(Fault::Service(tdm_engine::ServiceFault::FileUnavailable)),
     }
 }
 
-/// A download of `link` ended (done, or taken off MDM's list): its web downloads leave the
+/// A download of `link` ended (done, or taken off TDM's list): its web downloads leave the
 /// account's TorBox list, as a torrent does once downloaded. Found by the link they were made
 /// from, so those made before a restart, or by a refreshed link, go too.
 pub(crate) async fn release(http: &Http, key: &str, link: &Url) -> Result<(), Fault> {
@@ -300,7 +300,7 @@ pub(crate) async fn release(http: &Http, key: &str, link: &Url) -> Result<(), Fa
     let list: Vec<Item> = match call(http, http.get(&u).bearer_auth(key)).await {
         Ok(d) => data(d)?,
         // An empty list: nothing to remove.
-        Err(Fault::Service(mdm_engine::ServiceFault::FileUnavailable)) => return Ok(()),
+        Err(Fault::Service(tdm_engine::ServiceFault::FileUnavailable)) => return Ok(()),
         Err(e) => return Err(e),
     };
     for i in list {
@@ -315,12 +315,12 @@ pub(crate) async fn release(http: &Http, key: &str, link: &Url) -> Result<(), Fa
 pub(crate) fn state(i: &Item) -> Option<Status> {
     let what = i.download_state.to_lowercase();
     if let Some(e) = i.error.as_deref().filter(|e| !e.trim().is_empty()) {
-        return Some(Status::Failed(mdm_engine::ServiceFault::Other(
+        return Some(Status::Failed(tdm_engine::ServiceFault::Other(
             e.to_owned(),
         )));
     }
     if what.contains("fail") || what == "error" {
-        return Some(Status::Failed(mdm_engine::ServiceFault::Other(
+        return Some(Status::Failed(tdm_engine::ServiceFault::Other(
             i.download_state.clone(),
         )));
     }
@@ -353,8 +353,8 @@ pub(crate) async fn link(
         .append_pair("redirect", "false");
     let d = call(http, http.get(&u)).await?;
     d.as_str().and_then(|l| Url::parse(l).ok()).ok_or_else(|| {
-        Fault::Service(mdm_engine::ServiceFault::Other(
-            "the service gave a link MDM can't read".into(),
+        Fault::Service(tdm_engine::ServiceFault::Other(
+            "the service gave a link TDM can't read".into(),
         ))
     })
 }
@@ -396,8 +396,8 @@ pub(crate) async fn delete(http: &Http, key: &str, kind: Kind, id: u64) -> Resul
 /// A torrent's id as the app keeps it (`Order::transfer`): its number.
 pub(crate) fn torrent_id(t: &str) -> Result<u64, Fault> {
     t.parse().map_err(|_| {
-        Fault::Service(mdm_engine::ServiceFault::Other(
-            "the service gave an id MDM can't use".into(),
+        Fault::Service(tdm_engine::ServiceFault::Other(
+            "the service gave an id TDM can't use".into(),
         ))
     })
 }
@@ -405,7 +405,7 @@ pub(crate) fn torrent_id(t: &str) -> Result<u64, Fault> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use mdm_engine::ServiceFault as F;
+    use tdm_engine::ServiceFault as F;
 
     #[test]
     fn the_documented_answers_read() {

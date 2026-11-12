@@ -1,6 +1,6 @@
 [package]
-name = "mdm-engine"
-description = "MDM download engine: dynamic segmentation, workers, resume"
+name = "tdm-engine"
+description = "TDM download engine: dynamic segmentation, workers, resume"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -61,7 +61,7 @@ core-foundation-sys = "0.8.7"
 [dev-dependencies]
 # The free-space probe's test compares it with the volume list it replaced (#224).
 sysinfo.workspace = true
-mdm-labserver.workspace = true
+tdm-labserver.workspace = true
 proptest.workspace = true
 serde_json.workspace = true
 tempfile.workspace = true

@@ -28,10 +28,10 @@ use sha2::{Digest, Sha256};
 
 /// yt-dlp's release signing key, from its repository (`public.key`).
 const YTDLP_KEY: &str = include_str!("../keys/yt-dlp.asc");
-/// Mister Download Manager's release signing key (Ed25519, fingerprint
+/// Tufan Download Manager's release signing key (Ed25519, fingerprint
 /// 5826D399249DE856EA087D802E293C28E8A69D74): release.yml signs each release's SHA256SUMS.txt
-/// with it (the MDM_RELEASE_KEY secret), and MDM updates itself only from a list it signed.
-const MDM_KEY: &str = include_str!("../keys/mdm-release.asc");
+/// with it (the TDM_RELEASE_KEY secret), and TDM updates itself only from a list it signed.
+const TDM_KEY: &str = include_str!("../keys/tdm-release.asc");
 /// Where releases come from.
 const RELEASES: &str = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest";
 
@@ -52,19 +52,19 @@ pub enum Error {
     /// A program chosen as yt-dlp or ffmpeg (`chosen`) didn't answer as one.
     #[error("this program isn't {0}")]
     NotTheProgram(&'static str),
-    /// A program chosen as a helper is a release MDM can't drive (#236: gallery-dl before 1.20).
+    /// A program chosen as a helper is a release TDM can't drive (#236: gallery-dl before 1.20).
     #[error("{name} {version} is too old: it needs {oldest} or newer")]
     TooOld {
         name: &'static str,
         version: String,
         oldest: &'static str,
     },
-    /// MDM's engine could not download it (its own words).
+    /// TDM's engine could not download it (its own words).
     #[error("{0}")]
     Download(String),
     /// The chosen network adapter is down or can't reach the server (#35).
     #[error(transparent)]
-    Adapter(#[from] mdm_engine::NetError),
+    Adapter(#[from] tdm_engine::NetError),
 }
 
 /// An installed tool.
@@ -86,7 +86,7 @@ impl Installed {
 
 /// `<data dir>/tools`.
 pub fn tools_dir() -> Option<PathBuf> {
-    mdm_ipc::data_dir().map(|d| d.join("tools"))
+    tdm_ipc::data_dir().map(|d| d.join("tools"))
 }
 
 /// yt-dlp's file name for this platform in its releases. On macOS, its folder build: why, in
@@ -110,14 +110,14 @@ pub fn signed_by_ytdlp(sums: &[u8], sig: &[u8]) -> bool {
 /// Whether `sums` (a release's SHA256SUMS.txt) carries a valid signature `sig` by Mister
 /// Download Manager's release key.
 pub fn signed_by_mdm(sums: &[u8], sig: &[u8]) -> bool {
-    if signed_by(MDM_KEY, sums, sig) {
+    if signed_by(TDM_KEY, sums, sig) {
         return true;
     }
     // Update now's end-to-end tests (feature `test-update`, never in a release): a fake
     // release on a lab server, signed with a test key of their own.
     #[cfg(feature = "test-update")]
     if let Some(key) =
-        std::env::var_os("MDM_TEST_UPDATE_KEY").and_then(|p| std::fs::read_to_string(p).ok())
+        std::env::var_os("TDM_TEST_UPDATE_KEY").and_then(|p| std::fs::read_to_string(p).ok())
     {
         return signed_by(&key, sums, sig);
     }
@@ -158,13 +158,13 @@ pub(crate) async fn signed_list(
     Ok(String::from_utf8_lossy(&sums).into_owned())
 }
 
-/// MDM's own name, sent when it fetches its helpers and its updates.
+/// TDM's own name, sent when it fetches its helpers and its updates.
 pub const USER_AGENT: &str = concat!("MisterDownloadManager/", env!("CARGO_PKG_VERSION"));
 
-/// How MDM downloads its helpers and its updates: through its own engine (several connections,
-/// resumable), as MDM itself, through `proxy` (Options → Proxy / Socks).
-pub fn net(proxy: mdm_engine::Proxy) -> mdm_engine::Options {
-    mdm_engine::Options {
+/// How TDM downloads its helpers and its updates: through its own engine (several connections,
+/// resumable), as TDM itself, through `proxy` (Options → Proxy / Socks).
+pub fn net(proxy: tdm_engine::Proxy) -> tdm_engine::Options {
+    tdm_engine::Options {
         user_agent: USER_AGENT.to_owned(),
         automatic_agent: false,
         proxy,
@@ -172,7 +172,7 @@ pub fn net(proxy: mdm_engine::Proxy) -> mdm_engine::Options {
     }
 }
 
-/// Download `url` into `path` with MDM's own engine (`net`: its connections, the user's proxy),
+/// Download `url` into `path` with TDM's own engine (`net`: its connections, the user's proxy),
 /// counting into `progress`, and accept it only when its SHA-256 is `expected` (the engine checks
 /// it, and so do we, on the finished file). An earlier attempt cut off is resumed from where it
 /// stopped. A file that doesn't match is removed.
@@ -180,19 +180,19 @@ pub(crate) async fn fetch_verified(
     url: &str,
     path: &Path,
     expected: [u8; 32],
-    net: &mdm_engine::Options,
+    net: &tdm_engine::Options,
     progress: Option<&update::Progress>,
 ) -> Result<(), Error> {
-    use mdm_engine::verify::{Algo, Hash};
+    use tdm_engine::verify::{Algo, Hash};
     let url = url::Url::parse(url).map_err(|e| Error::BadRelease(e.to_string()))?;
-    let opts = mdm_engine::Options {
+    let opts = tdm_engine::Options {
         checksum: Some(Hash {
             algo: Algo::Sha256,
             value: expected.to_vec(),
         }),
         ..net.clone()
     };
-    let got = mdm_engine::fetch(url, path, opts, |done, total| {
+    let got = tdm_engine::fetch(url, path, opts, |done, total| {
         if let Some(p) = progress {
             use std::sync::atomic::Ordering::Relaxed;
             p.got.store(done, Relaxed);
@@ -200,15 +200,15 @@ pub(crate) async fn fetch_verified(
         }
     })
     .await;
-    let state = mdm_engine::state::state_path(path);
+    let state = tdm_engine::state::state_path(path);
     let forget = || {
         let _ = std::fs::remove_file(path);
-        let _ = std::fs::remove_file(mdm_engine::naming::part_path(path));
+        let _ = std::fs::remove_file(tdm_engine::naming::part_path(path));
         let _ = std::fs::remove_file(&state);
     };
     match got {
         Ok(_) if sha256_of(path)? == expected => Ok(()),
-        Ok(_) | Err(mdm_engine::Error::ChecksumMismatch(_)) => {
+        Ok(_) | Err(tdm_engine::Error::ChecksumMismatch(_)) => {
             forget();
             Err(Error::BadChecksum)
         }
@@ -242,7 +242,7 @@ pub fn sum_for(sums: &str, name: &str) -> Option<[u8; 32]> {
     })
 }
 
-/// The yt-dlp to use: the person's own (`chosen`), else MDM's install in `dir`
+/// The yt-dlp to use: the person's own (`chosen`), else TDM's install in `dir`
 /// (`dir/yt-dlp/current.json`), if any and still there; on Linux and macOS, else the system's.
 pub fn installed(dir: &Path) -> Option<Installed> {
     let own = chosen::chosen(dir, chosen::Helper::YtDlp).or_else(|| own_ytdlp(dir));
@@ -287,19 +287,19 @@ pub fn refreshable(dir: &Path) -> bool {
 }
 
 /// Install the latest yt-dlp release into `dir` unless the installed one is as new, the program
-/// downloaded with MDM's engine (`net`), counted into `progress`. Returns what is installed
-/// afterwards. A system copy doesn't count as installed here: this is the way to get MDM's own
-/// instead (Helpers), and MDM's own then wins ([`installed`]).
+/// downloaded with TDM's engine (`net`), counted into `progress`. Returns what is installed
+/// afterwards. A system copy doesn't count as installed here: this is the way to get TDM's own
+/// instead (Helpers), and TDM's own then wins ([`installed`]).
 pub async fn install_latest(
     dir: &Path,
-    net: &mdm_engine::Options,
+    net: &tdm_engine::Options,
     progress: Option<&update::Progress>,
 ) -> Result<Installed, Error> {
     // The person's own copy: theirs to update (#51).
     if let Some(mine) = chosen::chosen(dir, chosen::Helper::YtDlp) {
         return Ok(mine);
     }
-    let client = mdm_engine::net::client_builder(&net.dns, &net.route, RELEASES)?
+    let client = tdm_engine::net::client_builder(&net.dns, &net.route, RELEASES)?
         .user_agent(USER_AGENT)
         .build()?;
     let body = client
@@ -437,9 +437,9 @@ mod tests {
     }
 
     #[test]
-    fn mdm_releases_are_checked_against_mdms_own_key() {
-        let sums = include_bytes!("../tests/fixtures/mdm-SHA256SUMS.txt");
-        let sig = include_bytes!("../tests/fixtures/mdm-SHA256SUMS.txt.sig");
+    fn tdm_releases_are_checked_against_mdms_own_key() {
+        let sums = include_bytes!("../tests/fixtures/tdm-SHA256SUMS.txt");
+        let sig = include_bytes!("../tests/fixtures/tdm-SHA256SUMS.txt.sig");
         assert!(signed_by_mdm(sums, sig));
         let mut forged = sums.to_vec();
         forged[0] = if forged[0] == b'0' { b'1' } else { b'0' };

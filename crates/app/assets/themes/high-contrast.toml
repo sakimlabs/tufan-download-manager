@@ -1,9 +1,9 @@
-# High contrast: one of Mister Download Manager's built-in themes, and an example of a theme
+# High contrast: one of Tufan Download Manager's built-in themes, and an example of a theme
 # file. Black and white, a bright accent, every text at 7:1 or more against what it sits on
 # (WCAG 2.1 AAA), every control's edge in the text's colour.
 #
 # A theme file names only what it changes. This one gives a few seed colours per variant and
-# lets MDM derive every other colour from them; `contrast = "high"` draws every edge in the
+# lets TDM derive every other colour from them; `contrast = "high"` draws every edge in the
 # text's colour and keeps greyed text readable.
 
 name = "High contrast"
