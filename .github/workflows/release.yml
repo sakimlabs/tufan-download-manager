@@ -147,7 +147,7 @@ jobs:
       - name: Tests
         run: node tools/extension/test.mjs
 
-      - name: Chromium zip, Firefox .xpi and the Chrome Web Store's zip
+      - name: Chromium zip, Firefox .xpi, Safari folder and the Chrome Web Store's zip
         shell: pwsh
         run: |
           ./tools/extension/pack.ps1
@@ -156,6 +156,17 @@ jobs:
           New-Item -ItemType Directory -Force target/dist | Out-Null
           Copy-Item target/extension/tdm-chromium.zip "target/dist/MisterDownloadManager-$v-extension-chromium.zip"
           Copy-Item target/extension/tdm-firefox.xpi "target/dist/MisterDownloadManager-$v-extension-firefox.xpi"
+          # Safari extension folder (for macOS build): zip it and place in target/dist
+          if (Test-Path "target/extension/safari") {
+            Add-Type -AssemblyName System.IO.Compression.FileSystem
+            $safariDir = (Resolve-Path "target/extension/safari").Path
+            $safariZip = "target/dist/MisterDownloadManager-$v-extension-safari.zip"
+            if (Test-Path $safariZip) { Remove-Item -LiteralPath $safariZip -Force }
+            [System.IO.Compression.ZipFile]::CreateFromDirectory($safariDir, $safariZip)
+            Write-Host "Created Safari extension zip: $safariZip"
+          } else {
+            Write-Warning "target/extension/safari not found; Safari extension will not be available on macOS"
+          }
           # For the Chrome Web Store (the next step, or its dashboard by hand): kept with the
           # build, not the release.
           New-Item -ItemType Directory -Force target/store | Out-Null
@@ -240,6 +251,12 @@ jobs:
           v=$(grep '^version' Cargo.toml | head -1 | sed -E 's/version[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/')
           unzip -o "target/dist/MisterDownloadManager-$v-extension-chromium.zip" -d target/extension/chromium
           cp "target/dist/MisterDownloadManager-$v-extension-firefox.xpi" target/extension/tdm-firefox.xpi
+          # Safari extension (for macOS build)
+          if [ -f "target/dist/MisterDownloadManager-$v-extension-safari.zip" ]; then
+            unzip -o "target/dist/MisterDownloadManager-$v-extension-safari.zip" -d target/extension/safari
+          else
+            echo "WARNING: Safari extension zip not found; Safari extension will not be included in macOS app"
+          fi
 
       - name: Toolchain
         run: rustup show active-toolchain || rustup toolchain install
@@ -294,6 +311,12 @@ jobs:
           v=$(grep '^version' Cargo.toml | head -1 | sed -E 's/version[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/')
           unzip -o "target/dist/MisterDownloadManager-$v-extension-chromium.zip" -d target/extension/chromium
           cp "target/dist/MisterDownloadManager-$v-extension-firefox.xpi" target/extension/tdm-firefox.xpi
+          # Safari extension (for macOS build)
+          if [ -f "target/dist/MisterDownloadManager-$v-extension-safari.zip" ]; then
+            unzip -o "target/dist/MisterDownloadManager-$v-extension-safari.zip" -d target/extension/safari
+          else
+            echo "WARNING: Safari extension zip not found; Safari extension will not be included in macOS app"
+          fi
 
       - name: Toolchain
         run: rustup show active-toolchain || rustup toolchain install
