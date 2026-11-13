@@ -17,7 +17,7 @@ dist="$root/target/dist"
 bin="$root/target/release"
 version="$(sed -n 's/^version *= *"\([^"]*\)".*/\1/p' "$root/Cargo.toml" | head -1)"
 [ -n "$version" ] || { echo "no version in Cargo.toml" >&2; exit 1; }
-name="MisterDownloadManager-$version-linux-x86_64"
+name="TufanDownloadManager-$version-linux-x64"
 programs=(tufan-download-manager tufan-download-manager-nmhost tufan-download-manager-cli tufan-download-manager-mcp)
 
 if [ "${1:-}" != "--no-build" ]; then

@@ -3,6 +3,11 @@
 Each release's notes on GitHub come from its section here (`## [X.Y.Z]`, see
 `.github/workflows/release.yml`).
 
+## [4.6.0]
+
+### Fixed
+- Windows download-resume test flakiness: check resume state file after process exit before panicking (`crates/app/tests/cli_crash.rs`)
+
 ## [Unreleased]
 
 ### Added

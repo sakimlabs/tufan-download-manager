@@ -60,7 +60,7 @@ dmgs=()
 for pair in "${targets[@]}"; do
   t="${pair%%:*}"
   arch="${pair##*:}"
-  name="MisterDownloadManager-$version-macos-$arch-experimental"
+  name="TufanDownloadManager-$version-macos-$arch"
   app="$stage/$arch/dmg/Tufan Download Manager.app"
   mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
 

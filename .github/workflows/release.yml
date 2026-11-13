@@ -361,6 +361,31 @@ jobs:
           path: dist
           merge-multiple: true
 
+      - name: Keep only required installers
+        shell: pwsh
+        run: |
+          # Remove all files except the 4 required installers
+          $keep = @(
+            "TufanDownloadManager-4.6.0-setup.exe",
+            "TufanDownloadManager-4.6.0-linux-x64.deb",
+            "TufanDownloadManager-4.6.0-macos-arm64.dmg",
+            "TufanDownloadManager-4.6.0-macos-x64.dmg"
+          )
+          $files = Get-ChildItem dist -File
+          foreach ($f in $files) {
+            if ($keep -notcontains $f.Name) {
+              Write-Host "Removing: $($f.Name)"
+              Remove-Item -Path $f.FullName -Force
+            } else {
+              Write-Host "Keeping: $($f.Name)"
+            }
+          }
+      - name: Debug dist contents
+        shell: pwsh
+        run: |
+          Write-Host "Files in dist after filtering:"
+          Get-ChildItem dist | ForEach-Object { $_.Name }
+          Write-Host "Count:" (Get-ChildItem dist).Count
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
