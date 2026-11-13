@@ -3403,7 +3403,7 @@ mod startup_tests {
         assert!(startup_outdated(&format!("\"{EXE}\""), exe));
         // Written by hand: unquoted, in another case, with other slashes.
         assert!(startup_outdated(
-            r"c:\program files\mister download manager\MISTERDOWNLOADMANAGER.EXE",
+            &EXE.replace('\\', "/").to_lowercase(),
             exe
         ));
         assert!(startup_outdated(
@@ -3416,7 +3416,7 @@ mod startup_tests {
         assert!(!startup_outdated(&format!("\"{EXE}\" /STARTUP"), exe));
         // Another copy's (a portable one, a build elsewhere).
         assert!(!startup_outdated(
-            r#""D:\mdm\tufan-download-manager.exe""#,
+            r#""D:\tdm\tufan-download-manager.exe""#,
             exe
         ));
         assert!(!startup_outdated("", exe));
@@ -3427,7 +3427,7 @@ mod startup_tests {
     fn the_installer_writes_the_same_entry() {
         let iss = include_str!("../../../tools/installer/mdm.iss");
         assert!(iss.contains(
-            r#"ValueName: "MisterDownloadManager"; ValueData: """{app}\{#AppExe}"" /startup""#
+            r#"ValueName: "TufanDownloadManager"; ValueData: """{app}\{#AppExe}"" /startup""#
         ));
     }
 }
