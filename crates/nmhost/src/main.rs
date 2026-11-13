@@ -955,18 +955,21 @@ fn register(all_users: bool) -> Result<(), String> {
                 continue;
             }
             covered += 1;
-            let manifest = dir.join(format!("{HOST_NAME}.json"));
-            if std::fs::remove_file(&manifest).is_ok() {
-                println!(
-                    "removed {} (the browser reads the one for everyone)",
-                    manifest.display()
-                );
+            // Remove both old and new host manifests
+            for host in [HOST_NAME, OLD_HOST_NAME] {
+                let manifest = dir.join(format!("{host}.json"));
+                if std::fs::remove_file(&manifest).is_ok() {
+                    println!(
+                        "removed {} (the browser reads the one for everyone)",
+                        manifest.display()
+                    );
+                }
             }
         }
     }
     if covered > 0 {
         println!(
-            "registered {HOST_NAME} for everyone by the package: {covered} of this user's \
+            "registered {HOST_NAME} and {OLD_HOST_NAME} for everyone by the package: {covered} of this user's \
              browser folders need nothing"
         );
     }
@@ -974,6 +977,7 @@ fn register(all_users: bool) -> Result<(), String> {
     let mut failed = Vec::new();
     for (dir, is_firefox) in &dirs {
         let manifest = if *is_firefox { &firefox } else { &chromium };
+        // Register primary (new) host name
         let written = std::fs::create_dir_all(dir)
             .map_err(|e| format!("{}: {e}", dir.display()))
             .and_then(|()| write_json(&dir.join(format!("{HOST_NAME}.json")), manifest));
@@ -981,9 +985,20 @@ fn register(all_users: bool) -> Result<(), String> {
             Ok(()) => println!("registered {HOST_NAME} in {}", dir.display()),
             Err(e) => failed.push(e),
         }
+        // Register legacy host name for original extension compatibility
+        let legacy_manifest = if *is_firefox {
+            firefox_manifest(&program)
+        } else {
+            chromium_manifest(&program)
+        };
+        let legacy_written = write_json(&dir.join(format!("{OLD_HOST_NAME}.json")), legacy_manifest);
+        match legacy_written {
+            Ok(()) => println!("registered {OLD_HOST_NAME} in {}", dir.display()),
+            Err(e) => failed.push(e),
+        }
     }
     if dirs.is_empty() && covered == 0 {
-        println!("registered {HOST_NAME} for no browser: none found");
+        println!("registered {HOST_NAME} and {OLD_HOST_NAME} for no browser: none found");
     }
     if !failed.is_empty() {
         return Err(failed.join("; "));
@@ -1010,12 +1025,14 @@ fn register(all_users: bool) -> Result<(), String> {
 #[cfg(not(windows))]
 fn unregister(all_users: bool) -> Result<(), String> {
     for (dir, _) in host_dirs(all_users, None) {
-        let _ = std::fs::remove_file(dir.join(format!("{HOST_NAME}.json")));
+        for host in [HOST_NAME, OLD_HOST_NAME] {
+            let _ = std::fs::remove_file(dir.join(format!("{host}.json")));
+        }
     }
     for (dir, _) in external_dirs(all_users) {
         let _ = std::fs::remove_file(dir.join(format!("{STORE_ID}.json")));
     }
-    println!("unregistered {HOST_NAME}");
+    println!("unregistered {HOST_NAME} and {OLD_HOST_NAME}");
     Ok(())
 }
 
@@ -1038,9 +1055,14 @@ fn package_manifests(root: Option<&str>) -> Result<(), String> {
             tdm_ipc::browsers::Family::Chromium => chromium_manifest(program),
             tdm_ipc::browsers::Family::Gecko => firefox_manifest(program),
         };
+        // Primary host name
         let path = dir.join(format!("{HOST_NAME}.json"));
         write_json(&path, &manifest)?;
         println!("{}", path.display());
+        // Legacy host name for original extension compatibility
+        let legacy_path = dir.join(format!("{OLD_HOST_NAME}.json"));
+        write_json(&legacy_path, &manifest)?;
+        println!("{}", legacy_path.display());
     }
     Ok(())
 }
