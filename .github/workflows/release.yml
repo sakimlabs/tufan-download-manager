@@ -237,7 +237,7 @@ jobs:
       - name: Extract extension artifacts
         run: |
           mkdir -p target/extension
-          v=$(sed -n 's/^version *= *"([^"]*)".*/\1/p' Cargo.toml | head -1)
+          v=$(grep '^version' Cargo.toml | head -1 | sed -E 's/version[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/')
           unzip -o "target/dist/MisterDownloadManager-$v-extension-chromium.zip" -d target/extension/chromium
           cp "target/dist/MisterDownloadManager-$v-extension-firefox.xpi" target/extension/tdm-firefox.xpi
 
@@ -291,7 +291,7 @@ jobs:
       - name: Extract extension artifacts
         run: |
           mkdir -p target/extension
-          v=$(sed -n 's/^version *= *"([^"]*)".*/\1/p' Cargo.toml | head -1)
+          v=$(grep '^version' Cargo.toml | head -1 | sed -E 's/version[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/')
           unzip -o "target/dist/MisterDownloadManager-$v-extension-chromium.zip" -d target/extension/chromium
           cp "target/dist/MisterDownloadManager-$v-extension-firefox.xpi" target/extension/tdm-firefox.xpi
 
