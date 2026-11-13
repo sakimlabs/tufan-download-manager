@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Savienots ar Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Savienots ar Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Apturēts: lejupielādes paliek pārlūkprogrammā"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Pievienot lapas nosaukumu multivides failu nosaukumu priekšā"
+  },
+  "status_connected_2_0_0": {
+    "message": "Savienots ar Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

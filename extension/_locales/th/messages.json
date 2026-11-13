@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "เชื่อมต่อกับ Tufan Download Manager แล้ว"
   },
-  "status_connected_version": {
-    "message": "เชื่อมต่อกับ Tufan Download Manager $version$ แล้ว",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "หยุดชั่วคราว: การดาวน์โหลดจะยังคงอยู่ในเบราว์เซอร์"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "เพิ่มชื่อหน้าไว้หน้าชื่อไฟล์สื่อ"
+  },
+  "status_connected_2_0_0": {
+    "message": "เชื่อมต่อกับ Tufan Download Manager $version$ แล้ว",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

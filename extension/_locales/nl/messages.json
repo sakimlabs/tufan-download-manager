@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Verbonden met Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Verbonden met Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Gepauzeerd: downloads blijven bij de browser"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Voeg de paginatitel toe vóór de namen van mediabestanden"
+  },
+  "status_connected_2_0_0": {
+    "message": "Verbonden met Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

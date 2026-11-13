@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager ಗೆ ಸಂಪರ್ಕಿಸಲಾಗಿದೆ"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ ಗೆ ಸಂಪರ್ಕಿಸಲಾಗಿದೆ",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ: ಡೌನ್‌ಲೋಡ್‌ಗಳು ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಉಳಿಯುತ್ತವೆ"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "ಮಾಧ್ಯಮ ಫೈಲ್ ಹೆಸರುಗಳ ಮುಂದೆ ಪುಟದ ಶೀರ್ಷಿಕೆಯನ್ನು ಸೇರಿಸಿ"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ ಗೆ ಸಂಪರ್ಕಿಸಲಾಗಿದೆ",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

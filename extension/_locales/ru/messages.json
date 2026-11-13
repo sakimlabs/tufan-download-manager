@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Подключено к Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Подключено к Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Приостановлено: загрузки остаются в браузере"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Добавлять заголовок страницы перед именами медиафайлов"
+  },
+  "status_connected_2_0_0": {
+    "message": "Подключено к Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

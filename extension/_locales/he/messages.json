@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "מחובר אל Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "מחובר אל Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "מושהה: ההורדות נשארות בדפדפן"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "הוספת כותרת הדף לפני שמות קובצי המדיה"
+  },
+  "status_connected_2_0_0": {
+    "message": "מחובר אל Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

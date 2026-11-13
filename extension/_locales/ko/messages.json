@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager에 연결됨"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$에 연결됨",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "일시 중지됨: 다운로드는 브라우저에 남아 있습니다."
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "미디어 파일 이름 앞에 페이지 제목 추가"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$에 연결됨",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

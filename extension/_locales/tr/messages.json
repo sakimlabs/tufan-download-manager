@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager uygulamasına bağlandı"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ uygulamasına bağlandı",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Duraklatıldı: indirmeler tarayıcıda kalır"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Medya dosyası adlarının önüne sayfa başlığını ekle"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ uygulamasına bağlandı",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

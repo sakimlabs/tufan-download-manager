@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Pripojené k Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Pripojené k Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Pozastavené: sťahovania zostávajú v prehliadači"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Pridať názov stránky pred názvy mediálnych súborov"
+  },
+  "status_connected_2_0_0": {
+    "message": "Pripojené k Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Yhdistetty sovellukseen Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Yhdistetty sovellukseen Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Ei käytössä: lataukset jäävät selaimeen"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Lisää sivun otsikko mediatiedostojen nimien eteen"
+  },
+  "status_connected_2_0_0": {
+    "message": "Yhdistetty sovellukseen Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

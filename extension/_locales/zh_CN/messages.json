@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "已连接到 Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "已连接到 Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "已暂停: 下载保留在浏览器中"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "在媒体文件名前加上页面标题"
+  },
+  "status_connected_2_0_0": {
+    "message": "已连接到 Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Ühendatud rakendusega Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Ühendatud rakendusega Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Peatatud: allalaadimised jäävad brauserisse"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Lisa meediafailide nimede ette lehe pealkiri"
+  },
+  "status_connected_2_0_0": {
+    "message": "Ühendatud rakendusega Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

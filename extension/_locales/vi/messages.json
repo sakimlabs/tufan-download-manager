@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Đã kết nối với Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Đã kết nối với Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Đã tạm dừng: các bản tải xuống vẫn ở trong trình duyệt"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Thêm tiêu đề trang vào trước tên tệp phương tiện"
+  },
+  "status_connected_2_0_0": {
+    "message": "Đã kết nối với Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

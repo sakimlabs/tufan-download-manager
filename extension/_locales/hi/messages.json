@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager से कनेक्ट है"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ से कनेक्ट है",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "रोका गया: डाउनलोड ब्राउज़र के साथ रहते हैं"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "मीडिया फ़ाइलों के नामों से पहले पेज का शीर्षक जोड़ें"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ से कनेक्ट है",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

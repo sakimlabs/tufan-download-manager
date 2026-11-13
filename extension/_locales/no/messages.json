@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tilkoblet Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Tilkoblet Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Pauset: nedlastingene blir i nettleseren"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Legg til sidetittelen foran navn på mediefiler"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tilkoblet Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

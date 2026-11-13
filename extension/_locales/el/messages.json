@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Συνδεδεμένο στο Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Συνδεδεμένο στο Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Σε παύση: οι λήψεις παραμένουν στο πρόγραμμα περιήγησης"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Προσθήκη του τίτλου της σελίδας πριν από τα ονόματα των αρχείων πολυμέσων"
+  },
+  "status_connected_2_0_0": {
+    "message": "Συνδεδεμένο στο Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

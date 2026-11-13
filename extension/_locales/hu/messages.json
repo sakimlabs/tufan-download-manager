@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Csatlakoztatva az Tufan Download Manager alkalmazáshoz"
   },
-  "status_connected_version": {
-    "message": "Csatlakoztatva az Tufan Download Manager $version$ alkalmazáshoz",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Szüneteltetve: a letöltések a böngészőben maradnak"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Az oldal címének hozzáadása a médiafájlok neve elé"
+  },
+  "status_connected_2_0_0": {
+    "message": "Csatlakoztatva az Tufan Download Manager $version$ alkalmazáshoz",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

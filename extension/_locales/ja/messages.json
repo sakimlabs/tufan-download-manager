@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager に接続済み"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ に接続済み",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "一時停止: ダウンロードはブラウザーに残ります"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "メディアファイル名の前にページのタイトルを付ける"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ に接続済み",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

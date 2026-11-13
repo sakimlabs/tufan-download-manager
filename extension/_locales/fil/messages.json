@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Nakakonekta sa Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Nakakonekta sa Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Naka-pause: mananatili ang mga download sa browser"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Idagdag ang pamagat ng page bago ang mga pangalan ng media file"
+  },
+  "status_connected_2_0_0": {
+    "message": "Nakakonekta sa Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

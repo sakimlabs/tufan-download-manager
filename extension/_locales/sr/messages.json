@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Повезано са Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Повезано са Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Паузирано: преузимања остају у прегледачу"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Додај наслов странице испред назива медијских датотека"
+  },
+  "status_connected_2_0_0": {
+    "message": "Повезано са Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

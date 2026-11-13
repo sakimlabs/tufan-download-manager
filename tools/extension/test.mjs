@@ -280,7 +280,7 @@ const ok = (what) => {
   const cookies = calls.find((c) => c[0] === "cookies");
   assert.deepEqual(cookies[1], { url: "https://x/a.zip", storeId: "firefox-container-2" });
   const native = calls.find((c) => c[0] === "native");
-  assert.equal(native[1], "com.tufan-download-manager.host");
+    assert.equal(native[1], "com.misterdownloadmanager.host");
   const m = native[2];
   assert.deepEqual(
     [m.url, m.referrer, m.cookies, m.filename, m.size, m.mime, m.userAgent, m.v],
@@ -1874,7 +1874,7 @@ const popupState = (listeners) =>
 // ("site-access"), and a popup text for each.
 {
   const rust = readFileSync(new URL("../../crates/ipc/src/capture.rs", import.meta.url), "utf8");
-  const body = /pub fn code\(self\)[\s\S]*?\n    \}\n/.exec(rust)[0];
+  const body = /pub fn code\(self\)[\s\S]*?\n    \}\n/.exec(rust.replace(/\r\n/g, "\n"))[0];
   const codes = [...body.matchAll(/=> "([a-z-]+)"/g)].map((m) => m[1]);
   assert.deepEqual(codes, ["integration-off", "browser", "file-type", "site", "address", "small"]);
   const en = JSON.parse(readFileSync(new URL("../../extension/_locales/en/messages.json", import.meta.url), "utf8"));

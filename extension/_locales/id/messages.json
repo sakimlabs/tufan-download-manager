@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Terhubung ke Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Terhubung ke Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Dijeda: unduhan tetap di browser"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Tambahkan judul halaman di depan nama file media"
+  },
+  "status_connected_2_0_0": {
+    "message": "Terhubung ke Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

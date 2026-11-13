@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "به Tufan Download Manager متصل شد"
   },
-  "status_connected_version": {
-    "message": "به Tufan Download Manager $version$ متصل شد",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "متوقف شد: بارگیری‌ها در مرورگر می‌مانند"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "افزودن عنوان صفحه پیش از نام فایل رسانه"
+  },
+  "status_connected_2_0_0": {
+    "message": "به Tufan Download Manager $version$ متصل شد",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

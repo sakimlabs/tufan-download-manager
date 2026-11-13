@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Свързан с Tufan Download Manager"
   },
-  "status_connected_version": {
-    "message": "Свързан с Tufan Download Manager $version$",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "На пауза: изтеглянията остават в браузъра"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Добавяне на заглавието на страницата пред имената на медийните файлове"
+  },
+  "status_connected_2_0_0": {
+    "message": "Свързан с Tufan Download Manager $version$",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

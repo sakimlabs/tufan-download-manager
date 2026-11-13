@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Mit Tufan Download Manager verbunden"
   },
-  "status_connected_version": {
-    "message": "Mit Tufan Download Manager $version$ verbunden",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "Angehalten: Downloads verbleiben im Browser"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "Seitentitel vor die Namen von Mediendateien setzen"
+  },
+  "status_connected_2_0_0": {
+    "message": "Mit Tufan Download Manager $version$ verbunden",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

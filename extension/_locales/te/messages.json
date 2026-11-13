@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Managerకి కనెక్ట్ చేయబడింది"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$కి కనెక్ట్ చేయబడింది",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "పాజ్ చేయబడింది: డౌన్‌లోడ్‌లు బ్రౌజర్‌లోనే ఉంటాయి"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "మీడియా ఫైల్ పేర్ల ముందు పేజీ శీర్షికను జోడించు"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$కి కనెక్ట్ చేయబడింది",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager સાથે કનેક્ટેડ"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ સાથે કનેક્ટેડ",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "થોભાવેલ: ડાઉનલોડ્સ બ્રાઉઝર સાથે રહે છે"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "મીડિયા ફાઇલોનાં નામો પહેલાં પૃષ્ઠનું શીર્ષક ઉમેરો"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ સાથે કનેક્ટેડ",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

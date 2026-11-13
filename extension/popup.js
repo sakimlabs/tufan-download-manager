@@ -40,7 +40,7 @@ async function show() {
     text.textContent = s.paused ? t("status_paused") : t("status_remote", s.remote);
   } else if (s.connected) {
     box.classList.add(s.paused ? "warn" : "ok");
-    text.textContent = s.paused ? t("status_paused") : s.app ? t("status_connected_version", s.app) : t("status_connected");
+    text.textContent = s.paused ? t("status_paused") : s.app ? t("status_connected_2_0_0", s.app) : t("status_connected");
   } else {
     box.classList.add("bad");
     text.textContent = t(`status_${(s.why || "not_installed").replace(/-/g, "_")}`);

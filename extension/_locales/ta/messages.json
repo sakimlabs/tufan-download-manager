@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager உடன் இணைக்கப்பட்டுள்ளது"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ உடன் இணைக்கப்பட்டுள்ளது",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "இடைநிறுத்தப்பட்டது: பதிவிறக்கங்கள் உலாவியிலேயே இருக்கும்"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "மீடியா கோப்புப் பெயர்களுக்கு முன் பக்கத்தின் தலைப்பைச் சேர்"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ உடன் இணைக்கப்பட்டுள்ளது",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }

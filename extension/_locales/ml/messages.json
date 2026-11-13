@@ -47,15 +47,6 @@
   "status_connected": {
     "message": "Tufan Download Manager എന്നതുമായി ബന്ധിപ്പിച്ചു"
   },
-  "status_connected_version": {
-    "message": "Tufan Download Manager $version$ എന്നതുമായി ബന്ധിപ്പിച്ചു",
-    "placeholders": {
-      "version": {
-        "content": "$1",
-        "example": "0.2.5"
-      }
-    }
-  },
   "status_paused": {
     "message": "താൽക്കാലികമായി നിർത്തി: ഡൗൺലോഡുകൾ ബ്രൗസറിൽ തുടരും"
   },
@@ -244,5 +235,14 @@
   },
   "popup_media_title_name": {
     "message": "മീഡിയ ഫയലുകളുടെ പേരുകൾക്ക് മുന്നിൽ പേജിന്റെ ശീർഷകം ചേർക്കുക"
+  },
+  "status_connected_2_0_0": {
+    "message": "Tufan Download Manager $version$ എന്നതുമായി ബന്ധിപ്പിച്ചു",
+    "placeholders": {
+      "2_0_0": {
+        "content": "$1",
+        "example": "0.2.5"
+      }
+    }
   }
 }
