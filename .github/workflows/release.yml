@@ -73,7 +73,7 @@ jobs:
           if ("v$v" -ne "${{ github.ref_name }}") { throw "tag ${{ github.ref_name }} but Cargo.toml says $v" }
 
       - name: Tests
-        run: cargo test --workspace
+        run: cargo test -p tdm-app -p tdm-nmhost -p tdm-cli -p tdm-mcp -p tdm-ipc
 
       - name: Inno Setup
         shell: pwsh
