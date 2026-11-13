@@ -8,6 +8,9 @@ Each release's notes on GitHub come from its section here (`## [X.Y.Z]`, see
 ### Fixed
 - Windows download-resume test flakiness: check resume state file after process exit before panicking (`crates/app/tests/cli_crash.rs`)
 
+### macOS (experimental)
+- The macOS builds are ad-hoc signed, without an Apple Developer ID: macOS asks before the first start (right-click the app → **Open**). The app's Safari extension loads only with **Develop → Allow Unsigned Extensions**, each time Safari starts. With a Developer ID (`TDM_MACOS_IDENTITY`) and notarization (`TDM_NOTARY_PROFILE`) configured, future builds sign and notarize themselves, and this notice goes.
+
 ## [Unreleased]
 
 ### Added
