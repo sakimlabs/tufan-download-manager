@@ -991,7 +991,8 @@ fn register(all_users: bool) -> Result<(), String> {
         } else {
             chromium_manifest(&program)
         };
-        let legacy_written = write_json(&dir.join(format!("{OLD_HOST_NAME}.json")), &legacy_manifest);
+        let legacy_written =
+            write_json(&dir.join(format!("{OLD_HOST_NAME}.json")), &legacy_manifest);
         match legacy_written {
             Ok(()) => println!("registered {OLD_HOST_NAME} in {}", dir.display()),
             Err(e) => failed.push(e),
