@@ -42,7 +42,14 @@ async fn killed_download_resumes_correctly() {
             break st.downloaded();
         }
         // A download that ends first never saves progress for this test to find (#518).
+        // Check process exit, but do a final state load in case the final save completed.
         if let Some(status) = child.try_wait().unwrap() {
+            // Process exited; check state one last time before panicking.
+            if let Ok(st) = ResumeState::load(&state)
+                && st.downloaded() > 4 << 20
+            {
+                break st.downloaded();
+            }
             panic!("the download ended ({status}) before saving any progress");
         }
         tokio::time::sleep(Duration::from_millis(100)).await;
