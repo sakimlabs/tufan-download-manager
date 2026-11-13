@@ -29,12 +29,13 @@ if [ "${1:-}" != "--no-build" ]; then
       cargo build --release --target "$t" -p tdm-app -p tdm-nmhost -p tdm-cli -p tdm-mcp
   done
 fi
-# Skip extension build if artifacts already exist (from CI extension job)
-if [ "${1:-}" != "--no-build" ] && [ ! -d "$root/target/extension/chromium" ]; then
-  pwsh -NoProfile -File "$root/tools/extension/pack.ps1"
-elif [ "${1:-}" != "--no-build" ]; then
-  echo "Extension artifacts already present, skipping pack.ps1"
+# Extension artifacts are downloaded from extension job in CI
+# No need to run pack.ps1 (pwsh not available on macOS CI)
+if [ ! -d "$root/target/extension/chromium" ]; then
+  echo "ERROR: Extension artifacts not found at $root/target/extension/chromium" >&2
+  exit 1
 fi
+echo "Extension artifacts found, skipping pack.ps1"
 sign="${TDM_MACOS_IDENTITY:--}"
 # A real identity also gets the hardened runtime (notarization needs it).
 sign_opts=()
