@@ -18,7 +18,7 @@ version="$(sed -n 's/^version *= *"\([^"]*\)".*/\1/p' "$root/Cargo.toml" | head 
 [ -n "$version" ] || { echo "no version in Cargo.toml" >&2; exit 1; }
 programs=(tufan-download-manager tufan-download-manager-nmhost tufan-download-manager-cli tufan-download-manager-mcp)
 # Rust's target and the processor's name in the release files (as macOS calls it), with ':'.
-targets=(aarch64-apple-darwin:arm64 x86_64-apple-darwin:x86_64)
+targets=(aarch64-apple-darwin:arm64 x86_64-apple-darwin:x64)
 
 if [ "${1:-}" != "--no-build" ]; then
   for pair in "${targets[@]}"; do
