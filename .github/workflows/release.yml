@@ -216,7 +216,7 @@ jobs:
 
   linux:
     # The oldest supported Ubuntu: the programs run on its glibc (2.35) and newer.
-    needs: geo
+    needs: [geo, extension]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -227,6 +227,19 @@ jobs:
         with:
           name: geo-data
           path: crates/geo/data
+
+      - name: Download extension artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: extension
+          path: target/dist
+
+      - name: Extract extension artifacts
+        run: |
+          mkdir -p target/extension
+          v=$(sed -n 's/^version *= *"([^"]*)".*/\1/p' Cargo.toml | head -1)
+          unzip -o "target/dist/MisterDownloadManager-$v-extension-chromium.zip" -d target/extension/chromium
+          cp "target/dist/MisterDownloadManager-$v-extension-firefox.xpi" target/extension/tdm-firefox.xpi
 
       - name: Toolchain
         run: rustup show active-toolchain || rustup toolchain install
@@ -257,7 +270,7 @@ jobs:
           path: target/dist/*
 
   macos:
-    needs: geo
+    needs: [geo, extension]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -268,6 +281,19 @@ jobs:
         with:
           name: geo-data
           path: crates/geo/data
+
+      - name: Download extension artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: extension
+          path: target/dist
+
+      - name: Extract extension artifacts
+        run: |
+          mkdir -p target/extension
+          v=$(sed -n 's/^version *= *"([^"]*)".*/\1/p' Cargo.toml | head -1)
+          unzip -o "target/dist/MisterDownloadManager-$v-extension-chromium.zip" -d target/extension/chromium
+          cp "target/dist/MisterDownloadManager-$v-extension-firefox.xpi" target/extension/tdm-firefox.xpi
 
       - name: Toolchain
         run: rustup show active-toolchain || rustup toolchain install

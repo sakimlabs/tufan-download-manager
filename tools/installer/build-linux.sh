@@ -27,7 +27,12 @@ if [ "${1:-}" != "--no-build" ]; then
   CARGO_ENCODED_RUSTFLAGS="--remap-path-prefix=${CARGO_HOME:-$HOME/.cargo}=cargo"$'\x1f'"--remap-path-prefix=$root=mdm" \
     cargo build --release -p tdm-app -p tdm-nmhost -p tdm-cli -p tdm-mcp
 fi
-pwsh -NoProfile -File "$root/tools/extension/pack.ps1"
+# Skip extension build if artifacts already exist (from CI extension job)
+if [ "${1:-}" != "--no-build" ] && [ ! -d "$root/target/extension/chromium" ]; then
+  pwsh -NoProfile -File "$root/tools/extension/pack.ps1"
+elif [ "${1:-}" != "--no-build" ]; then
+  echo "Extension artifacts already present, skipping pack.ps1"
+fi
 
 mkdir -p "$dist"
 stage="$dist/stage-linux"
